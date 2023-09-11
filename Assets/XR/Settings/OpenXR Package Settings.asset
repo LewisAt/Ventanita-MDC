@@ -85,11 +85,11 @@ MonoBehaviour:
   m_Name: ConformanceAutomationFeature WSA
   m_EditorClassIdentifier: 
   m_enabled: 0
-  nameUi: 
-  version: 
-  featureIdInternal: 
-  openxrExtensionStrings: 
-  company: 
+  nameUi: Conformance Automation
+  version: 0.0.1
+  featureIdInternal: com.unity.openxr.feature.conformance
+  openxrExtensionStrings: XR_EXT_conformance_automation
+  company: Unity
   priority: 0
   required: 0
 --- !u!114 &-7108188313654605435
@@ -173,11 +173,11 @@ MonoBehaviour:
   m_Name: OculusTouchControllerProfile WSA
   m_EditorClassIdentifier: 
   m_enabled: 0
-  nameUi: 
-  version: 
-  featureIdInternal: 
+  nameUi: Oculus Touch Controller Profile
+  version: 0.0.1
+  featureIdInternal: com.unity.openxr.feature.input.oculustouch
   openxrExtensionStrings: 
-  company: 
+  company: Unity
   priority: 0
   required: 0
 --- !u!114 &-3848868520032449111
@@ -193,11 +193,11 @@ MonoBehaviour:
   m_Name: HTCViveControllerProfile WSA
   m_EditorClassIdentifier: 
   m_enabled: 0
-  nameUi: 
-  version: 
-  featureIdInternal: 
+  nameUi: HTC Vive Controller Profile
+  version: 0.0.1
+  featureIdInternal: com.unity.openxr.feature.input.htcvive
   openxrExtensionStrings: 
-  company: 
+  company: Unity
   priority: 0
   required: 0
 --- !u!114 &-3775240987298995030
@@ -213,11 +213,11 @@ MonoBehaviour:
   m_Name: EyeGazeInteraction WSA
   m_EditorClassIdentifier: 
   m_enabled: 0
-  nameUi: 
-  version: 
-  featureIdInternal: 
-  openxrExtensionStrings: 
-  company: 
+  nameUi: Eye Gaze Interaction Profile
+  version: 0.0.1
+  featureIdInternal: com.unity.openxr.feature.input.eyetracking
+  openxrExtensionStrings: XR_EXT_eye_gaze_interaction
+  company: Unity
   priority: 0
   required: 0
 --- !u!114 &-3764563599612414510
@@ -233,11 +233,11 @@ MonoBehaviour:
   m_Name: MicrosoftMotionControllerProfile WSA
   m_EditorClassIdentifier: 
   m_enabled: 0
-  nameUi: 
-  version: 
-  featureIdInternal: 
+  nameUi: Microsoft Motion Controller Profile
+  version: 0.0.1
+  featureIdInternal: com.unity.openxr.feature.input.microsoftmotioncontroller
   openxrExtensionStrings: 
-  company: 
+  company: Unity
   priority: 0
   required: 0
 --- !u!114 &-2076527247829958122
@@ -325,11 +325,11 @@ MonoBehaviour:
   m_Name: KHRSimpleControllerProfile WSA
   m_EditorClassIdentifier: 
   m_enabled: 0
-  nameUi: 
-  version: 
-  featureIdInternal: 
+  nameUi: Khronos Simple Controller Profile
+  version: 0.0.1
+  featureIdInternal: com.unity.openxr.feature.input.khrsimpleprofile
   openxrExtensionStrings: 
-  company: 
+  company: Unity
   priority: 0
   required: 0
 --- !u!114 &11400000
@@ -412,11 +412,11 @@ MonoBehaviour:
   m_Name: MicrosoftHandInteraction WSA
   m_EditorClassIdentifier: 
   m_enabled: 0
-  nameUi: 
-  version: 
-  featureIdInternal: 
-  openxrExtensionStrings: 
-  company: 
+  nameUi: Microsoft Hand Interaction Profile
+  version: 0.0.1
+  featureIdInternal: com.unity.openxr.feature.input.handtracking
+  openxrExtensionStrings: XR_MSFT_hand_interaction
+  company: Unity
   priority: 0
   required: 0
 --- !u!114 &1922999931590795883
@@ -432,11 +432,11 @@ MonoBehaviour:
   m_Name: ValveIndexControllerProfile WSA
   m_EditorClassIdentifier: 
   m_enabled: 0
-  nameUi: 
-  version: 
-  featureIdInternal: 
+  nameUi: Valve Index Controller Profile
+  version: 0.0.1
+  featureIdInternal: com.unity.openxr.feature.input.valveindex
   openxrExtensionStrings: 
-  company: 
+  company: Unity
   priority: 0
   required: 0
 --- !u!114 &2840031021314888583
@@ -686,11 +686,11 @@ MonoBehaviour:
   m_Name: RuntimeDebuggerOpenXRFeature WSA
   m_EditorClassIdentifier: 
   m_enabled: 0
-  nameUi: 
-  version: 
-  featureIdInternal: 
+  nameUi: Runtime Debugger
+  version: 1
+  featureIdInternal: com.unity.openxr.features.runtimedebugger
   openxrExtensionStrings: 
-  company: 
+  company: Unity
   priority: 0
   required: 0
   cacheSize: 1048576
@@ -748,11 +748,11 @@ MonoBehaviour:
   m_Name: MetaQuestTouchProControllerProfile WSA
   m_EditorClassIdentifier: 
   m_enabled: 0
-  nameUi: 
-  version: 
-  featureIdInternal: 
-  openxrExtensionStrings: 
-  company: 
+  nameUi: Meta Quest Touch Pro Controller Profile
+  version: 0.0.1
+  featureIdInternal: com.unity.openxr.feature.input.metaquestpro
+  openxrExtensionStrings: XR_FB_touch_controller_pro
+  company: Unity
   priority: 0
   required: 0
 --- !u!114 &7715521985466311500
@@ -860,6 +860,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5a1f07dc5afe854f9f12a4194aca3fb, type: 3}
   m_Name: WSA
   m_EditorClassIdentifier: 
-  features: []
+  features:
+  - {fileID: -7932027144423892701}
+  - {fileID: -3775240987298995030}
+  - {fileID: -3848868520032449111}
+  - {fileID: -458117738127352556}
+  - {fileID: 7336094603212117252}
+  - {fileID: 1922746461633251551}
+  - {fileID: -3764563599612414510}
+  - {fileID: -4533778198727067629}
+  - {fileID: 6902786895260315983}
+  - {fileID: 1922999931590795883}
   m_renderMode: 1
   m_depthSubmissionMode: 0
