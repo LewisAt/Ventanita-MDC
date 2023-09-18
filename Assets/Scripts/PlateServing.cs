@@ -14,9 +14,6 @@ public class PlateServing : MonoBehaviour
     bool sideFull = false;
     bool laldleFull;
     bool plateFull = false;
-    //public GameObject game;
-    //public GameObject game2;
-    //public GameObject game3;
 
     private void OnCollisionEnter(Collision other)
     {
@@ -39,6 +36,10 @@ public class PlateServing : MonoBehaviour
         }
     }
 
+    public void Start()
+    {
+        plateFull = false;
+    }
     public void checkPlatePosition(GameObject other)
     {
         food = other.GetComponent<foodIdentifier>();
@@ -99,7 +100,8 @@ public class PlateServing : MonoBehaviour
         if (one == true && two == true && three == true)
         {
             plateFull = true;
-            Debug.Log("Plate is full!");
+            Debug.Log("Plate is full!");        
+            transform.GetComponentInChildren<Rigidbody>().isKinematic = false;
         }
         else
         {

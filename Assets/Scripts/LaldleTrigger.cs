@@ -16,8 +16,7 @@ public class LaldleTrigger : MonoBehaviour
     //Create a variable for the Script and the enum
     foodIdentifier foodType;
     foodIdentifier.typesOfFood currentFood;
-    PlateSections plateSections;
-    GameObject[] plateArray;
+    
     private void OnCollisionEnter(Collision other)
     { 
         if (other.gameObject.tag == "food")
@@ -43,12 +42,10 @@ public class LaldleTrigger : MonoBehaviour
             Debug.Log(clone.name + " was picked up");
         }
     }
-
     public void CheckWhatSectionOnPlate(Collision other)
     {
-        plateSections = other.gameObject.GetComponent<PlateSections>();
-        plateArray = plateSections.platePositions;
         Debug.Log("I am triggering from the plate collision");
         GameObject clone = Instantiate(prefabedFoods[(int)currentFood], this.GetComponentInChildren<Transform>());
     }
+    
 }

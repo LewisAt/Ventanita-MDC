@@ -4,32 +4,11 @@ using UnityEngine;
 
 public class PlateSections : MonoBehaviour
 {
-    public GameObject[] platePositions;
-    //public foodIdentifier foodIdentifier;
-    foodIdentifier.typesOfFood enumholder;
-
-    /*private void OnCollisionEnter(Collision other)
+    private void OnCollisionEnter(Collision collision)
     {
-        laldletrigger = other.gameObject.GetComponentInParent<LaldleTrigger>();
-
-        if (other.gameObject.tag == "food")
+        if (collision.gameObject.tag == "plate")
         {
-            laldletrigger.CheckSpoonForPlate(other.gameObject);
+            collision.transform.SetParent(transform);
         }
-    }*/
-
-    /*private void Update()
-    {
-        enumholder =
-            //foodIdentifier.typesOfFood
-
-        for (int i = 0; i < foodIdentifier.food; i++)
-        {
-            if (i == foodIdentifier.typesOfFood.croqueta)
-            {
-
-            }
-        }
-
-    }*/
+    }
 }
