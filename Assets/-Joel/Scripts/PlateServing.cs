@@ -21,6 +21,7 @@ public class PlateServing : MonoBehaviour
         if (other.gameObject.tag == "spoon")
         {
             GameObject clone = other.transform.GetChild(0).gameObject;
+            clone.transform.localScale = Vector3.one * 0.1f;
             Debug.Log("specifically colliding with the spoon");
             food = clone.GetComponent<foodIdentifier>();
             if (food == null)

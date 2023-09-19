@@ -38,6 +38,7 @@ public class LaldleTrigger : MonoBehaviour
                 return;
             }
             GameObject clone = Instantiate(prefabedFoods[(int)currentFood], spoon.transform.position, spoon.transform.rotation, spoon);
+            clone.transform.localScale = Vector3.one;
             isLaldleFull = true;
             Debug.Log(clone.name + " was picked up");
         }
