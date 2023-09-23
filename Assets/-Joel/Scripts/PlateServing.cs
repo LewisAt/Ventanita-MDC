@@ -21,7 +21,7 @@ public class PlateServing : MonoBehaviour
         if (other.gameObject.tag == "spoon")
         {
             GameObject clone = other.transform.GetChild(0).gameObject;
-            clone.transform.localScale = Vector3.one * 0.1f;
+            clone.transform.localScale = Vector3.one * .1f;
             Debug.Log("specifically colliding with the spoon");
             food = clone.GetComponent<foodIdentifier>();
             if (food == null)
@@ -58,9 +58,15 @@ public class PlateServing : MonoBehaviour
     {
         laldleFull = LaldleTrigger.isLaldleFull;
         GameObject clone = Instantiate(other);
+        Destroy(clone.gameObject.GetComponent<Rigidbody>());
+
         if (parent == 0 && mainFull == false)
         {
+
+            clone.transform.rotation = transform.GetChild(parent).rotation;
+
             clone.transform.SetParent(transform.GetChild(parent));
+
             clone.transform.localPosition = Vector3.zero;
             mainFull = true;
             LaldleTrigger.isLaldleFull = false;
@@ -68,7 +74,11 @@ public class PlateServing : MonoBehaviour
         }
         else if (parent == 0 && mainFull == true && main2Full == false)
         {
+            clone.transform.rotation = transform.GetChild(parent + 1).rotation;
+
             clone.transform.SetParent(transform.GetChild(parent + 1));
+
+
             clone.transform.localPosition = Vector3.zero;
             main2Full = true;
             LaldleTrigger.isLaldleFull = false;
@@ -82,8 +92,11 @@ public class PlateServing : MonoBehaviour
         }
         else if (parent == 1 && sideFull == false)
         {
+            clone.transform.rotation = transform.GetChild(parent + 1).rotation;
+
             clone.transform.SetParent(transform.GetChild(parent + 1));
-            clone.transform.localPosition = Vector3.zero;
+
+            clone.transform.localPosition = Vector3.zero; 
             sideFull = true;
             LaldleTrigger.isLaldleFull = false;
             Destroy(other);
