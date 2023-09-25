@@ -16,8 +16,8 @@ public class foodIdentifier : MonoBehaviour
     }
     public enum foodPosition
     {
-        main,
-        side
+        main = 0,
+        side = 1
     }
     public foodPosition pos;
     public typesOfFood food;

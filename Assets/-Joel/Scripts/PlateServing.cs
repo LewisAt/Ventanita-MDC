@@ -11,7 +11,9 @@ public class PlateServing : MonoBehaviour
     foodIdentifier.foodPosition foodPos;
     bool mainFull = false;
     bool main2Full = false;
+    bool main3Full = false;
     bool sideFull = false;
+    bool side2Full = false;
     bool laldleFull;
     bool plateFull = false;
 
@@ -78,13 +80,23 @@ public class PlateServing : MonoBehaviour
 
             clone.transform.SetParent(transform.GetChild(parent + 1));
 
-
             clone.transform.localPosition = Vector3.zero;
             main2Full = true;
             LaldleTrigger.isLaldleFull = false;
             Destroy(other);
         }
-        else if (parent == 0 && main2Full == true)
+        else if (parent == 0 && mainFull == true && main2Full == true && main3Full == false)
+        {
+            clone.transform.rotation = transform.GetChild(parent + 3).rotation;
+
+            clone.transform.SetParent(transform.GetChild(parent + 3));
+
+            clone.transform.localPosition = Vector3.zero;
+            main3Full = true;
+            LaldleTrigger.isLaldleFull = false;
+            Destroy(other);
+        }
+        else if (parent == 0 && main3Full == true)
         {
             Destroy(other);
             Destroy(clone);
@@ -101,17 +113,28 @@ public class PlateServing : MonoBehaviour
             LaldleTrigger.isLaldleFull = false;
             Destroy(other);
         }
+        else if (parent == 1 && sideFull == true && side2Full == false)
+        {
+            clone.transform.rotation = transform.GetChild(parent + 1).rotation;
+
+            clone.transform.SetParent(transform.GetChild(parent + 1));
+
+            clone.transform.localPosition = Vector3.zero;
+            side2Full = true;
+            LaldleTrigger.isLaldleFull = false;
+            Destroy(other);
+        }
         else
         {
             Destroy(clone);
             Destroy(other);
             LaldleTrigger.isLaldleFull = false;
         }
-        CheckPlate(mainFull, main2Full, sideFull);
+        CheckPlate(mainFull, main2Full, main3Full, sideFull, side2Full);
     }
-    public void CheckPlate(bool one, bool two, bool three)
+    public void CheckPlate(bool one, bool two, bool three, bool four, bool five)
     {
-        if (one == true && two == true && three == true)
+        if (one == true && two == true && three == true && four == true && five == true)
         {
             plateFull = true;
             Debug.Log("Plate is full!");        
