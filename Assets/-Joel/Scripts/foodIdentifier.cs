@@ -8,7 +8,11 @@ public class foodIdentifier : MonoBehaviour
     {
         croqueta,
         tostone,
-        maduro
+        maduro,
+        Arroz,
+        Beans,
+        Fricase,
+        Rabo
     }
     public enum foodPosition
     {
