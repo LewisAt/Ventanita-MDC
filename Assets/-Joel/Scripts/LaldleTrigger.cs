@@ -1,3 +1,4 @@
+
 using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
@@ -13,9 +14,8 @@ public class LaldleTrigger : MonoBehaviour
     GameObject spoonContents;
     Vector3 spoonPosition;
     Quaternion spoonRotation;
-    //Create a variable for the Script and the enum
     foodIdentifier foodType;
-    foodIdentifier.typesOfFood currentFood;
+    typesOfFood currentFood;
     
     private void OnCollisionEnter(Collision other)
     { 
