@@ -44,7 +44,7 @@ public class CustomerChecksOrderTest : MonoBehaviour
         bool OrderIsValid = false;
         
 
-        for (!OrderIsValid)
+        while (!OrderIsValid)
         {
             if (randRoll == 0)
                 OrderIsValid = true;
