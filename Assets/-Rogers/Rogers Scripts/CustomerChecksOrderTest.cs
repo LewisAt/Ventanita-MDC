@@ -30,7 +30,6 @@ public class CustomerChecksOrderTest : MonoBehaviour
         if(meal == 0)
         {
             //*Add* Limitation function for Individual orders- while(!OrderIsValid)
-            menuFood(); 
         }
         if(meal == 1)
         {
@@ -39,7 +38,7 @@ public class CustomerChecksOrderTest : MonoBehaviour
         }
         
     }
-    void menuFood()
+    /*void menuFood()
     {
         bool OrderIsValid = false;
         
@@ -69,7 +68,7 @@ public class CustomerChecksOrderTest : MonoBehaviour
         Debug.Log(randRoll);
         CustomersOrder = (foodIdentifier.typesOfFood)randRoll;
         Debug.Log(CustomersOrder);
-    }
+    }*/
 
     void menuMeal()
     {

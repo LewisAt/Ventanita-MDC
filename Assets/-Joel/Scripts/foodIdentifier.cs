@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class foodIdentifier : MonoBehaviour
 {
+    public string[] foods = { "food1" , "foods2"};
+    
     public enum typesOfFood
     {
         croqueta,
@@ -12,9 +14,11 @@ public class foodIdentifier : MonoBehaviour
     }
     public enum foodPosition
     {
+        
         main,
         side
     }
     public foodPosition pos;
     public typesOfFood food;
+
 }
