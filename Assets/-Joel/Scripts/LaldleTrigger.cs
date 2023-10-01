@@ -15,7 +15,7 @@ public class LaldleTrigger : MonoBehaviour
     Vector3 spoonPosition;
     Quaternion spoonRotation;
     foodIdentifier foodType;
-    typesOfFood currentFood;
+    foodIdentifier.typesOfFood currentFood;
     
     private void OnCollisionEnter(Collision other)
     { 

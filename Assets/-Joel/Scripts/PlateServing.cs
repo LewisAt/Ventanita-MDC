@@ -8,7 +8,7 @@ public class PlateServing : MonoBehaviour
 {
     LaldleTrigger laldletrigger;
     foodIdentifier food;
-    foodPosition foodPos;
+    foodIdentifier.foodPosition foodPos;
     bool mainFull = false;
     bool main2Full = false;
     bool sideFull = false;

@@ -7,20 +7,20 @@ using UnityEngine;
 
 public class CustomerChecksOrderTest : MonoBehaviour
 {
-    
-    
-    typesOfFood CustomersOrder;
+
+    int randRoll = 6;
+    foodIdentifier.typesOfFood CustomersOrder;
 
     void Start()
     {
+
+        //randomizes randRoll to randomize customerOrder
+        RandomMeal();
         
-        
-        CustomersOrder = RandomMeal(CustomersOrder);
-        Debug.Log(CustomersOrder);
     }
 
     //Randomizes but limits what an order can be
-    public typesOfFood RandomMeal(typesOfFood order)
+    public void RandomMeal()
     {
         //*Add* multiple orders to experment 
 
@@ -30,30 +30,30 @@ public class CustomerChecksOrderTest : MonoBehaviour
         if(meal == 0)
         {
             //*Add* Limitation function for Individual orders- while(!OrderIsValid)
-            menuFood(order); 
+            menuFood(); 
         }
         if(meal == 1)
         {
             //*Add* Meal Options and a Random number will chose
-            //menuMeal(order);
+            //menuMeal();
         }
-        return order;
+        
     }
-    void menuFood(typesOfFood orderedItem)
+    void menuFood()
     {
         bool OrderIsValid = false;
-        int randRoll = 6;
+        
 
-        while (!OrderIsValid)
+        for (!OrderIsValid)
         {
             if (randRoll == 0)
-                OrderIsValid = false;
+                OrderIsValid = true;
             else if (randRoll == 1)
-                OrderIsValid = true;
+                OrderIsValid = false;
             else if (randRoll == 2)
-                OrderIsValid = true;
+                OrderIsValid = false;
             else if (randRoll == 3)
-                OrderIsValid = true;
+                OrderIsValid = false;
             else if (randRoll == 4)
                 OrderIsValid = true;
             else if (randRoll == 5)
@@ -66,17 +66,24 @@ public class CustomerChecksOrderTest : MonoBehaviour
                 
 
         }
-        //*Problem* Not Randomizing; defaulting to zero
-        orderedItem = (typesOfFood)Random.Range(0, 5);
+        Debug.Log(randRoll);
+        CustomersOrder = (foodIdentifier.typesOfFood)randRoll;
+        Debug.Log(CustomersOrder);
     }
-    
-    //void menuMeal(typesOfFood orderedItems)
-    //{
-    //    int randRoll = Random.Range(0, 3);
-    //    orderedItems = (typesOfFood)randRoll;
-    //    //if(orderedItems == 0)
 
-    //}
+    void menuMeal()
+    {
+        randRoll = Random.Range(0, 3);
+        if (randRoll == 0)
+        {
+            //combo rabo & beans
+        }
+        else if(randRoll == 1)
+        {
+            //combo rabo & fricase de pollo
+        }
+
+    }
     void OnTriggerEnter(Collider collider)
     {
         //Deletes Plate
