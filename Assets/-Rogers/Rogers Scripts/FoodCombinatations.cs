@@ -103,7 +103,6 @@ public class FoodCombinatations : MonoBehaviour
         ActualOrder.sides = possibleSideOrders[randRoll].sides;
         bool wantCoffee = rndBool;
         
-        ActualOrder.hasCoffee = rndBool;
         
         
 
