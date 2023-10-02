@@ -8,4 +8,6 @@ public class PlateContents : MonoBehaviour
     public MainFoods Mains;
     public bool hasRice = false;
     public bool hasSide = false;
+    public bool hasCoffee = false;
+
 }

@@ -496,13 +496,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 1166896732}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba17f5d6e6051f248ba192783f6fbbbf, type: 3}
+  m_Script: {fileID: 11500000, guid: da940d7b53398aa43b8a41a62a6610e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   sides: 0
   Mains: 0
   hasRice: 0
   hasSide: 0
+  hasCoffee: 0
+  foodsCost: 0
 --- !u!1 &1364874574
 GameObject:
   m_ObjectHideFlags: 0
@@ -621,6 +623,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d83d41c7bf4c964ab86fa47ebdcdf31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  possibleMainOrders:
+  - {fileID: 3847674522970296367, guid: f2bd1d594bcded0489ebffb72c78ad9b, type: 3}
+  - {fileID: 3847674522970296367, guid: 15caad8f9c61e85469605c2a5fa786ad, type: 3}
+  possibleSideOrders:
+  - {fileID: 3847674522970296367, guid: c4f5987a5b3faf04fa8cf4352c3b2d9d, type: 3}
+  - {fileID: 3847674522970296367, guid: e38764682a87fae4680a26ba7141956e, type: 3}
 --- !u!1 &1626921046
 GameObject:
   m_ObjectHideFlags: 0
@@ -654,6 +662,8 @@ MonoBehaviour:
   Mains: 0
   hasRice: 0
   hasSide: 0
+  hasCoffee: 0
+  foodsCost: 0
 --- !u!4 &1626921048
 Transform:
   m_ObjectHideFlags: 0

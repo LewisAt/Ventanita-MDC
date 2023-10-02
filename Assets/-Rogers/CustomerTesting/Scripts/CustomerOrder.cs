@@ -8,25 +8,24 @@ public class CustomerOrder : MonoBehaviour
     public MainFoods Mains;
     public bool hasRice = false;
     public bool hasSide = false;
+    public bool hasCoffee = false;
+    //Rice = 0 Coffee = 1 Croqueta = 2 Tostone = 3 Maduro = 4 Rabo = 5 Fricase = 6
+    public int foodsCost;
 
     private void Awake()
     {
-        RandomSide();
+        
         print(sides);
     }
     private void Update()
     {
         if(Input.GetKeyDown(KeyCode.E)) 
         {
-            RandomSide();
+            
             print(sides);
         }
     }
-    void RandomSide()
-    {
-        int num = Random.Range(0, 3);
-        sides = (SideFoods)num;
-    }
+    
 }
 public enum SideFoods
 {

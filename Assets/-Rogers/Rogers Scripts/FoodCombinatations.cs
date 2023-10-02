@@ -9,9 +9,15 @@ public class FoodCombinatations : MonoBehaviour
 
     bool wantsSide;
     bool wantsRice;
-    MealObject CustomersOrder;
-    //public CustomersOrder[] possibleOrders;
-    
+    int debt = 0;
+
+    //MealObject CustomersOrder;
+    //Must be customerOrder
+    public CustomerOrder[] possibleMainOrders;
+    public CustomerOrder[] possibleSideOrders;
+    CustomerOrder ActualOrder;
+
+     
     //what customer is going to hold when observing plate
 
     void Awake()
@@ -21,16 +27,44 @@ public class FoodCombinatations : MonoBehaviour
     void OnTriggerEnter(Collider col)
     {
         //col.transform.SetParent(this.transform);
-        if (CustomersOrder.Mains == col.gameObject.GetComponent<PlateContents>().Mains)
+        //CustomerOrder accepts arrays
+
+        //Checks Main
+        /*
+        if (ActualOrder.Mains == col.gameObject.GetComponent<CustomerOrder>().Mains)
         {
             print("Correct");
         }
         else
         {
-            print(CustomersOrder.Mains);
-            print(col.gameObject.GetComponent<PlateContents>().Mains);
+            print(ActualOrder.Mains);
+            print(col.gameObject.GetComponent<CustomerOrder>().Mains);
         }
-        
+
+
+
+
+        if (ActualOrder.sides == col.gameObject.GetComponent<CustomerOrder>().sides)
+        {
+            print("Correct");
+        }
+        else
+        {
+            print(ActualOrder.sides);
+            print(col.gameObject.GetComponent<CustomerOrder>().sides);
+        }
+        if (ActualOrder.hasCoffee == col.gameObject.GetComponent<CustomerOrder>().hasCoffee) 
+        {
+            print("Correct");
+        }
+        else
+        {
+            print(ActualOrder.hasCoffee);
+            print(col.gameObject.GetComponent<CustomerOrder>().hasCoffee);
+        }        
+        */
+
+
     }
     bool rndBool
     {
@@ -60,14 +94,21 @@ public class FoodCombinatations : MonoBehaviour
     }
     void randomMeal()
     {
-        int randRoll = 0;
-        //int randRoll = Random.Range(0, 3);
-        //2 sets for now
-        //mainFood rabo SideFood maduro
-        if (randRoll == 0)
-        {
-            //CustomersOrder = possibleOrders[0];
-        }
+        
+        int randRoll = Random.Range(0, possibleMainOrders.Length);
+        
+        ActualOrder = possibleMainOrders[randRoll];
+        randRoll = Random.Range(0, possibleSideOrders.Length);
+        
+        ActualOrder.sides = possibleSideOrders[randRoll].sides;
+        bool wantCoffee = rndBool;
+        
+        ActualOrder.hasCoffee = rndBool;
+        
+        
+
+
+
 
     }
 }
