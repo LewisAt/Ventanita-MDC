@@ -309,6 +309,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &1247563729 stripped
+SphereCollider:
+  m_CorrespondingSourceObject: {fileID: 6672075546726760566, guid: af0f7222028f184479870520ba67f9a9, type: 3}
+  m_PrefabInstance: {fileID: 4688846125535914290}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &394744276652712396
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -690,6 +695,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6672075546726760566, guid: af0f7222028f184479870520ba67f9a9, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6672075546726760566, guid: af0f7222028f184479870520ba67f9a9, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8919489530515174069, guid: af0f7222028f184479870520ba67f9a9, type: 3}
       propertyPath: prefabedFoods.Array.size
       value: 7
@@ -771,6 +784,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8580283119311295537, guid: 070edf7a74026344996158c028b4b9a7, type: 3}
+      propertyPath: other
+      value: 
+      objectReference: {fileID: 1247563729}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
