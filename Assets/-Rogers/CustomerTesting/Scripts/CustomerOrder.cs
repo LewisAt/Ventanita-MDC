@@ -7,7 +7,7 @@ using UnityEngine.UI;
 //this Script Contains Possible Orders the Customer can make
 public class CustomerOrder : MonoBehaviour
 {
-    public SideFoods[] sides = new SideFoods[2];
+    public SideFoods sides;
     int NumOfSides;
 
 
@@ -74,7 +74,7 @@ public class CustomerOrder : MonoBehaviour
 
                 break;
         }
-        switch (sides[0])
+        switch (sides)
         {
             case SideFoods.None:
                 SideDescription = "None";

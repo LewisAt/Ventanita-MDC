@@ -47,7 +47,7 @@ public class GradeOrderInput : MonoBehaviour
             print("Correct Main: " + ActualOrder.Mains);
         }
 
-        if (givenPlate.gameObject.GetComponent<CustomerOrder>().sides[0] == ActualOrder.sides[0])
+        if (givenPlate.gameObject.GetComponent<CustomerOrder>().sides == ActualOrder.sides)
         {
             if (givenPlate.gameObject.GetComponent<CustomerOrder>().getNumOfSides() == ActualOrder.getNumOfSides())
             {
@@ -56,8 +56,8 @@ public class GradeOrderInput : MonoBehaviour
             else
             {
                 Debug.Log("Side Number 0 is incorrect");
-                Debug.Log("Side: " + givenPlate.gameObject.GetComponent<CustomerOrder>().sides[0]);
-                Debug.Log("Correct Side: " + ActualOrder.sides[0]);
+                Debug.Log("Side: " + givenPlate.gameObject.GetComponent<CustomerOrder>().sides);
+                Debug.Log("Correct Side: " + ActualOrder.sides);
             }
         }
         
@@ -75,8 +75,8 @@ public class GradeOrderInput : MonoBehaviour
         else
             print("Rice is incorrect");
         //Checks if meal is correct
-        print(mealAccuracyCount + "out of 6");
-        if(mealAccuracyCount == 6)
+        print(mealAccuracyCount + "out of 5");
+        if(mealAccuracyCount == 5)
         {
             print("Correct");
             //Reward Player
