@@ -28,10 +28,15 @@ public class CustomerOrder : MonoBehaviour
 
     public void randomizeFactors()
     {
+
+        if (sides != SideFoods.None)
+        {
+            NumOfSides = Random.Range(1, 4);
+            print("Amount of Sides: " + NumOfSides);
+        }
+        else
+            NumOfSides = 0;
         
-        //if (sides[0] != SideFoods.None) 
-        NumOfSides = Random.Range(0, 4);
-        print("Amount of Sides 1: " + NumOfSides);
         WantsCoffee = Random.value < 0.5f;
     }
 
@@ -39,12 +44,21 @@ public class CustomerOrder : MonoBehaviour
     {
         float TotalCost = 0;
 
-        if (WantsCoffee) TotalCost += 5f;
+        if (WantsCoffee)
+        {
+            TotalCost += 5f;
+            MealName += "Cafe ";
+        }
+        if(WantsCoffee & hasRice)
+        {
+            MealName += "y ";
+        }
         if (hasRice)
         {
             TotalCost += 7.5f;
             MealName += "Arroz ";
         }
+        
         if(hasRice && Mains != MainFoods.None)
         {
             MealName += "Con ";
@@ -74,29 +88,31 @@ public class CustomerOrder : MonoBehaviour
 
                 break;
         }
+        
         switch (sides)
         {
             case SideFoods.None:
+                MealName += " solo";
                 SideDescription = "None";
                 break;
 
 
             case SideFoods.croqueta:
                 TotalCost += 2.5f * NumOfSides;
-                MealName += " Y Croquetas ";
+                MealName += " Y " + NumOfSides + " Croquetas ";
 
                 SideDescription = "something about Croquetas";
                 break;
 
             case SideFoods.tostone:
                 TotalCost += 3.5f * NumOfSides;
-                MealName += " Y Tostones ";
+                MealName += " Y " + NumOfSides + " Tostones ";
                 SideDescription = "something about Tostones";
 
                 break;
             case SideFoods.maduro:
                 TotalCost += 4f * NumOfSides;
-                MealName += " Y Platano Maduro";
+                MealName += " Y " + NumOfSides + " Platano Maduro";
                 SideDescription = "something about Maduros";
 
                 break;
@@ -109,6 +125,10 @@ public class CustomerOrder : MonoBehaviour
     public void addNumOfSides()
     {
         NumOfSides++;
+    }
+    public void addCoffee()
+    {
+        WantsCoffee = true;
     }
     public int getNumOfSides()
     { return NumOfSides; }
