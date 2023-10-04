@@ -4,51 +4,41 @@ using System.Globalization;
 using UnityEngine;
 using UnityEngine.UI;
 
+//this Script Contains Possible Orders the Customer can make
 public class CustomerOrder : MonoBehaviour
 {
-    public SideFoods sides;
+    public SideFoods[] sides = new SideFoods[2];
     int NumOfSides;
+
+
     public MainFoods Mains;
     public bool hasRice = false;
     bool WantsCoffee = false;
     float foodsCost;
     string MealName;
+    string ConfirmedMealName;
 
     public string MealDescription;
 
 
     string riceDescription = "Something about Rice";
     string CoffeeDescription = "Something about Cafe Con Leche";
-    string MainDescription;
-    string SideDescription;
+    string MainDescription = "";
+    string SideDescription = "";
 
-    private void Awake()
+    public void randomizeFactors()
     {
         
-        print(sides);
-    }
-    private void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.E)) 
-        {
-            MealName = ""; 
-            randomizeFactors();
-            StartFood();
-            this.gameObject.name = MealName;
-            print(NumOfSides);
-        }
-    }
-    void randomizeFactors()
-    {
-        
-        if (sides != SideFoods.None) NumOfSides = Random.Range(0, 4); ;
-
+        //if (sides[0] != SideFoods.None) 
+        NumOfSides = Random.Range(0, 4);
+        print("Amount of Sides 1: " + NumOfSides);
         WantsCoffee = Random.value < 0.5f;
     }
 
-    void StartFood()
+    public void StartFood()
     {
         float TotalCost = 0;
+
         if (WantsCoffee) TotalCost += 5f;
         if (hasRice)
         {
@@ -84,15 +74,14 @@ public class CustomerOrder : MonoBehaviour
 
                 break;
         }
-
-        switch (sides)
+        switch (sides[0])
         {
             case SideFoods.None:
                 SideDescription = "None";
                 break;
 
 
-            case SideFoods.croqueta: 
+            case SideFoods.croqueta:
                 TotalCost += 2.5f * NumOfSides;
                 MealName += " Y Croquetas ";
 
@@ -113,11 +102,22 @@ public class CustomerOrder : MonoBehaviour
                 break;
         }
 
-
         foodsCost = TotalCost;
-
+        ConfirmedMealName = MealName;
+        MealName = "";
     }
-    
+    public void addNumOfSides()
+    {
+        NumOfSides++;
+    }
+    public int getNumOfSides()
+    { return NumOfSides; }
+    public float getFoodCost()
+    { return foodsCost; }
+    public string getMealName()
+    { return ConfirmedMealName; }
+    public bool getCoffeeBool()
+    { return WantsCoffee; }
 }
 
 public enum SideFoods
@@ -125,8 +125,7 @@ public enum SideFoods
     None,
     croqueta,
     tostone,
-    maduro,
-    rice
+    maduro
 }
 public enum MainFoods
 {

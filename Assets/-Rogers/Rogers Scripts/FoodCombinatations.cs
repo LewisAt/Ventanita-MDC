@@ -11,10 +11,8 @@ public class FoodCombinatations : MonoBehaviour
     bool wantsRice;
     int debt = 0;
 
-    //MealObject CustomersOrder;
-    //Must be customerOrder
-    public CustomerOrder[] possibleMainOrders;
-    public CustomerOrder[] possibleSideOrders;
+    
+    public CustomerOrder[] possibleOrders;
     CustomerOrder ActualOrder;
 
      
@@ -22,7 +20,7 @@ public class FoodCombinatations : MonoBehaviour
 
     void Awake()
     {
-        randomMeal();
+        
     }
     void OnTriggerEnter(Collider col)
     {
@@ -66,48 +64,7 @@ public class FoodCombinatations : MonoBehaviour
 
 
     }
-    bool rndBool
-    {
-        get { return (Random.value > 0.5f); }
-    }
-    //Randomizes if the customer wants a meal
-    void randomWantsMeal()
-    {
-         wantsSide = rndBool;
-        wantsRice = rndBool;
-        if (wantsSide == true)
-        {
-            print("true");
-            if(wantsRice == true)
-            {
-                
-            }
-            else
-            {
-                
-            }
-        }
-        else
-        {
-            print("false");
-        }
-    }
-    void randomMeal()
-    {
-        
-        int randRoll = Random.Range(0, possibleMainOrders.Length);
-        
-        ActualOrder = possibleMainOrders[randRoll];
-        randRoll = Random.Range(0, possibleSideOrders.Length);
-        
-        ActualOrder.sides = possibleSideOrders[randRoll].sides;
-        bool wantCoffee = rndBool;
-        
-        
-        
 
+    //Customer Makes Order out of select manually made orders
 
-
-
-    }
 }
