@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Movetowindow : MonoBehaviour
 {
@@ -21,14 +22,22 @@ public class Movetowindow : MonoBehaviour
     private bool check2= false;
     private bool check3= false;
     private bool spawnCheck = false;
+    //Customer waits for this time then leaves if takes too long
+    private float timeWait = 0;
+    public float time = 10;
+    public Slider custSlider;
+
 
     //makes sure that the customer has a rigidbody
     private void Start()
     {
         if (customer == null) customer = GetComponent<Rigidbody>();
-
         customer.useGravity = false;
         customer.isKinematic = true;
+
+        sliderTimer();
+        timeWait = time;
+        custSlider.value = timeWait;
     }
 
     private void FixedUpdate()
@@ -77,7 +86,7 @@ public class Movetowindow : MonoBehaviour
             if (customer.transform.position.x >= thirdPoint.transform.position.x - 1f)
             {
                 spawnCheck = true;
-                if(spawnCheck== true)
+                if(spawnCheck == true)
                 {
                     Debug.Log("A new customer has arrived!");
                     SpawnCustomer();
@@ -93,9 +102,26 @@ public class Movetowindow : MonoBehaviour
         {
             check3 = true;
         }
+
+        if(check2 == true && check3 == false)
+        {
+            timeWait -= Time.deltaTime;
+            custSlider.value = timeWait;
+            if(timeWait <= 0)
+            {
+                check3 = true;
+            }
+        }
     }
-    private void SpawnCustomer()
+    void SpawnCustomer()
     {
         Instantiate(realCustomer, spawnPoint.transform.position, spawnPoint.transform.rotation);
+    }
+
+    void sliderTimer()
+    {
+        custSlider.minValue = 0;
+        custSlider.maxValue = time;
+        custSlider.wholeNumbers = false;
     }
 }
