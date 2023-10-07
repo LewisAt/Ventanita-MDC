@@ -23,7 +23,7 @@ public class PlateServing : MonoBehaviour
     private void OnCollisionEnter(Collision other)
     {
         Debug.Log("collision is triggering");
-        if (other.gameObject.tag == "spoon")
+        if (other.gameObject.tag == "spoon" && other.transform.childCount > 0)
         {
             GameObject clone = other.transform.GetChild(0).gameObject;
             clone.transform.localScale = Vector3.one * .1f;

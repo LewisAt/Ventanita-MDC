@@ -18,7 +18,7 @@ public class LaldleTrigger : MonoBehaviour
     { 
         if (other.gameObject.tag == "food")
         {
-            spoon = transform.GetChild(0).gameObject.transform;
+            //spoon = transform.GetChild(0).gameObject.transform;
             CheckWhatFoodItIs(other);
         }
     }
@@ -34,7 +34,7 @@ public class LaldleTrigger : MonoBehaviour
                 Debug.Log("its coming back null");
                 return;
             }
-            GameObject clone = Instantiate(prefabedFoods[(int)currentFood], spoon.transform.position, spoon.transform.rotation, spoon);
+            GameObject clone = Instantiate(prefabedFoods[(int)currentFood], this.transform.position, this.transform.rotation, this.transform);
             clone.transform.localScale = Vector3.one;
             isLaldleFull = true;
             Debug.Log(clone.name + " was picked up");
