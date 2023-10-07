@@ -10,9 +10,6 @@ public class LaldleTrigger : MonoBehaviour
     public GameObject[] prefabedFoods;
     public static bool isLaldleFull = false;
     Transform spoon;
-    GameObject spoonContents;
-    Vector3 spoonPosition;
-    Quaternion spoonRotation;
     //Create a variable for the Script and the enum
     foodIdentifier foodType;
     foodIdentifier.typesOfFood currentFood;
@@ -43,10 +40,10 @@ public class LaldleTrigger : MonoBehaviour
             Debug.Log(clone.name + " was picked up");
         }
     }
-    public void CheckWhatSectionOnPlate(Collision other)
+    /*public void CheckWhatSectionOnPlate(Collision other)
     {
         Debug.Log("I am triggering from the plate collision");
         GameObject clone = Instantiate(prefabedFoods[(int)currentFood], this.GetComponentInChildren<Transform>());
-    }
+    }*/ 
     
 }
