@@ -8,7 +8,7 @@ public class ParticleButton : MonoBehaviour
 {
     public ParticleSystem upgradeParticle;
     public Button upgrade;
-    private float done = 1;
+
     void Start()
     {
         Button btn = upgrade.GetComponent<Button>();
