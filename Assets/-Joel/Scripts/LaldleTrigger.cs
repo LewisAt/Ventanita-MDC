@@ -28,7 +28,7 @@ public class LaldleTrigger : MonoBehaviour
         currentFood = foodType.food;
         if (!isLaldleFull)
         {
-            Debug.Log("its triggering");
+            //Debug.Log("its triggering");
             if (foodType == null)
             {
                 Debug.Log("its coming back null");

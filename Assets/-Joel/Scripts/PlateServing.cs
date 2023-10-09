@@ -9,8 +9,9 @@ using UnityEngine;
 public class PlateServing : MonoBehaviour
 {
     LaldleTrigger laldletrigger;
-    foodIdentifier food;
+    foodIdentifier Food;
     foodIdentifier.foodPosition foodPos;
+    foodIdentifier.typesOfFood foodtype;
     bool mainFull = false;
     bool sideFull = false;
     bool isRice = false;
@@ -19,17 +20,18 @@ public class PlateServing : MonoBehaviour
     int xSides = 0;
     public float xoffset = 0;
     public float zoffset = 0;
+    int currentSide; 
 
     private void OnCollisionEnter(Collision other)
     {
-        Debug.Log("collision is triggering");
+        //Debug.Log("collision is triggering");
         if (other.gameObject.tag == "spoon" && other.transform.childCount > 0)
         {
             GameObject clone = other.transform.GetChild(0).gameObject;
             clone.transform.localScale = Vector3.one * .1f;
-            Debug.Log("specifically colliding with the spoon");
-            food = clone.GetComponent<foodIdentifier>();
-            if (food == null)
+            //Debug.Log("specifically colliding with the spoon");
+            Food = clone.GetComponent<foodIdentifier>();
+            if (Food == null)
             {
                 Debug.Log("food is null");
                 return;
@@ -48,24 +50,21 @@ public class PlateServing : MonoBehaviour
     }
     public void checkPlatePosition(GameObject other)
     {
-        food = other.GetComponent<foodIdentifier>();
-        if (food == null)
+        Food = other.GetComponent<foodIdentifier>();
+        if (Food == null)
         {
             Debug.Log("checkplateposition is coming back null for food");
             return;
         }
-        foodPos = food.pos;
+        foodPos = Food.pos;
         attach((int)foodPos, other);
         
     }
 
     public void attach(int parent, GameObject other)
     {
-        foodIdentifier script;
-        foodIdentifier.typesOfFood foodtype;
-
-        script = other.GetComponent<foodIdentifier>();
-        foodtype = script.food;
+        Food = other.GetComponent<foodIdentifier>();
+        foodtype = Food.food;
 
         laldleFull = LaldleTrigger.isLaldleFull;
         GameObject clone = Instantiate(other);
@@ -145,12 +144,12 @@ public class PlateServing : MonoBehaviour
         if (one == true && two == true && three == true)
         {
             plateFull = true;
-            Debug.Log("Plate is full!");        
+            //Debug.Log("Plate is full!");        
             transform.GetComponentInChildren<Rigidbody>().isKinematic = false;
         }
         else
         {
-            Debug.Log("plate is not full yet");
+            //Debug.Log("plate is not full yet");
         }
     }
 }
