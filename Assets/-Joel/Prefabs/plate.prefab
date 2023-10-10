@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 6107821572248474481}
   - component: {fileID: 3054990398022271920}
   - component: {fileID: 4175967184172802286}
-  - component: {fileID: 6587397761363028513}
   - component: {fileID: 8580283119311295537}
+  - component: {fileID: 1708134751141199979}
   m_Layer: 0
   m_Name: plate
   m_TagString: plate
@@ -33,10 +33,10 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 128545076045462083}
-  - {fileID: 8877344809566546549}
   - {fileID: 8306122026233285829}
+  - {fileID: 8877344809566546549}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &3054990398022271920
 Rigidbody:
@@ -84,20 +84,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 4.036132, y: 0.3655393, z: 4.503679}
-  m_Center: {x: 0.01977396, y: 0.09781134, z: 0.26515317}
---- !u!114 &6587397761363028513
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1260980139314057887}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 612483aa2275159438457a66f558dfaa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Size: {x: 0.40233755, y: 0.04582517, z: 0.5507101}
+  m_Center: {x: -0.002322197, y: 0.014120296, z: -0.017786682}
 --- !u!114 &8580283119311295537
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -110,6 +98,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfa80fef2396dc046b5f225ce27d6909, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  xoffset: 0
+  zoffset: 0
+--- !u!114 &1708134751141199979
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1260980139314057887}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96b81ac1a11c3574fbebba2b92252466, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  plateMain: 0
+  plateSide: 0
+  SideCount: 0
+  hasCoffee: 0
+  hasRice: 0
 --- !u!1 &2469253562729509790
 GameObject:
   m_ObjectHideFlags: 0
@@ -122,7 +129,7 @@ GameObject:
   - component: {fileID: 8391848689451030584}
   - component: {fileID: 2378465727171857197}
   m_Layer: 0
-  m_Name: main2
+  m_Name: side2
   m_TagString: plate
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -136,7 +143,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2469253562729509790}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.10233402, y: 0.009429939, z: -0.08827913}
+  m_LocalPosition: {x: 0.1022, y: 0.009429939, z: -0.1775}
   m_LocalScale: {x: 0.18701999, y: 0.02585, z: 0.21411}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -219,7 +226,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2594696401862596674}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.09050655, y: 0.009429939, z: -0.08827913}
+  m_LocalPosition: {x: -0.0909, y: 0.009429939, z: -0.1778}
   m_LocalScale: {x: 0.20081, y: 0.02585, z: 0.21411}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -302,8 +309,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9040901749622078516}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.0024003983, y: 0.009426601, z: 0.13300002}
-  m_LocalScale: {x: 0.38689, y: 0.02585, z: 0.22937}
+  m_LocalPosition: {x: 0.0024003983, y: 0.0094, z: 0.0883}
+  m_LocalScale: {x: 0.38689, y: 0.02585, z: 0.31866056}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 6107821572248474481}
