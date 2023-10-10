@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3054990398022271920}
   - component: {fileID: 4175967184172802286}
   - component: {fileID: 8580283119311295537}
+  - component: {fileID: 1708134751141199979}
   m_Layer: 0
   m_Name: plate
   m_TagString: plate
@@ -35,7 +36,7 @@ Transform:
   - {fileID: 8306122026233285829}
   - {fileID: 8877344809566546549}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &3054990398022271920
 Rigidbody:
@@ -97,6 +98,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfa80fef2396dc046b5f225ce27d6909, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  xoffset: 0
+  zoffset: 0
+--- !u!114 &1708134751141199979
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1260980139314057887}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96b81ac1a11c3574fbebba2b92252466, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  plateMain: 0
+  plateSide: 0
+  SideCount: 0
+  hasCoffee: 0
+  hasRice: 0
 --- !u!1 &2469253562729509790
 GameObject:
   m_ObjectHideFlags: 0
