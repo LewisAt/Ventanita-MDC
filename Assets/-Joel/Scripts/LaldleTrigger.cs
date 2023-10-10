@@ -1,3 +1,4 @@
+
 using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
@@ -10,7 +11,6 @@ public class LaldleTrigger : MonoBehaviour
     public GameObject[] prefabedFoods;
     public static bool isLaldleFull = false;
     Transform spoon;
-    //Create a variable for the Script and the enum
     foodIdentifier foodType;
     foodIdentifier.typesOfFood currentFood;
     
