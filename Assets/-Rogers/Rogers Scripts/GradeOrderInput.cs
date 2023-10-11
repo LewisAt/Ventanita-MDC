@@ -7,6 +7,8 @@ public class GradeOrderInput : MonoBehaviour
     public CustomerOrder[] possibleOrders;
     CustomerOrder ActualOrder;
 
+
+
     void Start()
     {
         MakeAnOrder();
@@ -94,9 +96,19 @@ public class GradeOrderInput : MonoBehaviour
         ActualOrder.randomizeFactors();
         ActualOrder.StartFood();
         Debug.Log(ActualOrder.getMealName());
-        
+        Debug.Log(ActualOrder.getNumOfSides());
+
+        displayOrderIngredients();
         //Insert UI Change coding here
 
+    }
+
+
+    //From this point forward all code below this point is dedicated to adding in components of making the UI for an order work
+    public Sprite[] SideIcons;
+    void displayOrderIngredients()
+    {
+        Debug.Log(ActualOrder.Mains);
     }
     
 }
