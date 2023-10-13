@@ -8,7 +8,9 @@ using UnityEngine.UI;
 public class CustomerOrder : MonoBehaviour
 {
     public SideFoods sides;
+    public SideFoods sides1;
     int NumOfSides;
+    int NumOfSides1;
 
 
     public MainFoods Mains;
@@ -31,12 +33,20 @@ public class CustomerOrder : MonoBehaviour
 
         if (sides != SideFoods.None)
         {
-            NumOfSides = Random.Range(1, 4);
-            print("Amount of Sides: " + NumOfSides);
+            NumOfSides = Random.Range(1, 3);
+            print("Amount for the first Side: " + NumOfSides);
         }
         else
             NumOfSides = 0;
-        
+
+        if (sides1 != SideFoods.None)
+        {
+            NumOfSides1 = Random.Range(1, 3);
+            print("Amount for the second Sides: " + NumOfSides1);
+        }
+        else
+            NumOfSides1 = 0;
+
         WantsCoffee = Random.value < 0.5f;
     }
 
@@ -49,7 +59,7 @@ public class CustomerOrder : MonoBehaviour
             TotalCost += 5f;
             MealName += "Cafe ";
         }
-        if(WantsCoffee & hasRice)
+        if(WantsCoffee && hasRice)
         {
             MealName += "y ";
         }
@@ -88,7 +98,14 @@ public class CustomerOrder : MonoBehaviour
 
                 break;
         }
-        
+        if(sides != SideFoods.None)
+        {
+            if(WantsCoffee == true || hasRice == true || Mains != MainFoods.None)
+            {
+                MealName += " Y ";
+            }
+
+        }
         switch (sides)
         {
             case SideFoods.None:
@@ -99,20 +116,52 @@ public class CustomerOrder : MonoBehaviour
 
             case SideFoods.croqueta:
                 TotalCost += 2.5f * NumOfSides;
-                MealName += " Y " + NumOfSides + " Croquetas ";
+                MealName += NumOfSides + " Croquetas ";
 
                 SideDescription = "something about Croquetas";
                 break;
 
             case SideFoods.tostone:
                 TotalCost += 3.5f * NumOfSides;
-                MealName += " Y " + NumOfSides + " Tostones ";
+                MealName += NumOfSides + " Tostones ";
                 SideDescription = "something about Tostones";
 
                 break;
             case SideFoods.maduro:
                 TotalCost += 4f * NumOfSides;
-                MealName += " Y " + NumOfSides + " Platano Maduro";
+                MealName += NumOfSides + " Platano Maduro";
+                SideDescription = "something about Maduros";
+
+                break;
+        }
+        if (sides1 != SideFoods.None) 
+        {
+            MealName += " Y ";
+        }
+        switch (sides1)
+        {
+            case SideFoods.None:
+                if(sides != SideFoods.None) MealName += " solo";
+                SideDescription = "None";
+                break;
+
+
+            case SideFoods.croqueta:
+                TotalCost += 2.5f * NumOfSides;
+                MealName += NumOfSides + " Croquetas ";
+
+                SideDescription = "something about Croquetas";
+                break;
+
+            case SideFoods.tostone:
+                TotalCost += 3.5f * NumOfSides;
+                MealName += NumOfSides + " Tostones ";
+                SideDescription = "something about Tostones";
+
+                break;
+            case SideFoods.maduro:
+                TotalCost += 4f * NumOfSides;
+                MealName += NumOfSides + " Platano Maduro";
                 SideDescription = "something about Maduros";
 
                 break;
@@ -132,6 +181,8 @@ public class CustomerOrder : MonoBehaviour
     }
     public int getNumOfSides()
     { return NumOfSides; }
+    public int getNumOfSides1()
+    { return NumOfSides1; }
     public float getFoodCost()
     { return foodsCost; }
     public string getMealName()

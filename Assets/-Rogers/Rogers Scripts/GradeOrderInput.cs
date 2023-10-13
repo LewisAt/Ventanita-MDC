@@ -36,6 +36,8 @@ public class GradeOrderInput : MonoBehaviour
             print("Correct Main: " + ActualOrder.Mains);
         }
 
+        //checSides 1 
+
         if (givenPlate.gameObject.GetComponent<plateIdentifier>().plateSide == ActualOrder.sides)
         {
             if (givenPlate.gameObject.GetComponent<plateIdentifier>().SideCount == ActualOrder.getNumOfSides())
@@ -44,17 +46,17 @@ public class GradeOrderInput : MonoBehaviour
             }
             else if(givenPlate.gameObject.GetComponent<plateIdentifier>().SideCount > ActualOrder.getNumOfSides())
             {
-                print("Too much of the side was given!");
+                print("Too much of the 1st side was given!");
             }
             else if(givenPlate.GetComponent<plateIdentifier>().SideCount < ActualOrder.getNumOfSides() && ActualOrder.getNumOfSides() != 0)
             {
-                print("Too little of the side was given");
+                print("Too little of the 1st side was given");
             }
             else
             {
-                print("Side portion is wrong");
-                Debug.Log("Side: " + givenPlate.gameObject.GetComponent<plateIdentifier>().SideCount);
-                Debug.Log("Correct Side: " + ActualOrder.getNumOfSides());
+                print("1st Side portion is wrong");
+                Debug.Log("1st Side: " + givenPlate.gameObject.GetComponent<plateIdentifier>().SideCount);
+                Debug.Log("Correct 1st Side: " + ActualOrder.getNumOfSides());
             }
         }
         else
@@ -62,6 +64,36 @@ public class GradeOrderInput : MonoBehaviour
             Debug.Log("Side is incorrect");
             Debug.Log("Side: " + givenPlate.gameObject.GetComponent<plateIdentifier>().plateSide);
             Debug.Log("Correct Side: " + ActualOrder.sides);
+        }
+
+        //2nd Sides coding
+
+        if (givenPlate.gameObject.GetComponent<plateIdentifier>().plateSide1 == ActualOrder.sides1)
+        {
+            if (givenPlate.gameObject.GetComponent<plateIdentifier>().SideCount1 == ActualOrder.getNumOfSides1())
+            {
+                mealAccuracyCount++;
+            }
+            else if (givenPlate.gameObject.GetComponent<plateIdentifier>().SideCount1 > ActualOrder.getNumOfSides1())
+            {
+                print("Too much of the 2nd side was given!");
+            }
+            else if (givenPlate.GetComponent<plateIdentifier>().SideCount1 < ActualOrder.getNumOfSides1() && ActualOrder.getNumOfSides1() != 0)
+            {
+                print("Too little of the 2nd side was given");
+            }
+            else
+            {
+                print("2nd Side portion is wrong");
+                Debug.Log("2nd Side: " + givenPlate.gameObject.GetComponent<plateIdentifier>().SideCount1);
+                Debug.Log("Correct 2nd Side: " + ActualOrder.getNumOfSides1());
+            }
+        }
+        else
+        {
+            Debug.Log("2nd Side is incorrect");
+            Debug.Log("2nd Side: " + givenPlate.gameObject.GetComponent<plateIdentifier>().plateSide1);
+            Debug.Log("Correct 2nd Side: " + ActualOrder.sides1);
         }
 
         if (givenPlate.gameObject.GetComponent<plateIdentifier>().hasCoffee == ActualOrder.getCoffeeBool())
@@ -77,8 +109,8 @@ public class GradeOrderInput : MonoBehaviour
         else
             print("Rice is incorrect");
         //Checks if meal is correct
-        print(mealAccuracyCount + " out of 4");
-        if(mealAccuracyCount == 4)
+        print(mealAccuracyCount + " out of 5");
+        if(mealAccuracyCount == 5)
         {
             print("Correct");
             Destroy(givenPlate.gameObject);
