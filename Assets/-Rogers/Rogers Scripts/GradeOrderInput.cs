@@ -70,6 +70,7 @@ public class GradeOrderInput : MonoBehaviour
         }
         else
             print("Coffee is incorrect");
+        */
         if (givenPlate.gameObject.GetComponent<plateIdentifier>().hasRice == ActualOrder.hasRice)
         {
             mealAccuracyCount++;
@@ -77,8 +78,11 @@ public class GradeOrderInput : MonoBehaviour
         else
             print("Rice is incorrect");
         //Checks if meal is correct
-        print(mealAccuracyCount + " out of 4");
-        */
+
+
+        //// RICE IS NOT BREING ADDED PROPERLY
+        print(mealAccuracyCount + " out of 3");
+        
         if (mealAccuracyCount == 3)
         {
             print("Correct");
