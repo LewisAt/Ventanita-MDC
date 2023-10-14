@@ -1,13 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GradeOrderInput : MonoBehaviour
 {
     public CustomerOrder[] possibleOrders;
     CustomerOrder ActualOrder;
-
-
 
     void Start()
     {
@@ -26,7 +25,6 @@ public class GradeOrderInput : MonoBehaviour
     void ConfirmOrder(Collider givenPlate)
     {
         int mealAccuracyCount = 0;
-            
         if (givenPlate.gameObject.GetComponent<plateIdentifier>().plateMain == ActualOrder.Mains)
         {
             mealAccuracyCount++;
@@ -66,7 +64,7 @@ public class GradeOrderInput : MonoBehaviour
             Debug.Log("Correct Side: " + ActualOrder.sides);
         }
 
-        if (givenPlate.gameObject.GetComponent<plateIdentifier>().hasCoffee == ActualOrder.getCoffeeBool())
+        /*if (givenPlate.gameObject.GetComponent<plateIdentifier>().hasCoffee == ActualOrder.getCoffeeBool())
         {
             mealAccuracyCount++;
         }
@@ -80,7 +78,8 @@ public class GradeOrderInput : MonoBehaviour
             print("Rice is incorrect");
         //Checks if meal is correct
         print(mealAccuracyCount + " out of 4");
-        if(mealAccuracyCount == 4)
+        */
+        if (mealAccuracyCount == 3)
         {
             print("Correct");
             Destroy(givenPlate.gameObject);
@@ -96,19 +95,62 @@ public class GradeOrderInput : MonoBehaviour
         ActualOrder.randomizeFactors();
         ActualOrder.StartFood();
         Debug.Log(ActualOrder.getMealName());
-        Debug.Log(ActualOrder.getNumOfSides());
+        assignIcon(ActualOrder);
 
-        displayOrderIngredients();
         //Insert UI Change coding here
 
     }
 
 
-    //From this point forward all code below this point is dedicated to adding in components of making the UI for an order work
-    public Sprite[] SideIcons;
-    void displayOrderIngredients()
+    //This Whole Section Is dedicated to displaying The UI of the Food.
+
+    public Image RiceIcon;
+    public Sprite RiceSprite;
+    public Sprite[] MainIconSpriteInOrderOfEnum;
+    public Image MainImageIcon;
+
+    public Sprite[] SideIconSpriteInOrderOfEnum;
+    public Image SideImageIcon;
+
+    public Text FoodNameHeader;
+    public Text FoodCostText;
+    public void assignIcon(CustomerOrder CurrentlySelectedOrder)
     {
-        Debug.Log(ActualOrder.Mains);
+        // this bit displays if there is rice else we display nothing
+        //Currently he have no Icon for nothing so we  display a white image
+        if(CurrentlySelectedOrder.hasRice)
+        {
+            RiceIcon.sprite = RiceSprite;
+        }
+        if(!CurrentlySelectedOrder.hasRice)
+        {
+            SideImageIcon = MainImageIcon;
+            MainImageIcon = RiceIcon;
+        }
+        if((int)CurrentlySelectedOrder.Mains == 0)
+        {
+            SideImageIcon = RiceIcon;
+        }
+
+        for(int i = 1; i < 4; i++)
+        {
+            if((int)CurrentlySelectedOrder.Mains == i)
+            {
+                MainImageIcon.sprite = MainIconSpriteInOrderOfEnum[i];
+            }
+        }
+   
+        for (int i = 1; i < 4; i++)
+        {
+            if ((int)CurrentlySelectedOrder.sides == i)
+            {
+                SideImageIcon.sprite = SideIconSpriteInOrderOfEnum[i];
+            }
+        }
+
+        FoodNameHeader.text = CurrentlySelectedOrder.ConfirmedMealName;
+        FoodCostText.text = "$" + CurrentlySelectedOrder.foodsCost.ToString();
+
     }
     
 }
