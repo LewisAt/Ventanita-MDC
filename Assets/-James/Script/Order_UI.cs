@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//Ultimate Placeholder will be changed to commidate Customer Order System
 public class Order_UI : MonoBehaviour
 {
     //Between the two greens is just for testing and will be deleted
@@ -25,6 +26,7 @@ public class Order_UI : MonoBehaviour
     [SerializeField] private Material rabo_encendido;
     [SerializeField] private Material tostones;
 
+    //Start is a Placeholder
     void Start()
     {
         main_UI();
@@ -32,8 +34,10 @@ public class Order_UI : MonoBehaviour
         side2_UI();
     }
 
+    //The Public voids is also a Placeholder
     public void main_UI()
     {
+        //if statement are placeholders
         if (main_food == 0)
         {
             main_filter.GetComponent<Renderer>().material = chicken;

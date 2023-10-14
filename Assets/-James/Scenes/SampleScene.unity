@@ -136,7 +136,7 @@ GameObject:
   - component: {fileID: 215138896}
   - component: {fileID: 215138895}
   m_Layer: 0
-  m_Name: side2
+  m_Name: side1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -238,7 +238,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 329408270}
-  - component: {fileID: 329408269}
+  - component: {fileID: 329408271}
   m_Layer: 0
   m_Name: Order_UI
   m_TagString: Untagged
@@ -246,34 +246,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &329408269
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 329408268}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ed9e993867c41f04dadbcf5fa0bb9b26, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  main_food: 1
-  side1_food: 4
-  side2_food: 3
-  main_filter: {fileID: 666536824}
-  side1_filter: {fileID: 1823869926}
-  side2_filter: {fileID: 215138893}
-  arroz: {fileID: 2100000, guid: 50b9078c261d6e54192b9f6e1a6094d1, type: 2}
-  arroz_con_frijoles: {fileID: 2100000, guid: 73a657f6ff7ce7c4fb1efab21178806d, type: 2}
-  cafe_con_leche: {fileID: 2100000, guid: 44295f1a59fe8184e9e4723026880f13, type: 2}
-  cafe_negra: {fileID: 2100000, guid: 9e6282fcf66b66c4ea3320fa5ffdcc9f, type: 2}
-  chicken: {fileID: 2100000, guid: 30fd08bf8cd933d4bb97cba6ca369834, type: 2}
-  croquettas: {fileID: 2100000, guid: 6248fbefeef468343af13513e9f21884, type: 2}
-  frijoles: {fileID: 2100000, guid: a9edd1bd8d9ef2741962d4519ec7d53f, type: 2}
-  maduros: {fileID: 2100000, guid: aea675da5464314468b7057290760f8e, type: 2}
-  rabo_encendido: {fileID: 2100000, guid: 3cba472b7f617c041a312d994001ae19, type: 2}
-  tostones: {fileID: 2100000, guid: ef1d29cafcf453747af2e099cb193d56, type: 2}
 --- !u!4 &329408270
 Transform:
   m_ObjectHideFlags: 0
@@ -289,6 +261,34 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &329408271
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 329408268}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed9e993867c41f04dadbcf5fa0bb9b26, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  main_food: 0
+  side1_food: 6
+  side2_food: 2
+  main_filter: {fileID: 666536824}
+  side1_filter: {fileID: 215138893}
+  side2_filter: {fileID: 1823869926}
+  arroz: {fileID: 2100000, guid: 50b9078c261d6e54192b9f6e1a6094d1, type: 2}
+  arroz_con_frijoles: {fileID: 2100000, guid: 73a657f6ff7ce7c4fb1efab21178806d, type: 2}
+  cafe_con_leche: {fileID: 2100000, guid: 44295f1a59fe8184e9e4723026880f13, type: 2}
+  cafe_negra: {fileID: 2100000, guid: 9e6282fcf66b66c4ea3320fa5ffdcc9f, type: 2}
+  chicken: {fileID: 2100000, guid: 30fd08bf8cd933d4bb97cba6ca369834, type: 2}
+  croquettas: {fileID: 2100000, guid: 6248fbefeef468343af13513e9f21884, type: 2}
+  frijoles: {fileID: 2100000, guid: a9edd1bd8d9ef2741962d4519ec7d53f, type: 2}
+  maduros: {fileID: 2100000, guid: aea675da5464314468b7057290760f8e, type: 2}
+  rabo_encendido: {fileID: 2100000, guid: 3cba472b7f617c041a312d994001ae19, type: 2}
+  tostones: {fileID: 2100000, guid: ef1d29cafcf453747af2e099cb193d56, type: 2}
 --- !u!1 &554063817
 GameObject:
   m_ObjectHideFlags: 0
@@ -393,8 +393,8 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 666536825}
-  - {fileID: 1823869927}
   - {fileID: 215138894}
+  - {fileID: 1823869927}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -703,7 +703,7 @@ GameObject:
   - component: {fileID: 1823869929}
   - component: {fileID: 1823869928}
   m_Layer: 0
-  m_Name: side1
+  m_Name: side2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
