@@ -60,7 +60,6 @@ public class plateIdentifier : MonoBehaviour
             }
             numOfEnum++;
         }
-        if()
         print(plateMain);
         print(plateSide);
         print(SideCount);
