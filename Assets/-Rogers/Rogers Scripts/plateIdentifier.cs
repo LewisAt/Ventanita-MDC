@@ -28,10 +28,10 @@ public class plateIdentifier : MonoBehaviour
             updateContents(food);
             //print("For Jojo: it is coming back NULL");
         }
-        else
+        //placeholder for coffee
+        if (spoon.gameObject.name == "Cafe")
         {
-            print("Tag Error");
-
+            hasCoffee = true;
         }
     }
     void updateContents(GameObject food)
@@ -56,7 +56,7 @@ public class plateIdentifier : MonoBehaviour
             if (foodString == ((SideFoods)numOfEnum).ToString())
             {
                 //Makes sure plateSide isnt changed by any other food collision
-                if (plateSide != SideFoods.None && plateSide1 == SideFoods.None) plateSide1 = (SideFoods)numOfEnum;
+                if (plateSide != SideFoods.None && plateSide1 == SideFoods.None && plateSide != (SideFoods)numOfEnum) plateSide1 = (SideFoods)numOfEnum;
 
                 if (plateSide1 == (SideFoods)numOfEnum && SideCount1 < 2 && plateSide != SideFoods.None) SideCount1++;
 
@@ -70,10 +70,7 @@ public class plateIdentifier : MonoBehaviour
             
             numOfEnum++;
         }
-        if(foodString == "Cafe")
-        {
-            hasCoffee = true;
-        }
+        
         if(foodString == "Arroz")
         {
             hasRice = true;
