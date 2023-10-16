@@ -11,12 +11,16 @@ public class GradeOrderInput : MonoBehaviour
     void Start()
     {
         MakeAnOrder();
+        Debug.Log(ActualOrder.hasRice);
+        Debug.Log(ActualOrder.Mains);
+        Debug.Log(ActualOrder.sides);
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "plate")
         {
+            Debug.Log(other.gameObject.name + "We git a plate");
             other.GetComponent<plateIdentifier>();
             ConfirmOrder(other);
         }
@@ -70,6 +74,7 @@ public class GradeOrderInput : MonoBehaviour
         }
         else
             print("Coffee is incorrect");
+        */
         if (givenPlate.gameObject.GetComponent<plateIdentifier>().hasRice == ActualOrder.hasRice)
         {
             mealAccuracyCount++;
@@ -77,8 +82,8 @@ public class GradeOrderInput : MonoBehaviour
         else
             print("Rice is incorrect");
         //Checks if meal is correct
-        print(mealAccuracyCount + " out of 4");
-        */
+        
+        Debug.Log(mealAccuracyCount);
         if (mealAccuracyCount == 3)
         {
             print("Correct");

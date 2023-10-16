@@ -39,7 +39,7 @@ public class plateIdentifier : MonoBehaviour
         int maxEnumSide = System.Enum.GetValues(typeof(SideFoods)).Length;
 
         
-        
+        foodIdentifier Currn = food.GetComponent<foodIdentifier>();
         //loops until both main and side enums ends
         //Compares string of enums if they match they equal that value
         while (numOfEnum < maxEnumMain && numOfEnum < maxEnumSide)
@@ -60,6 +60,7 @@ public class plateIdentifier : MonoBehaviour
             }
             numOfEnum++;
         }
+        if()
         print(plateMain);
         print(plateSide);
         print(SideCount);
