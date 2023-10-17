@@ -80,7 +80,7 @@ public class GradeOrderInput : MonoBehaviour
             mealAccuracyCount++;
         }
         else
-            print("Rice is incorrect");
+            print("Rice is incorre+ct");
         //Checks if meal is correct
         
         Debug.Log(mealAccuracyCount);
