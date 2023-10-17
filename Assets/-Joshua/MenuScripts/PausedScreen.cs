@@ -19,9 +19,11 @@ public class PausedScreen : MonoBehaviour
     }
 
     // Update is called once per frame
-    public void PauseButtonOnPressed(InputAction.CallbackContext context)
+    //public void PauseButtonOnPressed(InputAction.CallbackContext context)
+    void Update()
     {
-        if (context.performed)
+        if (Input.GetKeyDown(KeyCode.Escape)) 
+        //if (context.performed)
         {
             /*if(isPaused)
             {
