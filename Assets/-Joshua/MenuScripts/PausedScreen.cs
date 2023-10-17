@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using static UnityEditor.Timeline.TimelinePlaybackControls;
 
 public class PausedScreen : MonoBehaviour
 {
@@ -17,9 +19,9 @@ public class PausedScreen : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    public void PauseButtonOnPressed(InputAction.CallbackContext context)
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (context.performed)
         {
             /*if(isPaused)
             {
