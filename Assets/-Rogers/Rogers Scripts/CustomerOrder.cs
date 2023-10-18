@@ -16,9 +16,15 @@ public class CustomerOrder : MonoBehaviour
     public MainFoods Mains;
     public bool hasRice = false;
     bool WantsCoffee = false;
-    float foodsCost;
-    string MealName;
-    string ConfirmedMealName;
+    [HideInInspector]
+
+    public float foodsCost;
+    [HideInInspector]
+
+    public string MealName;
+    [HideInInspector]
+
+    public string ConfirmedMealName;
 
     public string MealDescription;
 
@@ -54,7 +60,7 @@ public class CustomerOrder : MonoBehaviour
     {
         float TotalCost = 0;
 
-        if (WantsCoffee)
+        /*if (WantsCoffee)
         {
             TotalCost += 5f;
             MealName += "Cafe ";
@@ -62,7 +68,7 @@ public class CustomerOrder : MonoBehaviour
         if(WantsCoffee && hasRice)
         {
             MealName += "y ";
-        }
+        }*/
         if (hasRice)
         {
             TotalCost += 7.5f;
@@ -205,4 +211,3 @@ public enum MainFoods
     Fricase,
     Frijoles
 }
-

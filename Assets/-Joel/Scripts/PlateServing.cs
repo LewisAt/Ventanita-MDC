@@ -12,6 +12,7 @@ public class PlateServing : MonoBehaviour
     foodIdentifier Food;
     foodIdentifier.foodPosition foodPos;
     foodIdentifier.typesOfFood foodtype;
+
     bool mainFull = false;
     bool sideFull = false;
     bool isRice = false;
