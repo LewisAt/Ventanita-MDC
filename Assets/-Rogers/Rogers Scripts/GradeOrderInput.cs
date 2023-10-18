@@ -89,11 +89,11 @@ public class GradeOrderInput : MonoBehaviour
             print("Correct");
             Destroy(givenPlate.gameObject);
             //Reward Player
-
+            MakeAnOrder();
         }
     }
 
-    void MakeAnOrder()
+    public void MakeAnOrder()
     {
         int rand = Random.Range(0, possibleOrders.Length);
         ActualOrder = possibleOrders[rand];
@@ -121,20 +121,14 @@ public class GradeOrderInput : MonoBehaviour
     public Text FoodCostText;
     public void assignIcon(CustomerOrder CurrentlySelectedOrder)
     {
+        RiceIcon.sprite = null;
+        MainImageIcon.sprite = null;
+        SideImageIcon.sprite = null;
         // this bit displays if there is rice else we display nothing
         //Currently he have no Icon for nothing so we  display a white image
         if(CurrentlySelectedOrder.hasRice)
         {
             RiceIcon.sprite = RiceSprite;
-        }
-        if(!CurrentlySelectedOrder.hasRice)
-        {
-            SideImageIcon = MainImageIcon;
-            MainImageIcon = RiceIcon;
-        }
-        if((int)CurrentlySelectedOrder.Mains == 0)
-        {
-            SideImageIcon = RiceIcon;
         }
 
         for(int i = 1; i < 4; i++)

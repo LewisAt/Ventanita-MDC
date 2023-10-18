@@ -18,10 +18,9 @@ public class RotateSun : MonoBehaviour
 
     {
         float sunRotation = transform.rotation.eulerAngles.x; 
-        transform.Rotate(10 * Time.deltaTime,0,0);
+        transform.Rotate(1 * Time.deltaTime,0,0);
         Sun.transform.Rotate(0, 0, 25 * Time.deltaTime);
-        Debug.Log(sunRotation);
-        Debug.Log((sunRotation - 30) / (60-30));
+ 
 
         if (sunRotation < 360 && sunRotation > 330)
         {
