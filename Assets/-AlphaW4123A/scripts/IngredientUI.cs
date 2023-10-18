@@ -9,33 +9,27 @@ public class IngredientUI : MonoBehaviour
 {
     public GameObject foodPanel;
     public TextMeshProUGUI foodInfo;
-    bool buttonPressed = false;
-    bool textShowing = false;
-    public void Testing(string foodExplanation)
+    bool toggle = false;
+    string prevText;
+    public void SpawnPanel(string foodExplanation)
     {
-        if (buttonPressed == true)
+        prevText = foodExplanation;
+        if (foodPanel.activeInHierarchy)
         {
-            if (textShowing == true)
+            if (foodInfo.text == prevText)
             {
-                print("button was pressed and showing information");
-                foodInfo.text = foodExplanation;
-                textShowing = false;
+                foodPanel.SetActive(false);
             }
             else
             {
-                print("button not pressed");
-                foodPanel.SetActive(false);
-                buttonPressed = false;
-                foodInfo.text = null;
+                foodInfo.text = prevText;
             }
+            
         }
-        else
+        else if (!foodPanel.activeInHierarchy)
         {
-            print("button pressed");
             foodPanel.SetActive(true);
-            buttonPressed = true;
             foodInfo.text = foodExplanation;
-            textShowing = true;
         }
     }
 }

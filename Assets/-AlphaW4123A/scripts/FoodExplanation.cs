@@ -20,12 +20,12 @@ public class FoodExplanation : MonoBehaviour
             "restaurants in Florida often have walk-up windows (Ventanita) that serve cafe con " +
             "leche. Cafe con leche is considered a breakfast drink in many countries that serve it. " +
             "Because of the milk, it is heavier and more filling than coffee drinks.";
-        ingredient.Testing(tempFood);
+        ingredient.SpawnPanel(tempFood);
     }
 
     public static void RaboEncendido()
     {
         tempFood = "this is just a practice text";
-        ingredient.Testing(tempFood);
+        ingredient.SpawnPanel(tempFood);
     }
 }
