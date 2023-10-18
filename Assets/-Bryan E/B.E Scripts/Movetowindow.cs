@@ -104,7 +104,7 @@ public class Movetowindow : MonoBehaviour
     }
     private void Update()
     {
-        //pass condition, timer, and payment   time wait is too big and subtracts 10 from it
+        //pass condition, timer, and payment
         if (Input.GetKeyDown("space") && check2 == true)
         {
             check3 = true;
