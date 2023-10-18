@@ -27,6 +27,7 @@ public class Movetowindow : MonoBehaviour
     public float time = 10;
     private float tipReduce;
     public Slider custSlider;
+    public Text tipEarned;
     private float pay = 10;
     public float tip= 5;
 
@@ -41,6 +42,7 @@ public class Movetowindow : MonoBehaviour
         sliderTimer();
         timeWait = time;
         custSlider.value = timeWait;
+        tipEarned.gameObject.SetActive(false);
         tip = 5;
         pay = 10;
         tipReduce = 0;
@@ -107,9 +109,11 @@ public class Movetowindow : MonoBehaviour
         //pass condition, timer, and payment
         if (Input.GetKeyDown("space") && check2 == true)
         {
+            tipEarned.gameObject.SetActive(true);
             check3 = true;
             tip = tip - tipReduce;
             tip = Mathf.Round(tip * 100.0f) * 0.01f;
+            tipEarned.text = "You earned a " + tip.ToString() + "$ tip!";
             pay += tip;
             MoneyTracker.UserCash += pay;
         }
