@@ -22,10 +22,13 @@ public class Movetowindow : MonoBehaviour
     private bool check2= false;
     private bool check3= false;
     private bool spawnCheck = false;
-    //Customer waits for this time then leaves if takes too long
+    //Customer waits for this time then leaves if takes too long and money payed when order complete
     private float timeWait = 0;
     public float time = 10;
+    private float tipReduce;
     public Slider custSlider;
+    private float pay = 10;
+    public float tip= 5;
 
 
     //makes sure that the customer has a rigidbody
@@ -38,6 +41,9 @@ public class Movetowindow : MonoBehaviour
         sliderTimer();
         timeWait = time;
         custSlider.value = timeWait;
+        tip = 5;
+        pay = 10;
+        tipReduce = 0;
     }
 
     private void FixedUpdate()
@@ -98,14 +104,20 @@ public class Movetowindow : MonoBehaviour
     }
     private void Update()
     {
+        //pass condition, timer, and payment   time wait is too big and subtracts 10 from it
         if (Input.GetKeyDown("space") && check2 == true)
         {
             check3 = true;
+            tip = tip - tipReduce;
+            tip = Mathf.Round(tip * 100.0f) * 0.01f;
+            pay += tip;
+            MoneyTracker.UserCash += pay;
         }
 
         if(check2 == true && check3 == false)
         {
             timeWait -= Time.deltaTime;
+            tipReduce += Time.deltaTime / 2;
             custSlider.value = timeWait;
             if(timeWait <= 0)
             {
