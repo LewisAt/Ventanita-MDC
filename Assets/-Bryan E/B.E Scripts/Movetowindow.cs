@@ -22,7 +22,7 @@ public class Movetowindow : MonoBehaviour
     private bool check2= false;
     private bool check3= false;
     private bool spawnCheck = false;
-    //Customer waits for this time then leaves if takes too long and money payed when order complete
+    //Customer waits for this time then leaves if takes too long - money and tip payed when order complete
     private float timeWait = 0;
     public float time = 10;
     private float tipReduce;
