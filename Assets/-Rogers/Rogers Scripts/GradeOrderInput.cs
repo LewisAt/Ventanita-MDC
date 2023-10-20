@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class GradeOrderInput : MonoBehaviour
 {
@@ -10,17 +9,15 @@ public class GradeOrderInput : MonoBehaviour
 
     void Start()
     {
-        MakeAnOrder();
-        Debug.Log(ActualOrder.hasRice);
-        Debug.Log(ActualOrder.Mains);
-        Debug.Log(ActualOrder.sides);
+        
     }
 
     private void OnTriggerEnter(Collider other)
     {
+        //starts order based on walk
+        if (other.gameObject.name == "OrderTrigger") MakeAnOrder();
         if (other.tag == "plate")
         {
-            Debug.Log(other.gameObject.name + "We git a plate");
             other.GetComponent<plateIdentifier>();
             ConfirmOrder(other);
         }
@@ -29,6 +26,7 @@ public class GradeOrderInput : MonoBehaviour
     void ConfirmOrder(Collider givenPlate)
     {
         int mealAccuracyCount = 0;
+            
         if (givenPlate.gameObject.GetComponent<plateIdentifier>().plateMain == ActualOrder.Mains)
         {
             mealAccuracyCount++;
@@ -40,6 +38,8 @@ public class GradeOrderInput : MonoBehaviour
             print("Correct Main: " + ActualOrder.Mains);
         }
 
+        //checSides 1 
+
         if (givenPlate.gameObject.GetComponent<plateIdentifier>().plateSide == ActualOrder.sides)
         {
             if (givenPlate.gameObject.GetComponent<plateIdentifier>().SideCount == ActualOrder.getNumOfSides())
@@ -48,17 +48,17 @@ public class GradeOrderInput : MonoBehaviour
             }
             else if(givenPlate.gameObject.GetComponent<plateIdentifier>().SideCount > ActualOrder.getNumOfSides())
             {
-                print("Too much of the side was given!");
+                print("Too much of the 1st side was given!");
             }
             else if(givenPlate.GetComponent<plateIdentifier>().SideCount < ActualOrder.getNumOfSides() && ActualOrder.getNumOfSides() != 0)
             {
-                print("Too little of the side was given");
+                print("Too little of the 1st side was given");
             }
             else
             {
-                print("Side portion is wrong");
-                Debug.Log("Side: " + givenPlate.gameObject.GetComponent<plateIdentifier>().SideCount);
-                Debug.Log("Correct Side: " + ActualOrder.getNumOfSides());
+                print("1st Side portion is wrong");
+                Debug.Log("1st Side: " + givenPlate.gameObject.GetComponent<plateIdentifier>().SideCount);
+                Debug.Log("Correct 1st Side: " + ActualOrder.getNumOfSides());
             }
         }
         else
@@ -68,87 +68,68 @@ public class GradeOrderInput : MonoBehaviour
             Debug.Log("Correct Side: " + ActualOrder.sides);
         }
 
-        /*if (givenPlate.gameObject.GetComponent<plateIdentifier>().hasCoffee == ActualOrder.getCoffeeBool())
+        //2nd Sides coding
+
+        if (givenPlate.gameObject.GetComponent<plateIdentifier>().plateSide1 == ActualOrder.sides1)
+        {
+            if (givenPlate.gameObject.GetComponent<plateIdentifier>().SideCount1 == ActualOrder.getNumOfSides1())
+            {
+                mealAccuracyCount++;
+            }
+            else if (givenPlate.gameObject.GetComponent<plateIdentifier>().SideCount1 > ActualOrder.getNumOfSides1())
+            {
+                print("Too much of the 2nd side was given!");
+            }
+            else if (givenPlate.GetComponent<plateIdentifier>().SideCount1 < ActualOrder.getNumOfSides1() && ActualOrder.getNumOfSides1() != 0)
+            {
+                print("Too little of the 2nd side was given");
+            }
+            else
+            {
+                print("2nd Side portion is wrong");
+                Debug.Log("2nd Side: " + givenPlate.gameObject.GetComponent<plateIdentifier>().SideCount1);
+                Debug.Log("Correct 2nd Side: " + ActualOrder.getNumOfSides1());
+            }
+        }
+        else
+        {
+            Debug.Log("2nd Side is incorrect");
+            Debug.Log("2nd Side: " + givenPlate.gameObject.GetComponent<plateIdentifier>().plateSide1);
+            Debug.Log("Correct 2nd Side: " + ActualOrder.sides1);
+        }
+
+        if (givenPlate.gameObject.GetComponent<plateIdentifier>().hasCoffee == ActualOrder.getCoffeeBool())
         {
             mealAccuracyCount++;
         }
         else
             print("Coffee is incorrect");
-        */
         if (givenPlate.gameObject.GetComponent<plateIdentifier>().hasRice == ActualOrder.hasRice)
         {
             mealAccuracyCount++;
         }
         else
-            print("Rice is incorre+ct");
+            print("Rice is incorrect");
         //Checks if meal is correct
-        
-        Debug.Log(mealAccuracyCount);
-        if (mealAccuracyCount == 3)
+        print(mealAccuracyCount + " out of 5");
+        if(mealAccuracyCount == 5)
         {
             print("Correct");
             Destroy(givenPlate.gameObject);
             //Reward Player
-            MakeAnOrder();
+
         }
     }
 
-    public void MakeAnOrder()
+    void MakeAnOrder()
     {
         int rand = Random.Range(0, possibleOrders.Length);
         ActualOrder = possibleOrders[rand];
         ActualOrder.randomizeFactors();
         ActualOrder.StartFood();
         Debug.Log(ActualOrder.getMealName());
-        assignIcon(ActualOrder);
-
+        
         //Insert UI Change coding here
-
-    }
-
-
-    //This Whole Section Is dedicated to displaying The UI of the Food.
-
-    public Image RiceIcon;
-    public Sprite RiceSprite;
-    public Sprite[] MainIconSpriteInOrderOfEnum;
-    public Image MainImageIcon;
-
-    public Sprite[] SideIconSpriteInOrderOfEnum;
-    public Image SideImageIcon;
-
-    public Text FoodNameHeader;
-    public Text FoodCostText;
-    public void assignIcon(CustomerOrder CurrentlySelectedOrder)
-    {
-        RiceIcon.sprite = null;
-        MainImageIcon.sprite = null;
-        SideImageIcon.sprite = null;
-        // this bit displays if there is rice else we display nothing
-        //Currently he have no Icon for nothing so we  display a white image
-        if(CurrentlySelectedOrder.hasRice)
-        {
-            RiceIcon.sprite = RiceSprite;
-        }
-
-        for(int i = 1; i < 4; i++)
-        {
-            if((int)CurrentlySelectedOrder.Mains == i)
-            {
-                MainImageIcon.sprite = MainIconSpriteInOrderOfEnum[i];
-            }
-        }
-   
-        for (int i = 1; i < 4; i++)
-        {
-            if ((int)CurrentlySelectedOrder.sides == i)
-            {
-                SideImageIcon.sprite = SideIconSpriteInOrderOfEnum[i];
-            }
-        }
-
-        FoodNameHeader.text = CurrentlySelectedOrder.ConfirmedMealName;
-        FoodCostText.text = "$" + CurrentlySelectedOrder.foodsCost.ToString();
 
     }
     
