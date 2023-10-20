@@ -824,9 +824,10 @@ PlayerSettings:
   webGLMemoryGeometricGrowthCap: 96
   webGLPowerPreference: 2
   scriptingDefineSymbols:
-    Android: USE_INPUT_SYSTEM_POSE_CONTROL
-    Standalone: USE_INPUT_SYSTEM_POSE_CONTROL
-    Windows Store Apps: USE_INPUT_SYSTEM_POSE_CONTROL
+    Android: USE_INPUT_SYSTEM_POSE_CONTROL;CROSS_PLATFORM_INPUT;MOBILE_INPUT
+    Standalone: USE_INPUT_SYSTEM_POSE_CONTROL;CROSS_PLATFORM_INPUT
+    Windows Store Apps: USE_INPUT_SYSTEM_POSE_CONTROL;MOBILE_INPUT
+    iPhone: CROSS_PLATFORM_INPUT;MOBILE_INPUT
   additionalCompilerArguments: {}
   platformArchitecture: {}
   scriptingBackend: {}
