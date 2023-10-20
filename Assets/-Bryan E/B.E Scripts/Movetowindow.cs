@@ -39,6 +39,7 @@ public class Movetowindow : MonoBehaviour
         customer.useGravity = false;
         customer.isKinematic = true;
 
+        customerRender.sprite = sideFace;
         sliderTimer();
         timeWait = time;
         custSlider.value = timeWait;
@@ -59,10 +60,11 @@ public class Movetowindow : MonoBehaviour
                 transform.position.x,
                 transform.position.y,
                 transform.position.z + delta * Speed * Time.deltaTime));
-            if (customer.transform.position.z <= firstPoint.transform.position.z + 3f)
+            if (customer.transform.position.z >= firstPoint.transform.position.z - 1.7f)
             {
-                customer.transform.Rotate(0.0f, -90.0f, 0);
+                //customer.transform.Rotate(0.0f, -90.0f, 0);
                 check = true;
+                customerRender.sprite = frontFace;
             }
         }
         //second direction that brings the customer towards the window and changes their sprite
@@ -74,16 +76,14 @@ public class Movetowindow : MonoBehaviour
                 transform.position.x + delta * Speed * Time.deltaTime,
                 transform.position.y,
                 transform.position.z));
-            if (customer.transform.position.x >= secondPoint.transform.position.x - 3f)
+            if (customer.transform.position.x <= secondPoint.transform.position.x + .5f)
             {
                 check2 = true;
-                customerRender.sprite = frontFace;
             }
         }
         //condition that makes customer change sprite, leave, and then despawn them and spawn a new customer
         if (check3 == true)
         {
-            customerRender.sprite = sideFace;
 
             float delta = thirdPoint.transform.position.x - transform.position.x;
 
