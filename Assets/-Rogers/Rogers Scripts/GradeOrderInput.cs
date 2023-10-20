@@ -12,6 +12,7 @@ public class GradeOrderInput : MonoBehaviour
     private float moneyEarned;
     public TMP_Text MoneyText;
     private int LevelTime = 180;
+    private int CustomerTimer = 30;
     public TMP_Text LevelTimerText;
 
     public Slider CustomerSliderUI;
@@ -41,9 +42,10 @@ public class GradeOrderInput : MonoBehaviour
             yield return new WaitForSeconds(1);
             if (CustomerSliderUI.value <= 0)
             {
-                CustomerSliderUI.value = 30;
+                CustomerTimer = 30;
             }
-            CustomerSliderUI.value -= 1;
+            CustomerTimer -= 1;
+            CustomerSliderUI.value = CustomerTimer;
             
             LevelTime -= 1;
             timeformat();
@@ -162,7 +164,7 @@ public class GradeOrderInput : MonoBehaviour
         {
             moneyEarned += ActualOrder.foodsCost;
             MoneyText.text = "Money Earned\n$" + moneyEarned.ToString();
-
+            CustomerTimer = 30;
             print("Correct");
             Destroy(givenPlate.gameObject);
             //Reward Player
