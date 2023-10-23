@@ -41,7 +41,12 @@ public class plateIdentifier : MonoBehaviour
         string foodString = food.GetComponent<foodIdentifier>().food.ToString();
         int maxEnumMain = System.Enum.GetValues(typeof(MainFoods)).Length;
         int maxEnumSide = System.Enum.GetValues(typeof(SideFoods)).Length;
-
+        foodIdentifier curr = food.GetComponent<foodIdentifier>();
+        if((int)curr.food == 3)
+        {
+            Debug.Log("ricewasAdded");
+            hasRice = true;
+        }
         
         
         //loops until both main and side enums ends
@@ -51,7 +56,8 @@ public class plateIdentifier : MonoBehaviour
             if (foodString == ((MainFoods)numOfEnum).ToString() && plateMain == MainFoods.None) 
             {
                 plateMain = (MainFoods)numOfEnum;
-                
+            Debug.Log((MainFoods)numOfEnum);
+
             }
             if (foodString == ((SideFoods)numOfEnum).ToString())
             {

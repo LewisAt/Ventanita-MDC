@@ -18,11 +18,11 @@ public class TempAddSideAmount : MonoBehaviour
             AddToSide();
             print("Side Added!");
         }
-        if (Input.GetKeyDown(KeyCode.DownArrow))
-        {
-            this.GetComponent<CustomerOrder>().addCoffee();
-            print("Coffee Added!");
-        }
+        //if (Input.GetKeyDown(KeyCode.DownArrow))
+        //{
+         //   this.GetComponent<CustomerOrder>().addCoffee();
+           // print("Coffee Added!");
+        //}
     }
     void AddToSide()
     {

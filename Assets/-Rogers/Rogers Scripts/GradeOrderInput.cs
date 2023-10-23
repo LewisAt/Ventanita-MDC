@@ -1,17 +1,29 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Xml.Schema;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GradeOrderInput : MonoBehaviour
 {
     public CustomerOrder[] possibleOrders;
     CustomerOrder ActualOrder;
+    private float moneyEarned;
+    public TMP_Text MoneyText;
+    private int LevelTime = 180;
+    private int CustomerTimer = 30;
+    public TMP_Text LevelTimerText;
+
+    public Slider CustomerSliderUI;
 
     void Start()
     {
-        
+        MakeAnOrder();
+        StartCoroutine(SubtrackSeconds());
     }
 
+    
     private void OnTriggerEnter(Collider other)
     {
         //starts order based on walk
@@ -22,6 +34,42 @@ public class GradeOrderInput : MonoBehaviour
             ConfirmOrder(other);
         }
         
+    }
+    IEnumerator SubtrackSeconds()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(1);
+            if (CustomerSliderUI.value <= 0)
+            {
+                CustomerTimer = 30;
+            }
+            CustomerTimer -= 1;
+            CustomerSliderUI.value = CustomerTimer;
+            
+            LevelTime -= 1;
+            timeformat();
+        }
+
+    }
+    int seconds = 60;
+    void timeformat()
+    {
+        
+        int minutes = (int)LevelTime / 60;
+        if(seconds <= 0)
+        {
+            seconds = 60;
+        }
+        seconds--;
+        if(seconds < 10)
+        {
+            
+            LevelTimerText.text = "Time Left \n" + minutes + ":" + "0" + seconds;
+        }
+        string timeText = "Time Left \n" + minutes + ":" + seconds;
+        LevelTimerText.text = timeText;
+
     }
     void ConfirmOrder(Collider givenPlate)
     {
@@ -40,7 +88,7 @@ public class GradeOrderInput : MonoBehaviour
 
         //checSides 1 
 
-        if (givenPlate.gameObject.GetComponent<plateIdentifier>().plateSide == ActualOrder.sides)
+        /*if (givenPlate.gameObject.GetComponent<plateIdentifier>().plateSide == ActualOrder.sides)
         {
             if (givenPlate.gameObject.GetComponent<plateIdentifier>().SideCount == ActualOrder.getNumOfSides())
             {
@@ -70,7 +118,7 @@ public class GradeOrderInput : MonoBehaviour
 
         //2nd Sides coding
 
-        if (givenPlate.gameObject.GetComponent<plateIdentifier>().plateSide1 == ActualOrder.sides1)
+        /*if (givenPlate.gameObject.GetComponent<plateIdentifier>().plateSide1 == ActualOrder.sides1)
         {
             if (givenPlate.gameObject.GetComponent<plateIdentifier>().SideCount1 == ActualOrder.getNumOfSides1())
             {
@@ -103,7 +151,7 @@ public class GradeOrderInput : MonoBehaviour
             mealAccuracyCount++;
         }
         else
-            print("Coffee is incorrect");
+            print("Coffee is incorrect");*/
         if (givenPlate.gameObject.GetComponent<plateIdentifier>().hasRice == ActualOrder.hasRice)
         {
             mealAccuracyCount++;
@@ -112,8 +160,11 @@ public class GradeOrderInput : MonoBehaviour
             print("Rice is incorrect");
         //Checks if meal is correct
         print(mealAccuracyCount + " out of 5");
-        if(mealAccuracyCount == 5)
+        if(mealAccuracyCount == 2)
         {
+            moneyEarned += ActualOrder.foodsCost;
+            MoneyText.text = "Money Earned\n$" + moneyEarned.ToString();
+            CustomerTimer = 30;
             print("Correct");
             Destroy(givenPlate.gameObject);
             //Reward Player
@@ -128,9 +179,51 @@ public class GradeOrderInput : MonoBehaviour
         ActualOrder.randomizeFactors();
         ActualOrder.StartFood();
         Debug.Log(ActualOrder.getMealName());
-        
+        assignIcon(ActualOrder);
+
         //Insert UI Change coding here
 
     }
-    
+    public Image RiceIcon;
+    public Sprite RiceSprite;
+    public Sprite[] MainIconSpriteInOrderOfEnum;
+    public Image MainImageIcon;
+
+    public Sprite[] SideIconSpriteInOrderOfEnum;
+    public Image SideImageIcon;
+
+    public Text FoodNameHeader;
+    public Text FoodCostText;
+    public void assignIcon(CustomerOrder CurrentlySelectedOrder)
+    {
+        // this bit displays if there is rice else we display nothing
+        //Currently he have no Icon for nothing so we  display a white image
+        if (CurrentlySelectedOrder.hasRice)
+        {
+            RiceIcon.sprite = RiceSprite;
+        }
+  
+        for (int i = 1; i < 4; i++)
+        {
+            if ((int)CurrentlySelectedOrder.Mains == i)
+            {
+                Debug.Log((int)CurrentlySelectedOrder.Mains);
+                MainImageIcon.sprite = MainIconSpriteInOrderOfEnum[i];
+            }
+        }
+
+        for (int i = 1; i < 4; i++)
+        {
+            if ((int)CurrentlySelectedOrder.sides == i)
+            {
+                SideImageIcon.sprite = SideIconSpriteInOrderOfEnum[i];
+            }
+        }
+
+        FoodNameHeader.text = CurrentlySelectedOrder.ConfirmedMealName;
+        FoodCostText.text = "$" + CurrentlySelectedOrder.foodsCost.ToString();
+
+    }
+
 }
+    
