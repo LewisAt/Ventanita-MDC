@@ -138,6 +138,6 @@ public class Movetowindow : MonoBehaviour
     {
         custSlider.minValue = 0;
         custSlider.maxValue = time;
-        custSlider.wholeNumbers = false;
+        custSlider.wholeNumbers = true;
     }
 }
