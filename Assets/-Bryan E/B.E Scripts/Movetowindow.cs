@@ -9,6 +9,7 @@ public class Movetowindow : MonoBehaviour
     public GameObject firstPoint;
     public GameObject secondPoint;
     public GameObject thirdPoint;
+    public GameObject fourthPoint;
     //customer, sprite, speed, and respawn point
     public GameObject realCustomer;
     public GameObject spawnPoint;
@@ -21,6 +22,7 @@ public class Movetowindow : MonoBehaviour
     private bool check = false;
     private bool check2= false;
     private bool check3= false;
+    private bool check4= false;
     private bool spawnCheck = false;
     //Customer waits for this time then leaves if takes too long - money and tip payed when order complete
     private float timeWait = 0;
@@ -82,7 +84,7 @@ public class Movetowindow : MonoBehaviour
             }
         }
         //condition that makes customer change sprite, leave, and then despawn them and spawn a new customer
-        if (check3 == true)
+        if (check3 == true && check4 == false)
         {
 
             float delta = thirdPoint.transform.position.x - transform.position.x;
@@ -93,8 +95,22 @@ public class Movetowindow : MonoBehaviour
                 transform.position.z));
             if (customer.transform.position.x >= thirdPoint.transform.position.x - 1f)
             {
+                check4 = true;
+                customerRender.sprite = sideFace;
+            }
+        }
+        if(check4 == true)
+        {
+            float delta = fourthPoint.transform.position.z - transform.position.z;
+
+            customer.MovePosition(new Vector3(
+                transform.position.x,
+                transform.position.y,
+                transform.position.z + delta * Speed * Time.deltaTime));
+            if (customer.transform.position.z >= fourthPoint.transform.position.z - 1.7f)
+            {
                 spawnCheck = true;
-                if(spawnCheck == true)
+                if (spawnCheck == true)
                 {
                     Debug.Log("A new customer has arrived!");
                     SpawnCustomer();
