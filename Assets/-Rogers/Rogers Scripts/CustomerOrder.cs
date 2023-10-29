@@ -15,6 +15,7 @@ public class CustomerOrder : MonoBehaviour
 
     public MainFoods Mains;
     public bool hasRice = false;
+    bool WantsCoffee;
     [HideInInspector]
 
     public float foodsCost;
@@ -28,8 +29,7 @@ public class CustomerOrder : MonoBehaviour
 
     //string riceDescription = "Something about Rice";
     //string CoffeeDescription = "Something about Cafe Con Leche";
-    string MainDescription = "";
-    string SideDescription = "";
+
 
     public void randomizeFactors()
     {
@@ -37,7 +37,7 @@ public class CustomerOrder : MonoBehaviour
         if (sides != SideFoods.None)
         {
             NumOfSides = Random.Range(1, 3);
-            print("Amount for the first Side: " + NumOfSides);
+
         }
         else
             NumOfSides = 0;
@@ -45,19 +45,18 @@ public class CustomerOrder : MonoBehaviour
         if (sides1 != SideFoods.None)
         {
             NumOfSides1 = Random.Range(1, 3);
-            print("Amount for the second Sides: " + NumOfSides1);
         }
         else
             NumOfSides1 = 0;
 
-        //WantsCoffee = Random.value < 0.5f;
+        WantsCoffee = Random.value < 0.5f;
     }
 
     public void StartFood()
     {
         float TotalCost = 0;
 
-        /*if (WantsCoffee)
+        if (WantsCoffee)
         {
             TotalCost += 5f;
             MealName += "Cafe ";
@@ -65,7 +64,7 @@ public class CustomerOrder : MonoBehaviour
         if(WantsCoffee && hasRice)
         {
             MealName += "y ";
-        }*/
+        }
         if (hasRice)
         {
             TotalCost += 7.5f;
@@ -80,60 +79,50 @@ public class CustomerOrder : MonoBehaviour
         {
 
             case MainFoods.None:
-                MainDescription = "None";
                 break;
             case MainFoods.Rabo:
                 TotalCost += 20;
                 MealName += "Rabo Encendido";
-                MainDescription = "something about Rabo";
                 break;
 
             case MainFoods.Fricase:
                 TotalCost += 15;
                 MealName += "Fricase de Pollo";
-                MainDescription = "something about Fricase";
 
                 break;
-            case MainFoods.Frijoles:
+            case MainFoods.Beans:
                 TotalCost += 10;
                 MealName += "Frijoles";
-                MainDescription = "something about Frijoles";
 
                 break;
         }
         if(sides != SideFoods.None)
         {
-            /*if(WantsCoffee == true || hasRice == true || Mains != MainFoods.None)
+            if(WantsCoffee == true || hasRice == true || Mains != MainFoods.None)
             {
                 MealName += " Y ";
-            }*/
+            }
 
         }
         switch (sides)
         {
             case SideFoods.None:
-                SideDescription = "None";
                 break;
 
 
             case SideFoods.croqueta:
                 TotalCost += 2.5f * NumOfSides;
                 MealName += NumOfSides + " Croquetas ";
-
-                SideDescription = "something about Croquetas";
                 break;
 
             case SideFoods.tostone:
                 TotalCost += 3.5f * NumOfSides;
                 MealName += NumOfSides + " Tostones ";
-                SideDescription = "something about Tostones";
 
                 break;
             case SideFoods.maduro:
                 TotalCost += 4f * NumOfSides;
                 MealName += NumOfSides + " Platano Maduro";
-                SideDescription = "something about Maduros";
-
                 break;
         }
         if (sides1 != SideFoods.None) 
@@ -143,27 +132,22 @@ public class CustomerOrder : MonoBehaviour
         switch (sides1)
         {
             case SideFoods.None:
-                SideDescription = "None";
                 break;
 
 
             case SideFoods.croqueta:
                 TotalCost += 2.5f * NumOfSides;
                 MealName += NumOfSides + " Croquetas ";
-
-                SideDescription = "something about Croquetas";
                 break;
 
             case SideFoods.tostone:
                 TotalCost += 3.5f * NumOfSides;
                 MealName += NumOfSides + " Tostones ";
-                SideDescription = "something about Tostones";
 
                 break;
             case SideFoods.maduro:
                 TotalCost += 4f * NumOfSides;
                 MealName += NumOfSides + " Platano Maduro";
-                SideDescription = "something about Maduros";
 
                 break;
         }
@@ -176,10 +160,10 @@ public class CustomerOrder : MonoBehaviour
     {
         NumOfSides++;
     }
-   /* public void addCoffee()
+    public void addCoffee()
     {
         WantsCoffee = true;
-    }*/
+    }
     public int getNumOfSides()
     { return NumOfSides; }
     public int getNumOfSides1()
@@ -188,8 +172,8 @@ public class CustomerOrder : MonoBehaviour
     { return foodsCost; }
     public string getMealName()
     { return ConfirmedMealName; }
-   // public bool getCoffeeBool()
-    //{ return WantsCoffee; }
+    public bool getCoffeeBool()
+    { return WantsCoffee; }
 }
 
 public enum SideFoods
@@ -204,6 +188,6 @@ public enum MainFoods
     None,
     Rabo,
     Fricase,
-    Frijoles
+    Beans
 }
 
