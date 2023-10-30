@@ -26,8 +26,9 @@ public class Movetowindow : MonoBehaviour
     private bool spawnCheck = false;
     //Customer waits for this time then leaves if takes too long - money and tip payed when order complete
     private float timeWait = 0;
-    public float time = 10;
-    private float tipReduce;
+    public float timeSet = 10;
+    float tipReduce;
+    float reduceMod;
     public Slider custSlider;
     public Text tipEarned;
     private float pay = 10;
@@ -43,7 +44,7 @@ public class Movetowindow : MonoBehaviour
 
         customerRender.sprite = sideFace;
         sliderTimer();
-        timeWait = time;
+        timeWait = timeSet;
         custSlider.value = timeWait;
         tipEarned.gameObject.SetActive(false);
         tip = 5;
@@ -137,7 +138,8 @@ public class Movetowindow : MonoBehaviour
         if(check2 == true && check3 == false)
         {
             timeWait -= Time.deltaTime;
-            tipReduce += Time.deltaTime / 2;
+            reduceMod = timeSet / 5;
+            tipReduce += Time.deltaTime / reduceMod;
             custSlider.value = timeWait;
             if(timeWait <= 0)
             {
@@ -153,7 +155,7 @@ public class Movetowindow : MonoBehaviour
     void sliderTimer()
     {
         custSlider.minValue = 0;
-        custSlider.maxValue = time;
+        custSlider.maxValue = timeSet;
         custSlider.wholeNumbers = true;
     }
 }
