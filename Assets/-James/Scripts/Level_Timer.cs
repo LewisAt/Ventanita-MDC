@@ -58,5 +58,6 @@ public class Level_Timer : MonoBehaviour
         StopCoroutine("Countdown");
         Debug.Log("Day Ends");
         //Ends Day coding here
+
     }
 }

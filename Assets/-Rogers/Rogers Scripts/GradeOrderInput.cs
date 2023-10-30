@@ -88,7 +88,7 @@ public class GradeOrderInput : MonoBehaviour
 
         //checSides 1 
 
-        /*if (givenPlate.gameObject.GetComponent<plateIdentifier>().plateSide == ActualOrder.sides)
+        if (givenPlate.gameObject.GetComponent<plateIdentifier>().plateSide == ActualOrder.sides)
         {
             if (givenPlate.gameObject.GetComponent<plateIdentifier>().SideCount == ActualOrder.getNumOfSides())
             {
@@ -118,7 +118,7 @@ public class GradeOrderInput : MonoBehaviour
 
         //2nd Sides coding
 
-        /*if (givenPlate.gameObject.GetComponent<plateIdentifier>().plateSide1 == ActualOrder.sides1)
+        if (givenPlate.gameObject.GetComponent<plateIdentifier>().plateSide1 == ActualOrder.sides1)
         {
             if (givenPlate.gameObject.GetComponent<plateIdentifier>().SideCount1 == ActualOrder.getNumOfSides1())
             {
@@ -151,7 +151,7 @@ public class GradeOrderInput : MonoBehaviour
             mealAccuracyCount++;
         }
         else
-            print("Coffee is incorrect");*/
+            print("Coffee is incorrect");
         if (givenPlate.gameObject.GetComponent<plateIdentifier>().hasRice == ActualOrder.hasRice)
         {
             mealAccuracyCount++;
@@ -179,6 +179,15 @@ public class GradeOrderInput : MonoBehaviour
         ActualOrder.randomizeFactors();
         ActualOrder.StartFood();
         Debug.Log(ActualOrder.getMealName());
+        //assignIcon(ActualOrder);
+        if (ActualOrder.sides != SideFoods.None)
+        {
+            print("Amount for the first Side: " + ActualOrder.getNumOfSides());
+        }
+        if (ActualOrder.sides1 != SideFoods.None)
+        {
+            print("Amout for the second side" + ActualOrder.getNumOfSides1());
+        }
         assignIcon(ActualOrder);
 
         //Insert UI Change coding here
