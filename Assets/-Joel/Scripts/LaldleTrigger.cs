@@ -17,6 +17,7 @@ public class LaldleTrigger : MonoBehaviour
 
     private void Start()
     {
+        // Causes a null reference exception
         laldleType = GetComponent<LaldleIdentifier>().typeOfLaldle;
     }
     private void OnCollisionEnter(Collision other)
