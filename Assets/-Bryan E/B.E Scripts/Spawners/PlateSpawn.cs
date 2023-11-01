@@ -8,6 +8,7 @@ public class PlateSpawn : MonoBehaviour
     public GameObject plate;
     public float spawnTime = 5;
     public bool objIn = false;
+    private bool waitP = false;
 
     void Start()
     {
@@ -19,8 +20,10 @@ public class PlateSpawn : MonoBehaviour
     }
     IEnumerator Wait()
     {
+        waitP = true;
         yield return new WaitForSeconds(spawnTime);
         SpawnPoF();
+        waitP = false;
     }
 
     void OnTriggerStay(Collider col)
@@ -32,7 +35,7 @@ public class PlateSpawn : MonoBehaviour
     }
     void OnTriggerExit(Collider col)
     {
-        if (col.gameObject.tag == "plate")
+        if (col.gameObject.tag == "plate" && waitP == false)
         {
             objIn = false;
         }
