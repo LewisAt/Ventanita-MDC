@@ -25,14 +25,14 @@ public class PlateSpawn : MonoBehaviour
 
     void OnTriggerStay(Collider col)
     {
-        if (col.gameObject.tag == "Plate")
+        if (col.gameObject.tag == "plate")
         {
             objIn = true;
         }
     }
     void OnTriggerExit(Collider col)
     {
-        if (col.gameObject.tag == "Plate")
+        if (col.gameObject.tag == "plate")
         {
             objIn = false;
         }
