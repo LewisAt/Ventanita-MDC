@@ -19,7 +19,6 @@ public class GradeOrderInput : MonoBehaviour
 
     void Start()
     {
-        MakeAnOrder();
         StartCoroutine(SubtrackSeconds());
     }
 
@@ -27,7 +26,11 @@ public class GradeOrderInput : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         //starts order based on walk
-        if (other.gameObject.name == "OrderTrigger") MakeAnOrder();
+        if (other.gameObject.name == "MakeOrderHitbox") 
+        { 
+            MakeAnOrder();
+            
+        }
         if (other.tag == "plate")
         {
             other.GetComponent<plateIdentifier>();
@@ -151,7 +154,7 @@ public class GradeOrderInput : MonoBehaviour
             mealAccuracyCount++;
         }
         else
-            print("Coffee is incorrect");
+           print("Coffee is incorrect");
         if (givenPlate.gameObject.GetComponent<plateIdentifier>().hasRice == ActualOrder.hasRice)
         {
             mealAccuracyCount++;
@@ -163,8 +166,8 @@ public class GradeOrderInput : MonoBehaviour
         if(mealAccuracyCount == 5)
         {
             moneyEarned += ActualOrder.foodsCost;
-            MoneyText.text = "Money Earned\n$" + moneyEarned.ToString();
-            CustomerTimer = 30;
+            //MoneyText.text = "Money Earned\n$" + moneyEarned.ToString();
+            //CustomerTimer = 30;
             print("Correct");
             Destroy(givenPlate.gameObject);
             //Reward Player
@@ -181,17 +184,21 @@ public class GradeOrderInput : MonoBehaviour
         Debug.Log(ActualOrder.getMealName());
         if (ActualOrder.sides != SideFoods.None)
         {
-            print("Amount for the First Side: " + ActualOrder.getNumOfSides());
+            print("Amount for the first Side: " + ActualOrder.getNumOfSides());
         }
         if (ActualOrder.sides1 != SideFoods.None)
         {
-            print("Amount for the Second Side: " + ActualOrder.getNumOfSides1());
+            print("Amout for the second side" + ActualOrder.getNumOfSides1());
         }
         assignIcon(ActualOrder);
 
         //Insert UI Change coding here
 
     }
+
+    /// <summary>
+    /// //////////////////////////////////////////
+    /// </summary>
     public Image RiceIcon;
     public Sprite RiceSprite;
     public Sprite[] MainIconSpriteInOrderOfEnum;

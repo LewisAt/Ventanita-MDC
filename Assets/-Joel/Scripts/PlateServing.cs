@@ -37,7 +37,7 @@ public class PlateServing : MonoBehaviour
                 Debug.Log("food is null");
                 return;
             }
-            laldleFull = LaldleTrigger.isLaldleFull;
+            laldleFull = other.gameObject.GetComponent<LaldleTrigger>().isLaldleFull;
             if (laldleFull)
             {
                 checkPlatePosition(clone);
@@ -67,7 +67,6 @@ public class PlateServing : MonoBehaviour
         Food = other.GetComponent<foodIdentifier>();
         foodtype = Food.food;
 
-        laldleFull = LaldleTrigger.isLaldleFull;
         GameObject clone = Instantiate(other);
         Destroy(clone.gameObject.GetComponent<Rigidbody>());
 
@@ -79,14 +78,14 @@ public class PlateServing : MonoBehaviour
 
             clone.transform.localPosition = Vector3.zero;
             mainFull = true;
-            LaldleTrigger.isLaldleFull = false;
+            laldleFull = false;
             Destroy(other);
         }
         else if (parent == 0 && mainFull == true)
         {
             Destroy(other);
             Destroy(clone);
-            LaldleTrigger.isLaldleFull = false;
+            laldleFull = false;
         }
         else if (parent == 1 && sideFull == false && (int)foodtype != 3)
         {
@@ -120,7 +119,7 @@ public class PlateServing : MonoBehaviour
                 clone.transform.localScale = new Vector3(0.3f, 1, 0.3f);
                 xSides++;
             }
-            LaldleTrigger.isLaldleFull = false;
+            laldleFull = false;
             Destroy(other);
         }
         else if ((int)foodtype == 3 && isRice == false)
@@ -128,7 +127,7 @@ public class PlateServing : MonoBehaviour
             clone.transform.rotation = transform.GetChild(parent + 1).rotation;
             clone.transform.SetParent(transform.GetChild(parent + 1));
             clone.transform.localPosition= Vector3.zero;
-            LaldleTrigger.isLaldleFull =false;
+            laldleFull =false;
             isRice = true;
             Destroy(other);
         }
@@ -136,7 +135,7 @@ public class PlateServing : MonoBehaviour
         {
             Destroy(clone);
             Destroy(other);
-            LaldleTrigger.isLaldleFull = false;
+            laldleFull = false;
         }
         CheckPlate(mainFull, sideFull, isRice);
     }

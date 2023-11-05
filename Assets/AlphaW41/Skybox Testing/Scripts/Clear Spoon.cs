@@ -12,7 +12,7 @@ public class ClearSpoon : MonoBehaviour
 
             Destroy(spoon.transform.GetChild(0).gameObject);
 
-            LaldleTrigger.isLaldleFull = false;
+            other.gameObject.GetComponent<LaldleTrigger>().isLaldleFull = false;
         }
     }
 }
