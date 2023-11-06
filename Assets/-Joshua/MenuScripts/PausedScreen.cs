@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class PausedScreen : MonoBehaviour
 {
+    public InputActionProperty showButton;
     public GameObject pauseMenu;
     public bool isPaused;
 
@@ -17,23 +18,31 @@ public class PausedScreen : MonoBehaviour
     }
 
     // Update is called once per frame
-    public void PauseButtonOnPressed(InputAction.CallbackContext context)
-    //void Update()
-    {
-        //if (Input.GetKeyDown(KeyCode.Escape)) 
-        if (context.performed)
-        {
-            /*if(isPaused)
-            {
-                ContinueGame();
-            }
+    //public void PauseButtonOnPressed(InputAction.CallbackContext context)
+    ////void Update()
+    //{
+    //    //if (Input.GetKeyDown(KeyCode.Escape)) 
+    //    if (context.performed)
+    //    {
+    //        /*if(isPaused)
+    //        {
+    //            ContinueGame();
+    //        }
 
-            else
-            {
-                PauseGame();
-            }
-            */
-            PauseGame();
+    //        else
+    //        {
+    //            PauseGame();
+    //        }
+    //        */
+    //        PauseGame();
+    //    }
+    //}
+
+    void Update()
+    {
+        if(showButton.action.WasPressedThisFrame())
+        {
+            pauseMenu.SetActive(!pauseMenu.activeSelf);
         }
     }
 

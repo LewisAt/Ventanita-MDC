@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028331, g: 0.2257133, b: 0.3069217, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028334, g: 0.2257134, b: 0.30692226, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2241,7 +2241,8 @@ Transform:
   m_LocalPosition: {x: -0.65037096, y: 1.1713573, z: 0.00031161308}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1414861320}
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2257,7 +2258,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f5465ba5ccaf514e82cf6b36fa01aaa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pauseMenu: {fileID: 0}
+  showButton:
+    m_UseReference: 1
+    m_Action:
+      m_Name: Show Button
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: 130c7fa1-c25c-4f59-8596-4ff4440a4eea
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: -8006651281905559488, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  pauseMenu: {fileID: 1414861316}
   isPaused: 0
 --- !u!1 &856024260
 GameObject:
@@ -3056,7 +3069,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1414861317
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3127,18 +3140,18 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1414861316}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.161}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0.8466884}
   m_LocalScale: {x: 0.005, y: 0.005, z: 0.005}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 857807925}
-  m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_Father: {fileID: 745768138}
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -2.472, y: 1.168}
+  m_AnchoredPosition: {x: -0.40362906, y: 0.48164248}
   m_SizeDelta: {x: 100, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1414861321
@@ -3153,6 +3166,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f5465ba5ccaf514e82cf6b36fa01aaa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  showButton:
+    m_UseReference: 0
+    m_Action:
+      m_Name: 
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: 
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: 0}
   pauseMenu: {fileID: 857807924}
   isPaused: 0
 --- !u!1 &1530511961
@@ -4247,6 +4272,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: UpgradeMenu
       objectReference: {fileID: 0}
+    - target: {fileID: 8331367600924109490, guid: 90bacefbd398e9f4780b0e0aafc53636, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9203967704635543583, guid: 90bacefbd398e9f4780b0e0aafc53636, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -4257,7 +4286,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9203967704635543583, guid: 90bacefbd398e9f4780b0e0aafc53636, type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 9203967704635543583, guid: 90bacefbd398e9f4780b0e0aafc53636, type: 3}
       propertyPath: m_AnchorMax.x
