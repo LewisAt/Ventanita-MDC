@@ -170,7 +170,7 @@ public class GradeOrderInput : MonoBehaviour
             moneyEarned += ActualOrder.foodsCost;
             //MoneyText.text = "Money Earned\n$" + moneyEarned.ToString();
             //CustomerTimer = 30;
-            print("Correct");
+            FoodNameHeader.text = "Correct";
             Destroy(givenPlate.gameObject);
             //Reward Player
 
