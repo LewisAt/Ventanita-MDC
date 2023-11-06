@@ -34,7 +34,6 @@ public class Movetowindow : MonoBehaviour
     float reduceMod;
     public Slider custSlider;
     public Text tipEarned;
-    private float pay = 10;
     public float tip= 5;
 
 
@@ -51,7 +50,6 @@ public class Movetowindow : MonoBehaviour
         custSlider.value = timeWait;
         tipEarned.gameObject.SetActive(false);
         tip = 5;
-        pay = 10;
         tipReduce = 0;
     }
 
@@ -135,8 +133,7 @@ public class Movetowindow : MonoBehaviour
             tip = tip - tipReduce;
             tip = Mathf.Round(tip * 100.0f) * 0.01f;
             tipEarned.text = "You earned a " + tip.ToString() + "$ tip!";
-            pay += tip;
-            MoneyTracker.UserCash += pay;
+            MoneyTracker.UserCash += GetComponent<GradeOrderInput>().ActualOrder.foodsCost + tip;
         }
 
         if(check2 == true && check3 == false)

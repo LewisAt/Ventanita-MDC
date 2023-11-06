@@ -8,8 +8,8 @@ using UnityEngine.UI;
 public class GradeOrderInput : MonoBehaviour
 {
     public CustomerOrder[] possibleOrders;
-    CustomerOrder ActualOrder;
-    private float moneyEarned;
+    public CustomerOrder ActualOrder;
+    float moneyEarned;
     public TMP_Text MoneyText;
     private int LevelTime = 180;
     private int CustomerTimer = 30;

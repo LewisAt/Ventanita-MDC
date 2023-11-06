@@ -6379,7 +6379,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54bc38c117af76e4ca7e02b7c4ef8fab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentCash: {fileID: 536065144}
+  currentCash: {fileID: 0}
 --- !u!114 &536065144
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15423,11 +15423,13 @@ MonoBehaviour:
   - {fileID: 3847674522970296367, guid: fc910acca33f96d45b5786ef03dddd00, type: 3}
   - {fileID: 3847674522970296367, guid: 9f4104a17b9617d488176308113597bf, type: 3}
   - {fileID: 3847674522970296367, guid: 357346cf744726d469f5481e6677d60b, type: 3}
-  MoneyText: {fileID: 0}
-  LevelTimerText: {fileID: 0}
+  ActualOrder: {fileID: 0}
+  moneyEarned: 0
+  MoneyText: {fileID: 1733728715}
+  LevelTimerText: {fileID: 211289568}
   CustomerSliderUI: {fileID: 0}
   RiceIcon: {fileID: 753549689}
-  RiceSprite: {fileID: 0}
+  RiceSprite: {fileID: 21300000, guid: cd3bc789f70653142a4147368162f957, type: 3}
   MainIconSpriteInOrderOfEnum:
   - {fileID: 21300000, guid: 9c78a34aa9633044283cedf41fbbc3d3, type: 3}
   - {fileID: 21300000, guid: a58c309fe7df40241a72899b635576ac, type: 3}
@@ -15438,8 +15440,8 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 4682f36d2ca6d8348a840eba5573c7e4, type: 3}
   - {fileID: 21300000, guid: b75fda032e96d1d42b2befbda0913523, type: 3}
   SideImageIcon: {fileID: 309026502}
-  FoodNameHeader: {fileID: 0}
-  FoodCostText: {fileID: 0}
+  FoodNameHeader: {fileID: 2062833534}
+  FoodCostText: {fileID: 1820215516}
 --- !u!1 &1078303606
 GameObject:
   m_ObjectHideFlags: 0
@@ -25048,6 +25050,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1733728715}
     - target: {fileID: 2771013482248907964, guid: 166de91cb9e0638418bc93abdb5959cf, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2771013482248907964, guid: 166de91cb9e0638418bc93abdb5959cf, type: 3}
       propertyPath: LevelTimerText
       value: 
       objectReference: {fileID: 211289568}
@@ -25106,6 +25112,10 @@ PrefabInstance:
     - target: {fileID: 4170708800607414829, guid: 166de91cb9e0638418bc93abdb5959cf, type: 3}
       propertyPath: m_Name
       value: Customer Window
+      objectReference: {fileID: 0}
+    - target: {fileID: 4170708800607414829, guid: 166de91cb9e0638418bc93abdb5959cf, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7566694875930992469, guid: 166de91cb9e0638418bc93abdb5959cf, type: 3}
       propertyPath: m_IsActive
@@ -26839,6 +26849,17 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1820215516 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9129368839550348552, guid: 166de91cb9e0638418bc93abdb5959cf, type: 3}
+  m_PrefabInstance: {fileID: 1719590208}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1822137882
 GameObject:
   m_ObjectHideFlags: 0
@@ -29976,6 +29997,17 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &2062833534 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4809622240892103042, guid: 166de91cb9e0638418bc93abdb5959cf, type: 3}
+  m_PrefabInstance: {fileID: 1719590208}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &2064759656 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: c91c1eb85782d5748ace27eb4d7415bb, type: 3}
@@ -34326,6 +34358,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 437225384257703827}
+  - component: {fileID: 962229385745044778}
   m_Layer: 0
   m_Name: CashRegister
   m_TagString: Untagged
@@ -34333,6 +34366,19 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &962229385745044778
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 962229385745044777}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54bc38c117af76e4ca7e02b7c4ef8fab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentCash: {fileID: 1733728715}
 --- !u!102 &987334816761823493
 TextMesh:
   serializedVersion: 3
