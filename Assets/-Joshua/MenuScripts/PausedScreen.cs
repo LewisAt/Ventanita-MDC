@@ -15,6 +15,7 @@ public class PausedScreen : MonoBehaviour
     void Start()
     {
         pauseMenu.SetActive(false);
+        isPaused = false;
     }
 
     // Update is called once per frame
@@ -40,24 +41,31 @@ public class PausedScreen : MonoBehaviour
 
     void Update()
     {
-        if(showButton.action.WasPressedThisFrame())
+        if(showButton.action.WasPressedThisFrame() && isPaused == false)
         {
-            pauseMenu.SetActive(!pauseMenu.activeSelf);
+            PauseGame();
+        }
+        else if (showButton.action.WasPressedThisFrame() && isPaused == true)
+        {
+           // pauseMenu.SetActive(!pauseMenu.activeSelf);
+            //Time.timeScale = 1.0f;
+            //isPaused = false;
+            ContinueGame();
         }
     }
 
     public void PauseGame()
     {
-        pauseMenu.SetActive(true);
+        pauseMenu.SetActive(!pauseMenu.activeSelf);
         Time.timeScale = 0f;
         isPaused = true;
     }
 
     public void ContinueGame()
     {
-        pauseMenu.SetActive(false);
-        Time.timeScale = 1f;
+        pauseMenu.SetActive(!pauseMenu.activeSelf);
         isPaused = false;
+        Time.timeScale = 1f;
     }
 
     public void ToMenu()
