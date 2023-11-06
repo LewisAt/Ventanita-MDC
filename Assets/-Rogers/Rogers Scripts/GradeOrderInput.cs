@@ -15,6 +15,8 @@ public class GradeOrderInput : MonoBehaviour
     private int CustomerTimer = 30;
     public TMP_Text LevelTimerText;
 
+    public int mealAccuracyCount = 0;
+
 
     public Slider CustomerSliderUI;
 
@@ -77,7 +79,7 @@ public class GradeOrderInput : MonoBehaviour
     }
     void ConfirmOrder(Collider givenPlate)
     {
-        int mealAccuracyCount = 0;
+        mealAccuracyCount = 0;
             
         if (givenPlate.gameObject.GetComponent<plateIdentifier>().plateMain == ActualOrder.Mains)
         {

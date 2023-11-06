@@ -129,7 +129,7 @@ public class Movetowindow : MonoBehaviour
     private void Update()
     {
         //pass condition, timer, and payment
-        if (Input.GetKeyDown("space") && check2 == true)
+        if (Input.GetKeyDown("space") && check2 == true || GetComponent<GradeOrderInput>().mealAccuracyCount == 4 && check2 == true)
         {
             tipEarned.gameObject.SetActive(true);
             check3 = true;
