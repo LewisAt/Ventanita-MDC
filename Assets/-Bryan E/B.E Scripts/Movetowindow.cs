@@ -16,6 +16,8 @@ public class Movetowindow : MonoBehaviour
     public GameObject spawnPoint;
     public Rigidbody customer;
     public SpriteRenderer customerRender;
+    public Sprite[] CustomerFaces;
+    float SpriteChoose = 0;
     public Sprite frontFace;
     public Sprite sideFace;
     public float Speed = 1;
@@ -40,6 +42,7 @@ public class Movetowindow : MonoBehaviour
     //makes sure that the customer has a rigidbody
     private void Start()
     {
+        CustomerRandomizer();
         if (customer == null) customer = GetComponent<Rigidbody>();
         customer.useGravity = false;
         customer.isKinematic = true;
@@ -151,6 +154,40 @@ public class Movetowindow : MonoBehaviour
     void SpawnCustomer()
     {
         Instantiate(realCustomer, spawnPoint.transform.position, spawnPoint.transform.rotation);
+    }
+
+    void CustomerRandomizer()
+    {
+        SpriteChoose = Random.Range(0, 4);
+
+        //hector
+        if(SpriteChoose == 0)
+        {
+            frontFace = CustomerFaces[0];
+            sideFace = CustomerFaces[1];
+            this.transform.position = new Vector3(this.transform.position.x, 0.99f, this.transform.position.z);
+        }
+        //abuela
+        else if (SpriteChoose == 1)
+        {
+            frontFace = CustomerFaces[2];
+            sideFace = CustomerFaces[3];
+            this.transform.position = new Vector3(this.transform.position.x, 0.71f, this.transform.position.z);
+        }
+        //kid
+        else if (SpriteChoose == 2)
+        {
+            frontFace = CustomerFaces[4];
+            sideFace = CustomerFaces[5];
+            this.transform.position = new Vector3(this.transform.position.x, 0.71f, this.transform.position.z);
+        }
+        //tourist
+        else if (SpriteChoose == 3)
+        {
+            frontFace = CustomerFaces[6];
+            sideFace = CustomerFaces[7];
+            this.transform.position = new Vector3(this.transform.position.x, 0.99f, this.transform.position.z);
+        }
     }
 
     void sliderTimer()
