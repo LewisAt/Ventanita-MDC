@@ -9,7 +9,7 @@ using UnityEngine.UIElements;
 public class LaldleTrigger : MonoBehaviour
 {
     public GameObject[] prefabedFoods;
-    public bool isLaldleFull = false;
+    public bool isLaldleFull;
     Transform spoon;
     foodIdentifier foodType;
     foodIdentifier.typesOfFood currentFood;

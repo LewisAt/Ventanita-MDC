@@ -16,7 +16,7 @@ public class PlateServing : MonoBehaviour
     bool mainFull = false;
     bool sideFull = false;
     bool isRice = false;
-    bool laldleFull;
+    LaldleTrigger laldleFull;
     bool plateFull = false;
     int xSides = 0;
     public float xoffset = 0;
@@ -37,7 +37,7 @@ public class PlateServing : MonoBehaviour
                 Debug.Log("food is null");
                 return;
             }
-            laldleFull = other.gameObject.GetComponent<LaldleTrigger>().isLaldleFull;
+            laldleFull = other.gameObject.GetComponent<LaldleTrigger>();
             if (laldleFull)
             {
                 checkPlatePosition(clone);
@@ -78,14 +78,14 @@ public class PlateServing : MonoBehaviour
 
             clone.transform.localPosition = Vector3.zero;
             mainFull = true;
-            laldleFull = false;
+            laldleFull.isLaldleFull = false;
             Destroy(other);
         }
         else if (parent == 0 && mainFull == true)
         {
             Destroy(other);
             Destroy(clone);
-            laldleFull = false;
+            laldleFull.isLaldleFull = false;
         }
         else if (parent == 1 && sideFull == false && (int)foodtype != 3)
         {
@@ -119,7 +119,7 @@ public class PlateServing : MonoBehaviour
                 clone.transform.localScale = new Vector3(0.3f, 1, 0.3f);
                 xSides++;
             }
-            laldleFull = false;
+            laldleFull.isLaldleFull = false;
             Destroy(other);
         }
         else if ((int)foodtype == 3 && isRice == false)
@@ -127,7 +127,7 @@ public class PlateServing : MonoBehaviour
             clone.transform.rotation = transform.GetChild(parent + 1).rotation;
             clone.transform.SetParent(transform.GetChild(parent + 1));
             clone.transform.localPosition= Vector3.zero;
-            laldleFull =false;
+            laldleFull.isLaldleFull = false;
             isRice = true;
             Destroy(other);
         }
@@ -135,7 +135,7 @@ public class PlateServing : MonoBehaviour
         {
             Destroy(clone);
             Destroy(other);
-            laldleFull = false;
+            laldleFull.isLaldleFull = false;
         }
         CheckPlate(mainFull, sideFull, isRice);
     }
