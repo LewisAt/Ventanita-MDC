@@ -15,7 +15,7 @@ public class CustomerOrder : MonoBehaviour
 
     public MainFoods Mains;
     public bool hasRice = false;
-    bool WantsCoffee;
+    //bool WantsCoffee;
     [HideInInspector]
 
     public float foodsCost;
@@ -49,13 +49,14 @@ public class CustomerOrder : MonoBehaviour
         else
             NumOfSides1 = 0;
 
-        WantsCoffee = Random.value < 0.5f;
+        //WantsCoffee = Random.value < 0.5f;
     }
 
     public void StartFood()
     {
         float TotalCost = 0;
 
+        /*
         if (WantsCoffee)
         {
             TotalCost += 5f;
@@ -65,6 +66,7 @@ public class CustomerOrder : MonoBehaviour
         {
             MealName += "y ";
         }
+        */
         if (hasRice)
         {
             TotalCost += 7.5f;
@@ -98,10 +100,12 @@ public class CustomerOrder : MonoBehaviour
         }
         if(sides != SideFoods.None)
         {
-            if(WantsCoffee == true || hasRice == true || Mains != MainFoods.None)
+            
+            if(/*WantsCoffee == true ||*/ hasRice == true || Mains != MainFoods.None)
             {
                 MealName += " Y ";
             }
+            
 
         }
         switch (sides)
@@ -160,10 +164,12 @@ public class CustomerOrder : MonoBehaviour
     {
         NumOfSides++;
     }
+    /*
     public void addCoffee()
     {
         WantsCoffee = true;
     }
+    */
     public int getNumOfSides()
     { return NumOfSides; }
     public int getNumOfSides1()
@@ -172,8 +178,10 @@ public class CustomerOrder : MonoBehaviour
     { return foodsCost; }
     public string getMealName()
     { return ConfirmedMealName; }
+    /*
     public bool getCoffeeBool()
     { return WantsCoffee; }
+    */
 }
 
 public enum SideFoods

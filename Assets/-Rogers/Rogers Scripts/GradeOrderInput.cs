@@ -148,13 +148,14 @@ public class GradeOrderInput : MonoBehaviour
             Debug.Log("2nd Side: " + givenPlate.gameObject.GetComponent<plateIdentifier>().plateSide1);
             Debug.Log("Correct 2nd Side: " + ActualOrder.sides1);
         }
-
+        /*
         if (givenPlate.gameObject.GetComponent<plateIdentifier>().hasCoffee == ActualOrder.getCoffeeBool())
         {
             mealAccuracyCount++;
         }
         else
            print("Coffee is incorrect");
+        */
         if (givenPlate.gameObject.GetComponent<plateIdentifier>().hasRice == ActualOrder.hasRice)
         {
             mealAccuracyCount++;
@@ -162,8 +163,8 @@ public class GradeOrderInput : MonoBehaviour
         else
             print("Rice is incorrect");
         //Checks if meal is correct
-        print(mealAccuracyCount + " out of 5");
-        if(mealAccuracyCount == 5)
+        print(mealAccuracyCount + " out of 4");
+        if(mealAccuracyCount == 4)
         {
             moneyEarned += ActualOrder.foodsCost;
             //MoneyText.text = "Money Earned\n$" + moneyEarned.ToString();
@@ -207,6 +208,11 @@ public class GradeOrderInput : MonoBehaviour
     public Sprite[] SideIconSpriteInOrderOfEnum;
     public Image SideImageIcon;
 
+    /*
+    public Image CoffeeIcon;
+    public Sprite CoffeeSprite;
+    */
+
     public Text FoodNameHeader;
     public Text FoodCostText;
     public void assignIcon(CustomerOrder CurrentlySelectedOrder)
@@ -217,6 +223,13 @@ public class GradeOrderInput : MonoBehaviour
         {
             RiceIcon.sprite = RiceSprite;
         }
+
+        /*
+        if (CurrentlySelectedOrder.getCoffeeBool() == true)
+        {
+            CoffeeIcon.sprite = CoffeeSprite;
+        }
+        */
   
         for (int i = 1; i < 4; i++)
         {
