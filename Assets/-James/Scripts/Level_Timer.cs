@@ -13,10 +13,12 @@ public class Level_Timer : MonoBehaviour
     public TextMesh minuteClock_1;
     public TextMesh minuteClock_2;
     public TextMesh hourClock;
+    public GameObject upgradePanel;
 
     void Start()
     {
         StartCoroutine("Countdown");
+        upgradePanel.SetActive(false);
     }
 
     void Update()
@@ -34,6 +36,12 @@ public class Level_Timer : MonoBehaviour
             hours++;
         }
 
+        if (hours == 6)
+        {
+            upgradePanel.SetActive(true);
+            EndDay();
+        }
+
         minuteClock_1.text = "" + minute_1;
         minuteClock_2.text = "" + minute_2;
         hourClock.text = "" + hour;
@@ -46,17 +54,13 @@ public class Level_Timer : MonoBehaviour
             yield return new WaitForSeconds(1);
             minute_1++;
         }
-
-        if (hours == 12)
-        {
-            EndDay();
-        }
     }
 
     public void EndDay()
     {
         StopCoroutine("Countdown");
         Debug.Log("Day Ends");
+        hours = 0;
         //Ends Day coding here
 
     }
