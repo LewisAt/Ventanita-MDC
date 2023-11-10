@@ -10,55 +10,50 @@ public class Movetowindow : MonoBehaviour
     public GameObject secondPoint;
     public GameObject thirdPoint;
     public GameObject fourthPoint;
-
     //customer, sprite, speed, and respawn point
     public GameObject realCustomer;
     public GameObject spawnPoint;
     public Rigidbody customer;
     public SpriteRenderer customerRender;
-    public Sprite[] CustomerFaces;
-    float SpriteChoose = 0;
     public Sprite frontFace;
     public Sprite sideFace;
     public float Speed = 1;
-
     //allows for the movement events to trigger
     private bool check = false;
     private bool check2= false;
     private bool check3= false;
     private bool check4= false;
     private bool spawnCheck = false;
-
     //Customer waits for this time then leaves if takes too long - money and tip payed when order complete
-    private float timeWait = 5;
-    public float timeSet = 10;
-    float tipReduce;
-    float reduceMod;
+    private float timeWait = 0;
+    public float time = 10;
+    private float tipReduce;
     public Slider custSlider;
     public Text tipEarned;
+    private float pay = 10;
     public float tip= 5;
 
 
     //makes sure that the customer has a rigidbody
     private void Start()
     {
-        CustomerRandomizer();
         if (customer == null) customer = GetComponent<Rigidbody>();
         customer.useGravity = false;
         customer.isKinematic = true;
 
         customerRender.sprite = sideFace;
         sliderTimer();
-        timeWait = timeSet;
+        timeWait = time;
         custSlider.value = timeWait;
         tipEarned.gameObject.SetActive(false);
         tip = 5;
+        pay = 10;
         tipReduce = 0;
     }
 
     private void FixedUpdate()
     {
-        //first direction brings toward center of path and changes sprite
+        //first direction and turn point for customer
         if(check == false)
         {
             float delta = firstPoint.transform.position.z - transform.position.z;
@@ -74,7 +69,7 @@ public class Movetowindow : MonoBehaviour
                 customerRender.sprite = frontFace;
             }
         }
-        //second direction that brings the customer towards the window
+        //second direction that brings the customer towards the window and changes their sprite
         if(check == true && check2 == false)
         {
             float delta = secondPoint.transform.position.x - transform.position.x;
@@ -88,7 +83,7 @@ public class Movetowindow : MonoBehaviour
                 check2 = true;
             }
         }
-        //third direction that makes customer change sprite then move to despawn point
+        //condition that makes customer change sprite, leave, and then despawn them and spawn a new customer
         if (check3 == true && check4 == false)
         {
 
@@ -104,7 +99,6 @@ public class Movetowindow : MonoBehaviour
                 customerRender.sprite = sideFace;
             }
         }
-        //fourth direction that makes the customer move offscreen, despawn, and spawn new customer
         if(check4 == true)
         {
             float delta = fourthPoint.transform.position.z - transform.position.z;
@@ -129,21 +123,21 @@ public class Movetowindow : MonoBehaviour
     private void Update()
     {
         //pass condition, timer, and payment
-        if (Input.GetKeyDown("space") && check2 == true || GetComponent<GradeOrderInput>().mealAccuracyCount == 4 && check2 == true)
+        if (Input.GetKeyDown("space") && check2 == true)
         {
             tipEarned.gameObject.SetActive(true);
             check3 = true;
             tip = tip - tipReduce;
             tip = Mathf.Round(tip * 100.0f) * 0.01f;
             tipEarned.text = "You earned a " + tip.ToString() + "$ tip!";
-            MoneyTracker.UserCash += GetComponent<GradeOrderInput>().ActualOrder.foodsCost + tip;
+            pay += tip;
+            MoneyTracker.UserCash += pay;
         }
 
         if(check2 == true && check3 == false)
         {
             timeWait -= Time.deltaTime;
-            reduceMod = timeSet / 5;
-            tipReduce += Time.deltaTime / reduceMod;
+            tipReduce += Time.deltaTime / 2;
             custSlider.value = timeWait;
             if(timeWait <= 0)
             {
@@ -156,44 +150,10 @@ public class Movetowindow : MonoBehaviour
         Instantiate(realCustomer, spawnPoint.transform.position, spawnPoint.transform.rotation);
     }
 
-    void CustomerRandomizer()
-    {
-        SpriteChoose = Random.Range(0, 4);
-
-        //hector
-        if(SpriteChoose == 0)
-        {
-            frontFace = CustomerFaces[0];
-            sideFace = CustomerFaces[1];
-            this.transform.position = new Vector3(this.transform.position.x, 0.99f, this.transform.position.z);
-        }
-        //abuela
-        else if (SpriteChoose == 1)
-        {
-            frontFace = CustomerFaces[2];
-            sideFace = CustomerFaces[3];
-            this.transform.position = new Vector3(this.transform.position.x, 0.71f, this.transform.position.z);
-        }
-        //kid
-        else if (SpriteChoose == 2)
-        {
-            frontFace = CustomerFaces[4];
-            sideFace = CustomerFaces[5];
-            this.transform.position = new Vector3(this.transform.position.x, 0.71f, this.transform.position.z);
-        }
-        //tourist
-        else if (SpriteChoose == 3)
-        {
-            frontFace = CustomerFaces[6];
-            sideFace = CustomerFaces[7];
-            this.transform.position = new Vector3(this.transform.position.x, 0.99f, this.transform.position.z);
-        }
-    }
-
     void sliderTimer()
     {
         custSlider.minValue = 0;
-        custSlider.maxValue = timeSet;
+        custSlider.maxValue = time;
         custSlider.wholeNumbers = true;
     }
 }
