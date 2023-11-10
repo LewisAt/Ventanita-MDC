@@ -8,20 +8,18 @@ using UnityEngine.UI;
 public class GradeOrderInput : MonoBehaviour
 {
     public CustomerOrder[] possibleOrders;
-    public CustomerOrder ActualOrder;
-    float moneyEarned;
+    CustomerOrder ActualOrder;
+    private float moneyEarned;
     public TMP_Text MoneyText;
     private int LevelTime = 180;
     private int CustomerTimer = 30;
     public TMP_Text LevelTimerText;
 
-    public int mealAccuracyCount = 0;
-
-
     public Slider CustomerSliderUI;
 
     void Start()
     {
+        MakeAnOrder();
         StartCoroutine(SubtrackSeconds());
     }
 
@@ -29,11 +27,7 @@ public class GradeOrderInput : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         //starts order based on walk
-        if (other.gameObject.name == "MakeOrderHitbox") 
-        { 
-            MakeAnOrder();
-            
-        }
+        if (other.gameObject.name == "OrderTrigger") MakeAnOrder();
         if (other.tag == "plate")
         {
             other.GetComponent<plateIdentifier>();
@@ -79,7 +73,7 @@ public class GradeOrderInput : MonoBehaviour
     }
     void ConfirmOrder(Collider givenPlate)
     {
-        mealAccuracyCount = 0;
+        int mealAccuracyCount = 0;
             
         if (givenPlate.gameObject.GetComponent<plateIdentifier>().plateMain == ActualOrder.Mains)
         {
@@ -87,7 +81,7 @@ public class GradeOrderInput : MonoBehaviour
         }
         else
         {
-            FoodNameHeader.text = "Main is incorrect";
+            print("Main is incorrect");
             print("Main: " + givenPlate.gameObject.GetComponent<plateIdentifier>().plateMain);
             print("Correct Main: " + ActualOrder.Mains);
         }
@@ -102,22 +96,22 @@ public class GradeOrderInput : MonoBehaviour
             }
             else if(givenPlate.gameObject.GetComponent<plateIdentifier>().SideCount > ActualOrder.getNumOfSides())
             {
-                FoodNameHeader.text = "Too much of the 1st side was given!";
+                print("Too much of the 1st side was given!");
             }
             else if(givenPlate.GetComponent<plateIdentifier>().SideCount < ActualOrder.getNumOfSides() && ActualOrder.getNumOfSides() != 0)
             {
-                FoodNameHeader.text = "Too little of the 1st side was given";
+                print("Too little of the 1st side was given");
             }
             else
             {
-                FoodNameHeader.text = "1st Side portion is wrong";
+                print("1st Side portion is wrong");
                 Debug.Log("1st Side: " + givenPlate.gameObject.GetComponent<plateIdentifier>().SideCount);
                 Debug.Log("Correct 1st Side: " + ActualOrder.getNumOfSides());
             }
         }
         else
         {
-            FoodNameHeader.text = "Side is incorrect";
+            Debug.Log("Side is incorrect");
             Debug.Log("Side: " + givenPlate.gameObject.GetComponent<plateIdentifier>().plateSide);
             Debug.Log("Correct Side: " + ActualOrder.sides);
         }
@@ -132,65 +126,50 @@ public class GradeOrderInput : MonoBehaviour
             }
             else if (givenPlate.gameObject.GetComponent<plateIdentifier>().SideCount1 > ActualOrder.getNumOfSides1())
             {
-                FoodNameHeader.text = "Too much of the 2nd side was given!";
+                print("Too much of the 2nd side was given!");
             }
             else if (givenPlate.GetComponent<plateIdentifier>().SideCount1 < ActualOrder.getNumOfSides1() && ActualOrder.getNumOfSides1() != 0)
             {
-                FoodNameHeader.text = "Too little of the 2nd side was given";
+                print("Too little of the 2nd side was given");
             }
             else
             {
-                FoodNameHeader.text = "2nd Side portion is wrong";
+                print("2nd Side portion is wrong");
                 Debug.Log("2nd Side: " + givenPlate.gameObject.GetComponent<plateIdentifier>().SideCount1);
                 Debug.Log("Correct 2nd Side: " + ActualOrder.getNumOfSides1());
             }
         }
         else
         {
-            FoodNameHeader.text = "2nd Side is incorrect";
+            Debug.Log("2nd Side is incorrect");
             Debug.Log("2nd Side: " + givenPlate.gameObject.GetComponent<plateIdentifier>().plateSide1);
             Debug.Log("Correct 2nd Side: " + ActualOrder.sides1);
         }
-        /*
+
         if (givenPlate.gameObject.GetComponent<plateIdentifier>().hasCoffee == ActualOrder.getCoffeeBool())
         {
             mealAccuracyCount++;
         }
         else
-<<<<<<< HEAD
             print("Coffee is incorrect");
-=======
-           print("Coffee is incorrect");
-        */
->>>>>>> Frida-Demo-Doppel
         if (givenPlate.gameObject.GetComponent<plateIdentifier>().hasRice == ActualOrder.hasRice)
         {
             mealAccuracyCount++;
         }
         else
-            FoodNameHeader.text = "Rice is incorrect";
+            print("Rice is incorrect");
         //Checks if meal is correct
-        print(mealAccuracyCount + " out of 4");
-        if(mealAccuracyCount == 4)
+        print(mealAccuracyCount + " out of 5");
+        if(mealAccuracyCount == 2)
         {
             moneyEarned += ActualOrder.foodsCost;
-            //MoneyText.text = "Money Earned\n$" + moneyEarned.ToString();
-            //CustomerTimer = 30;
-            FoodNameHeader.text = "Correct";
+            MoneyText.text = "Money Earned\n$" + moneyEarned.ToString();
+            CustomerTimer = 30;
+            print("Correct");
             Destroy(givenPlate.gameObject);
             //Reward Player
 
         }
-        else
-        {
-            StartCoroutine("youFailed");
-        }
-    }
-
-    IEnumerator youFailed()
-    {
-        yield return new WaitForSeconds(3);
-        FoodNameHeader.text = ActualOrder.ConfirmedMealName;
     }
 
     void MakeAnOrder()
@@ -200,10 +179,7 @@ public class GradeOrderInput : MonoBehaviour
         ActualOrder.randomizeFactors();
         ActualOrder.StartFood();
         Debug.Log(ActualOrder.getMealName());
-<<<<<<< HEAD
         //assignIcon(ActualOrder);
-=======
->>>>>>> Frida-Demo-Doppel
         if (ActualOrder.sides != SideFoods.None)
         {
             print("Amount for the first Side: " + ActualOrder.getNumOfSides());
@@ -217,10 +193,6 @@ public class GradeOrderInput : MonoBehaviour
         //Insert UI Change coding here
 
     }
-
-    /// <summary>
-    /// //////////////////////////////////////////
-    /// </summary>
     public Image RiceIcon;
     public Sprite RiceSprite;
     public Sprite[] MainIconSpriteInOrderOfEnum;
@@ -228,11 +200,6 @@ public class GradeOrderInput : MonoBehaviour
 
     public Sprite[] SideIconSpriteInOrderOfEnum;
     public Image SideImageIcon;
-
-    /*
-    public Image CoffeeIcon;
-    public Sprite CoffeeSprite;
-    */
 
     public Text FoodNameHeader;
     public Text FoodCostText;
@@ -244,13 +211,6 @@ public class GradeOrderInput : MonoBehaviour
         {
             RiceIcon.sprite = RiceSprite;
         }
-
-        /*
-        if (CurrentlySelectedOrder.getCoffeeBool() == true)
-        {
-            CoffeeIcon.sprite = CoffeeSprite;
-        }
-        */
   
         for (int i = 1; i < 4; i++)
         {

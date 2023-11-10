@@ -14,12 +14,8 @@ public class PausedScreen : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-<<<<<<< HEAD
         pauseMenu.SetActive(false);
         isPaused = false;
-=======
-       // pauseMenu.SetActive(false);
->>>>>>> Frida-Demo-Doppel
     }
 
     // Update is called once per frame
