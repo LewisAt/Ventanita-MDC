@@ -28,6 +28,10 @@ public class LaldleTrigger : MonoBehaviour
             CheckWhatFoodItIs(other);
         }
     }
+    private void Update()
+    {
+        print(isLaldleFull);
+    }
     public void CheckWhatFoodItIs(Collision other)
     {
         foodType = other.gameObject.GetComponent<foodIdentifier>();

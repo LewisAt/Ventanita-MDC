@@ -15,7 +15,11 @@ public class CustomerOrder : MonoBehaviour
 
     public MainFoods Mains;
     public bool hasRice = false;
+<<<<<<< HEAD
+    bool WantsCoffee;
+=======
     //bool WantsCoffee;
+>>>>>>> Frida-Demo-Doppel
     [HideInInspector]
 
     public float foodsCost;
@@ -37,6 +41,10 @@ public class CustomerOrder : MonoBehaviour
         if (sides != SideFoods.None)
         {
             NumOfSides = Random.Range(1, 3);
+<<<<<<< HEAD
+=======
+
+>>>>>>> Frida-Demo-Doppel
         }
         else
             NumOfSides = 0;
@@ -48,14 +56,17 @@ public class CustomerOrder : MonoBehaviour
         else
             NumOfSides1 = 0;
 
-        //WantsCoffee = Random.value < 0.5f;
+        WantsCoffee = Random.value < 0.5f;
     }
 
     public void StartFood()
     {
         float TotalCost = 0;
 
+<<<<<<< HEAD
+=======
         /*
+>>>>>>> Frida-Demo-Doppel
         if (WantsCoffee)
         {
             TotalCost += 5f;
@@ -65,9 +76,10 @@ public class CustomerOrder : MonoBehaviour
         {
             MealName += "y ";
         }
-
+<<<<<<< HEAD
+=======
         */
-
+>>>>>>> Frida-Demo-Doppel
         if (hasRice)
         {
             TotalCost += 7.5f;
@@ -100,11 +112,21 @@ public class CustomerOrder : MonoBehaviour
                 break;
         }
         if(sides != SideFoods.None)
-        {          
+        {
+<<<<<<< HEAD
+            if(WantsCoffee == true || hasRice == true || Mains != MainFoods.None)
+            {
+                MealName += " Y ";
+            }
+=======
+            
             if(/*WantsCoffee == true ||*/ hasRice == true || Mains != MainFoods.None)
             {
                 MealName += " Y ";
             }
+            
+>>>>>>> Frida-Demo-Doppel
+
         }
         switch (sides)
         {
@@ -120,6 +142,10 @@ public class CustomerOrder : MonoBehaviour
             case SideFoods.tostone:
                 TotalCost += 3.5f * NumOfSides;
                 MealName += NumOfSides + " Tostones ";
+<<<<<<< HEAD
+=======
+
+>>>>>>> Frida-Demo-Doppel
                 break;
 
             case SideFoods.maduro:
@@ -145,11 +171,19 @@ public class CustomerOrder : MonoBehaviour
             case SideFoods.tostone:
                 TotalCost += 3.5f * NumOfSides;
                 MealName += NumOfSides + " Tostones ";
+<<<<<<< HEAD
+=======
+
+>>>>>>> Frida-Demo-Doppel
                 break;
 
             case SideFoods.maduro:
                 TotalCost += 4f * NumOfSides;
                 MealName += NumOfSides + " Platano Maduro";
+<<<<<<< HEAD
+=======
+
+>>>>>>> Frida-Demo-Doppel
                 break;
         }
 
@@ -161,12 +195,18 @@ public class CustomerOrder : MonoBehaviour
     {
         NumOfSides++;
     }
+<<<<<<< HEAD
+=======
     /*
+>>>>>>> Frida-Demo-Doppel
     public void addCoffee()
     {
         WantsCoffee = true;
     }
+<<<<<<< HEAD
+=======
     */
+>>>>>>> Frida-Demo-Doppel
     public int getNumOfSides()
     { return NumOfSides; }
     public int getNumOfSides1()
@@ -175,10 +215,15 @@ public class CustomerOrder : MonoBehaviour
     { return foodsCost; }
     public string getMealName()
     { return ConfirmedMealName; }
+<<<<<<< HEAD
+    public bool getCoffeeBool()
+    { return WantsCoffee; }
+=======
     /*
     public bool getCoffeeBool()
     { return WantsCoffee; }
     */
+>>>>>>> Frida-Demo-Doppel
 }
 
 public enum SideFoods
@@ -193,5 +238,11 @@ public enum MainFoods
     None,
     Rabo,
     Fricase,
+<<<<<<< HEAD
+    Frijoles
+}
+=======
     Beans
 }
+
+>>>>>>> Frida-Demo-Doppel

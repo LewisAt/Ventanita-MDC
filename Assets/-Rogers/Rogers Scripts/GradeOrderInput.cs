@@ -157,8 +157,12 @@ public class GradeOrderInput : MonoBehaviour
             mealAccuracyCount++;
         }
         else
+<<<<<<< HEAD
+            print("Coffee is incorrect");
+=======
            print("Coffee is incorrect");
         */
+>>>>>>> Frida-Demo-Doppel
         if (givenPlate.gameObject.GetComponent<plateIdentifier>().hasRice == ActualOrder.hasRice)
         {
             mealAccuracyCount++;
@@ -196,7 +200,10 @@ public class GradeOrderInput : MonoBehaviour
         ActualOrder.randomizeFactors();
         ActualOrder.StartFood();
         Debug.Log(ActualOrder.getMealName());
+<<<<<<< HEAD
         //assignIcon(ActualOrder);
+=======
+>>>>>>> Frida-Demo-Doppel
         if (ActualOrder.sides != SideFoods.None)
         {
             print("Amount for the first Side: " + ActualOrder.getNumOfSides());
