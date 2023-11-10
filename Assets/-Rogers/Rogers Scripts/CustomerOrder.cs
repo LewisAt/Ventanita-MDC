@@ -61,7 +61,7 @@ public class CustomerOrder : MonoBehaviour
             TotalCost += 5f;
             MealName += "Cafe ";
         }
-        if(WantsCoffee && hasRice)
+        if (WantsCoffee && hasRice)
         {
             MealName += "y ";
         }
@@ -70,8 +70,8 @@ public class CustomerOrder : MonoBehaviour
             TotalCost += 7.5f;
             MealName += "Arroz ";
         }
-        
-        if(hasRice && Mains != MainFoods.None)
+
+        if (hasRice && Mains != MainFoods.None)
         {
             MealName += "Con ";
         }
@@ -100,9 +100,9 @@ public class CustomerOrder : MonoBehaviour
 
                 break;
         }
-        if(sides != SideFoods.None)
+        if (sides != SideFoods.None)
         {
-            if(WantsCoffee == true || hasRice == true || Mains != MainFoods.None)
+            if (WantsCoffee == true || hasRice == true || Mains != MainFoods.None)
             {
                 MealName += " Y ";
             }
@@ -129,7 +129,7 @@ public class CustomerOrder : MonoBehaviour
                 MealName += NumOfSides + " Platano Maduro";
                 break;
         }
-        if (sides1 != SideFoods.None) 
+        if (sides1 != SideFoods.None)
         {
             MealName += " Y ";
         }
