@@ -58,7 +58,7 @@ public class CustomerOrder : MonoBehaviour
         /*
         if (WantsCoffee)
         {
-            TotalCost += 5f;
+            TotalCost += 0.5f;
             MealName += "Cafe ";
         }
         if (WantsCoffee && hasRice)
@@ -68,7 +68,7 @@ public class CustomerOrder : MonoBehaviour
         */
         if (hasRice)
         {
-            TotalCost += 7.5f;
+            TotalCost += 8.5f;
             MealName += "Arroz ";
         }
 
@@ -83,19 +83,19 @@ public class CustomerOrder : MonoBehaviour
                 MainDescription = "None";
                 break;
             case MainFoods.Rabo:
-                TotalCost += 20;
+                TotalCost += 8;
                 MealName += "Rabo Encendido";
                 MainDescription = "something about Rabo";
                 break;
 
             case MainFoods.Fricase:
-                TotalCost += 15;
+                TotalCost += 6;
                 MealName += "Fricase de Pollo";
                 MainDescription = "something about Fricase";
 
                 break;
             case MainFoods.Frijoles:
-                TotalCost += 10;
+                TotalCost += 3;
                 MealName += "Frijoles";
                 MainDescription = "something about Frijoles";
 
@@ -117,17 +117,17 @@ public class CustomerOrder : MonoBehaviour
 
 
             case SideFoods.croqueta:
-                TotalCost += 2.5f * NumOfSides;
+                TotalCost += 0.5f * NumOfSides;
                 MealName += NumOfSides + " Croquetas ";
                 break;
 
             case SideFoods.tostone:
-                TotalCost += 3.5f * NumOfSides;
+                TotalCost += 1.0f * NumOfSides;
                 MealName += NumOfSides + " Tostones ";
                 break;
 
             case SideFoods.maduro:
-                TotalCost += 4f * NumOfSides;
+                TotalCost += 1.5f * NumOfSides;
                 MealName += NumOfSides + " Platano Maduro";
                 break;
         }
@@ -142,17 +142,17 @@ public class CustomerOrder : MonoBehaviour
 
 
             case SideFoods.croqueta:
-                TotalCost += 2.5f * NumOfSides;
+                TotalCost += 0.5f * NumOfSides;
                 MealName += NumOfSides + " Croquetas ";
                 break;
 
             case SideFoods.tostone:
-                TotalCost += 3.5f * NumOfSides;
+                TotalCost += 1.0f * NumOfSides;
                 MealName += NumOfSides + " Tostones ";
                 break;
 
             case SideFoods.maduro:
-                TotalCost += 4f * NumOfSides;
+                TotalCost += 1.5f * NumOfSides;
                 MealName += NumOfSides + " Platano Maduro";
                 break;
         }
