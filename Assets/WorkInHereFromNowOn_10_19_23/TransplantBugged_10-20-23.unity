@@ -6746,6 +6746,7 @@ GameObject:
   - component: {fileID: 561687843}
   - component: {fileID: 561687842}
   - component: {fileID: 561687841}
+  - component: {fileID: 561687844}
   m_Layer: 0
   m_Name: XR Origin
   m_TagString: Untagged
@@ -6800,6 +6801,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &561687844
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 561687840}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6af22541feb1ec488de606719fa0826, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  layersToHit:
+    serializedVersion: 2
+    m_Bits: 256
 --- !u!1 &573566715
 GameObject:
   m_ObjectHideFlags: 0
@@ -35179,7 +35195,7 @@ GameObject:
   - component: {fileID: 3897204786151744439}
   - component: {fileID: 2776046842867223626}
   - component: {fileID: 1620923351865392327}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: CoffeeMaker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
