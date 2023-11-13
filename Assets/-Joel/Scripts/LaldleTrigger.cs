@@ -22,7 +22,15 @@ public class LaldleTrigger : MonoBehaviour
     }
     private void OnCollisionEnter(Collision other)
     { 
-        if (other.gameObject.tag == "food") CheckWhatFoodItIs(other);
+        if (other.gameObject.tag == "food")
+        {
+            //spoon = transform.GetChild(0).gameObject.transform;
+            CheckWhatFoodItIs(other);
+        }
+    }
+    private void Update()
+    {
+        print(isLaldleFull);
     }
     public void CheckWhatFoodItIs(Collision other)
     {
@@ -30,14 +38,24 @@ public class LaldleTrigger : MonoBehaviour
         currentFood = foodType.food;
         if (!isLaldleFull && laldleType.ToString() == currentFood.ToString())
         {
-            if (foodType == null) return;
+            //Debug.Log("its triggering");
+            if (foodType == null)
+            {
+                Debug.Log("its coming back null");
+                return;
+            }
             GameObject clone = Instantiate(prefabedFoods[(int)currentFood], this.transform.position, this.transform.rotation, this.transform);
             clone.transform.localScale = Vector3.one;
             isLaldleFull = true;
         }
         else if (!isLaldleFull && laldleType == LaldleIdentifier.TypeOfLaldle.general)
         {
-            if (foodType == null) return;
+            //Debug.Log("its triggering");
+            if (foodType == null)
+            {
+                Debug.Log("its coming back null");
+                return;
+            }
             GameObject clone = Instantiate(prefabedFoods[(int)currentFood], this.transform.position, this.transform.rotation, this.transform);
             clone.transform.localScale = Vector3.one;
             isLaldleFull = true;

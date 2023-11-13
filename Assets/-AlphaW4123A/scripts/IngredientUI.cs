@@ -17,9 +17,14 @@ public class IngredientUI : MonoBehaviour
         if (foodPanel.activeInHierarchy)
         {
             if (foodInfo.text == prevText)
+            {
                 foodPanel.SetActive(false);
+            }
             else
-                foodInfo.text = prevText; 
+            {
+                foodInfo.text = prevText;
+            }
+            
         }
         else if (!foodPanel.activeInHierarchy)
         {

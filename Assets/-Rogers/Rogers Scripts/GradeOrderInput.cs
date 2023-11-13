@@ -236,10 +236,6 @@ public class GradeOrderInput : MonoBehaviour
         {
             RiceIcon.sprite = RiceSprite;
         }
-        else
-        {
-            RiceIcon.sprite = MainIconSpriteInOrderOfEnum[0];
-        }
 
         /*
         if (CurrentlySelectedOrder.getCoffeeBool() == true)
@@ -248,7 +244,7 @@ public class GradeOrderInput : MonoBehaviour
         }
         */
 
-        for (int i = 0; i < 4; i++)
+        for (int i = 1; i < 4; i++)
         {
             if ((int)CurrentlySelectedOrder.Mains == i)
             {
@@ -257,7 +253,7 @@ public class GradeOrderInput : MonoBehaviour
             }
         }
 
-        for (int i = 0; i < 4; i++)
+        for (int i = 1; i < 4; i++)
         {
             if ((int)CurrentlySelectedOrder.sides == i)
             {
