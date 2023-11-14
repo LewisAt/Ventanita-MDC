@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -9,6 +10,10 @@ public class PausedScreen : MonoBehaviour
     public InputActionProperty showButton;
     public GameObject pauseMenu;
     public bool isPaused;
+    public float screendistance = 3f;
+    public float ScreenTrackSpeed = 5f;
+    public float ScreenRotateSpeed = 0.02f;
+    public GameObject[] rayInteractors;
 
 
     // Start is called before the first frame update
@@ -16,6 +21,9 @@ public class PausedScreen : MonoBehaviour
     {
         pauseMenu.SetActive(false);
         isPaused = false;
+        DisableeRay();
+
+
     }
 
     // Update is called once per frame
@@ -44,14 +52,51 @@ public class PausedScreen : MonoBehaviour
         if(showButton.action.WasPressedThisFrame() && isPaused == false)
         {
             PauseGame();
+            enableRay();
         }
         else if (showButton.action.WasPressedThisFrame() && isPaused == true)
         {
-           // pauseMenu.SetActive(!pauseMenu.activeSelf);
+            // pauseMenu.SetActive(!pauseMenu.activeSelf);
             //Time.timeScale = 1.0f;
             //isPaused = false;
             ContinueGame();
+            DisableeRay();
         }
+        
+        trackHeadPos();
+
+    }
+    void trackHeadPos()
+    {
+        GameObject mainCamera = Camera.main.gameObject;
+        
+
+        Vector3 PlayerViewingDirection = mainCamera.transform.TransformDirection
+        (Vector3.forward) * screendistance;
+        PlayerViewingDirection = PlayerViewingDirection + mainCamera.transform.position;
+
+        this.transform.position = Vector3.Lerp(this.transform.position, PlayerViewingDirection, 0.02f);
+
+
+
+        Vector3 targetdirection = this.transform.position - mainCamera.transform.position;
+
+        Vector3 ScreenDirectionTowardsPlayer = Vector3.RotateTowards(this.transform.forward, targetdirection, 1f, 0);
+        this.transform.rotation = Quaternion.LookRotation(ScreenDirectionTowardsPlayer);
+    }
+    void enableRay()
+    {
+        rayInteractors[0].SetActive(true);
+        rayInteractors[1].SetActive(true);
+        
+    }
+    void DisableeRay()
+    {
+
+
+        rayInteractors[0].SetActive(false);
+        rayInteractors[1].SetActive(false);
+
     }
 
     public void PauseGame()
