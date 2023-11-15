@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class Level_Timer : MonoBehaviour
 {
@@ -10,9 +11,9 @@ public class Level_Timer : MonoBehaviour
     public int minute_2 = 0;
     public int hour = 5;
     public int hours = 0;
-    public TextMesh minuteClock_1;
-    public TextMesh minuteClock_2;
-    public TextMesh hourClock;
+    public TMP_Text minuteClock_1;
+    public TMP_Text minuteClock_2;
+    public TMP_Text hourClock;
 
     void Start()
     {
@@ -47,7 +48,7 @@ public class Level_Timer : MonoBehaviour
             minute_1++;
         }
 
-        if (hours == 12)
+        if (hours == 6)
         {
             EndDay();
         }
