@@ -8,10 +8,12 @@ public class LaldleIdentifier : MonoBehaviour
     {
         general,
         tostone,
+        croqueta,
         maduro,
-        FraseDePollo,
+        Fricase,
         Rabo,
-        Beans
+        Beans,
+        Arroz
     }
 
     public TypeOfLaldle typeOfLaldle;

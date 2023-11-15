@@ -20,7 +20,6 @@ public class FollowPhysics : MonoBehaviour
     }
     public void resetPosition()
     {
-        target.GetComponent<Rigidbody>().velocity = Vector3.zero;
 
         target.localPosition = Vector3.zero;
     }

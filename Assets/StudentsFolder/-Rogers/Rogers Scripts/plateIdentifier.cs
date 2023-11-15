@@ -34,6 +34,7 @@ public class plateIdentifier : MonoBehaviour
             hasCoffee = true;
         }
     }
+
     void updateContents(GameObject food)
     {
         int numOfEnum = 0;

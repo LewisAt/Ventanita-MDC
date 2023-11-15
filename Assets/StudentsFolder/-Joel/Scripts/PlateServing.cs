@@ -21,7 +21,9 @@ public class PlateServing : MonoBehaviour
     int xSides = 0;
     public float xoffset = 0;
     public float zoffset = 0;
-    int currentSide; 
+    int currentSide;
+
+   
 
     private void OnCollisionEnter(Collision other)
     {

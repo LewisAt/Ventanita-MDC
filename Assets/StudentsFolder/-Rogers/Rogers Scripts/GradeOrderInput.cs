@@ -2,7 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Xml.Schema;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.PlayerLoop;
 using UnityEngine.UI;
 
 public class GradeOrderInput : MonoBehaviour
@@ -14,26 +16,25 @@ public class GradeOrderInput : MonoBehaviour
     private int LevelTime = 180;
     private int CustomerTimer = 30;
     public TMP_Text LevelTimerText;
-
     public int mealAccuracyCount = 0;
 
-
+    private IEnumerator CustomerTimerCoroutine;
     public Slider CustomerSliderUI;
 
     void Start()
     {
-        StartCoroutine(SubtrackSeconds());
+        CustomerTimerCoroutine = SubtrackSeconds();
     }
 
-
-    private void OnTriggerEnter(Collider other)
+    private Movetowindow customer;
+    public void addCustomer(Movetowindow NewCustomer)
+    {
+        customer = NewCustomer;
+    }
+private void OnTriggerEnter(Collider other)
     {
         //starts order based on walk
-        if (other.gameObject.name == "MakeOrderHitbox")
-        {
-            MakeAnOrder();
 
-        }
         if (other.tag == "plate")
         {
             other.GetComponent<plateIdentifier>();
@@ -41,19 +42,29 @@ public class GradeOrderInput : MonoBehaviour
         }
 
     }
+    private void Update()
+    {
+        
+        if(CustomerTimer <= 0)
+        {
+            StopCoroutine(CustomerTimerCoroutine);
+        }
+    }
+   
     IEnumerator SubtrackSeconds()
     {
         while (true)
         {
+            
             yield return new WaitForSeconds(1);
-            if (CustomerSliderUI.value <= 0)
-            {
-                CustomerTimer = 30;
-            }
             CustomerTimer -= 1;
             CustomerSliderUI.value = CustomerTimer;
 
-            LevelTime -= 1;
+            if (CustomerTimer <= 0)
+            {
+                customer.CompleteCustomerTimeRanOut();
+                resetIcons();
+            }
             timeformat();
         }
 
@@ -169,7 +180,9 @@ public class GradeOrderInput : MonoBehaviour
         print(mealAccuracyCount + " out of 4");
         if (mealAccuracyCount == 4)
         {
-            moneyEarned += ActualOrder.foodsCost;
+            StopCoroutine(CustomerTimerCoroutine);
+            customer.CompleteCustomerCorrect();
+            //moneyEarned += ActualOrder.foodsCost;
             //MoneyText.text = "Money Earned\n$" + moneyEarned.ToString();
             //CustomerTimer = 30;
             FoodNameHeader.text = "Correct";
@@ -189,8 +202,9 @@ public class GradeOrderInput : MonoBehaviour
         FoodNameHeader.text = ActualOrder.ConfirmedMealName;
     }
 
-    void MakeAnOrder()
+    public void MakeAnOrder()
     {
+        resetIcons();
         int rand = Random.Range(0, possibleOrders.Length);
         ActualOrder = possibleOrders[rand];
         ActualOrder.randomizeFactors();
@@ -204,11 +218,16 @@ public class GradeOrderInput : MonoBehaviour
         {
             print("Amout for the second side" + ActualOrder.getNumOfSides1());
         }
+
+        CustomerTimer = 30;
         assignIcon(ActualOrder);
+        StartCoroutine(CustomerTimerCoroutine);
 
         //Insert UI Change coding here
 
     }
+
+    
 
     /// <summary>
     /// //////////////////////////////////////////
@@ -228,6 +247,12 @@ public class GradeOrderInput : MonoBehaviour
 
     public Text FoodNameHeader;
     public Text FoodCostText;
+    void resetIcons()
+    {
+        RiceIcon.sprite = null;
+        MainImageIcon.sprite = null;
+        SideImageIcon.sprite = null;
+    }
     public void assignIcon(CustomerOrder CurrentlySelectedOrder)
     {
         // this bit displays if there is rice else we display nothing
