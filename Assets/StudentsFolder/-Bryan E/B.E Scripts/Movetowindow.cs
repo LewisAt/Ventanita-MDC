@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 using UnityEngine.UI;
 
 public class Movetowindow : MonoBehaviour
@@ -30,11 +31,9 @@ public class Movetowindow : MonoBehaviour
     private bool spawnCheck = false;
 
     //Customer waits for this time then leaves if takes too long - money and tip payed when order complete
-    private float timeWait = 5;
-    public float timeSet = 10;
-    float tipReduce;
-    float reduceMod;
-    public float tip= 5;
+    float tipReduce = 0.4f;
+    public float tip = 5;
+    public TMP_Text tiptext;
 
 
     //makes sure that the customer has a rigidbody
@@ -47,9 +46,9 @@ public class Movetowindow : MonoBehaviour
         customer.isKinematic = true;
 
         customerRender.sprite = sideFace;
-        timeWait = timeSet;
         tip = 5;
-        tipReduce = 0;
+        tipReduce = 0.4f;
+        tiptext.enabled = false;
     }
 
     private void FixedUpdate()
@@ -124,6 +123,19 @@ public class Movetowindow : MonoBehaviour
     }
     private void Update()
     {
+        if (check2 == true && check3 == false)
+        {
+            tipReduce -= 0.0133f * Time.deltaTime;
+            tip = CustomerOrder.foodsCostForCustomer * tipReduce;
+        }
+        
+        /*
+         // For testing purposes
+        if(Input.GetKeyDown("space"))
+        {
+            CompleteCustomerCorrect();
+        }
+        */
 
     }
     void SpawnCustomer()
@@ -133,9 +145,12 @@ public class Movetowindow : MonoBehaviour
     public void CompleteCustomerCorrect()
     {
         check3 = true;
-        tip = tip - tipReduce;
         tip = Mathf.Round(tip * 100.0f) * 0.01f;
-        MoneyTracker.UserCash += GetComponent<GradeOrderInput>().ActualOrder.foodsCost + tip;
+        MoneyTracker.UserCash += CustomerOrder.foodsCostForCustomer + tip;
+        Debug.Log("You earned this tip $" + tip);
+        tiptext.enabled = true;
+        tiptext.text = "You earned a $" + tip.ToString() + " tip";
+
     }
 
     public void CompleteCustomerTimeRanOut()
