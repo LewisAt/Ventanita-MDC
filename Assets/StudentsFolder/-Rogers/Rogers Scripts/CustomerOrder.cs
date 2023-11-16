@@ -94,7 +94,7 @@ public class CustomerOrder : MonoBehaviour
                 MainDescription = "something about Fricase";
 
                 break;
-            case MainFoods.Frijoles:
+            case MainFoods.Beans:
                 TotalCost += 10;
                 MealName += "Frijoles";
                 MainDescription = "something about Frijoles";
@@ -103,12 +103,12 @@ public class CustomerOrder : MonoBehaviour
         }
         if (sides != SideFoods.None)
         {
-            /*
-            if (WantsCoffee == true || hasRice == true || Mains != MainFoods.None)
+            
+            if (/*WantsCoffee == true ||*/ hasRice == true || Mains != MainFoods.None)
             {
                 MealName += " Y ";
             }
-            */
+            
         }
         switch (sides)
         {
@@ -196,5 +196,5 @@ public enum MainFoods
     None,
     Rabo,
     Fricase,
-    Frijoles
+    Beans
 }
