@@ -6,7 +6,6 @@ using UnityEngine.UI;
 
 public class MoneyTracker : MonoBehaviour
 {
-
     public static float UserCash = 0.00f;
     public TMP_Text currentCash;
 

@@ -18,7 +18,6 @@ public class CustomerOrder : MonoBehaviour
     //bool WantsCoffee;
     [HideInInspector]
 
-    public static float foodsCostForCustomer;
     public float foodsCost;
     string MealName;
     //Get this one for the ui
@@ -159,7 +158,6 @@ public class CustomerOrder : MonoBehaviour
         }
 
         foodsCost = TotalCost;
-        foodsCostForCustomer = foodsCost;
         ConfirmedMealName = MealName;
         MealName = "";
     }
