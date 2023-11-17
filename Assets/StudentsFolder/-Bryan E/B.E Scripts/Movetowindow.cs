@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 using UnityEngine.UI;
 
 public class Movetowindow : MonoBehaviour
@@ -30,11 +31,9 @@ public class Movetowindow : MonoBehaviour
     private bool spawnCheck = false;
 
     //Customer waits for this time then leaves if takes too long - money and tip payed when order complete
-    private float timeWait = 5;
-    public float timeSet = 10;
-    float tipReduce;
-    float reduceMod;
+    float tipReduce = 0.4f;
     public float tip= 5;
+    public TMP_Text tipText;
 
 
     //makes sure that the customer has a rigidbody
@@ -47,9 +46,8 @@ public class Movetowindow : MonoBehaviour
         customer.isKinematic = true;
 
         customerRender.sprite = sideFace;
-        timeWait = timeSet;
         tip = 5;
-        tipReduce = 0;
+        tipText.enabled = false;
     }
 
     private void FixedUpdate()
@@ -127,6 +125,7 @@ public class Movetowindow : MonoBehaviour
        if(check2 == true && check3 == false)
         {
             tipReduce -= 0.0133f * Time.deltaTime;
+            tip = CustomerOrder.foodsCostForCustomer * tipReduce;
         }
     }
     void SpawnCustomer()
@@ -136,9 +135,10 @@ public class Movetowindow : MonoBehaviour
     public void CompleteCustomerCorrect()
     {
         check3 = true;
-        tip = tip - tipReduce;
         tip = Mathf.Round(tip * 100.0f) * 0.01f;
-        MoneyTracker.UserCash += GetComponent<GradeOrderInput>().ActualOrder.foodsCost + tip;
+        MoneyTracker.UserCash += CustomerOrder.foodsCostForCustomer + tip;
+        tipText.enabled = true;
+        tipText.text = "You earned a $" + tip.ToString() + " tip";
     }
 
     public void CompleteCustomerTimeRanOut()
