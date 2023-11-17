@@ -124,7 +124,13 @@ public class Movetowindow : MonoBehaviour
     }
     private void Update()
     {
+        //pass condition, timer, and payment
+        if (Input.GetKeyDown("space") && check2)
+        {
+            
+        }
 
+        
     }
     void SpawnCustomer()
     {
