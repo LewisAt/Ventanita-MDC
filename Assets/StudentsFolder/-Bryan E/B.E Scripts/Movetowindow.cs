@@ -123,20 +123,11 @@ public class Movetowindow : MonoBehaviour
     }
     private void Update()
     {
-        if (check2 == true && check3 == false)
+       if(check2 == true && check3 == false)
         {
             tipReduce -= 0.0133f * Time.deltaTime;
-            tip = CustomerOrder.foodsCostForCustomer * tipReduce;
         }
         
-        /*
-         // For testing purposes
-        if(Input.GetKeyDown("space"))
-        {
-            CompleteCustomerCorrect();
-        }
-        */
-
     }
     void SpawnCustomer()
     {
