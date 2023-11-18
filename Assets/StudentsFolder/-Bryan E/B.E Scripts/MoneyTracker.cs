@@ -11,6 +11,6 @@ public class MoneyTracker : MonoBehaviour
 
     void Update()
     {
-        currentCash.text = "Money Earned $" + UserCash.ToString();
+        currentCash.text = "Current Money $" + UserCash.ToString();
     }
 }
