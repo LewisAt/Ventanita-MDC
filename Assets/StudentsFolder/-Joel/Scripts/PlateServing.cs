@@ -95,30 +95,30 @@ public class PlateServing : MonoBehaviour
             {
                 if (xSides == 0)
                 {
-                    xoffset = -0.25f;
-                    zoffset = -0.25f;    
+                    xoffset = -0.10f;
+                    zoffset = -0.10f;    
                 }
                 else if (xSides == 1)
                 {
-                    xoffset = 0.25f;
-                    zoffset = -0.25f;
+                    xoffset = 0.10f;
+                    zoffset = -0.10f;
                 }
                 else if (xSides == 2)
                 {
-                    xoffset = -0.25f;
-                    zoffset = 0.25f;
+                    xoffset = -0.10f;
+                    zoffset = 0.10f;
                 }
                 else if (xSides == 3)
                 {
-                    xoffset = 0.25f;
-                    zoffset = 0.25f;
+                    xoffset = 0.10f;
+                    zoffset = 0.10f;
                     sideFull = true;
                 }
 
                 clone.transform.rotation = transform.GetChild(parent).rotation;
                 clone.transform.SetParent(transform.GetChild(parent));
                 clone.transform.localPosition = new Vector3(xoffset, 1, zoffset);
-                clone.transform.localScale = new Vector3(0.3f, 1, 0.3f);
+                clone.transform.localScale = new Vector3(0.2f, 1, 0.2f);
                 xSides++;
             }
             laldleFull.isLaldleFull = false;
