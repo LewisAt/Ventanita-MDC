@@ -35,6 +35,9 @@ public class Movetowindow : MonoBehaviour
     public float tip= 5;
     public TMP_Text tipText;
 
+    public AudioSource completeSound;
+    public AudioSource failSound;
+
 
     //makes sure that the customer has a rigidbody
     private void Start()
@@ -134,6 +137,7 @@ public class Movetowindow : MonoBehaviour
     }
     public void CompleteCustomerCorrect()
     {
+        completeSound.Play();
         check3 = true;
         tip = Mathf.Round(tip * 100.0f) * 0.01f;
         MoneyTracker.UserCash += CustomerOrder.foodsCostForCustomer + tip;
@@ -143,6 +147,7 @@ public class Movetowindow : MonoBehaviour
 
     public void CompleteCustomerTimeRanOut()
     {
+        failSound.Play();
         check3 = true;
     }
 
