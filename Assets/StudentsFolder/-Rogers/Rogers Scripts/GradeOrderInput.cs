@@ -100,8 +100,6 @@ private void OnTriggerEnter(Collider other)
         else
         {
             FoodNameHeader.text = "Main is incorrect";
-            print("Main: " + givenPlate.gameObject.GetComponent<plateIdentifier>().plateMain);
-            print("Correct Main: " + ActualOrder.Mains);
         }
 
         //checSides 1 
@@ -123,15 +121,11 @@ private void OnTriggerEnter(Collider other)
             else
             {
                 FoodNameHeader.text = "1st Side portion is wrong";
-                Debug.Log("1st Side: " + givenPlate.gameObject.GetComponent<plateIdentifier>().SideCount);
-                Debug.Log("Correct 1st Side: " + ActualOrder.getNumOfSides());
             }
         }
         else
         {
             FoodNameHeader.text = "Side is incorrect";
-            Debug.Log("Side: " + givenPlate.gameObject.GetComponent<plateIdentifier>().plateSide);
-            Debug.Log("Correct Side: " + ActualOrder.sides);
         }
 
         //2nd Sides coding
@@ -153,15 +147,11 @@ private void OnTriggerEnter(Collider other)
             else
             {
                 FoodNameHeader.text = "2nd Side portion is wrong";
-                Debug.Log("2nd Side: " + givenPlate.gameObject.GetComponent<plateIdentifier>().SideCount1);
-                Debug.Log("Correct 2nd Side: " + ActualOrder.getNumOfSides1());
             }
         }
         else
         {
             FoodNameHeader.text = "2nd Side is incorrect";
-            Debug.Log("2nd Side: " + givenPlate.gameObject.GetComponent<plateIdentifier>().plateSide1);
-            Debug.Log("Correct 2nd Side: " + ActualOrder.sides1);
         }
         /*
         if (givenPlate.gameObject.GetComponent<plateIdentifier>().hasCoffee == ActualOrder.getCoffeeBool())
@@ -211,15 +201,6 @@ private void OnTriggerEnter(Collider other)
         ActualOrder = possibleOrders[rand];
         ActualOrder.randomizeFactors();
         ActualOrder.StartFood();
-        Debug.Log(ActualOrder.getMealName());
-        if (ActualOrder.sides != SideFoods.None)
-        {
-            print("Amount for the first Side: " + ActualOrder.getNumOfSides());
-        }
-        if (ActualOrder.sides1 != SideFoods.None)
-        {
-            print("Amout for the second side" + ActualOrder.getNumOfSides1());
-        }
 
         CustomerTimer = 30;
         assignIcon(ActualOrder);
