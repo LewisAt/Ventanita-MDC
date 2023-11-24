@@ -32,7 +32,7 @@ public class GradeOrderInput : MonoBehaviour
     {
         customer = NewCustomer;
     }
-private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
         //starts order based on walk
 
@@ -256,7 +256,7 @@ private void OnTriggerEnter(Collider other)
         {
             if ((int)CurrentlySelectedOrder.Mains == i)
             {
-                Debug.Log((int)CurrentlySelectedOrder.Mains);
+                //Debug.Log((int)CurrentlySelectedOrder.Mains);
                 MainImageIcon.sprite = MainIconSpriteInOrderOfEnum[i];
             }
         }
