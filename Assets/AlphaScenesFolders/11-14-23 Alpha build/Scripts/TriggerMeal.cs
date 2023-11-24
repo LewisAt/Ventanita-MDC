@@ -5,6 +5,7 @@ using UnityEngine;
 public class TriggerMeal : MonoBehaviour
 {
     private GradeOrderInput m_Input;
+    public AudioSource Arrival;
     private void Start()
     {
         m_Input = GameObject.FindGameObjectWithTag("CustomerWindow").GetComponent<GradeOrderInput>();
@@ -14,6 +15,7 @@ public class TriggerMeal : MonoBehaviour
         if(other.tag == "Customer")
         {
             m_Input.MakeAnOrder();
+            Arrival.Play();
         }
     }
 }

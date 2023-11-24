@@ -20,6 +20,7 @@ public class GradeOrderInput : MonoBehaviour
 
     private IEnumerator CustomerTimerCoroutine;
     public Slider CustomerSliderUI;
+    public AudioSource incorrectOrderSound;
 
     void Start()
     {
@@ -192,6 +193,7 @@ private void OnTriggerEnter(Collider other)
         }
         else
         {
+            incorrectOrderSound.Play();
             StartCoroutine("youFailed");
         }
     }

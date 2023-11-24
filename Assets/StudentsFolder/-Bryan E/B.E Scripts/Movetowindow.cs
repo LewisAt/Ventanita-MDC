@@ -31,9 +31,12 @@ public class Movetowindow : MonoBehaviour
     private bool spawnCheck = false;
 
     //Customer waits for this time then leaves if takes too long - money and tip payed when order complete
-    float tipReduce = 0.4f;
+    float tipReduce = 0.3f;
     public float tip= 5;
     public TMP_Text tipText;
+
+    public AudioSource completeSound;
+    public AudioSource failSound;
 
 
     //makes sure that the customer has a rigidbody
@@ -124,7 +127,7 @@ public class Movetowindow : MonoBehaviour
     {
        if(check2 == true && check3 == false)
         {
-            tipReduce -= 0.0133f * Time.deltaTime;
+            tipReduce -= 0.01f * Time.deltaTime;
             tip = CustomerOrder.foodsCostForCustomer * tipReduce;
         }
     }
@@ -134,6 +137,7 @@ public class Movetowindow : MonoBehaviour
     }
     public void CompleteCustomerCorrect()
     {
+        completeSound.Play();
         check3 = true;
         tip = Mathf.Round(tip * 100.0f) * 0.01f;
         MoneyTracker.UserCash += CustomerOrder.foodsCostForCustomer + tip;
@@ -143,6 +147,7 @@ public class Movetowindow : MonoBehaviour
 
     public void CompleteCustomerTimeRanOut()
     {
+        failSound.Play();
         check3 = true;
     }
 
