@@ -30,7 +30,7 @@ public class LaldleTrigger : MonoBehaviour
     }
     private void Update()
     {
-        print(isLaldleFull);
+        //print(isLaldleFull);
     }
     public void CheckWhatFoodItIs(Collision other)
     {
