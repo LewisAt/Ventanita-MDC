@@ -18,12 +18,17 @@ public class PlayerInteraction : MonoBehaviour
     Material PriorMaterial;
     public GameObject PointOFHIt;
     public Material objectShader;
-    //public MeshRenderer ball;
+    public GameObject[] interactables;
 
     // Start is called before the first frame update
     void Start()
     {
-        //ball.material.color = hitColor;
+        interactables = GameObject.FindGameObjectsWithTag("interactable");
+        foreach (GameObject interactable in interactables)
+        {
+            interactable.layer = 10;
+        }
+
         XROrigin = GetComponent<XROrigin>();
         main = XROrigin.Camera;
     }
