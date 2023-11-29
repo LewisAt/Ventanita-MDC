@@ -24,6 +24,10 @@ public class CustomerOrder : MonoBehaviour
     [HideInInspector]
     public static float foodsCostForCustomer;
     public string ConfirmedMealName;
+    public string rice;
+    public string main;
+    public string side1;
+    public string side2;
 
     public string MealDescription;
 
@@ -71,6 +75,11 @@ public class CustomerOrder : MonoBehaviour
         {
             TotalCost += 7.5f;
             MealName += "Arroz ";
+            rice = "Arroz ";
+        }
+        else
+        {
+            rice = "";
         }
 
         if (hasRice && Mains != MainFoods.None)
@@ -82,23 +91,27 @@ public class CustomerOrder : MonoBehaviour
 
             case MainFoods.None:
                 MainDescription = "None";
+                main = "";
                 break;
             case MainFoods.Rabo:
                 TotalCost += 20;
                 MealName += "Rabo Encendido";
                 MainDescription = "something about Rabo";
+                main = "Rabo Encendido";
                 break;
 
             case MainFoods.Fricase:
                 TotalCost += 15;
                 MealName += "Fricase de Pollo";
                 MainDescription = "something about Fricase";
+                main = "Fricase de Pollo";
 
                 break;
             case MainFoods.Beans:
                 TotalCost += 10;
                 MealName += "Frijoles";
                 MainDescription = "something about Frijoles";
+                main = "Frijoles";
 
                 break;
         }
@@ -114,22 +127,26 @@ public class CustomerOrder : MonoBehaviour
         switch (sides)
         {
             case SideFoods.None:
+                side1 = "";
                 break;
 
 
             case SideFoods.croqueta:
                 TotalCost += 2.5f * NumOfSides;
                 MealName += NumOfSides + " Croquetas ";
+                side1 = NumOfSides + " Croquetas ";
                 break;
 
             case SideFoods.tostone:
                 TotalCost += 3.5f * NumOfSides;
                 MealName += NumOfSides + " Tostones ";
+                side1 = NumOfSides + " Tostones ";
                 break;
 
             case SideFoods.maduro:
                 TotalCost += 4f * NumOfSides;
                 MealName += NumOfSides + " Platano Maduro";
+                side1 = NumOfSides + " Platano Maduro";
                 break;
         }
         if (sides1 != SideFoods.None)
@@ -139,22 +156,26 @@ public class CustomerOrder : MonoBehaviour
         switch (sides1)
         {
             case SideFoods.None:
+                side2 = "";
                 break;
 
 
             case SideFoods.croqueta:
                 TotalCost += 2.5f * NumOfSides;
                 MealName += NumOfSides + " Croquetas ";
+                side2 = NumOfSides + " Croquetas ";
                 break;
 
             case SideFoods.tostone:
                 TotalCost += 3.5f * NumOfSides;
                 MealName += NumOfSides + " Tostones ";
+                side2 = NumOfSides + " Tostones ";
                 break;
 
             case SideFoods.maduro:
                 TotalCost += 4f * NumOfSides;
                 MealName += NumOfSides + " Platano Maduro";
+                side2 = NumOfSides + " Platano Maduro";
                 break;
         }
 
@@ -183,6 +204,14 @@ public class CustomerOrder : MonoBehaviour
     { return foodsCost; }
     public string getMealName()
     { return ConfirmedMealName; }
+    public string getRice()
+    { return rice; }
+    public string getMain()
+    { return main; }
+    public string getSide1()
+    { return side1; }
+    public string getSide2()
+    { return side2; }
 
 }
 

@@ -208,6 +208,11 @@ public class GradeOrderInput : MonoBehaviour
 
     public Text FoodNameHeader;
     public Text FoodCostText;
+    public Text RiceText;
+    public Text MainText;
+    public Text Side1Text;
+    public Text Side2Text;
+
     void resetIcons()
     {
         RiceIcon.sprite = null;
@@ -249,6 +254,10 @@ public class GradeOrderInput : MonoBehaviour
 
         FoodNameHeader.text = CurrentlySelectedOrder.ConfirmedMealName;
         FoodCostText.text = "$" + CurrentlySelectedOrder.foodsCost.ToString();
+        RiceText.text = ActualOrder.rice;
+        MainText.text = ActualOrder.main;
+        Side1Text.text = ActualOrder.side1;
+        Side2Text.text = ActualOrder.side2;
 
     }
 

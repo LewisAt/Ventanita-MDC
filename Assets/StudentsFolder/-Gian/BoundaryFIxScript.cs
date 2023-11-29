@@ -4,13 +4,12 @@ using UnityEngine;
 
 public class BoundaryFIxScript : MonoBehaviour
 {
-    //SOMEONE FIX THE ISSUE
-    //screw unity ontriggerenter sometimes
-
     // declare variables
     public float respawn_x;
     public float respawn_y;
     public float respawn_z;
+
+    public GameObject player;
 
     void Start()
     {
@@ -20,13 +19,10 @@ public class BoundaryFIxScript : MonoBehaviour
         respawn_z = 6.926798f;
     }
 
-    void OnTriggerEnter(Collider other)
+    void OnTriggerExit(Collider col)
     {
-        //check if the player is out of bounds
-        if (other.gameObject.tag == "BoundaryFix")
-        {
-            transform.position = new Vector3(respawn_x, respawn_y, respawn_z);
-            Debug.Log("Out of bounds detected! Respawning player properly...");
-        }
+        if (col.gameObject.name == "PlayerOutBoundaryTrigger")
+        col.transform.position = new Vector3(respawn_x, respawn_y, respawn_z);
+        Debug.Log("Out of bounds detected! Respawning player properly...");
     }
 }
