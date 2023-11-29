@@ -12,8 +12,7 @@ public class GradeOrderInput : MonoBehaviour
     public CustomerOrder[] possibleOrders;
     public CustomerOrder ActualOrder;
     float moneyEarned;
-    public TMP_Text MoneyText;
-    private int LevelTime = 180;
+    //public TMP_Text MoneyText;
     private int CustomerTimer = 30;
     public TMP_Text LevelTimerText;
     public int mealAccuracyCount = 0;
@@ -56,38 +55,17 @@ public class GradeOrderInput : MonoBehaviour
     {
         while (true)
         {
-            
             yield return new WaitForSeconds(1);
             CustomerTimer -= 1;
             CustomerSliderUI.value = CustomerTimer;
+            Debug.Log("Repeat");
 
             if (CustomerTimer <= 0)
             {
                 customer.CompleteCustomerTimeRanOut();
                 resetIcons();
             }
-            timeformat();
         }
-
-    }
-    int seconds = 60;
-    void timeformat()
-    {
-
-        int minutes = (int)LevelTime / 60;
-        if (seconds <= 0)
-        {
-            seconds = 60;
-        }
-        seconds--;
-        if (seconds < 10)
-        {
-
-            LevelTimerText.text = "Time Left \n" + minutes + ":" + "0" + seconds;
-        }
-        string timeText = "Time Left \n" + minutes + ":" + seconds;
-        LevelTimerText.text = timeText;
-
     }
     void ConfirmOrder(Collider givenPlate)
     {

@@ -9,7 +9,6 @@ public class IngredientUI : MonoBehaviour
 {
     public GameObject foodPanel;
     public TextMeshProUGUI foodInfo;
-    bool toggle = false;
     string prevText;
     public void SpawnPanel(string foodExplanation)
     {

@@ -53,9 +53,9 @@ public class cookFood : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        collidedObject = collision.gameObject;
-        if(collidedObject.tag == "food")
+        if (collidedObject == null && collision.gameObject.tag == "food")
         {
+            collidedObject = collision.gameObject;
             collidedFoodScript = collidedObject.GetComponent<foodIdentifier>();
             canCook();
             if (isCookable)
@@ -63,12 +63,16 @@ public class cookFood : MonoBehaviour
                 StartCoroutine(cookTime());
 
             }
+
         }
     }
     private void OnCollisionExit(Collision collision)
     {
-        resetValues();
-        StopCoroutine(cookTime());
+        if(collision.gameObject == collidedObject)
+        {
+            resetValues();
+            StopCoroutine(cookTime());
+        }
     }
     void addScripts()
     {
