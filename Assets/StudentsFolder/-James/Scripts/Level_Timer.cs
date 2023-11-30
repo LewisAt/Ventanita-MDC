@@ -14,6 +14,7 @@ public class Level_Timer : MonoBehaviour
     public TMP_Text minuteClock_1;
     public TMP_Text minuteClock_2;
     public TMP_Text hourClock;
+    public AudioSource endTimerSound;
 
     void Start()
     {
@@ -38,6 +39,13 @@ public class Level_Timer : MonoBehaviour
         minuteClock_1.text = "" + minute_1;
         minuteClock_2.text = "" + minute_2;
         hourClock.text = "" + hour;
+
+
+        //sound
+        if (hours == 5 && minute_2 == 5 && minute_1 == 0)
+        {
+            endTimerSound.Play();
+        }
     }
 
     IEnumerator Countdown()
