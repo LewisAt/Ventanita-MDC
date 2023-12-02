@@ -5,7 +5,7 @@ using UnityEngine;
 public class FadeScreen : MonoBehaviour
 {
     public bool fadeOnStart = true;
-    public float fadeDuration = 2;
+    public float fadeDuration = 4;
     public Color fadeColor;
     private Renderer rend;
     // Start is called before the first frame update
