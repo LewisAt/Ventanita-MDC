@@ -100,6 +100,13 @@ public class Movetowindow : MonoBehaviour
             {
                 check4 = true;
                 customerRender.sprite = sideFace;
+                spawnCheck = true;
+                if (spawnCheck == true)
+                {
+                    Debug.Log("A new customer has arrived!");
+                    SpawnCustomer();
+                    spawnCheck = false;
+                }
             }
         }
         //fourth direction that makes the customer move offscreen, despawn, and spawn new customer
@@ -114,13 +121,6 @@ public class Movetowindow : MonoBehaviour
                 transform.position.z + delta * Speed * Time.deltaTime));
             if (customer.transform.position.z >= fourthPoint.transform.position.z - 1.7f)
             {
-                spawnCheck = true;
-                if (spawnCheck == true)
-                {
-                    Debug.Log("A new customer has arrived!");
-                    SpawnCustomer();
-                    spawnCheck = false;
-                }
                 Destroy(realCustomer);
             }
         }
