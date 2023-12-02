@@ -21,7 +21,7 @@ public class Movetowindow : MonoBehaviour
     float SpriteChoose = 0;
     public Sprite frontFace;
     public Sprite sideFace;
-    public float Speed = 1;
+    public float Speed = 0.5f;
 
     //allows for the movement events to trigger
     private bool check = false;
@@ -48,6 +48,7 @@ public class Movetowindow : MonoBehaviour
         customer.useGravity = false;
         customer.isKinematic = true;
 
+        Speed = 0.5f;
         customerRender.sprite = sideFace;
         tip = 5;
         tipText.enabled = false;
@@ -64,9 +65,8 @@ public class Movetowindow : MonoBehaviour
                 transform.position.x,
                 transform.position.y,
                 transform.position.z + delta * Speed * Time.deltaTime));
-            if (customer.transform.position.z >= firstPoint.transform.position.z - 1.7f)
+            if (customer.transform.position.z >= firstPoint.transform.position.z - 2f)
             {
-                //customer.transform.Rotate(0.0f, -90.0f, 0);
                 check = true;
                 customerRender.sprite = frontFace;
             }
@@ -82,6 +82,7 @@ public class Movetowindow : MonoBehaviour
                 transform.position.z));
             if (customer.transform.position.x <= secondPoint.transform.position.x + .5f)
             {
+                this.transform.position = new Vector3(customer.transform.position.x, customer.transform.position.y, customer.transform.position.z + 0.3f);
                 check2 = true;
             }
         }
@@ -104,6 +105,7 @@ public class Movetowindow : MonoBehaviour
         //fourth direction that makes the customer move offscreen, despawn, and spawn new customer
         if(check4 == true)
         {
+            Speed = 0.35f;
             float delta = fourthPoint.transform.position.z - transform.position.z;
 
             customer.MovePosition(new Vector3(
