@@ -10,14 +10,14 @@ public class PlateSpawn : MonoBehaviour
     public bool objIn = false;
     private bool waitP = false;
 
-    /*void Start()
+    void Start()
     {
         SpawnPoF();
-    }*/
+    }
     public void SpawnPoF()
     {
         print("debug works");
-        Instantiate(plate, spawner.transform.position, spawner.transform.rotation);
+        Instantiate(plate, new Vector3(10,10,10), spawner.transform.rotation);
     }
     /*IEnumerator Wait()
     {
