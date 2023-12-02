@@ -10,15 +10,16 @@ public class PlateSpawn : MonoBehaviour
     public bool objIn = false;
     private bool waitP = false;
 
-    void Start()
+    /*void Start()
     {
         SpawnPoF();
-    }
-    void SpawnPoF()
+    }*/
+    public void SpawnPoF()
     {
+        print("debug works");
         Instantiate(plate, spawner.transform.position, spawner.transform.rotation);
     }
-    IEnumerator Wait()
+    /*IEnumerator Wait()
     {
         waitP = true;
         yield return new WaitForSeconds(spawnTime);
@@ -47,5 +48,7 @@ public class PlateSpawn : MonoBehaviour
             StartCoroutine(Wait());
             objIn = true;
         }
-    }
+    }*/
+
+    /*This script was modified by Joel Figueroa to complete task "fix plate spawning"*/
 }
