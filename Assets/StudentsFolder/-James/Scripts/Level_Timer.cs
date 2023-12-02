@@ -9,8 +9,7 @@ public class Level_Timer : MonoBehaviour
 {
     public int minute_1 = 0;
     public int minute_2 = 0;
-    public int hour = 5;
-    public int hours = 0;
+    public int hour = 6;
     public TMP_Text minuteClock_1;
     public TMP_Text minuteClock_2;
     public TMP_Text hourClock;
@@ -23,17 +22,16 @@ public class Level_Timer : MonoBehaviour
 
     void Update()
     {
-        if (minute_1 == 10)
+        if (minute_1 < 0)
         {
-            minute_1 = 0;
-            minute_2++;
+            minute_1 = 9;
+            minute_2--;
         }
 
-        if (minute_2 == 6)
+        if (minute_2 < 0)
         {
-            minute_2 = 0;
-            hour++;
-            hours++;
+            minute_2 = 5;
+            hour--;
         }
 
         minuteClock_1.text = "" + minute_1;
@@ -42,7 +40,7 @@ public class Level_Timer : MonoBehaviour
 
 
         //sound
-        if (hours == 5 && minute_2 == 5 && minute_1 == 0)
+        if (hour == 0 && minute_2 == 0 && minute_1 == 0)
         {
             endTimerSound.Play();
         }
@@ -50,13 +48,13 @@ public class Level_Timer : MonoBehaviour
 
     IEnumerator Countdown()
     {
-        while (hours < 6)
+        while (hour >= 0)
         {
             yield return new WaitForSeconds(1);
-            minute_1++;
+            minute_1--;
         }
 
-        if (hours == 6)
+        if (hour == 0 && minute_2 == 0 && minute_1 == 0)
         {
             EndDay();
         }
