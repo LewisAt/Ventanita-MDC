@@ -39,9 +39,14 @@ public class Level_Timer : MonoBehaviour
         minuteClock_2.text = "" + minute_2;
         hourClock.text = "" + hour;
 
-        if (hour == 0 && minute_2 == 0 && minute_1 == 0 && DayEnd == false)
+        //sound
+        if (hour == 0 && minute_2 == 1 && minute_1 == 2)
         {
             endTimerSound.Play();
+        }
+
+        if (hour == 0 && minute_2 == 0 && minute_1 == 0 && DayEnd == false)
+        {
             DayEnd = true;
             StopCoroutine("Countdown");
             EndDay();
