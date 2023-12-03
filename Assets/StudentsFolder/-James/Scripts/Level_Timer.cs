@@ -40,7 +40,7 @@ public class Level_Timer : MonoBehaviour
 
 
         //sound
-        if (hour == 0 && minute_2 == 1 && minute_1 == 2)
+        if (hour == 0 && minute_2 == 0 && minute_1 == 0)
         {
             endTimerSound.Play();
         }
