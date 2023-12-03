@@ -14,6 +14,7 @@ public class Level_Timer : MonoBehaviour
     public TMP_Text minuteClock_2;
     public TMP_Text hourClock;
     public AudioSource endTimerSound;
+    bool DayEnd = false;
 
     void Start()
     {
@@ -38,31 +39,27 @@ public class Level_Timer : MonoBehaviour
         minuteClock_2.text = "" + minute_2;
         hourClock.text = "" + hour;
 
-
-        //sound
-        if (hour == 0 && minute_2 == 0 && minute_1 == 0)
+        if (hour == 0 && minute_2 == 0 && minute_1 == 0 && DayEnd == false)
         {
             endTimerSound.Play();
+            DayEnd = true;
+            StopCoroutine("Countdown");
+            EndDay();
         }
     }
 
     IEnumerator Countdown()
     {
+        DayEnd = false;
         while (hour >= 0)
         {
             yield return new WaitForSeconds(1);
             minute_1--;
         }
-
-        if (hour == 0 && minute_2 == 0 && minute_1 == 0)
-        {
-            EndDay();
-        }
     }
 
     public void EndDay()
     {
-        StopCoroutine("Countdown");
         Debug.Log("Day Ends");
         //Ends Day coding here
 
