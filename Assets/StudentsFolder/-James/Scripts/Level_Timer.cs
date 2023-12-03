@@ -15,10 +15,12 @@ public class Level_Timer : MonoBehaviour
     public TMP_Text hourClock;
     public AudioSource endTimerSound;
     bool DayEnd = false;
+    public GameObject UpgradeMenu;
 
     void Start()
     {
         StartCoroutine("Countdown");
+        UpgradeMenu.SetActive(false);
     }
 
     void Update()
@@ -50,6 +52,7 @@ public class Level_Timer : MonoBehaviour
             DayEnd = true;
             StopCoroutine("Countdown");
             EndDay();
+            Upgrade();
         }
     }
 
@@ -68,5 +71,19 @@ public class Level_Timer : MonoBehaviour
         Debug.Log("Day Ends");
         //Ends Day coding here
 
+    }
+
+    public void Upgrade()
+    {
+        UpgradeMenu.SetActive(true);
+        Time.timeScale = 0f;
+    }
+
+    public void Continue()
+    {
+        UpgradeMenu.SetActive(false);
+        Time.timeScale = 1f;
+        hour = 6;
+        StartCoroutine("Countdown");
     }
 }
