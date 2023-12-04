@@ -58,7 +58,6 @@ public class GradeOrderInput : MonoBehaviour
             yield return new WaitForSeconds(1);
             CustomerTimer -= 1;
             CustomerSliderUI.value = CustomerTimer;
-            Debug.Log("Repeat");
 
             if (CustomerTimer <= 0)
             {
