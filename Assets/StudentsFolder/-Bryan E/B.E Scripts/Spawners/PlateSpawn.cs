@@ -12,13 +12,26 @@ public class PlateSpawn : MonoBehaviour
 
     void Start()
     {
-        SpawnPoF();
+
     }
     public void SpawnPoF()
     {
         print("debug works");
         Instantiate(plate, new Vector3(10,10,10), spawner.transform.rotation);
     }
+
+
+    private void OnTriggerEnter(Collider collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            SpawnPoF();
+        }
+    }
+
+
+
+
     /*IEnumerator Wait()
     {
         waitP = true;
