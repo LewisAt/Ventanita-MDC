@@ -8,12 +8,22 @@ public class FadeScreen : MonoBehaviour
     public float fadeDuration = 4;
     public Color fadeColor;
     private Renderer rend;
+    public GameObject FadePanel;
+    public float timer = 0;
+
     // Start is called before the first frame update
     void Start()
     {
         rend = GetComponent<Renderer>();
         if (fadeOnStart)
             FadeIn();
+    }
+
+    public void Update()
+    {
+        if (timer >= fadeDuration-1)
+            FadePanel.SetActive(false);
+        
     }
 
     public void FadeIn()
@@ -33,7 +43,7 @@ public class FadeScreen : MonoBehaviour
 
     public IEnumerator FadeRoutine(float alphaIn, float alphaOut)
     {
-        float timer = 0;
+       //float timer = 0;
         while (timer <= fadeDuration)
         {
             Color newColor = fadeColor;
