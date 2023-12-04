@@ -63,7 +63,6 @@ public class Level_Timer : MonoBehaviour
         {
             yield return new WaitForSeconds(1);
             minute_1--;
-            Debug.Log("Check");
         }
     }
 
