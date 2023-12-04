@@ -61,7 +61,7 @@ public class Level_Timer : MonoBehaviour
         DayEnd = false;
         while (hour >= 0)
         {
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(60);
             minute_1--;
         }
     }
