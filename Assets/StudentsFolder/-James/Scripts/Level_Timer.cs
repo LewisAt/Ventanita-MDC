@@ -85,5 +85,13 @@ public class Level_Timer : MonoBehaviour
         Time.timeScale = 1f;
         hour = 6;
         StartCoroutine("Countdown");
+        string currentSceneName = SceneManager.GetActiveScene().name;
+        SceneManager.LoadScene(currentSceneName);
     }
+
+    //public void Restart()
+    //{
+    //    string currentSceneName = SceneManager.GetActiveScene().name;
+    //    SceneManager.LoadScene(currentSceneName);
+    //}
 }
