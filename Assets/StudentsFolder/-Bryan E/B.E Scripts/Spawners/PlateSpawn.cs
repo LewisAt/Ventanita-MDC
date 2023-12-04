@@ -1,29 +1,48 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.XR.CoreUtils;
 using UnityEngine;
+using UnityEngine.UIElements;
+using UnityEngine.XR;
+using UnityEngine.XR.Interaction.Toolkit;
 
 public class PlateSpawn : MonoBehaviour
 {
-    public GameObject spawner;
+    //public GameObject spawner;
     public GameObject plate;
+    private GameObject spawnPlate;
     public float spawnTime = 5;
     public bool objIn = false;
     private bool waitP = false;
+    public GameObject player;
+    private XROrigin xrOrigin;
+    private XRController playerController;
 
     void Start()
     {
-
+        //xrOrigin = player.GetComponent<XROrigin>();
+        //playerController = player.GetComponentInChildren<XRController>();
     }
     public void SpawnPoF()
     {
         print("debug works");
-        Instantiate(plate, new Vector3(10,10,10), spawner.transform.rotation);
+        
     }
 
-
-    private void OnTriggerEnter(Collider collision)
+    public void SpawnObject()
     {
-        if (collision.gameObject.tag == "Player")
+        spawnPlate = Instantiate(plate, transform.position, transform.rotation);
+        XRGrabInteractable xRGrabInteractable = spawnPlate.GetComponent<XRGrabInteractable>();
+        if (xRGrabInteractable != null)
+        {
+            xRGrabInteractable.transform.position = transform.position;
+            xRGrabInteractable.transform.rotation = transform.rotation;
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Player")
         {
             SpawnPoF();
         }
