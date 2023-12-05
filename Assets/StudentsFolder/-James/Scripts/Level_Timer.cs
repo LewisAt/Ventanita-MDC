@@ -98,9 +98,9 @@ public class Level_Timer : MonoBehaviour
     public void Continue()
     {
         UpgradeMenu.SetActive(false);
-        //Time.timeScale = 1f;
-        //hour = 6;
-        //StartCoroutine("Countdown");
+        Time.timeScale = 1f;
+        hour = 6;
+        StartCoroutine("Countdown");
         string currentSceneName = SceneManager.GetActiveScene().name;
         SceneManager.LoadScene(currentSceneName);
         DisableeRay();
