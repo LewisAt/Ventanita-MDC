@@ -5,6 +5,8 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
 
+using UnityEngine.InputSystem;
+
 public class Level_Timer : MonoBehaviour
 {
     public int minute_1 = 0;
@@ -16,6 +18,19 @@ public class Level_Timer : MonoBehaviour
     public AudioSource endTimerSound;
     bool DayEnd = false;
     public GameObject UpgradeMenu;
+
+    //
+    //
+    //
+
+    public GameObject[] rayInteractors;
+    public float screendistance = 3f;
+    public float ScreenTrackSpeed = 5f;
+    public float ScreenRotateSpeed = 0.02f;
+
+    //
+    //
+    //
 
     void Start()
     {
@@ -53,6 +68,7 @@ public class Level_Timer : MonoBehaviour
             StopCoroutine("Countdown");
             EndDay();
             Upgrade();
+            enableRay();
         }
     }
 
@@ -82,11 +98,53 @@ public class Level_Timer : MonoBehaviour
     public void Continue()
     {
         UpgradeMenu.SetActive(false);
-        Time.timeScale = 1f;
-        hour = 6;
-        StartCoroutine("Countdown");
+        //Time.timeScale = 1f;
+        //hour = 6;
+        //StartCoroutine("Countdown");
         string currentSceneName = SceneManager.GetActiveScene().name;
         SceneManager.LoadScene(currentSceneName);
+        DisableeRay();
+    }
+
+
+    //
+    //
+    //
+    //
+    //
+
+
+    void trackHeadPos()
+    {
+        GameObject mainCamera = Camera.main.gameObject;
+
+
+        Vector3 PlayerViewingDirection = mainCamera.transform.TransformDirection
+        (Vector3.forward) * screendistance;
+        PlayerViewingDirection = PlayerViewingDirection + mainCamera.transform.position;
+
+        this.transform.position = Vector3.Lerp(this.transform.position, PlayerViewingDirection, 0.02f);
+
+
+
+        Vector3 targetdirection = this.transform.position - mainCamera.transform.position;
+
+        Vector3 ScreenDirectionTowardsPlayer = Vector3.RotateTowards(this.transform.forward, targetdirection, 1f, 0);
+        this.transform.rotation = Quaternion.LookRotation(ScreenDirectionTowardsPlayer);
+    }
+    void enableRay()
+    {
+        rayInteractors[0].SetActive(true);
+        rayInteractors[1].SetActive(true);
+
+    }
+    void DisableeRay()
+    {
+
+
+        rayInteractors[0].SetActive(false);
+        rayInteractors[1].SetActive(false);
+
     }
 
     //public void Restart()
