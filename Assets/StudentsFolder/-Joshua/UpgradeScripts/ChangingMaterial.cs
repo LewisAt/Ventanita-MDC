@@ -6,7 +6,7 @@ public class ChangingMaterial : MonoBehaviour
 {
     public Material[] material;
     public int x;
-    //public static NewTexture;
+    public static int newMaterial;
     Renderer rend;
 
     // Start is called before the first frame update
@@ -16,13 +16,20 @@ public class ChangingMaterial : MonoBehaviour
         rend = GetComponent<Renderer>();
         rend.enabled = true;
         rend.sharedMaterial = material[x];
+        OnAwake();
+    }
+
+    void OnAwake()
+    {
+        x = newMaterial;
+
     }
 
     // Update is called once per frame
     void Update()
     {
         rend.sharedMaterial = material[x];
-        //newMaterial = x;
+        newMaterial = x;
     }
 
     public void NextMaterial()
