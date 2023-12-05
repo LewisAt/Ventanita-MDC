@@ -13,6 +13,8 @@ public class UpgradeManager : MonoBehaviour
     public float ScreenTrackSpeed = 5f;
     public float ScreenRotateSpeed = 0.02f;
     public GameObject UpgradeMenu;
+    bool ticket = false;
+    public TextMeshPro money;
 
      void Start()
     {
@@ -28,11 +30,24 @@ public class UpgradeManager : MonoBehaviour
 
     public void Continue()
     {
-        UpgradeMenu.SetActive(false);
-        Time.timeScale = 1f;
-        string currentSceneName = SceneManager.GetActiveScene().name;
-        SceneManager.LoadScene(currentSceneName);
-        DisableeRay();
+        if (ticket == false)
+        {
+            UpgradeMenu.SetActive(false);
+            Time.timeScale = 1f;
+            string currentSceneName = SceneManager.GetActiveScene().name;
+            SceneManager.LoadScene(currentSceneName);
+            DisableeRay();
+        }
+        
+        if(ticket == true)
+        {
+            SceneManager.LoadScene(2);
+        }
+    }
+
+    public void BuyTicket()
+    {
+         ticket = true;
     }
 
 
