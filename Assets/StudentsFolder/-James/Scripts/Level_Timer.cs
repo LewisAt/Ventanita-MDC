@@ -19,23 +19,9 @@ public class Level_Timer : MonoBehaviour
     bool DayEnd = false;
     public UpgradeManager upgradeManager;
 
-    //
-    //
-    //
-
-    public GameObject[] rayInteractors;
-    public float screendistance = 3f;
-    public float ScreenTrackSpeed = 5f;
-    public float ScreenRotateSpeed = 0.02f;
-
-    //
-    //
-    //
-
     void Start()
     {
         StartCoroutine("Countdown");
-       //UpgradeMenu.SetActive(false);
     }
 
     void Update()
@@ -68,8 +54,6 @@ public class Level_Timer : MonoBehaviour
             StopCoroutine("Countdown");
             EndDay();
             upgradeManager.GetComponent<UpgradeManager>().Upgrade();
-            //Upgrade();
-            //enableRay();
         }
     }
 
@@ -89,68 +73,4 @@ public class Level_Timer : MonoBehaviour
         //Ends Day coding here
 
     }
-
-    //public void Upgrade()
-    //{
-    //    //UpgradeMenu.SetActive(true);
-    //    Time.timeScale = 0f;
-    //}
-
-    //public void Continue()
-    //{
-    //    //UpgradeMenu.SetActive(false);
-    //    Time.timeScale = 1f;
-    //    hour = 6;
-    //    StartCoroutine("Countdown");
-    //    string currentSceneName = SceneManager.GetActiveScene().name;
-    //    SceneManager.LoadScene(currentSceneName);
-    //    DisableeRay();
-    //}
-
-
-    //
-    //
-    //
-    //
-    //
-
-
-    void trackHeadPos()
-    {
-        GameObject mainCamera = Camera.main.gameObject;
-
-
-        Vector3 PlayerViewingDirection = mainCamera.transform.TransformDirection
-        (Vector3.forward) * screendistance;
-        PlayerViewingDirection = PlayerViewingDirection + mainCamera.transform.position;
-
-        this.transform.position = Vector3.Lerp(this.transform.position, PlayerViewingDirection, 0.02f);
-
-
-
-        Vector3 targetdirection = this.transform.position - mainCamera.transform.position;
-
-        Vector3 ScreenDirectionTowardsPlayer = Vector3.RotateTowards(this.transform.forward, targetdirection, 1f, 0);
-        this.transform.rotation = Quaternion.LookRotation(ScreenDirectionTowardsPlayer);
-    }
-    void enableRay()
-    {
-        rayInteractors[0].SetActive(true);
-        rayInteractors[1].SetActive(true);
-
-    }
-    void DisableeRay()
-    {
-
-
-        rayInteractors[0].SetActive(false);
-        rayInteractors[1].SetActive(false);
-
-    }
-
-    //public void Restart()
-    //{
-    //    string currentSceneName = SceneManager.GetActiveScene().name;
-    //    SceneManager.LoadScene(currentSceneName);
-    //}
 }
