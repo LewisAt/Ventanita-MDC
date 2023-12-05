@@ -15,10 +15,18 @@ public class UpgradeManager : MonoBehaviour
     public GameObject UpgradeMenu;
     bool ticket = false;
     public TextMeshPro money;
+    public static float UserCash = 0.00f;
+    public TMP_Text FinalCashAmount;
 
-     void Start()
+
+void Start()
     {
         UpgradeMenu.SetActive(false);
+    }
+
+    void Update()
+    {
+        FinalCashAmount.text = "Current Money $" + UserCash.ToString();
     }
 
     public void Upgrade()
