@@ -48,7 +48,7 @@ void Start()
     {
         //UpgradeMenu.SetActive(true);
         Time.timeScale = 0f;
-        //enableRay();
+        enableRay();
         moneyTracker.GetComponent<MoneyTracker>().LoseCondition();
     }
 
