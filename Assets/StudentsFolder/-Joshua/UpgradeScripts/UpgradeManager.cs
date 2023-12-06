@@ -14,19 +14,26 @@ public class UpgradeManager : MonoBehaviour
     public float ScreenRotateSpeed = 0.02f;
     public GameObject UpgradeMenu;
     bool ticket = false;
-    public TextMeshPro money;
+    //public TextMeshPro money;
     public static float UserCash = 0.00f;
     public TMP_Text FinalCashAmount;
-
+    public MoneyTracker moneyTracker;
+    //public ChangingMaterial changingMaterial;
 
 void Start()
     {
         UpgradeMenu.SetActive(false);
+        OnAwake();
+    }
+
+    void OnAwake()
+    {
+        FinalCashAmount.text = moneyTracker.GetComponent<MoneyTracker>().currentCash.text;
     }
 
     void Update()
     {
-        FinalCashAmount.text = "Current Money $" + UserCash.ToString();
+        FinalCashAmount.text = moneyTracker.GetComponent<MoneyTracker>().currentCash.text;
     }
 
     public void Upgrade()
@@ -58,6 +65,17 @@ void Start()
          ticket = true;
     }
 
+    //public void StoveUpgradeCost()
+    //{
+    //    if(UserCash >= 1)
+    //    {
+    //        changingMaterial.GetComponent<ChangingMaterial>().NextStoveMaterial();
+    //    }
+    //    else if(UserCash < 1)
+    //    {
+    //        return;
+    //    }
+    //}
 
     void trackHeadPos()
     {

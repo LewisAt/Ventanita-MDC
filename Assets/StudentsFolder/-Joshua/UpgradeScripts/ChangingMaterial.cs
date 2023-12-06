@@ -22,6 +22,7 @@ public class ChangingMaterial : MonoBehaviour
     void OnAwake()
     {
         x = newMaterial;
+        //newMaterial = x;
 
     }
 
@@ -29,6 +30,7 @@ public class ChangingMaterial : MonoBehaviour
     void Update()
     {
         rend.sharedMaterial = material[x];
+        //newMaterial = x;
         newMaterial = x;
     }
 
