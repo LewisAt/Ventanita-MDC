@@ -2871,7 +2871,7 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 0
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 4
   m_CollisionDetection: 0
@@ -8378,8 +8378,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.3, y: 0.1, z: 0.1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.3, y: 0.1, z: 0.092858106}
+  m_Center: {x: 0, y: 0, z: 0.0035709168}
 --- !u!1001 &1109691361
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8837,7 +8837,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 1
   m_Interpolate: 0
-  m_Constraints: 84
+  m_Constraints: 116
   m_CollisionDetection: 0
 --- !u!1 &1148542027
 GameObject:
@@ -16959,6 +16959,7 @@ GameObject:
   - component: {fileID: 9146116182248870136}
   - component: {fileID: 9146116182248870139}
   - component: {fileID: 9146116182248870138}
+  - component: {fileID: 9146116182248870140}
   m_Layer: 0
   m_Name: freezer_door
   m_TagString: interactable
@@ -17536,7 +17537,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5352385202334072085}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.402}
+  m_LocalPosition: {x: 0, y: 0, z: 0.396}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -17607,7 +17608,7 @@ Rigidbody:
     m_Bits: 512
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 0
+  m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 4
@@ -17759,3 +17760,24 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 4
   m_CollisionDetection: 0
+--- !u!65 &9146116182248870140
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3290004425090956290}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.9194007, y: 0.46270943, z: 0.0791232}
+  m_Center: {x: 0, y: 0, z: -0.04362014}
