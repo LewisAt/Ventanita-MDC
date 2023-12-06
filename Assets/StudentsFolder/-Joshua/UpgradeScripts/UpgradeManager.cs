@@ -15,7 +15,7 @@ public class UpgradeManager : MonoBehaviour
     public GameObject UpgradeMenu;
     bool ticket = false;
     //public TextMeshPro money;
-    public static float UserCash = 0.00f;
+    //public static float UserCash = 0.00f;
     public float stoveUpgradeCost = 60.00f;
     public float coffeeUpgradeCost = 30.00f;
     public float panUpgradeCost = 50.00f;

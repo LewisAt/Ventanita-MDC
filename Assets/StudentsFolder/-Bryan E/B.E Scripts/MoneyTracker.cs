@@ -12,13 +12,16 @@ public class MoneyTracker : MonoBehaviour
     public TMP_Text totalCashText;
     public float totalMoney = 0.00f;
     public float moneyNeeded = 100.00f;
+    public float coffeeUpgradeCost = 30.00f;
     public GameObject UpgradeMenu;
+    //public float newAmount;
     public UpgradeManager upgradeManager;
+    public CustomerOrder customerOrder;
 
     void Update()
     {
         currentCash.text = "Current Money $" + UserCash.ToString();
-        totalCashText.text = "Money: " + UserCash.ToString();
+        totalCashText.text = "Money: $" + UserCash.ToString();
         totalMoney = UserCash;
     }
 
@@ -35,4 +38,15 @@ public class MoneyTracker : MonoBehaviour
 
         }
     }
+
+    //public void coffeePayment()
+    //{
+    //    if(totalMoney >= coffeeUpgradeCost)
+    //    {
+    //        newAmount = UserCash - coffeeUpgradeCost;
+    //        totalCashText.text = "Money: $" + newAmount.ToString();
+    //    }
+    //    //totalMoney = UserCash - coffeeUpgradeCost;
+    //    //totalCashText.text = "Money: $" + totalMoney.ToString();
+    //}
 }
