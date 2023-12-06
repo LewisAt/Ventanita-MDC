@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class PausedScreen : MonoBehaviour
 {
-    public InputActionProperty showButton;
+    public InputActionReference showButton;
     public GameObject pauseMenu;
     public bool isPaused;
     public float screendistance = 3f;
@@ -49,6 +49,7 @@ public class PausedScreen : MonoBehaviour
 
     void Update()
     {
+        Debug.Log(showButton.action.WasPerformedThisFrame());
         if(showButton.action.WasPressedThisFrame() && isPaused == false)
         {
             PauseGame();

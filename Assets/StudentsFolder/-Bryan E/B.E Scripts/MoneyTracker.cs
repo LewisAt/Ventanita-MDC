@@ -17,12 +17,13 @@ public class MoneyTracker : MonoBehaviour
     //public float newAmount;
     public UpgradeManager upgradeManager;
     public CustomerOrder customerOrder;
-
+    public TMP_Text WarningSplash;
     void Update()
     {
         currentCash.text = "Current Money $" + UserCash.ToString();
         totalCashText.text = "Money: $" + UserCash.ToString();
         totalMoney = UserCash;
+        totalCashText.text = (totalMoney - moneyNeeded).ToString();
     }
 
     public void LoseCondition()
@@ -37,6 +38,21 @@ public class MoneyTracker : MonoBehaviour
             upgradeManager.GetComponent<UpgradeManager>().enableRay();
 
         }
+    }
+    private void Awake()
+    {
+        WarningSplash.text = "Earn " + moneyNeeded.ToString() + "$\n or lose";
+        StartCoroutine(playWarning());
+    }
+    IEnumerator playWarning()
+    {
+        for(int i = 0; i < 13 ; i++) 
+        {
+            yield return new WaitForSeconds(0.4f);
+            WarningSplash.gameObject.SetActive(!WarningSplash.gameObject.activeSelf);
+        }
+        
+            
     }
 
     //public void coffeePayment()
