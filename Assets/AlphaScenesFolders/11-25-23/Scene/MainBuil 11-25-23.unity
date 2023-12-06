@@ -11050,8 +11050,12 @@ MonoBehaviour:
   ScreenTrackSpeed: 5
   ScreenRotateSpeed: 0.02
   UpgradeMenu: {fileID: 1899449369}
-  FinalCashAmount: {fileID: 650800819}
+  stoveUpgradeCost: 60
+  coffeeUpgradeCost: 30
+  panUpgradeCost: 50
+  ticketCost: 200
   moneyTracker: {fileID: 1895554499}
+  customerOrder: {fileID: 0}
 --- !u!4 &1232334168
 Transform:
   m_ObjectHideFlags: 0
@@ -16859,6 +16863,18 @@ PrefabInstance:
       propertyPath: m_InteractionManager
       value: 
       objectReference: {fileID: 3127728408387990215}
+    - target: {fileID: 5431040877761493487, guid: 0ce2d9c85a8674b45a069caf93a08315, type: 3}
+      propertyPath: UpgradeMenu
+      value: 
+      objectReference: {fileID: 1899449369}
+    - target: {fileID: 5431040877761493487, guid: 0ce2d9c85a8674b45a069caf93a08315, type: 3}
+      propertyPath: totalCashText
+      value: 
+      objectReference: {fileID: 650800819}
+    - target: {fileID: 5431040877761493487, guid: 0ce2d9c85a8674b45a069caf93a08315, type: 3}
+      propertyPath: upgradeManager
+      value: 
+      objectReference: {fileID: 1232334167}
     - target: {fileID: 5583395265702382699, guid: 0ce2d9c85a8674b45a069caf93a08315, type: 3}
       propertyPath: m_InteractionManager
       value: 
