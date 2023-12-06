@@ -16,8 +16,14 @@ public class UpgradeManager : MonoBehaviour
     bool ticket = false;
     //public TextMeshPro money;
     public static float UserCash = 0.00f;
-    public TMP_Text FinalCashAmount;
+    public float stoveUpgradeCost = 60.00f;
+    public float coffeeUpgradeCost = 30.00f;
+    public float panUpgradeCost = 50.00f;
+    public float ticketCost = 200.00f;
+    //public TMP_Text FinalCashAmount;
+    //public TextMeshPro Money;
     public MoneyTracker moneyTracker;
+    public CustomerOrder customerOrder;
     //public ChangingMaterial changingMaterial;
 
 void Start()
@@ -28,19 +34,22 @@ void Start()
 
     void OnAwake()
     {
-        FinalCashAmount.text = moneyTracker.GetComponent<MoneyTracker>().currentCash.text;
+        //FinalCashAmount.text = moneyTracker.GetComponent<MoneyTracker>().currentCash.text;
     }
 
     void Update()
     {
-        FinalCashAmount.text = moneyTracker.GetComponent<MoneyTracker>().currentCash.text;
+        //FinalCashAmount.text = "Money: $" + customerOrder.GetComponent<CustomerOrder>().foodsCost;
+        //FinalCashAmount.text = moneyTracker.GetComponent<MoneyTracker>();
+        
     }
 
     public void Upgrade()
     {
-        UpgradeMenu.SetActive(true);
+        //UpgradeMenu.SetActive(true);
         Time.timeScale = 0f;
-        enableRay();
+        //enableRay();
+        moneyTracker.GetComponent<MoneyTracker>().LoseCondition();
     }
 
     public void Continue()
@@ -95,7 +104,7 @@ void Start()
         Vector3 ScreenDirectionTowardsPlayer = Vector3.RotateTowards(this.transform.forward, targetdirection, 1f, 0);
         this.transform.rotation = Quaternion.LookRotation(ScreenDirectionTowardsPlayer);
     }
-    void enableRay()
+    public void enableRay()
     {
         rayInteractors[0].SetActive(true);
         rayInteractors[1].SetActive(true);
