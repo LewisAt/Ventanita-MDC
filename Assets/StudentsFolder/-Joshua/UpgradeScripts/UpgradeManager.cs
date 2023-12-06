@@ -20,7 +20,7 @@ public class UpgradeManager : MonoBehaviour
     public float coffeeUpgradeCost = 30.00f;
     public float panUpgradeCost = 50.00f;
     public float ticketCost = 200.00f;
-    //public TMP_Text FinalCashAmount;
+    public TMP_Text FinalCashAmount;
     //public TextMeshPro Money;
     public MoneyTracker moneyTracker;
     public CustomerOrder customerOrder;
@@ -34,14 +34,14 @@ void Start()
 
     void OnAwake()
     {
-        //FinalCashAmount.text = moneyTracker.GetComponent<MoneyTracker>().currentCash.text;
+        FinalCashAmount.text = moneyTracker.GetComponent<MoneyTracker>().totalCashText.text;
     }
 
     void Update()
     {
         //FinalCashAmount.text = "Money: $" + customerOrder.GetComponent<CustomerOrder>().foodsCost;
         //FinalCashAmount.text = moneyTracker.GetComponent<MoneyTracker>();
-        
+        FinalCashAmount.text = moneyTracker.GetComponent<MoneyTracker>().totalCashText.text;
     }
 
     public void Upgrade()
