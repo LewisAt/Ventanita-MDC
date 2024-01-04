@@ -212,6 +212,7 @@ public class GradeOrderInput : MonoBehaviour
     public Text Side1Text;
     public Text Side2Text;
 
+    //Reset All Icons
     void resetIcons()
     {
         RiceIcon.sprite = null;
@@ -220,8 +221,7 @@ public class GradeOrderInput : MonoBehaviour
     }
     public void assignIcon(CustomerOrder CurrentlySelectedOrder)
     {
-        // this bit displays if there is rice else we display nothing
-        //Currently he have no Icon for nothing so we  display a white image
+        // Displays Rice
         if (CurrentlySelectedOrder.hasRice)
         {
             RiceIcon.sprite = RiceSprite;
@@ -234,6 +234,7 @@ public class GradeOrderInput : MonoBehaviour
         }
         */
 
+        // Displays Main
         for (int i = 1; i < 4; i++)
         {
             if ((int)CurrentlySelectedOrder.Mains == i)
@@ -243,6 +244,7 @@ public class GradeOrderInput : MonoBehaviour
             }
         }
 
+        // Displays Sides
         for (int i = 1; i < 4; i++)
         {
             if ((int)CurrentlySelectedOrder.sides == i)
@@ -251,6 +253,7 @@ public class GradeOrderInput : MonoBehaviour
             }
         }
 
+        //Adds Text
         FoodNameHeader.text = CurrentlySelectedOrder.ConfirmedMealName;
         FoodCostText.text = "$" + CurrentlySelectedOrder.foodsCost.ToString();
         RiceText.text = ActualOrder.rice;

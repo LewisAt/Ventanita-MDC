@@ -9,6 +9,7 @@ using UnityEngine.InputSystem;
 
 public class Level_Timer : MonoBehaviour
 {
+    //Variables
     public int minute_1 = 0;
     public int minute_2 = 0;
     public int hour = 6;
@@ -19,6 +20,7 @@ public class Level_Timer : MonoBehaviour
     bool DayEnd = false;
     public UpgradeManager upgradeManager;
 
+    //Starts Coroutine
     void Start()
     {
         StartCoroutine("Countdown");
@@ -26,18 +28,21 @@ public class Level_Timer : MonoBehaviour
 
     void Update()
     {
+        //Manages Clock (Where 1 is placed: 0:01)
         if (minute_1 < 0)
         {
             minute_1 = 9;
             minute_2--;
         }
 
+        //Manages Clock (Where 1 is placed: 0:10)
         if (minute_2 < 0)
         {
             minute_2 = 5;
             hour--;
         }
 
+        //Updates Text
         minuteClock_1.text = "" + minute_1;
         minuteClock_2.text = "" + minute_2;
         hourClock.text = "" + hour;
@@ -48,6 +53,7 @@ public class Level_Timer : MonoBehaviour
             endTimerSound.Play();
         }
 
+        //Begins End Day
         if (hour == 0 && minute_2 == 0 && minute_1 == 0 && DayEnd == false)
         {
             DayEnd = true;
@@ -57,6 +63,7 @@ public class Level_Timer : MonoBehaviour
         }
     }
 
+    //Countdown
     IEnumerator Countdown()
     {
         DayEnd = false;
@@ -67,6 +74,7 @@ public class Level_Timer : MonoBehaviour
         }
     }
 
+    //End Day
     public void EndDay()
     {
         Debug.Log("Day Ends");
