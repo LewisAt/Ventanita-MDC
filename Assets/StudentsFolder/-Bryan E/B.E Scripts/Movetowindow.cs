@@ -12,7 +12,7 @@ public class Movetowindow : MonoBehaviour
     public GameObject thirdPoint;
     public GameObject fourthPoint;
 
-    //customer, sprite, speed, and respawn point
+    //customer, sprites, speed, and respawn point
     public GameObject realCustomer;
     public GameObject spawnPoint;
     public Rigidbody customer;
@@ -35,11 +35,12 @@ public class Movetowindow : MonoBehaviour
     public float tip= 5;
     public TMP_Text tipText;
 
+    //audio for when order is completed or failed
     public AudioSource completeSound;
     public AudioSource failSound;
 
 
-    //makes sure that the customer has a rigidbody
+    //makes sure that the customer has the correct rigidbody and settings
     private void Start()
     {
         GameObject.FindGameObjectWithTag("CustomerWindow").GetComponent<GradeOrderInput>().addCustomer(this);
@@ -127,16 +128,21 @@ public class Movetowindow : MonoBehaviour
     }
     private void Update()
     {
+        //tip that changes depending on how fast the customer order was finished
        if(check2 == true && check3 == false)
         {
             tipReduce -= 0.01f * Time.deltaTime;
             tip = CustomerOrder.foodsCostForCustomer * tipReduce;
         }
     }
+
+    //spawns a new customer at the spawn point
     void SpawnCustomer()
     {
         Instantiate(realCustomer, spawnPoint.transform.position, spawnPoint.transform.rotation);
     }
+
+    //when customer order complete gives player a sound notification, money, and tip.
     public void CompleteCustomerCorrect()
     {
         completeSound.Play();
@@ -147,12 +153,14 @@ public class Movetowindow : MonoBehaviour
         tipText.text = "You earned a $" + tip.ToString() + " tip";
     }
 
+    //if player runs out of time a fail sound will play
     public void CompleteCustomerTimeRanOut()
     {
         failSound.Play();
         check3 = true;
     }
 
+    //randomizes the customers sprites
     void CustomerRandomizer()
     {
         SpriteChoose = Random.Range(0, 4);

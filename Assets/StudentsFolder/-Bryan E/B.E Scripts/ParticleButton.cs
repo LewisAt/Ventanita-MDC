@@ -7,15 +7,9 @@ using UnityEngine.UI;
 public class ParticleButton : MonoBehaviour
 {
     public ParticleSystem upgradeParticle;
-    public Button upgrade;
 
-    void Start()
-    {
-        Button btn = upgrade.GetComponent<Button>();
-        btn.onClick.AddListener(ParticleStart);
-    }
-
-    private void ParticleStart()
+    //plays the particle system
+    public void ParticleStart()
     {
         upgradeParticle.Play();
     }

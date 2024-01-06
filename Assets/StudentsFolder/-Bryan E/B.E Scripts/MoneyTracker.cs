@@ -18,6 +18,8 @@ public class MoneyTracker : MonoBehaviour
     public UpgradeManager upgradeManager;
     public CustomerOrder customerOrder;
     public TMP_Text WarningSplash;
+
+    //shows user current cash and sets the total amount of cash.
     void Update()
     {
         currentCash.text = "Current Money $" + UserCash.ToString();
@@ -26,6 +28,7 @@ public class MoneyTracker : MonoBehaviour
         totalCashText.text = (totalMoney - moneyNeeded).ToString();
     }
 
+    //decides wether player loses or goes to upgrade screen depending on total money
     public void LoseCondition()
     {
        if(totalMoney < moneyNeeded)
@@ -39,6 +42,8 @@ public class MoneyTracker : MonoBehaviour
 
         }
     }
+
+    //tells player how they can win or lose
     private void Awake()
     {
         WarningSplash.text = "Earn " + moneyNeeded.ToString() + "$\n or lose";
