@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlateSections : MonoBehaviour
 {
+
+    //identifier enum for the plate.
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag == "plate")

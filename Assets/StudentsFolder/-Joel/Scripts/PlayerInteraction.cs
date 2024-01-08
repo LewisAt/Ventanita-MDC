@@ -7,6 +7,9 @@ using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEngine.XR;
 
+/*This scripts function is for the player guide with highlighting usable objects. Works by raycast and
+ * using URP shaders. The objects that are interactable need to be on the correct layer in order for it to work.*/
+
 public class PlayerInteraction : MonoBehaviour
 {
     XROrigin XROrigin;

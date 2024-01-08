@@ -8,6 +8,9 @@ public class FoodExplanation : MonoBehaviour
     static string tempFood;
     static IngredientUI ingredient;
 
+    /*This script contains all the info being displayed on the food info UI when called throught the buttons
+     * associated to ingredientUI.*/
+
     private void Start()
     {
         ingredient = GetComponent<IngredientUI>();

@@ -7,6 +7,8 @@ using UnityEngine.UI;
 
 public class IngredientUI : MonoBehaviour
 {
+    /*This scripts functionality is to allow the player to use the buttons for the food info UI*/
+
     public GameObject foodPanel;
     public TextMeshProUGUI foodInfo;
     string prevText;

@@ -23,7 +23,10 @@ public class PlateServing : MonoBehaviour
     public float zoffset = 0;
     int currentSide;
 
-   
+   /*This is the main functionality of how the plate receives the food and knows where to put it
+    * It seperates it into main, rice, and side; side allowing up to 4 objects being added. 
+    * Once the plate is full, a bool (platefull) will return true and will not allow anymore objects
+    * to be added.*/
 
     private void OnCollisionEnter(Collision other)
     {

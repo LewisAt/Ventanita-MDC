@@ -17,13 +17,15 @@ public class LaldleTrigger : MonoBehaviour
 
     private void Start()
     {
-        // Causes a null reference exception
+        // Causes a null reference exception.
         laldleType = GetComponent<LaldleIdentifier>().typeOfLaldle;
     }
     private void OnCollisionEnter(Collision other)
     { 
         if (other.gameObject.tag == "food")
         {
+            /*The below comment was commented out due to this line of code no longer being used. Was originally
+            used in the early stages as the spoon was made of multiple objects.*/
             //spoon = transform.GetChild(0).gameObject.transform;
             CheckWhatFoodItIs(other);
         }
@@ -34,6 +36,8 @@ public class LaldleTrigger : MonoBehaviour
     }
     public void CheckWhatFoodItIs(Collision other)
     {
+        /*This method checks the collision and spawns the object according to the foodidentifier enum accessed
+        on the object*/
         foodType = other.gameObject.GetComponent<foodIdentifier>();
         currentFood = foodType.food;
         if (!isLaldleFull && laldleType.ToString() == currentFood.ToString())
