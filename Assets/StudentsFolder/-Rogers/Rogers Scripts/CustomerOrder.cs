@@ -4,7 +4,8 @@ using System.Globalization;
 using UnityEngine;
 using UnityEngine.UI;
 
-//this Script Contains Possible Orders the Customer can make
+//this Script uses enum from possible orders created from the meal object script to create the name of the order
+//it also randomizes the amount side 1 and side 2 will have
 public class CustomerOrder : MonoBehaviour
 {
     public SideFoods sides;
@@ -37,7 +38,7 @@ public class CustomerOrder : MonoBehaviour
     string MainDescription = "";
     string SideDescription = "";
 
-    public void randomizeFactors()
+    public void randomizeFactors() //This function checks if there is side 1 and 2 and then randomizes it between 1-3
     {
 
         if (sides != SideFoods.None)
@@ -53,13 +54,14 @@ public class CustomerOrder : MonoBehaviour
         }
         else
             NumOfSides1 = 0;
-
+        //coffee not yet added
         //WantsCoffee = Random.value < 0.5f;
     }
 
-    public void StartFood()
+    public void StartFood() //uses enum to create the order's name with its number of sides and calculate its cost
     {
         float TotalCost = 0;
+        //coffee not yet added
         /*
         if (WantsCoffee)
         {

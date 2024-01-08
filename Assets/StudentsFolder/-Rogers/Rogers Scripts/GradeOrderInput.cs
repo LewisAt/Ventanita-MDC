@@ -7,6 +7,9 @@ using UnityEngine;
 using UnityEngine.PlayerLoop;
 using UnityEngine.UI;
 
+//This Script attached to the customer window when triggered by a customer sprite will store a randomized
+//order from the customer order script and when triggered by a plate the customer will compare values to determine
+//whether they match
 public class GradeOrderInput : MonoBehaviour
 {
     public CustomerOrder[] possibleOrders;
@@ -33,7 +36,7 @@ public class GradeOrderInput : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        //starts order based on walk
+        //this starts grading when colliding with a plate
 
         if (other.tag == "plate")
         {
@@ -66,7 +69,7 @@ public class GradeOrderInput : MonoBehaviour
             }
         }
     }
-    void ConfirmOrder(Collider givenPlate)
+    void ConfirmOrder(Collider givenPlate) //Grades the plate by comparing enums Main and Side, Side nums, Rice bool, and coffee(Not Yet Implemented)
     {
         mealAccuracyCount = 0;
 
@@ -80,7 +83,7 @@ public class GradeOrderInput : MonoBehaviour
         }
 
         //checSides 1 
-
+        //Compares Side 1 Enum in players given plate with customers order and changes customer text to explain why incorrect
         if (givenPlate.gameObject.GetComponent<plateIdentifier>().plateSide == ActualOrder.sides)
         {
             if (givenPlate.gameObject.GetComponent<plateIdentifier>().SideCount == ActualOrder.getNumOfSides())
@@ -106,7 +109,7 @@ public class GradeOrderInput : MonoBehaviour
         }
 
         //2nd Sides coding
-
+        //Compares Side 2 Enum in players given plate with customers order and changes customer text to explain why incorrect
         if (givenPlate.gameObject.GetComponent<plateIdentifier>().plateSide1 == ActualOrder.sides1)
         {
             if (givenPlate.gameObject.GetComponent<plateIdentifier>().SideCount1 == ActualOrder.getNumOfSides1())
@@ -130,6 +133,7 @@ public class GradeOrderInput : MonoBehaviour
         {
             FoodNameHeader.text = "2nd Side is incorrect";
         }
+        //Coffee not yet implemented
         /*
         if (givenPlate.gameObject.GetComponent<plateIdentifier>().hasCoffee == ActualOrder.getCoffeeBool())
         {
@@ -138,6 +142,8 @@ public class GradeOrderInput : MonoBehaviour
         else
            print("Coffee is incorrect");
         */
+
+        //Compare Rice bool and changes customer text to explain why incorrect
         if (givenPlate.gameObject.GetComponent<plateIdentifier>().hasRice == ActualOrder.hasRice)
         {
             mealAccuracyCount++;
@@ -146,7 +152,7 @@ public class GradeOrderInput : MonoBehaviour
             FoodNameHeader.text = "Rice is incorrect";
         //Checks if meal is correct
         print(mealAccuracyCount + " out of 4");
-        if (mealAccuracyCount == 4)
+        if (mealAccuracyCount == 4) //Verifies if the customer is correct or not by int comparison added above
         {
             StopCoroutine(CustomerTimerCoroutine);
             customer.CompleteCustomerCorrect();
@@ -171,7 +177,7 @@ public class GradeOrderInput : MonoBehaviour
         FoodNameHeader.text = ActualOrder.ConfirmedMealName;
     }
 
-    public void MakeAnOrder()
+    public void MakeAnOrder() //Creates new order when called by TriggerMeal after being triggered by customer
     {
         resetIcons();
         int rand = Random.Range(0, possibleOrders.Length);
@@ -226,7 +232,7 @@ public class GradeOrderInput : MonoBehaviour
         {
             RiceIcon.sprite = RiceSprite;
         }
-
+        //Coffee not yet implemented
         /*
         if (CurrentlySelectedOrder.getCoffeeBool() == true)
         {
