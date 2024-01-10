@@ -32,8 +32,12 @@ public class GradeOrderInput : MonoBehaviour
     private Movetowindow customer;
     public void addCustomer(Movetowindow NewCustomer)
     {
-        customer = NewCustomer;
+        if(Movetowindow.sameId == 0)
+        {
+            customer = NewCustomer;
+        }
     }
+
     private void OnTriggerEnter(Collider other)
     {
         //this starts grading when colliding with a plate
@@ -64,8 +68,17 @@ public class GradeOrderInput : MonoBehaviour
 
             if (CustomerTimer <= 0)
             {
-                customer.CompleteCustomerTimeRanOut();
-                resetIcons();
+                if(Movetowindow.sameId == 1)
+                {
+                    customer.CompleteCustomerTimeRanOut();
+                    resetIcons();
+                    Debug.Log("this works");
+                }
+                else if(Movetowindow.sameId == 2)
+                {
+                    customer.CompleteCustomerTimeRanOut2();
+                    resetIcons();
+                }
             }
         }
     }
@@ -155,7 +168,14 @@ public class GradeOrderInput : MonoBehaviour
         if (mealAccuracyCount == 4) //Verifies if the customer is correct or not by int comparison added above
         {
             StopCoroutine(CustomerTimerCoroutine);
-            customer.CompleteCustomerCorrect();
+            if(Movetowindow.sameId == 1)
+            {
+                customer.CompleteCustomerCorrect();
+            }
+            if (Movetowindow.sameId == 2)
+            {
+                customer.CompleteCustomerCorrect2();
+            }
             //moneyEarned += ActualOrder.foodsCost;
             //MoneyText.text = "Money Earned\n$" + moneyEarned.ToString();
             //CustomerTimer = 30;
