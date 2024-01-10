@@ -12,6 +12,11 @@ public class IngredientUI : MonoBehaviour
     public GameObject foodPanel;
     public TextMeshProUGUI foodInfo;
     string prevText;
+
+    private void Start()
+    {
+        foodPanel.SetActive(false);
+    }
     public void SpawnPanel(string foodExplanation)
     {
         prevText = foodExplanation;

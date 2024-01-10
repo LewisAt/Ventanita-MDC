@@ -632,6 +632,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1646695944}
   - component: {fileID: 1646695943}
+  - component: {fileID: 1646695945}
   m_Layer: 0
   m_Name: Directional Light
   m_TagString: Untagged
@@ -716,6 +717,29 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!114 &1646695945
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1646695942}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Version: 3
+  m_UsePipelineSettings: 1
+  m_AdditionalLightsShadowResolutionTier: 2
+  m_LightLayerMask: 1
+  m_RenderingLayers: 1
+  m_CustomShadowLayers: 0
+  m_ShadowLayerMask: 1
+  m_ShadowRenderingLayers: 1
+  m_LightCookieSize: {x: 1, y: 1}
+  m_LightCookieOffset: {x: 0, y: 0}
+  m_SoftShadowQuality: 0
 --- !u!1001 &1663391326
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1090,6 +1114,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 920033908022522151, guid: 6a3f39e59a846744cba041a4ed18a0ef, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1261332180581143532, guid: 6a3f39e59a846744cba041a4ed18a0ef, type: 3}
       propertyPath: m_Camera
       value: 
@@ -1097,6 +1125,10 @@ PrefabInstance:
     - target: {fileID: 2643068105388329351, guid: 6a3f39e59a846744cba041a4ed18a0ef, type: 3}
       propertyPath: m_Name
       value: UI manager
+      objectReference: {fileID: 0}
+    - target: {fileID: 4932345872959025342, guid: 6a3f39e59a846744cba041a4ed18a0ef, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5134295264853190551, guid: 6a3f39e59a846744cba041a4ed18a0ef, type: 3}
       propertyPath: m_RootOrder
