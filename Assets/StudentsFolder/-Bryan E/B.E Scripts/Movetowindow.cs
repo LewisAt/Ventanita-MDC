@@ -12,6 +12,11 @@ public class Movetowindow : MonoBehaviour
     public GameObject thirdPoint;
     public GameObject fourthPoint;
 
+    public GameObject linePoint1;
+    public GameObject linePoint2;
+    public GameObject linePoint3;
+    public GameObject linePoint4;
+
     //customer, sprites, speed, and respawn point
     public GameObject realCustomer;
     public GameObject spawnPoint;
@@ -24,6 +29,7 @@ public class Movetowindow : MonoBehaviour
     public float Speed = 0.5f;
 
     //allows for the movement events to trigger
+    private bool spotcheck = false;
     private bool check = false;
     private bool check2= false;
     private bool check3= false;
@@ -57,8 +63,31 @@ public class Movetowindow : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if(spotcheck == false && check == false)
+        {
+            if (linePoint1.GetComponent<CustomerLine>().spot1 == false)
+            {
+                spotcheck = true;
+            }
+            else if (linePoint1.GetComponent<CustomerLine>().spot1 == true && linePoint2.GetComponent<CustomerLine>().spot2 == false)
+            {
+                float delta = linePoint2.transform.position.z - transform.position.z;
+
+                customer.MovePosition(new Vector3(
+                    transform.position.x,
+                    transform.position.y,
+                    transform.position.z + delta * Speed * Time.deltaTime));
+                if (customer.transform.position.z >= linePoint2.transform.position.z - 2f)
+                {
+                    if(linePoint1.GetComponent<CustomerLine>().spot1 == false)
+                    {
+                        spotcheck = true;
+                    }
+                }
+            }
+        }
         //first direction brings toward center of path and changes sprite
-        if(check == false)
+        if (check == false && spotcheck == true)
         {
             float delta = firstPoint.transform.position.z - transform.position.z;
 
