@@ -74,11 +74,6 @@ public class GradeOrderInput : MonoBehaviour
                     resetIcons();
                     Debug.Log("this works");
                 }
-                else if(Movetowindow.sameId == 2)
-                {
-                    customer.CompleteCustomerTimeRanOut2();
-                    resetIcons();
-                }
             }
         }
     }
@@ -171,10 +166,6 @@ public class GradeOrderInput : MonoBehaviour
             if(Movetowindow.sameId == 1)
             {
                 customer.CompleteCustomerCorrect();
-            }
-            if (Movetowindow.sameId == 2)
-            {
-                customer.CompleteCustomerCorrect2();
             }
             //moneyEarned += ActualOrder.foodsCost;
             //MoneyText.text = "Money Earned\n$" + moneyEarned.ToString();

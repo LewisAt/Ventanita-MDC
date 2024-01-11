@@ -41,11 +41,6 @@ public class Movetowindow : MonoBehaviour
     private bool check3= false;
     private bool check4= false;
 
-    private bool check11 = false;
-    private bool check12 = false;
-    private bool check13 = false;
-    private bool check14 = false;
-
     private bool spawnCheck = false;
 
     //Customer waits for this time then leaves if takes too long - money and tip payed when order complete
@@ -72,9 +67,9 @@ public class Movetowindow : MonoBehaviour
         tip = 5;
         tipText.enabled = false;
         CustId += 1;
-        if (CustId > 1)
+        if (CustId > 2)
         {
-            CustId = 1;
+            CustId = 2;
         }
     }
 
@@ -85,7 +80,9 @@ public class Movetowindow : MonoBehaviour
             if (linePoint1.GetComponent<CustomerLine>().spot1 == false && check == false)
             {
                 spotcheck = true;
+                CustId -= 1;
                 sameId = CustId;
+                GameObject.FindGameObjectWithTag("CustomerWindow").GetComponent<GradeOrderInput>().addCustomer(this);
             }
             else if (linePoint1.GetComponent<CustomerLine>().spot1 == true && linePoint2.GetComponent<CustomerLine>().spot2 == false)
             {
@@ -100,150 +97,79 @@ public class Movetowindow : MonoBehaviour
                     if(linePoint1.GetComponent<CustomerLine>().spot1 == false)
                     {
                         spotcheck = true;
+                        CustId -= 1;
                         sameId = CustId;
+                        GameObject.FindGameObjectWithTag("CustomerWindow").GetComponent<GradeOrderInput>().addCustomer(this);
                     }
                 }
             }
         }
-        if (CustId == 1)
-        {
             //first direction brings toward center of path and changes sprite
-            if (check == false && spotcheck == true)
-            {
-                float delta = firstPoint.transform.position.z - transform.position.z;
+        if (check == false && spotcheck == true)
+        {
+            float delta = firstPoint.transform.position.z - transform.position.z;
 
-                customer.MovePosition(new Vector3(
-                    transform.position.x,
-                    transform.position.y,
-                    transform.position.z + delta * Speed * Time.deltaTime));
-                if (customer.transform.position.z >= firstPoint.transform.position.z - 2f)
-                {
-                    check = true;
-                    customerRender.sprite = frontFace;
-                }
+            customer.MovePosition(new Vector3(
+                transform.position.x,
+                transform.position.y,
+                transform.position.z + delta * Speed * Time.deltaTime));
+            if (customer.transform.position.z >= firstPoint.transform.position.z - 2f)
+            {
+                check = true;
+                customerRender.sprite = frontFace;
             }
-            //second direction that brings the customer towards the window
-            if (check == true && check2 == false)
-            {
-                float delta = secondPoint.transform.position.x - transform.position.x;
+        }
+        //second direction that brings the customer towards the window
+        if (check == true && check2 == false)
+        {
+            float delta = secondPoint.transform.position.x - transform.position.x;
 
-                customer.MovePosition(new Vector3(
-                    transform.position.x + delta * Speed * Time.deltaTime,
-                    transform.position.y,
-                    transform.position.z));
-                if (customer.transform.position.x <= secondPoint.transform.position.x + .5f)
-                {
-                    this.transform.position = new Vector3(customer.transform.position.x, customer.transform.position.y, customer.transform.position.z + 0.3f);
-                    check2 = true;
-                    spawnCheck = true;
-                    if (spawnCheck == true)
-                    {
-                        Debug.Log("A new customer has arrived!");
-                        SpawnCustomer();
-                        spawnCheck = false;
-                    }
-                }
-            }
-            //third direction that makes customer change sprite then move to despawn point
-            if (check3 == true && check4 == false)
+            customer.MovePosition(new Vector3(
+                transform.position.x + delta * Speed * Time.deltaTime,
+                transform.position.y,
+                transform.position.z));
+            if (customer.transform.position.x <= secondPoint.transform.position.x + .5f)
             {
-                float delta = thirdPoint.transform.position.x - transform.position.x;
-
-                customer.MovePosition(new Vector3(
-                    transform.position.x + delta * Speed * Time.deltaTime,
-                    transform.position.y,
-                    transform.position.z));
-                if (customer.transform.position.x >= thirdPoint.transform.position.x - 1f)
+                this.transform.position = new Vector3(customer.transform.position.x, customer.transform.position.y, customer.transform.position.z + 0.3f);
+                check2 = true;
+                spawnCheck = true;
+                if (spawnCheck == true)
                 {
-                    check4 = true;
-                    customerRender.sprite = sideFace;
-                }
-            }
-            //fourth direction that makes the customer move offscreen, despawn, and spawn new customer
-            if (check4 == true)
-            {
-                Speed = 0.35f;
-                float delta = fourthPoint.transform.position.z - transform.position.z;
-
-                customer.MovePosition(new Vector3(
-                    transform.position.x,
-                    transform.position.y,
-                    transform.position.z + delta * Speed * Time.deltaTime));
-                if (customer.transform.position.z >= fourthPoint.transform.position.z - 1.7f)
-                {
-                    Destroy(realCustomer);
+                    Debug.Log("A new customer has arrived!");
+                    SpawnCustomer();
+                    spawnCheck = false;
                 }
             }
         }
-        else if(CustId == 2)
+        //third direction that makes customer change sprite then move to despawn point
+        if (check3 == true && check4 == false)
         {
-            //first direction brings toward center of path and changes sprite
-            if (check11 == false && spotcheck == true)
-            {
-                float delta = firstPoint.transform.position.z - transform.position.z;
+            CustId = 1;
+            float delta = thirdPoint.transform.position.x - transform.position.x;
 
-                customer.MovePosition(new Vector3(
-                    transform.position.x,
-                    transform.position.y,
-                    transform.position.z + delta * Speed * Time.deltaTime));
-                if (customer.transform.position.z >= firstPoint.transform.position.z - 2f)
-                {
-                    check11 = true;
-                    customerRender.sprite = frontFace;
-                }
+            customer.MovePosition(new Vector3(
+                transform.position.x + delta * Speed * Time.deltaTime,
+                transform.position.y,
+                transform.position.z));
+            if (customer.transform.position.x >= thirdPoint.transform.position.x - 1f)
+            {
+                check4 = true;
+                customerRender.sprite = sideFace;
             }
-            //second direction that brings the customer towards the window
-            if (check11 == true && check12 == false)
+        }
+        //fourth direction that makes the customer move offscreen, despawn, and spawn new customer
+        if (check4 == true)
+        {
+            Speed = 0.35f;
+            float delta = fourthPoint.transform.position.z - transform.position.z;
+
+            customer.MovePosition(new Vector3(
+                transform.position.x,
+                transform.position.y,
+                transform.position.z + delta * Speed * Time.deltaTime));
+            if (customer.transform.position.z >= fourthPoint.transform.position.z - 1.7f)
             {
-                float delta = secondPoint.transform.position.x - transform.position.x;
-
-                customer.MovePosition(new Vector3(
-                    transform.position.x + delta * Speed * Time.deltaTime,
-                    transform.position.y,
-                    transform.position.z));
-                if (customer.transform.position.x <= secondPoint.transform.position.x + .5f)
-                {
-                    this.transform.position = new Vector3(customer.transform.position.x, customer.transform.position.y, customer.transform.position.z + 0.3f);
-                    check12 = true;
-                    spawnCheck = true;
-                    if (spawnCheck == true)
-                    {
-                        Debug.Log("A new customer has arrived!");
-                        SpawnCustomer();
-                        spawnCheck = false;
-                    }
-                }
-            }
-            //third direction that makes customer change sprite then move to despawn point
-            if (check13 == true && check14 == false)
-            {
-
-                float delta = thirdPoint.transform.position.x - transform.position.x;
-
-                customer.MovePosition(new Vector3(
-                    transform.position.x + delta * Speed * Time.deltaTime,
-                    transform.position.y,
-                    transform.position.z));
-                if (customer.transform.position.x >= thirdPoint.transform.position.x - 1f)
-                {
-                    check14 = true;
-                    customerRender.sprite = sideFace;
-                }
-            }
-            //fourth direction that makes the customer move offscreen, despawn, and spawn new customer
-            if (check14 == true)
-            {
-                Speed = 0.35f;
-                float delta = fourthPoint.transform.position.z - transform.position.z;
-
-                customer.MovePosition(new Vector3(
-                    transform.position.x,
-                    transform.position.y,
-                    transform.position.z + delta * Speed * Time.deltaTime));
-                if (customer.transform.position.z >= fourthPoint.transform.position.z - 1.7f)
-                {
-                    Destroy(realCustomer);
-                }
+                Destroy(realCustomer);
             }
         }
     }
@@ -255,14 +181,20 @@ public class Movetowindow : MonoBehaviour
             tipReduce -= 0.01f * Time.deltaTime;
             tip = CustomerOrder.foodsCostForCustomer * tipReduce;
        }
-       if (check12 == true && check13 == false)
+
+       if(CustId == 1)
        {
-            tipReduce -= 0.01f * Time.deltaTime;
-            tip = CustomerOrder.foodsCostForCustomer * tipReduce;
+            sameId = 1;
        }
-
+       else if (CustId == 2)
+       {
+           sameId = 2;
+       }
+       else if (CustId == 0)
+        {
+            sameId = 1;
+        }
         showid = sameId;
-
     }
 
     //spawns a new customer at the spawn point
@@ -281,26 +213,12 @@ public class Movetowindow : MonoBehaviour
         tipText.enabled = true;
         tipText.text = "You earned a $" + tip.ToString() + " tip";
     }
-    public void CompleteCustomerCorrect2()
-    {
-        completeSound.Play();
-        check13 = true;
-        tip = Mathf.Round(tip * 100.0f) * 0.01f;
-        MoneyTracker.UserCash += CustomerOrder.foodsCostForCustomer + tip;
-        tipText.enabled = true;
-        tipText.text = "You earned a $" + tip.ToString() + " tip";
-    }
 
     //if player runs out of time a fail sound will play
     public void CompleteCustomerTimeRanOut()
     {
         failSound.Play();
         check3 = true;
-    }
-    public void CompleteCustomerTimeRanOut2()
-    {
-        failSound.Play();
-        check13 = true;
     }
 
     //randomizes the customers sprites
