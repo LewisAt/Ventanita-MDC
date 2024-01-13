@@ -16,7 +16,7 @@ public class RandFoodSpawner : MonoBehaviour
             num = Random.Range(0, 2);
             randX = Random.Range(-2f, 2f);
             randZ = Random.Range(-2f, 2f);
-            Vector3 pos = new Vector3(randX, transform.position.y,randZ);
+            Vector3 pos = new Vector3(0, this.transform.position.y,0);
             Instantiate(rawFood[num], pos, Quaternion.identity);
         }
     }

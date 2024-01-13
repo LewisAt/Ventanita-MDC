@@ -64,6 +64,7 @@ public class cookFood : MonoBehaviour
 
             }
 
+
         }
     }
     private void OnCollisionExit(Collision collision)

@@ -1,24 +1,26 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PanManager : MonoBehaviour
 {
     public GameObject[] cookableResults;
     public GameObject[] cookableRawFood;
+    spacePos[] cookingPos;
     GameObject cookingResult;
     public GameObject foodText;
-    foodIdentifier[] cookableRawScripts;
-    foodIdentifier collidedFoodScript;
+    rawPlaceHolder[] cookableRawScripts;
+    rawPlaceHolder collidedFoodScript;
     Burning burnCanceled;
 
     int upgradedCookTime;
     public int defaultCookTime;
     int confirmedCookTime;
-    int foodCooking = 0;
+    [HideInInspector]
+    static public int foodCooking = 0;
     public int MAXFood;
     bool isCookable;
-    // Start is called before the first frame update
     void Start()
     {
         addScripts();
@@ -28,17 +30,30 @@ public class PanManager : MonoBehaviour
     void OnCollisionEnter(Collision collision)
     {
         bool HasRaw;
-        if (collision.gameObject.GetComponent<rawPlaceHolder>() != null)
+        bool HasSpace = isSpace();
+        GameObject foodCol = collision.transform.GetChild(0).gameObject;
+
+        if (foodCol.GetComponent<rawPlaceHolder>() != null)
         {
-            collidedFoodScript = collision.gameObject.GetComponent<foodIdentifier>();
+            collidedFoodScript = foodCol.GetComponent<rawPlaceHolder>();
             HasRaw = true;
         }
         else HasRaw = false;
-        if (collision.gameObject.tag == "food" && HasRaw)
+        if (foodCol.tag == "food" && HasRaw && foodCooking < MAXFood && HasSpace && collision.gameObject.GetComponent<LaldleTrigger>().isLaldleFull)
         {
+            foodCol.transform.parent = null;
+            collision.gameObject.GetComponent<LaldleTrigger>().isLaldleFull = false;
             canCook();
-            if(isCookable && foodCooking < MAXFood) addBurning(collision.gameObject);
+            if (isCookable) addBurning(foodCol);
+
+        }/*
+        else if (foodCol.GetComponent<rawPlaceHolder>() != null)
+        {
+            print("no");
+            foodCol.transform.position = new Vector3(discardPos.transform.position.x, discardPos.transform.position.y, discardPos.transform.position.z);
         }
+        */
+
     }
     private void OnCollisionExit(Collision collision)
     {
@@ -55,15 +70,21 @@ public class PanManager : MonoBehaviour
             foodCooking--;
             burnCanceled.foodReset();
             Destroy(burnCanceled);
+
         }
     }
 
     void addScripts()
     {
-        cookableRawScripts = new foodIdentifier[cookableRawFood.Length];
+        cookableRawScripts = new rawPlaceHolder[cookableRawFood.Length];
+        cookingPos = new spacePos[this.gameObject.transform.childCount];
         for (int i = 0; i < cookableRawFood.Length; i++)
         {
-            cookableRawScripts[i] = cookableRawFood[i].GetComponent<foodIdentifier>();
+            cookableRawScripts[i] = cookableRawFood[i].GetComponent<rawPlaceHolder>();
+        }
+        for (int i = 0; i < this.gameObject.transform.childCount; i++)
+        {
+            cookingPos[i] = this.gameObject.transform.GetChild(i).GetComponent<spacePos>();
         }
     }
 
@@ -71,13 +92,36 @@ public class PanManager : MonoBehaviour
     {
         foodCooking++;
         Burning burning = food.AddComponent<Burning>();
+        findSpace(burning);
         burning.startCooking(foodText, cookingResult, confirmedCookTime);
+    }
+    bool isSpace()
+    {
+        for (int i = 0; i < cookingPos.Length; i++)
+        {
+            if (!cookingPos[i].hasFood)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+    void findSpace(Burning foodsBurning)
+    {
+        for(int i = 0; i < cookingPos.Length; i++)
+        {
+            if (!cookingPos[i].hasFood)
+            {
+                foodsBurning.TakeSpace(cookingPos[i].gameObject);
+                return;
+            }
+        }
     }
     void canCook()
     {
         for (int i = 0; i < cookableRawFood.Length; i++)
         {
-            if (collidedFoodScript.food == cookableRawScripts[i].food)
+            if (collidedFoodScript.rawFood == cookableRawScripts[i].rawFood)
             {
                 cookingResult = cookableResults[i];
                 isCookable = true;

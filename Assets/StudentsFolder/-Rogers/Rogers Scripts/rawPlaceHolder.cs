@@ -4,5 +4,5 @@ using UnityEngine;
 
 public class rawPlaceHolder : MonoBehaviour
 {
-    public bool isRaw = false;
+    public foodIdentifier.typesOfFood rawFood;
 }

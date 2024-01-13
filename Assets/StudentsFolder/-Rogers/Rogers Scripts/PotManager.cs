@@ -14,8 +14,8 @@ public class PotManager : MonoBehaviour
     MeshRenderer thisMeshRend;
     public MeshRenderer cookingMeshRend;
     public Mesh restState;
-    foodIdentifier[] cookableRawScripts;
-    foodIdentifier collidedFoodScript;
+    rawPlaceHolder[] cookableRawScripts;
+    rawPlaceHolder collidedFoodScript;
     Coroutine lastCoroutine;
     bool isCooking;
     public Slider cookProgSlider;
@@ -52,7 +52,7 @@ public class PotManager : MonoBehaviour
         bool HasRaw;
         if (collision.gameObject.GetComponent<rawPlaceHolder>() != null)
         {
-            collidedFoodScript = collision.gameObject.GetComponent<foodIdentifier>();
+            collidedFoodScript = collision.gameObject.GetComponent<rawPlaceHolder>();
             HasRaw = true;
         }
         else HasRaw = false;
@@ -77,7 +77,7 @@ public class PotManager : MonoBehaviour
     {
         for (int i = 0; i < cookableRawFood.Length; i++)
         {
-            if (collidedFoodScript.food == cookableRawScripts[i].food)
+            if (collidedFoodScript.rawFood == cookableRawScripts[i].rawFood)
             {
                 cookingResult = cookableResults[i];
                 return true;
@@ -87,10 +87,10 @@ public class PotManager : MonoBehaviour
     }
     void addScripts()
     {
-        cookableRawScripts = new foodIdentifier[cookableRawFood.Length];
+        cookableRawScripts = new rawPlaceHolder[cookableRawFood.Length];
         for (int i = 0; i < cookableRawFood.Length; i++)
         {
-            cookableRawScripts[i] = cookableRawFood[i].GetComponent<foodIdentifier>();
+            cookableRawScripts[i] = cookableRawFood[i].GetComponent<rawPlaceHolder>();
         }
     }
 
@@ -108,7 +108,9 @@ public class PotManager : MonoBehaviour
     }
     void getBoiled()
     {
-        Instantiate(cookingResult, food.transform.position, Quaternion.identity);
+        GameObject cookedFood;
+        cookedFood = Instantiate(cookingResult, food.transform.position, Quaternion.identity);
+        cookedFood.AddComponent<DestroyOnPickup>();
         StopCoroutine(lastCoroutine);
         cookProgSlider.gameObject.SetActive(false);
         Destroy(food);
