@@ -260,7 +260,7 @@ public class Movetowindow : MonoBehaviour
     }
     IEnumerator SpawnStart()
     {
-        yield return new WaitForSeconds(6f);
+        yield return new WaitForSeconds(7f);
         SpawnCustomer();
     }
 
