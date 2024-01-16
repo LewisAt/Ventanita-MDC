@@ -41,7 +41,8 @@ public class Movetowindow : MonoBehaviour
     private bool check3= false;
     private bool check4= false;
 
-    private bool spawnCheck = false;
+    private bool exCheck = true;
+    private bool spawnCheck = true;
 
     //Customer waits for this time then leaves if takes too long - money and tip payed when order complete
     float tipReduce = 0.3f;
@@ -77,7 +78,7 @@ public class Movetowindow : MonoBehaviour
     {
         if(spotcheck == false)
         {
-            if (linePoint1.GetComponent<CustomerLine>().spot1 == false && check == false)
+            if (linePoint1.GetComponent<CustomerLine>().spot1 == false && check == false && CustId == 1)
             {
                 spotcheck = true;
                 CustId -= 1;
@@ -86,6 +87,11 @@ public class Movetowindow : MonoBehaviour
             }
             else if (linePoint1.GetComponent<CustomerLine>().spot1 == true && linePoint2.GetComponent<CustomerLine>().spot2 == false)
             {
+                if(exCheck == true && CustId >= 2)
+                {
+                    CustId -= 1;
+                    exCheck = false;
+                }
                 float delta = linePoint2.transform.position.z - transform.position.z;
 
                 customer.MovePosition(new Vector3(
@@ -94,9 +100,30 @@ public class Movetowindow : MonoBehaviour
                     transform.position.z + delta * Speed * Time.deltaTime));
                 if (customer.transform.position.z >= linePoint2.transform.position.z - 2f)
                 {
+
                     if(linePoint1.GetComponent<CustomerLine>().spot1 == false)
                     {
                         spotcheck = true;
+                        CustId -= 1;
+                        sameId = CustId;
+                        exCheck = true;
+                        GameObject.FindGameObjectWithTag("CustomerWindow").GetComponent<GradeOrderInput>().addCustomer(this);
+                    }
+                }
+            }
+            else if (linePoint1.GetComponent<CustomerLine>().spot1 == true && linePoint2.GetComponent<CustomerLine>().spot2 == true &&
+                linePoint3.GetComponent<CustomerLine>().spot3 == false && CustId == 2)
+            {
+                float delta = linePoint3.transform.position.z - transform.position.z;
+
+                customer.MovePosition(new Vector3(
+                    transform.position.x,
+                    transform.position.y,
+                    transform.position.z + delta * Speed * Time.deltaTime));
+                if (customer.transform.position.z >= linePoint3.transform.position.z - 2f)
+                {
+                    if (linePoint1.GetComponent<CustomerLine>().spot1 == true && linePoint2.GetComponent<CustomerLine>().spot2 == false)
+                    {
                         CustId -= 1;
                         sameId = CustId;
                         GameObject.FindGameObjectWithTag("CustomerWindow").GetComponent<GradeOrderInput>().addCustomer(this);
@@ -132,6 +159,7 @@ public class Movetowindow : MonoBehaviour
             {
                 this.transform.position = new Vector3(customer.transform.position.x, customer.transform.position.y, customer.transform.position.z + 0.3f);
                 check2 = true;
+                /*
                 spawnCheck = true;
                 if (spawnCheck == true)
                 {
@@ -139,12 +167,12 @@ public class Movetowindow : MonoBehaviour
                     SpawnCustomer();
                     spawnCheck = false;
                 }
+                */
             }
         }
         //third direction that makes customer change sprite then move to despawn point
         if (check3 == true && check4 == false)
         {
-            CustId = 1;
             float delta = thirdPoint.transform.position.x - transform.position.x;
 
             customer.MovePosition(new Vector3(
@@ -172,6 +200,24 @@ public class Movetowindow : MonoBehaviour
                 Destroy(realCustomer);
             }
         }
+
+        //Spawn Customers
+        if (linePoint3.GetComponent<CustomerLine>().spot3 == false && linePoint2.GetComponent<CustomerLine>().spot2 == false&& 
+            linePoint1.GetComponent<CustomerLine>().spot1 == true && spawnCheck == true && CustId == 0)
+        {
+            StartCoroutine(SpawnStart());
+            spawnCheck = false;
+            Debug.Log("This works 1");
+        }
+        
+        else if (linePoint3.GetComponent<CustomerLine>().spot3 == false && linePoint2.GetComponent<CustomerLine>().spot2 == true &&
+            linePoint1.GetComponent<CustomerLine>().spot1 == true && spawnCheck == true && CustId == 1)
+        {
+            StartCoroutine(SpawnStart());
+            spawnCheck = false;
+            Debug.Log("This works 2");
+        }
+        
     }
     private void Update()
     {
@@ -182,17 +228,17 @@ public class Movetowindow : MonoBehaviour
             tip = CustomerOrder.foodsCostForCustomer * tipReduce;
        }
 
-       if(CustId == 1)
-       {
-            sameId = 1;
-       }
-       else if (CustId == 2)
-       {
-           sameId = 2;
-       }
-       else if (CustId == 0)
+        if (CustId == 1)
         {
             sameId = 1;
+        }
+        else if (CustId == 2)
+        {
+            sameId = 2;
+        }
+        else if (CustId == 0)
+        {
+            sameId = 2;
         }
         showid = sameId;
     }
@@ -200,7 +246,22 @@ public class Movetowindow : MonoBehaviour
     //spawns a new customer at the spawn point
     void SpawnCustomer()
     {
-        Instantiate(realCustomer, spawnPoint.transform.position, spawnPoint.transform.rotation);
+        if (linePoint3.GetComponent<CustomerLine>().spot3 == false && linePoint2.GetComponent<CustomerLine>().spot2 == false &&
+            linePoint1.GetComponent<CustomerLine>().spot1 == true && CustId == 0)
+        {
+            Instantiate(realCustomer, spawnPoint.transform.position, spawnPoint.transform.rotation);
+        }
+        else if (linePoint3.GetComponent<CustomerLine>().spot3 == false && linePoint2.GetComponent<CustomerLine>().spot2 == true &&
+            linePoint1.GetComponent<CustomerLine>().spot1 == true && CustId == 1)
+        {
+            Instantiate(realCustomer, spawnPoint.transform.position, spawnPoint.transform.rotation);
+        }
+        spawnCheck = true;
+    }
+    IEnumerator SpawnStart()
+    {
+        yield return new WaitForSeconds(7f);
+        SpawnCustomer();
     }
 
     //when customer order complete gives player a sound notification, money, and tip.

@@ -13,7 +13,6 @@ public class PlateSpawn : MonoBehaviour
     private GameObject spawnPlate;
     public float spawnTime = 5;
     public bool objIn = false;
-    private bool waitP = false;
     public GameObject player;
     private XROrigin xrOrigin;
     private XRController playerController;

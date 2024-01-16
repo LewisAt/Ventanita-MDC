@@ -68,11 +68,10 @@ public class GradeOrderInput : MonoBehaviour
 
             if (CustomerTimer <= 0)
             {
-                if(Movetowindow.sameId == 1)
+                if(Movetowindow.sameId == 2)
                 {
                     customer.CompleteCustomerTimeRanOut();
                     resetIcons();
-                    Debug.Log("this works");
                 }
             }
         }
@@ -163,7 +162,7 @@ public class GradeOrderInput : MonoBehaviour
         if (mealAccuracyCount == 4) //Verifies if the customer is correct or not by int comparison added above
         {
             StopCoroutine(CustomerTimerCoroutine);
-            if(Movetowindow.sameId == 1)
+            if(Movetowindow.sameId == 2)
             {
                 customer.CompleteCustomerCorrect();
             }
