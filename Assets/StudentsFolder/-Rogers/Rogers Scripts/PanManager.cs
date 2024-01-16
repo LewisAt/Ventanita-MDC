@@ -31,7 +31,7 @@ public class PanManager : MonoBehaviour
     {
         bool HasRaw;
         bool HasSpace = isSpace();
-        GameObject foodCol = collision.transform.GetChild(0).gameObject;
+        GameObject foodCol = collision.gameObject;
 
         if (foodCol.GetComponent<rawPlaceHolder>() != null)
         {
@@ -39,20 +39,13 @@ public class PanManager : MonoBehaviour
             HasRaw = true;
         }
         else HasRaw = false;
-        if (foodCol.tag == "food" && HasRaw && foodCooking < MAXFood && HasSpace && collision.gameObject.GetComponent<LaldleTrigger>().isLaldleFull)
+        if (foodCol.tag == "food" && HasRaw && foodCooking < MAXFood && HasSpace)
         {
             foodCol.transform.parent = null;
-            collision.gameObject.GetComponent<LaldleTrigger>().isLaldleFull = false;
             canCook();
             if (isCookable) addBurning(foodCol);
 
-        }/*
-        else if (foodCol.GetComponent<rawPlaceHolder>() != null)
-        {
-            print("no");
-            foodCol.transform.position = new Vector3(discardPos.transform.position.x, discardPos.transform.position.y, discardPos.transform.position.z);
         }
-        */
 
     }
     private void OnCollisionExit(Collision collision)
