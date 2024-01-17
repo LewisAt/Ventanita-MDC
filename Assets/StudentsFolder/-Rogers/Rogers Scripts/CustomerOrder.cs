@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -31,6 +32,7 @@ public class CustomerOrder : MonoBehaviour
     public string side2;
 
     public string MealDescription;
+
 
 
     //string riceDescription = "Something about Rice";
@@ -100,6 +102,7 @@ public class CustomerOrder : MonoBehaviour
                 MealName += "Rabo Encendido";
                 MainDescription = "something about Rabo";
                 main = "Rabo Encendido";
+
                 break;
 
             case MainFoods.Fricase:
