@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEditor.UI;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -27,31 +28,23 @@ public class Testingbuttons : MonoBehaviour
         highlight = Color.yellow;
         pressed = Color.red;
         selected = Color.green;
+
+        CreateToggle();
     }
     // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
-        if (myImage.sprite != null)
-        {
-            CreateToggle();
-            IdentifyFood();
-        }
-        else
-        {
-            if (toggle.onValueChanged.GetPersistentEventCount() > 0)
-            {
-                toggle.onValueChanged.RemoveAllListeners();
-                Destroy(GetComponent<Toggle>());
-            }
-        }
+        IdentifyFood();
     }
 
     public void CreateToggle()
     {
-        
         parent = transform.parent;
-        parentImage = parent.GetComponent<Image>();
-        if (toggle != null) return;
+        if (parent.GetComponent<Image>() != null )
+        {
+            parentImage = parent.GetComponent<Image>();
+        }
+
         this.AddComponent<Toggle>();
         toggle = GetComponent<Toggle>();
         toggleColor = toggle.colors;
@@ -65,7 +58,6 @@ public class Testingbuttons : MonoBehaviour
 
     public void IdentifyFood()
     {
-        if (toggle.onValueChanged.GetPersistentEventCount() > 0) { return; }
         if (myImage.sprite.name == "Croquettas")
         {
             toggle.onValueChanged.AddListener(delegate { FoodExplanation.Croquetas(); });
