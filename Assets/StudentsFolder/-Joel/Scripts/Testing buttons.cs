@@ -14,6 +14,9 @@ public class Testingbuttons : MonoBehaviour
     private Image parentImage;
     private Image myImage;
 
+    private bool check;
+
+    public int numOfListners = 0;
     private ColorBlock toggleColor;
     private Color normal;
     private Color highlight;
@@ -23,7 +26,7 @@ public class Testingbuttons : MonoBehaviour
     private void Start()
     {
         myImage = GetComponent<Image>();
-
+        check = false;
         normal = Color.white;
         highlight = Color.yellow;
         pressed = Color.red;
@@ -32,9 +35,19 @@ public class Testingbuttons : MonoBehaviour
         CreateToggle();
     }
     // Update is called once per frame
-    void LateUpdate()
+    void Update()
     {
-        IdentifyFood();
+        print(numOfListners);
+        if (myImage.sprite != null && check == false)
+        {
+            IdentifySlot();
+            check = true;
+        }
+        else if(myImage.sprite == null && true)
+        {
+            toggle.onValueChanged.RemoveAllListeners();
+            check = false;
+        }
     }
 
     public void CreateToggle()
@@ -56,35 +69,74 @@ public class Testingbuttons : MonoBehaviour
         toggle.targetGraphic = parentImage;
     }
 
-    public void IdentifyFood()
-    {
-        if (myImage.sprite.name == "Croquettas")
+    public void IdentifySlot()
+    { 
+        
+            print("Identify slot function is calling");
+        if (gameObject.tag == "slot1")
         {
-            toggle.onValueChanged.AddListener(delegate { FoodExplanation.Croquetas(); });
+            Slot1();
         }
-        else if (myImage.sprite.name == "frijoles")
+        else if (gameObject.tag == "slot2")
+        {
+            Slot2();
+        }
+        else if (gameObject.tag == "slot3" || gameObject.tag == "slot4")
+        {
+            Slot3();
+        }
+        
+    }
+
+    void Slot1()
+    {
+        print("slot 1 is calling");
+        if (myImage.sprite.name == "arroz")
+        {
+            toggle.onValueChanged.AddListener(delegate { FoodExplanation.ArrozBlanco(); });
+            numOfListners++;
+        }
+    }
+
+    void Slot2()
+    {
+        print("slot 2 is calling");
+        if (myImage.sprite.name == "frijoles")
         {
             toggle.onValueChanged.AddListener(delegate { FoodExplanation.FrijolesNegro(); });
+            numOfListners++;
         }
         else if (myImage.sprite.name == "fricase_de_pollo")
         {
             toggle.onValueChanged.AddListener(delegate { FoodExplanation.FricasseeDePollo(); });
-        }
-        else if (myImage.sprite.name == "Maduros")
-        {
-            toggle.onValueChanged.AddListener(delegate { FoodExplanation.PlatanoMaduros(); });
+            numOfListners++;
         }
         else if (myImage.sprite.name == "rabo_encendido")
         {
             toggle.onValueChanged.AddListener(delegate { FoodExplanation.RaboEncendido(); });
+            numOfListners++;
         }
-        else if (myImage.sprite.name == "arroz")
+        
+    }
+
+    void Slot3()
+    {
+        print("slot 3 is calling");
+
+        if (myImage.sprite.name == "Croquettas")
         {
-            toggle.onValueChanged.AddListener(delegate { FoodExplanation.ArrozBlanco(); });
+            toggle.onValueChanged.AddListener(delegate { FoodExplanation.Croquetas(); });
+            numOfListners++;
+        }
+        else if (myImage.sprite.name == "Maduros")
+        {
+            toggle.onValueChanged.AddListener(delegate { FoodExplanation.PlatanoMaduros(); });
+            numOfListners++;
         }
         else if (myImage.sprite.name == "tostones")
         {
             toggle.onValueChanged.AddListener(delegate { FoodExplanation.Tostones(); });
+            numOfListners++;
         }
     }
 }
