@@ -21,6 +21,7 @@ public class CustomerOrder : MonoBehaviour
     [HideInInspector]
 
     public float foodsCost;
+    public float TotalCost = 0;
     string MealName;
     //Get this one for the ui
     [HideInInspector]
@@ -62,7 +63,6 @@ public class CustomerOrder : MonoBehaviour
 
     public void StartFood() //uses enum to create the order's name with its number of sides and calculate its cost
     {
-        float TotalCost = 0;
         //coffee not yet added
         /*
         if (WantsCoffee)

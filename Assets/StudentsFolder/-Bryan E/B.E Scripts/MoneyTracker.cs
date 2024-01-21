@@ -19,6 +19,9 @@ public class MoneyTracker : MonoBehaviour
     public CustomerOrder customerOrder;
     public TMP_Text WarningSplash;
 
+    [SerializeField]
+    Plane_Ticket calc;
+
     //shows user current cash and sets the total amount of cash.
     void Update()
     {
@@ -39,7 +42,7 @@ public class MoneyTracker : MonoBehaviour
         {
             UpgradeMenu.SetActive(true);
             upgradeManager.GetComponent<UpgradeManager>().enableRay();
-
+            calc.Purchase();
         }
     }
 
