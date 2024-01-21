@@ -12,10 +12,12 @@ using UnityEngine.UI;
 //whether they match
 public class GradeOrderInput : MonoBehaviour
 {
+    [HideInInspector]
     public CustomerOrder[] possibleOrders;
     public CustomerOrder ActualOrder;
-    float moneyEarned;
+    public float moneyEarned;
     //public TMP_Text MoneyText;
+    DifficultyDirector difficultyDirector;
     private int CustomerTimer = 30;
     public TMP_Text LevelTimerText;
     public int mealAccuracyCount = 0;
@@ -27,6 +29,8 @@ public class GradeOrderInput : MonoBehaviour
     void Start()
     {
         CustomerTimerCoroutine = SubtrackSeconds();
+        difficultyDirector = GameObject.FindGameObjectWithTag("DifficultyDirector").GetComponent<DifficultyDirector>();
+        difficultyDirector.getDifficulty();
     }
 
     private Movetowindow customer;
@@ -275,6 +279,10 @@ public class GradeOrderInput : MonoBehaviour
         Side2Text.text = ActualOrder.side2;
 
     }
-
+    private void OnDestroy()
+    {
+        difficultyDirector.saveMoney(moneyEarned);
+        print("Scenes Gone");
+    }
 }
     
