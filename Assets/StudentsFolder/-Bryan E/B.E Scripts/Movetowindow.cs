@@ -207,7 +207,6 @@ public class Movetowindow : MonoBehaviour
         {
             StartCoroutine(SpawnStart());
             spawnCheck = false;
-            Debug.Log("This works 1");
         }
         
         else if (linePoint3.GetComponent<CustomerLine>().spot3 == false && linePoint2.GetComponent<CustomerLine>().spot2 == true &&
@@ -215,7 +214,6 @@ public class Movetowindow : MonoBehaviour
         {
             StartCoroutine(SpawnStart());
             spawnCheck = false;
-            Debug.Log("This works 2");
         }
         
     }
