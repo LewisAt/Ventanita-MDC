@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEditor.UI;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -42,7 +43,7 @@ public class Testingbuttons : MonoBehaviour
             IdentifySlot();
             check = true;
         }
-        else if(myImage.sprite == null && true)
+        else if (myImage.sprite == null && true)
         {
             toggle.onValueChanged.RemoveAllListeners();
             check = false;
@@ -52,7 +53,7 @@ public class Testingbuttons : MonoBehaviour
     public void CreateToggle()
     {
         parent = transform.parent;
-        if (parent.GetComponent<Image>() != null )
+        if (parent.GetComponent<Image>() != null)
         {
             parentImage = parent.GetComponent<Image>();
         }
@@ -69,9 +70,9 @@ public class Testingbuttons : MonoBehaviour
     }
 
     public void IdentifySlot()
-    { 
-        
-            print("Identify slot function is calling");
+    {
+
+        print("Identify slot function is calling");
         if (gameObject.tag == "slot1")
         {
             Slot1();
@@ -84,7 +85,7 @@ public class Testingbuttons : MonoBehaviour
         {
             Slot3();
         }
-        
+
     }
 
     void Slot1()
@@ -115,7 +116,7 @@ public class Testingbuttons : MonoBehaviour
             toggle.onValueChanged.AddListener(delegate { FoodExplanation.RaboEncendido(); });
             numOfListners++;
         }
-        
+
     }
 
     void Slot3()
@@ -139,3 +140,4 @@ public class Testingbuttons : MonoBehaviour
         }
     }
 }
+

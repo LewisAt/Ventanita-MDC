@@ -156,4 +156,12 @@ public class PlateServing : MonoBehaviour
             //Debug.Log("plate is not full yet");
         }
     }
+
+    public void Swipe()
+    {
+        xSides = 0;
+        mainFull = false;
+        sideFull = false;
+        isRice = false;
+    }
 }
