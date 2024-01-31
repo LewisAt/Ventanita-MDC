@@ -91,7 +91,7 @@ public class Testingbuttons : MonoBehaviour
     void Slot1()
     {
         print("slot 1 is calling");
-        if (myImage.sprite.name == "arroz")
+        if (myImage.sprite.name == "arroz_blanco")
         {
             toggle.onValueChanged.AddListener(delegate { FoodExplanation.ArrozBlanco(); });
             numOfListners++;
@@ -101,12 +101,12 @@ public class Testingbuttons : MonoBehaviour
     void Slot2()
     {
         print("slot 2 is calling");
-        if (myImage.sprite.name == "frijoles")
+        if (myImage.sprite.name == "Beans_complete")
         {
             toggle.onValueChanged.AddListener(delegate { FoodExplanation.FrijolesNegro(); });
             numOfListners++;
         }
-        else if (myImage.sprite.name == "fricase_de_pollo")
+        else if (myImage.sprite.name == "pollo")
         {
             toggle.onValueChanged.AddListener(delegate { FoodExplanation.FricasseeDePollo(); });
             numOfListners++;
@@ -128,12 +128,12 @@ public class Testingbuttons : MonoBehaviour
             toggle.onValueChanged.AddListener(delegate { FoodExplanation.Croquetas(); });
             numOfListners++;
         }
-        else if (myImage.sprite.name == "Maduros")
+        else if (myImage.sprite.name == "Plantano_Maduros_Complete_")
         {
             toggle.onValueChanged.AddListener(delegate { FoodExplanation.PlatanoMaduros(); });
             numOfListners++;
         }
-        else if (myImage.sprite.name == "tostones")
+        else if (myImage.sprite.name == "tostones_sat")
         {
             toggle.onValueChanged.AddListener(delegate { FoodExplanation.Tostones(); });
             numOfListners++;
