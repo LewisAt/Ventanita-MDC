@@ -16,7 +16,7 @@ public class InteractableActivation : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (Ladle.name == "ladle")
+        if (Ladle.name == "Ladle Variant 1")
         {
             XRGrabInteractable.GetComponent<XRGrabInteractable>().enabled = false;
         }
@@ -26,7 +26,7 @@ public class InteractableActivation : MonoBehaviour
 
     public void ActivateLadle()
     {
-        if (Ladle.name == "ladle")
+        if (Ladle.name == "Ladle Variant 1")
         {
             XRGrabInteractable.GetComponent<XRGrabInteractable>().enabled = true;
         }
