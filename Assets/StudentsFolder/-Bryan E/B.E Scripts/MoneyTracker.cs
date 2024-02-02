@@ -50,18 +50,16 @@ public class MoneyTracker : MonoBehaviour
     private void Awake()
     {
         WarningSplash.text = "Earn " + moneyNeeded.ToString() + "$\n or lose";
-        StartCoroutine(playWarning());
+        //StartCoroutine(playWarning());
     }
-    IEnumerator playWarning()
+    /*IEnumerator playWarning()
     {
         for(int i = 0; i < 13 ; i++) 
         {
             yield return new WaitForSeconds(0.4f);
             WarningSplash.gameObject.SetActive(!WarningSplash.gameObject.activeSelf);
-        }
-        
-            
-    }
+        }     
+    }*/
 
     //public void coffeePayment()
     //{
