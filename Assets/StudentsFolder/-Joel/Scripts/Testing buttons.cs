@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEditor.UI;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -42,7 +43,7 @@ public class Testingbuttons : MonoBehaviour
             IdentifySlot();
             check = true;
         }
-        else if(myImage.sprite == null && true)
+        else if (myImage.sprite == null && true)
         {
             toggle.onValueChanged.RemoveAllListeners();
             check = false;
@@ -52,7 +53,7 @@ public class Testingbuttons : MonoBehaviour
     public void CreateToggle()
     {
         parent = transform.parent;
-        if (parent.GetComponent<Image>() != null )
+        if (parent.GetComponent<Image>() != null)
         {
             parentImage = parent.GetComponent<Image>();
         }
@@ -69,9 +70,9 @@ public class Testingbuttons : MonoBehaviour
     }
 
     public void IdentifySlot()
-    { 
-        
-            print("Identify slot function is calling");
+    {
+
+        print("Identify slot function is calling");
         if (gameObject.tag == "slot1")
         {
             Slot1();
@@ -84,13 +85,13 @@ public class Testingbuttons : MonoBehaviour
         {
             Slot3();
         }
-        
+
     }
 
     void Slot1()
     {
         print("slot 1 is calling");
-        if (myImage.sprite.name == "arroz")
+        if (myImage.sprite.name == "arroz_blanco")
         {
             toggle.onValueChanged.AddListener(delegate { FoodExplanation.ArrozBlanco(); });
             numOfListners++;
@@ -100,12 +101,12 @@ public class Testingbuttons : MonoBehaviour
     void Slot2()
     {
         print("slot 2 is calling");
-        if (myImage.sprite.name == "frijoles")
+        if (myImage.sprite.name == "Beans_complete")
         {
             toggle.onValueChanged.AddListener(delegate { FoodExplanation.FrijolesNegro(); });
             numOfListners++;
         }
-        else if (myImage.sprite.name == "fricase_de_pollo")
+        else if (myImage.sprite.name == "pollo")
         {
             toggle.onValueChanged.AddListener(delegate { FoodExplanation.FricasseeDePollo(); });
             numOfListners++;
@@ -115,7 +116,7 @@ public class Testingbuttons : MonoBehaviour
             toggle.onValueChanged.AddListener(delegate { FoodExplanation.RaboEncendido(); });
             numOfListners++;
         }
-        
+
     }
 
     void Slot3()
@@ -127,15 +128,16 @@ public class Testingbuttons : MonoBehaviour
             toggle.onValueChanged.AddListener(delegate { FoodExplanation.Croquetas(); });
             numOfListners++;
         }
-        else if (myImage.sprite.name == "Maduros")
+        else if (myImage.sprite.name == "Plantano_Maduros_Complete_")
         {
             toggle.onValueChanged.AddListener(delegate { FoodExplanation.PlatanoMaduros(); });
             numOfListners++;
         }
-        else if (myImage.sprite.name == "tostones")
+        else if (myImage.sprite.name == "tostones_sat")
         {
             toggle.onValueChanged.AddListener(delegate { FoodExplanation.Tostones(); });
             numOfListners++;
         }
     }
 }
+

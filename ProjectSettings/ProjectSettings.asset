@@ -44,7 +44,7 @@ PlayerSettings:
     duration: 2
   - logo: {fileID: 21300000, guid: 146b9a37b9ef664448daddb4aa8cecba, type: 3}
     duration: 2.38
-  m_VirtualRealitySplashScreen: {fileID: 2800000, guid: 01768a3b0d6846e4e9c5e40d9d90e831, type: 3}
+  m_VirtualRealitySplashScreen: {fileID: 2800000, guid: 6419f191503c70146a8e791a13c9285b, type: 3}
   m_HolographicTrackingLossScreen: {fileID: 0}
   defaultScreenWidth: 1920
   defaultScreenHeight: 1080
@@ -159,7 +159,7 @@ PlayerSettings:
   androidMaxAspectRatio: 2.1
   applicationIdentifier:
     Android: com.MDC.VentanitaB07
-    Standalone: com.DefaultCompany.Ventanita-Unity-Project
+    Standalone: com.MDC.Ventanita-B07
   buildNumber:
     Standalone: 0
     iPhone: 0
@@ -829,9 +829,9 @@ PlayerSettings:
   webGLMemoryGeometricGrowthCap: 96
   webGLPowerPreference: 2
   scriptingDefineSymbols:
-    Android: USE_INPUT_SYSTEM_POSE_CONTROL;CROSS_PLATFORM_INPUT
-    Standalone: USE_INPUT_SYSTEM_POSE_CONTROL;CROSS_PLATFORM_INPUT
-    Windows Store Apps: USE_INPUT_SYSTEM_POSE_CONTROL
+    Android: USE_INPUT_SYSTEM_POSE_CONTROL;CROSS_PLATFORM_INPUT;USE_INPUT_SYSTEM_POSE_CONTROL;USE_INPUT_SYSTEM_POSE_CONTROL;USE_INPUT_SYSTEM_POSE_CONTROL
+    Standalone: USE_INPUT_SYSTEM_POSE_CONTROL;CROSS_PLATFORM_INPUT;USE_INPUT_SYSTEM_POSE_CONTROL;USE_INPUT_SYSTEM_POSE_CONTROL;USE_INPUT_SYSTEM_POSE_CONTROL
+    Windows Store Apps: USE_INPUT_SYSTEM_POSE_CONTROL;USE_INPUT_SYSTEM_POSE_CONTROL;USE_INPUT_SYSTEM_POSE_CONTROL;USE_INPUT_SYSTEM_POSE_CONTROL
     iPhone: CROSS_PLATFORM_INPUT
   additionalCompilerArguments: {}
   platformArchitecture: {}
@@ -856,7 +856,7 @@ PlayerSettings:
   suppressCommonWarnings: 1
   allowUnsafeCode: 0
   useDeterministicCompilation: 1
-  selectedPlatform: 2
+  selectedPlatform: 0
   additionalIl2CppArgs: 
   scriptingRuntimeVersion: 1
   gcIncremental: 1
