@@ -36,7 +36,7 @@ public class GradeOrderInput : MonoBehaviour
     private Movetowindow customer;
     public void addCustomer(Movetowindow NewCustomer)
     {
-        if(Movetowindow.sameId == 0)
+        if (Movetowindow.sameId == 0)
         {
             customer = NewCustomer;
         }
@@ -46,7 +46,7 @@ public class GradeOrderInput : MonoBehaviour
     {
         //this starts grading when colliding with a plate
 
-        if (other.tag == "plate")
+        if (other.CompareTag("plate"))
         {
             other.GetComponent<plateIdentifier>();
             ConfirmOrder(other);
@@ -55,13 +55,13 @@ public class GradeOrderInput : MonoBehaviour
     }
     private void Update()
     {
-        
-        if(CustomerTimer <= 0)
+
+        if (CustomerTimer <= 0)
         {
             StopCoroutine(CustomerTimerCoroutine);
         }
     }
-   
+
     IEnumerator SubtrackSeconds()
     {
         while (true)
@@ -72,7 +72,7 @@ public class GradeOrderInput : MonoBehaviour
 
             if (CustomerTimer <= 0)
             {
-                if(Movetowindow.sameId == 2)
+                if (Movetowindow.sameId == 2)
                 {
                     customer.CompleteCustomerTimeRanOut();
                     resetIcons();
@@ -82,91 +82,14 @@ public class GradeOrderInput : MonoBehaviour
     }
     void ConfirmOrder(Collider givenPlate) //Grades the plate by comparing enums Main and Side, Side nums, Rice bool, and coffee(Not Yet Implemented)
     {
-        mealAccuracyCount = 0;
 
-        if (givenPlate.gameObject.GetComponent<plateIdentifier>().plateMain == ActualOrder.Mains)
-        {
-            mealAccuracyCount++;
-        }
-        else
-        {
-            FoodNameHeader.text = "Main is incorrect";
-        }
-
-        //checSides 1 
-        //Compares Side 1 Enum in players given plate with customers order and changes customer text to explain why incorrect
-        if (givenPlate.gameObject.GetComponent<plateIdentifier>().plateSide == ActualOrder.sides)
-        {
-            if (givenPlate.gameObject.GetComponent<plateIdentifier>().SideCount == ActualOrder.getNumOfSides())
-            {
-                mealAccuracyCount++;
-            }
-            else if (givenPlate.gameObject.GetComponent<plateIdentifier>().SideCount > ActualOrder.getNumOfSides())
-            {
-                FoodNameHeader.text = "Too much of the 1st side was given!";
-            }
-            else if (givenPlate.GetComponent<plateIdentifier>().SideCount < ActualOrder.getNumOfSides() && ActualOrder.getNumOfSides() != 0)
-            {
-                FoodNameHeader.text = "Too little of the 1st side was given";
-            }
-            else
-            {
-                FoodNameHeader.text = "1st Side portion is wrong";
-            }
-        }
-        else
-        {
-            FoodNameHeader.text = "Side is incorrect";
-        }
-
-        //2nd Sides coding
-        //Compares Side 2 Enum in players given plate with customers order and changes customer text to explain why incorrect
-        if (givenPlate.gameObject.GetComponent<plateIdentifier>().plateSide1 == ActualOrder.sides1)
-        {
-            if (givenPlate.gameObject.GetComponent<plateIdentifier>().SideCount1 == ActualOrder.getNumOfSides1())
-            {
-                mealAccuracyCount++;
-            }
-            else if (givenPlate.gameObject.GetComponent<plateIdentifier>().SideCount1 > ActualOrder.getNumOfSides1())
-            {
-                FoodNameHeader.text = "Too much of the 2nd side was given!";
-            }
-            else if (givenPlate.GetComponent<plateIdentifier>().SideCount1 < ActualOrder.getNumOfSides1() && ActualOrder.getNumOfSides1() != 0)
-            {
-                FoodNameHeader.text = "Too little of the 2nd side was given";
-            }
-            else
-            {
-                FoodNameHeader.text = "2nd Side portion is wrong";
-            }
-        }
-        else
-        {
-            FoodNameHeader.text = "2nd Side is incorrect";
-        }
-        //Coffee not yet implemented
-        /*
-        if (givenPlate.gameObject.GetComponent<plateIdentifier>().hasCoffee == ActualOrder.getCoffeeBool())
-        {
-            mealAccuracyCount++;
-        }
-        else
-           print("Coffee is incorrect");
-        */
-
-        //Compare Rice bool and changes customer text to explain why incorrect
-        if (givenPlate.gameObject.GetComponent<plateIdentifier>().hasRice == ActualOrder.hasRice)
-        {
-            mealAccuracyCount++;
-        }
-        else
-            FoodNameHeader.text = "Rice is incorrect";
-        //Checks if meal is correct
-        print(mealAccuracyCount + " out of 4");
-        if (mealAccuracyCount == 4) //Verifies if the customer is correct or not by int comparison added above
+        if (givenPlate.gameObject.GetComponent<plateIdentifier>().plateMain == ActualOrder.Mains
+            && givenPlate.gameObject.GetComponent<plateIdentifier>().plateSide == ActualOrder.sides
+            && givenPlate.gameObject.GetComponent<plateIdentifier>().plateSide1 == ActualOrder.sides1
+            && givenPlate.gameObject.GetComponent<plateIdentifier>().hasRice == ActualOrder.hasRice)
         {
             StopCoroutine(CustomerTimerCoroutine);
-            if(Movetowindow.sameId == 2)
+            if (Movetowindow.sameId == 2)
             {
                 customer.CompleteCustomerCorrect();
             }
@@ -176,7 +99,6 @@ public class GradeOrderInput : MonoBehaviour
             FoodNameHeader.text = "Correct";
             Destroy(givenPlate.gameObject);
             //Reward Player
-
         }
         else
         {
@@ -207,7 +129,7 @@ public class GradeOrderInput : MonoBehaviour
 
     }
 
-    
+
 
     /// <summary>
     /// //////////////////////////////////////////
@@ -285,4 +207,3 @@ public class GradeOrderInput : MonoBehaviour
         print("Scenes Gone");
     }
 }
-    
