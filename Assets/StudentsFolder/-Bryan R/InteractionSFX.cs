@@ -4,12 +4,19 @@ using UnityEngine;
 
 public class InteractionSFX : MonoBehaviour
 {
-    public AudioSource pickupSFX;
-    public AudioSource dropSFX;
+    public AudioSource sourcePickup;
+    public AudioSource sourceDropdown;
+    public AudioClip clipUp;
+    public AudioClip clipDown;
 
     // Start is called before the first frame update
-    void Start()
+    public void PlayPickupSFX()
     {
-        
+        sourcePickup.PlayOneShot(clipUp);
+    }
+
+    public void PlayDropDownSFX()
+    {
+        sourceDropdown.PlayOneShot(clipDown);
     }
 }
