@@ -10,11 +10,11 @@ public class DifficultyDirector : MonoBehaviour
     public CustomerOrder[] EasyOptions;
     public CustomerOrder[] MediumOptions;
     public CustomerOrder[] HardOptions;
-    float moneySaved;
+    float[] DifficultyGoal = { 500, 1000, 1500 };
+    int currentDiff = 0;
     bool difficultySet = false;
-    string difficulty;
-    int DayCount = 0;
     static bool DirectorExists = false;
+    //Prevents duplicate instances of itself
     protected void Awake()
     {
         if (DirectorExists == true)
@@ -27,6 +27,7 @@ public class DifficultyDirector : MonoBehaviour
             DirectorExists = true;
         }
     }
+    //Gets called by GradeOrderInput on Start
     public void getDifficulty()
     {
         thisScene = SceneManager.GetActiveScene();
@@ -35,40 +36,61 @@ public class DifficultyDirector : MonoBehaviour
             GameObject CustomerWindow;
             CustomerWindow = GameObject.FindGameObjectWithTag("CustomerWindow");
             orders = CustomerWindow.GetComponent<GradeOrderInput>();
-            print("Day: " + DayCount);
             setDifficulty();
             difficultySet = true;
         }
     }
+    //Gives Grade Order its difficulty depending on its difficult increment
     void setDifficulty()
     {
         //Easy
-        if (moneySaved < 500)
+        switch (currentDiff)
         {
-            orders.possibleOrders = new CustomerOrder[EasyOptions.Length]; 
-            orders.possibleOrders = EasyOptions;
-            difficulty = "Easy";
+            case 0: //Easy
+                orders.possibleOrders = new CustomerOrder[EasyOptions.Length];
+                orders.possibleOrders = EasyOptions;
+                break;
+            case 1: //Medium
+                orders.possibleOrders = new CustomerOrder[MediumOptions.Length];
+                orders.possibleOrders = MediumOptions;
+                break;
+            case 2: //Hard
+                orders.possibleOrders = new CustomerOrder[HardOptions.Length];
+                orders.possibleOrders = HardOptions;
+                break;
+                /*
+                if (currentDiff)
+                {
+                    orders.possibleOrders = new CustomerOrder[EasyOptions.Length]; 
+                    orders.possibleOrders = EasyOptions;
+                    difficulty = "Easy";
+                }
+                //Medium
+                else if(moneySaved < 1000 && moneySaved >= 500)
+                {
+                    orders.possibleOrders = new CustomerOrder[MediumOptions.Length];
+                    orders.possibleOrders = MediumOptions;
+                    difficulty = "Medium";
+                }
+                //Hard
+                else if(moneySaved >= 1000)
+                {
+                    orders.possibleOrders = new CustomerOrder[HardOptions.Length];
+                    orders.possibleOrders = HardOptions;
+                    difficulty = "Hard";
+                }
+                */
         }
-        //Medium
-        else if(moneySaved < 1000 && moneySaved >= 500)
-        {
-            orders.possibleOrders = new CustomerOrder[MediumOptions.Length];
-            orders.possibleOrders = MediumOptions;
-            difficulty = "Medium";
-        }
-        //Hard
-        else if(moneySaved >= 1000)
-        {
-            orders.possibleOrders = new CustomerOrder[HardOptions.Length];
-            orders.possibleOrders = HardOptions;
-            difficulty = "Hard";
-        }
-        print(difficulty);
     }
+    //Subtracts the money you earned after level and when difficults goal reaches zero higher the difficulty
     public void saveMoney(float moneyEarned)
     {
-        if (moneySaved < moneyEarned) moneySaved = moneyEarned;
-        print("Money Saved: " + moneySaved);
+        DifficultyGoal[currentDiff] = DifficultyGoal[currentDiff] - moneyEarned;
+        if (DifficultyGoal[currentDiff] <= 0 && currentDiff != 2) 
+        {
+            currentDiff++;
+        }
+        else print("Money Left: " + DifficultyGoal[currentDiff]);
         difficultySet = false;
         
     }

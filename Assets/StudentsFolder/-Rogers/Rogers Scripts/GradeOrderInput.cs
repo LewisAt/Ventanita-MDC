@@ -51,7 +51,22 @@ public class GradeOrderInput : MonoBehaviour
             other.GetComponent<plateIdentifier>();
             ConfirmOrder(other);
         }
-
+        else
+        {
+            other.GetComponent<Rigidbody>().AddForce(-transform.right * 100);
+        }
+    }
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.CompareTag("plate"))
+        {
+            other.GetComponent<plateIdentifier>();
+            ConfirmOrder(other);
+        }
+        else
+        {
+            other.GetComponent<Rigidbody>().AddForce(-transform.right * 100);
+        }
     }
     private void Update()
     {
@@ -208,6 +223,5 @@ public class GradeOrderInput : MonoBehaviour
     private void OnDestroy()
     {
         difficultyDirector.saveMoney(moneyEarned);
-        print("Scenes Gone");
     }
 }
