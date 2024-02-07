@@ -159,6 +159,10 @@ public class GradeOrderInput : MonoBehaviour
         RiceIcon.sprite = null;
         MainImageIcon.sprite = null;
         SideImageIcon.sprite = null;
+        RiceText.text = null;
+        MainText.text = null;
+        Side1Text.text = null;
+        Side2Text.text = null;
     }
     public void assignIcon(CustomerOrder CurrentlySelectedOrder)
     {
