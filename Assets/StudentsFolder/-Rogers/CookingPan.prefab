@@ -398,7 +398,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: d9442709fdac8a64b8549374286437c7, type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d9442709fdac8a64b8549374286437c7, type: 3}
       propertyPath: m_LocalScale.x
@@ -456,7 +456,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: CookingPan
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: -5754084199372789682, guid: d9442709fdac8a64b8549374286437c7, type: 3}
+    - {fileID: -7511558181221131132, guid: d9442709fdac8a64b8549374286437c7, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: d9442709fdac8a64b8549374286437c7, type: 3}
@@ -474,9 +476,6 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: d9442709fdac8a64b8549374286437c7, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 2760359287578244888}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: d9442709fdac8a64b8549374286437c7, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 3113577444451097847}
   m_SourcePrefab: {fileID: 100100000, guid: d9442709fdac8a64b8549374286437c7, type: 3}
 --- !u!4 &1413661957834727955 stripped
@@ -489,28 +488,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: d9442709fdac8a64b8549374286437c7, type: 3}
   m_PrefabInstance: {fileID: 1447044657283696120}
   m_PrefabAsset: {fileID: 0}
---- !u!64 &2760359287578244888
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1789484461982267561}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 5955163158442539997, guid: d9442709fdac8a64b8549374286437c7, type: 3}
 --- !u!114 &3113577444451097847
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -531,7 +508,6 @@ MonoBehaviour:
   - {fileID: 9009263712533920, guid: b3c46174a3035f24c8794e613529dc6e, type: 3}
   - {fileID: 5976516831830364249, guid: d658221ec0201a346b975892384828de, type: 3}
   - {fileID: 2156188604317076948, guid: f2701b2bd2dc20643afd49294a44294c, type: 3}
-  discardPos: {fileID: 0}
   foodText: {fileID: 6000610817524554941, guid: f10f141371e6bf64596389a2bb16ed42, type: 3}
   defaultCookTime: 10
   MAXFood: 4
