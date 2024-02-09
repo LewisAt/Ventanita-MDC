@@ -7,7 +7,7 @@ public class MenuController : MonoBehaviour
 {
     public void StartBtn()
     {
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene("Transplant");
     }
 
     public void Back2Menu()

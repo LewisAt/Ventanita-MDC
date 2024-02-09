@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 public class PausedScreen : MonoBehaviour
@@ -18,11 +17,9 @@ public class PausedScreen : MonoBehaviour
     }
 
     // Update is called once per frame
-    public void PauseButtonOnPressed(InputAction.CallbackContext context)
-    //void Update()
+    void Update()
     {
-        //if (Input.GetKeyDown(KeyCode.Escape)) 
-        if (context.performed)
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
             /*if(isPaused)
             {
@@ -55,7 +52,7 @@ public class PausedScreen : MonoBehaviour
     public void ToMenu()
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene("StartingMenuScene");
     }
 
     public void QuitGame()

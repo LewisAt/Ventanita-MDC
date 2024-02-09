@@ -12,10 +12,6 @@ public class plateIdentifier : MonoBehaviour
     [HideInInspector]
     public int SideCount = 0;
     [HideInInspector]
-    public SideFoods plateSide1;
-    [HideInInspector]
-    public int SideCount1 = 0;
-    [HideInInspector]
     public bool hasCoffee = false;
     [HideInInspector]
     public bool hasRice = false;
@@ -28,10 +24,10 @@ public class plateIdentifier : MonoBehaviour
             updateContents(food);
             //print("For Jojo: it is coming back NULL");
         }
-        //placeholder for coffee
-        if (spoon.gameObject.name == "Cafe")
+        else
         {
-            hasCoffee = true;
+            print("Tag Error");
+
         }
     }
     void updateContents(GameObject food)
@@ -41,12 +37,7 @@ public class plateIdentifier : MonoBehaviour
         string foodString = food.GetComponent<foodIdentifier>().food.ToString();
         int maxEnumMain = System.Enum.GetValues(typeof(MainFoods)).Length;
         int maxEnumSide = System.Enum.GetValues(typeof(SideFoods)).Length;
-        foodIdentifier curr = food.GetComponent<foodIdentifier>();
-        if((int)curr.food == 3)
-        {
-            Debug.Log("ricewasAdded");
-            hasRice = true;
-        }
+
         
         
         //loops until both main and side enums ends
@@ -56,36 +47,22 @@ public class plateIdentifier : MonoBehaviour
             if (foodString == ((MainFoods)numOfEnum).ToString() && plateMain == MainFoods.None) 
             {
                 plateMain = (MainFoods)numOfEnum;
-            Debug.Log((MainFoods)numOfEnum);
-
+                
             }
             if (foodString == ((SideFoods)numOfEnum).ToString())
             {
                 //Makes sure plateSide isnt changed by any other food collision
-                if (plateSide != SideFoods.None && plateSide1 == SideFoods.None && plateSide != (SideFoods)numOfEnum) plateSide1 = (SideFoods)numOfEnum;
+                if(plateSide == SideFoods.None) plateSide = (SideFoods)numOfEnum;
 
-                if (plateSide1 == (SideFoods)numOfEnum && SideCount1 < 2 && plateSide != SideFoods.None) SideCount1++;
-
-                if (plateSide == SideFoods.None) plateSide = (SideFoods)numOfEnum;
-
-                if(plateSide == (SideFoods)numOfEnum && SideCount < 2) SideCount++;
-
-
-
+                if(plateSide == (SideFoods)numOfEnum && SideCount < 4) SideCount++;
+                
+                
             }
-            
             numOfEnum++;
-        }
-        
-        if(foodString == "Arroz")
-        {
-            hasRice = true;
         }
         print(plateMain);
         print(plateSide);
-        print(plateSide1);
         print(SideCount);
-        print(SideCount1);
         
     }
 }

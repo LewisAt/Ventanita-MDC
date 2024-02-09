@@ -9,16 +9,11 @@ using UnityEngine.UIElements;
 public class LaldleTrigger : MonoBehaviour
 {
     public GameObject[] prefabedFoods;
-    public bool isLaldleFull = false;
+    public static bool isLaldleFull = false;
     Transform spoon;
     foodIdentifier foodType;
     foodIdentifier.typesOfFood currentFood;
-    LaldleIdentifier.TypeOfLaldle laldleType;
-
-    private void Start()
-    {
-        laldleType = GetComponent<LaldleIdentifier>().typeOfLaldle;
-    }
+    
     private void OnCollisionEnter(Collision other)
     { 
         if (other.gameObject.tag == "food")
@@ -27,15 +22,11 @@ public class LaldleTrigger : MonoBehaviour
             CheckWhatFoodItIs(other);
         }
     }
-    private void Update()
-    {
-        print(isLaldleFull);
-    }
     public void CheckWhatFoodItIs(Collision other)
     {
         foodType = other.gameObject.GetComponent<foodIdentifier>();
         currentFood = foodType.food;
-        if (!isLaldleFull && laldleType.ToString() == currentFood.ToString())
+        if (!isLaldleFull)
         {
             //Debug.Log("its triggering");
             if (foodType == null)
@@ -46,18 +37,13 @@ public class LaldleTrigger : MonoBehaviour
             GameObject clone = Instantiate(prefabedFoods[(int)currentFood], this.transform.position, this.transform.rotation, this.transform);
             clone.transform.localScale = Vector3.one;
             isLaldleFull = true;
-        }
-        else if (!isLaldleFull && laldleType == LaldleIdentifier.TypeOfLaldle.general)
-        {
-            //Debug.Log("its triggering");
-            if (foodType == null)
-            {
-                Debug.Log("its coming back null");
-                return;
-            }
-            GameObject clone = Instantiate(prefabedFoods[(int)currentFood], this.transform.position, this.transform.rotation, this.transform);
-            clone.transform.localScale = Vector3.one;
-            isLaldleFull = true;
+            Debug.Log(clone.name + " was picked up");
         }
     }
+    /*public void CheckWhatSectionOnPlate(Collision other)
+    {
+        Debug.Log("I am triggering from the plate collision");
+        GameObject clone = Instantiate(prefabedFoods[(int)currentFood], this.GetComponentInChildren<Transform>());
+    }*/ 
+    
 }

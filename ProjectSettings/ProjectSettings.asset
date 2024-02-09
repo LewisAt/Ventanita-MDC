@@ -12,11 +12,11 @@ PlayerSettings:
   targetDevice: 2
   useOnDemandResources: 0
   accelerometerFrequency: 60
-  companyName: DefaultCompany
-  productName: Ventanita A03
+  companyName: MDC
+  productName: Ventanita B07
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
-  m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b: 0.1254902, a: 1}
+  m_SplashScreenBackgroundColor: {r: 0.33962262, g: 0.07999724, b: 0.074973285, a: 1}
   m_ShowUnitySplashScreen: 1
   m_ShowUnitySplashLogo: 1
   m_SplashScreenOverlayOpacity: 1
@@ -44,7 +44,7 @@ PlayerSettings:
     duration: 2
   - logo: {fileID: 21300000, guid: 146b9a37b9ef664448daddb4aa8cecba, type: 3}
     duration: 2.38
-  m_VirtualRealitySplashScreen: {fileID: 2800000, guid: 146b9a37b9ef664448daddb4aa8cecba, type: 3}
+  m_VirtualRealitySplashScreen: {fileID: 2800000, guid: 6419f191503c70146a8e791a13c9285b, type: 3}
   m_HolographicTrackingLossScreen: {fileID: 0}
   defaultScreenWidth: 1920
   defaultScreenHeight: 1080
@@ -137,11 +137,8 @@ PlayerSettings:
   vulkanEnableLateAcquireNextImage: 0
   vulkanEnableCommandBufferRecycling: 1
   loadStoreDebugModeEnabled: 0
-  bundleVersion: .21
-  preloadedAssets:
-  - {fileID: 466786269855948000, guid: 3d501987b2352774199a3dad716cc6c6, type: 2}
-  - {fileID: 11400000, guid: 0391d1ea2e0b7e047b959d9df49d3d67, type: 2}
-  - {fileID: -7800983005088575843, guid: 167eb949398a89f4f9cec536a4758bcd, type: 2}
+  bundleVersion: 07
+  preloadedAssets: []
   metroInputSource: 0
   wsaTransparentSwapchain: 0
   m_HolographicPauseOnTrackingLoss: 1
@@ -161,7 +158,8 @@ PlayerSettings:
   androidSupportedAspectRatio: 1
   androidMaxAspectRatio: 2.1
   applicationIdentifier:
-    Standalone: com.DefaultCompany.Ventanita-Unity-Project
+    Android: com.MDC.VentanitaB07
+    Standalone: com.MDC.Ventanita-B07
   buildNumber:
     Standalone: 0
     iPhone: 0
@@ -831,10 +829,10 @@ PlayerSettings:
   webGLMemoryGeometricGrowthCap: 96
   webGLPowerPreference: 2
   scriptingDefineSymbols:
-    Android: USE_INPUT_SYSTEM_POSE_CONTROL;CROSS_PLATFORM_INPUT;MOBILE_INPUT
-    Standalone: USE_INPUT_SYSTEM_POSE_CONTROL;CROSS_PLATFORM_INPUT
-    Windows Store Apps: USE_INPUT_SYSTEM_POSE_CONTROL;MOBILE_INPUT
-    iPhone: CROSS_PLATFORM_INPUT;MOBILE_INPUT
+    Android: USE_INPUT_SYSTEM_POSE_CONTROL;CROSS_PLATFORM_INPUT;USE_INPUT_SYSTEM_POSE_CONTROL;USE_INPUT_SYSTEM_POSE_CONTROL;USE_INPUT_SYSTEM_POSE_CONTROL
+    Standalone: USE_INPUT_SYSTEM_POSE_CONTROL;CROSS_PLATFORM_INPUT;USE_INPUT_SYSTEM_POSE_CONTROL;USE_INPUT_SYSTEM_POSE_CONTROL;USE_INPUT_SYSTEM_POSE_CONTROL
+    Windows Store Apps: USE_INPUT_SYSTEM_POSE_CONTROL;USE_INPUT_SYSTEM_POSE_CONTROL;USE_INPUT_SYSTEM_POSE_CONTROL;USE_INPUT_SYSTEM_POSE_CONTROL
+    iPhone: CROSS_PLATFORM_INPUT
   additionalCompilerArguments: {}
   platformArchitecture: {}
   scriptingBackend: {}
@@ -867,7 +865,7 @@ PlayerSettings:
   m_RenderingPath: 1
   m_MobileRenderingPath: 1
   metroPackageName: Ventanita-Unity-Project
-  metroPackageVersion: 
+  metroPackageVersion: 1.0.0.0
   metroCertificatePath: 
   metroCertificatePassword: 
   metroCertificateSubject: 
@@ -875,7 +873,7 @@ PlayerSettings:
   metroCertificateNotAfter: 0000000000000000
   metroApplicationDescription: Ventanita-Unity-Project
   wsaImages: {}
-  metroTileShortName: 
+  metroTileShortName: Ventanita B01
   metroTileShowName: 0
   metroMediumTileShowName: 0
   metroLargeTileShowName: 0
