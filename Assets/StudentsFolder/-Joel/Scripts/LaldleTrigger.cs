@@ -52,18 +52,6 @@ public class LaldleTrigger : MonoBehaviour
             clone.transform.localScale = Vector3.one;
             isLaldleFull = true;
         }
-        else if (!isLaldleFull && laldleType == LaldleIdentifier.TypeOfLaldle.Fricase && laldleType == LaldleIdentifier.TypeOfLaldle.Rabo)
-        {
-            //Debug.Log("its triggering");
-            if (foodType == null)
-            {
-                Debug.Log("its coming back null");
-                return;
-            }
-            GameObject clone = Instantiate(prefabedFoods[(int)currentFood], this.transform.position, this.transform.rotation, this.transform);
-            clone.transform.localScale = Vector3.one;
-            isLaldleFull = true;
-        }
         else if (!isLaldleFull && laldleType == LaldleIdentifier.TypeOfLaldle.general)
         {
             //Debug.Log("its triggering");
