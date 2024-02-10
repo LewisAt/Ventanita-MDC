@@ -36,7 +36,7 @@ public class Testingbuttons : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        print(numOfListners);
+        //print(numOfListners);
         if (myImage.sprite != null && check == false)
         {
             IdentifySlot();
@@ -71,7 +71,7 @@ public class Testingbuttons : MonoBehaviour
     public void IdentifySlot()
     {
 
-        print("Identify slot function is calling");
+        //print("Identify slot function is calling");
         if (gameObject.tag == "slot1")
         {
             Slot1();
@@ -89,7 +89,7 @@ public class Testingbuttons : MonoBehaviour
 
     void Slot1()
     {
-        print("slot 1 is calling");
+        //print("slot 1 is calling");
         if (myImage.sprite.name == "arroz_blanco")
         {
             toggle.onValueChanged.AddListener(delegate { FoodExplanation.ArrozBlanco(); });
@@ -99,7 +99,7 @@ public class Testingbuttons : MonoBehaviour
 
     void Slot2()
     {
-        print("slot 2 is calling");
+        //print("slot 2 is calling");
         if (myImage.sprite.name == "Beans_complete")
         {
             toggle.onValueChanged.AddListener(delegate { FoodExplanation.FrijolesNegro(); });
@@ -120,7 +120,7 @@ public class Testingbuttons : MonoBehaviour
 
     void Slot3()
     {
-        print("slot 3 is calling");
+        //print("slot 3 is calling");
 
         if (myImage.sprite.name == "Croquettas")
         {
