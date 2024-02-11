@@ -639,24 +639,6 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
-                },
-                {
-                    "name": "PauseMenu",
-                    "type": "Button",
-                    "id": "c9aec6fb-de94-4cfa-98d6-3068b53097c0",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "Button Press",
-                    "type": "Button",
-                    "id": "91cf3c7a-6e1d-4825-9783-8757dcad6973",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -789,28 +771,6 @@
                     "processors": "ScaleVector2(x=0),StickDeadzone",
                     "groups": "Generic XR Controller",
                     "action": "Translate Anchor",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "9af12ed4-0efb-4e71-9025-1205ccced3e9",
-                    "path": "<XRController>{LeftHand}/menu",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "PauseMenu",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "4ee9a466-7514-456e-b3e5-1e4f4be5b162",
-                    "path": "<XRController>/joystickClicked",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Generic XR Controller",
-                    "action": "Button Press",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
