@@ -18,9 +18,15 @@ public class MoneyTracker : MonoBehaviour
     public UpgradeManager upgradeManager;
     public CustomerOrder customerOrder;
     public TMP_Text WarningSplash;
+    //For saving money between scenes and changing difficulty
+    DifficultyDirector difficultyDirector;
 
     [SerializeField]
     Plane_Ticket calc;
+    private void Start()
+    {
+        difficultyDirector = GameObject.FindGameObjectWithTag("DifficultyDirector").GetComponent<DifficultyDirector>();
+    }
 
     //shows user current cash and sets the total amount of cash.
     void Update()
@@ -71,4 +77,8 @@ public class MoneyTracker : MonoBehaviour
     //    //totalMoney = UserCash - coffeeUpgradeCost;
     //    //totalCashText.text = "Money: $" + totalMoney.ToString();
     //}
+    private void OnDestroy() //If Total money exceeds easy money goal after scene then higher difficulty
+    {
+        difficultyDirector.saveMoney(totalMoney);
+    }
 }

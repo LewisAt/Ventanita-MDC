@@ -90,7 +90,7 @@ public class DifficultyDirector : MonoBehaviour
         {
             currentDiff++;
         }
-        else print("Money Left: " + DifficultyGoal[currentDiff]);
+        
         difficultySet = false;
         
     }
