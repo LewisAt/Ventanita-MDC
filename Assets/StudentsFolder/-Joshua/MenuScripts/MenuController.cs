@@ -5,11 +5,12 @@ using UnityEngine.SceneManagement;
 
 public class MenuController : MonoBehaviour
 {
+    public int sceneNumber = 0;
     //Used to start the game when the proper button is pressed
     public void StartBtn()
     {
         //Loads the scene that matches with the scene number referenced in the script
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(sceneNumber);
     }
 
     //Used to send the player to the starting menu
