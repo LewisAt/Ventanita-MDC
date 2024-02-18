@@ -36,16 +36,16 @@ public class Movetowindow : MonoBehaviour
     //allows for the movement events to trigger
     private bool spotcheck = false;
     private bool check = false;
-    private bool check2= false;
-    private bool check3= false;
-    private bool check4= false;
+    private bool check2 = false;
+    private bool check3 = false;
+    private bool check4 = false;
 
     private bool exCheck = true;
     private bool spawnCheck = true;
 
     //Customer waits for this time then leaves if takes too long - money and tip payed when order complete
     float tipReduce = 0.3f;
-    public float tip= 5;
+    public float tip = 5;
     public TMP_Text tipText;
 
     //audio for when order is completed or failed
@@ -75,7 +75,7 @@ public class Movetowindow : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if(spotcheck == false)
+        if (spotcheck == false)
         {
             if (linePoint1.GetComponent<CustomerLine>().spot1 == false && check == false && CustId == 1)
             {
@@ -86,7 +86,7 @@ public class Movetowindow : MonoBehaviour
             }
             else if (linePoint1.GetComponent<CustomerLine>().spot1 == true && linePoint2.GetComponent<CustomerLine>().spot2 == false)
             {
-                if(exCheck == true && CustId >= 2)
+                if (exCheck == true && CustId >= 2)
                 {
                     CustId -= 1;
                     exCheck = false;
@@ -100,7 +100,7 @@ public class Movetowindow : MonoBehaviour
                 if (customer.transform.position.z >= linePoint2.transform.position.z - 2f)
                 {
 
-                    if(linePoint1.GetComponent<CustomerLine>().spot1 == false)
+                    if (linePoint1.GetComponent<CustomerLine>().spot1 == false)
                     {
                         spotcheck = true;
                         CustId -= 1;
@@ -130,7 +130,7 @@ public class Movetowindow : MonoBehaviour
                 }
             }
         }
-            //first direction brings toward center of path and changes sprite
+        //first direction brings toward center of path and changes sprite
         if (check == false && spotcheck == true)
         {
             float delta = firstPoint.transform.position.z - transform.position.z;
@@ -201,29 +201,35 @@ public class Movetowindow : MonoBehaviour
         }
 
         //Spawn Customers
-        if (linePoint3.GetComponent<CustomerLine>().spot3 == false && linePoint2.GetComponent<CustomerLine>().spot2 == false&& 
+        if (linePoint3.GetComponent<CustomerLine>().spot3 == false && linePoint2.GetComponent<CustomerLine>().spot2 == false &&
             linePoint1.GetComponent<CustomerLine>().spot1 == true && spawnCheck == true && CustId == 0)
         {
             StartCoroutine(SpawnStart());
             spawnCheck = false;
         }
-        
+        /*
         else if (linePoint3.GetComponent<CustomerLine>().spot3 == false && linePoint2.GetComponent<CustomerLine>().spot2 == true &&
             linePoint1.GetComponent<CustomerLine>().spot1 == true && spawnCheck == true && CustId == 1)
         {
             StartCoroutine(SpawnStart());
             spawnCheck = false;
         }
-        
+        */
+        else if (linePoint3.GetComponent<CustomerLine>().spot3 == false && linePoint2.GetComponent<CustomerLine>().spot2 == false &&
+            linePoint1.GetComponent<CustomerLine>().spot1 == false && linePoint4.GetComponent<CustomerLine>().spot4 == false)
+        {
+            StartCoroutine(SpawnWhenEmpty());
+        }
+
     }
     private void Update()
     {
         //tip that changes depending on how fast the customer order was finished
-       if(check2 == true && check3 == false)
-       {
+        if (check2 == true && check3 == false)
+        {
             tipReduce -= 0.01f * Time.deltaTime;
             tip = CustomerOrder.foodsCostForCustomer * tipReduce;
-       }
+        }
 
         if (CustId == 1)
         {
@@ -231,11 +237,11 @@ public class Movetowindow : MonoBehaviour
         }
         else if (CustId == 2)
         {
-            sameId = 2;
+            sameId = 1;
         }
         else if (CustId == 0)
         {
-            sameId = 2;
+            sameId = 1;
         }
         showid = sameId;
     }
@@ -244,16 +250,23 @@ public class Movetowindow : MonoBehaviour
     void SpawnCustomer()
     {
         if (linePoint3.GetComponent<CustomerLine>().spot3 == false && linePoint2.GetComponent<CustomerLine>().spot2 == false &&
-            linePoint1.GetComponent<CustomerLine>().spot1 == true && CustId == 0)
-        {
-            Instantiate(realCustomer, spawnPoint.transform.position, spawnPoint.transform.rotation);
-        }
-        else if (linePoint3.GetComponent<CustomerLine>().spot3 == false && linePoint2.GetComponent<CustomerLine>().spot2 == true &&
-            linePoint1.GetComponent<CustomerLine>().spot1 == true && CustId == 1)
+            linePoint1.GetComponent<CustomerLine>().spot1 == true && CustId == 0 /*|| linePoint3.GetComponent<CustomerLine>().spot3 == false && linePoint2.GetComponent<CustomerLine>().spot2 == true &&
+         linePoint1.GetComponent<CustomerLine>().spot1 == true && CustId == 1*/)
         {
             Instantiate(realCustomer, spawnPoint.transform.position, spawnPoint.transform.rotation);
         }
         spawnCheck = true;
+    }
+
+    IEnumerator SpawnWhenEmpty()
+    {
+        yield return new WaitForSeconds(1f);
+        if (linePoint3.GetComponent<CustomerLine>().spot3 == false && linePoint2.GetComponent<CustomerLine>().spot2 == false &&
+            linePoint1.GetComponent<CustomerLine>().spot1 == false && linePoint4.GetComponent<CustomerLine>().spot4 == false)
+        {
+            Instantiate(realCustomer, spawnPoint.transform.position, spawnPoint.transform.rotation);
+            yield return new WaitForSeconds(3f);
+        }
     }
     IEnumerator SpawnStart()
     {
@@ -285,7 +298,7 @@ public class Movetowindow : MonoBehaviour
         SpriteChoose = Random.Range(0, 4);
 
         //hector
-        if(SpriteChoose == 0)
+        if (SpriteChoose == 0)
         {
             frontFace = CustomerFaces[0];
             sideFace = CustomerFaces[1];
@@ -313,4 +326,6 @@ public class Movetowindow : MonoBehaviour
             this.transform.position = new Vector3(this.transform.position.x, 0.99f, this.transform.position.z);
         }
     }
+
+
 }
