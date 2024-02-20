@@ -18,21 +18,20 @@ public class GradeOrderInput : MonoBehaviour
     public float moneyEarned;
     //public TMP_Text MoneyText;
     DifficultyDirector difficultyDirector;
+    bool Correct = false;
     private int CustomerTimer = 30;
     public TMP_Text LevelTimerText;
     public int mealAccuracyCount = 0;
-
+    bool isBeingChecked = false;
     private IEnumerator CustomerTimerCoroutine;
     public Slider CustomerSliderUI;
     public AudioSource incorrectOrderSound;
-
-    void Start()
+    private void OnEnable()
     {
         CustomerTimerCoroutine = SubtrackSeconds();
         difficultyDirector = GameObject.FindGameObjectWithTag("DifficultyDirector").GetComponent<DifficultyDirector>();
         difficultyDirector.getDifficulty();
     }
-
     private Movetowindow customer;
     public void addCustomer(Movetowindow NewCustomer)
     {
@@ -41,31 +40,15 @@ public class GradeOrderInput : MonoBehaviour
             customer = NewCustomer;
         }
     }
-
+    
     private void OnTriggerEnter(Collider other)
     {
         //this starts grading when colliding with a plate
 
         if (other.CompareTag("plate"))
         {
-            other.GetComponent<plateIdentifier>();
-            ConfirmOrder(other);
-        }
-        else
-        {
-            other.GetComponent<Rigidbody>().AddForce(-transform.right * 100);
-        }
-    }
-    private void OnTriggerStay(Collider other)
-    {
-        if (other.CompareTag("plate"))
-        {
-            other.GetComponent<plateIdentifier>();
-            ConfirmOrder(other);
-        }
-        else
-        {
-            other.GetComponent<Rigidbody>().AddForce(-transform.right * 100);
+            plateIdentifier givenPlateID = other.gameObject.GetComponent<plateIdentifier>();
+            ConfirmOrder(givenPlateID);
         }
     }
     private void Update()
@@ -87,7 +70,7 @@ public class GradeOrderInput : MonoBehaviour
 
             if (CustomerTimer <= 0)
             {
-                if (Movetowindow.sameId == 2)
+                if (Movetowindow.sameId == 1)
                 {
                     customer.CompleteCustomerTimeRanOut();
                     resetIcons();
@@ -95,31 +78,38 @@ public class GradeOrderInput : MonoBehaviour
             }
         }
     }
-    void ConfirmOrder(Collider givenPlate) //Grades the plate by comparing enums Main and Side, Side nums, Rice bool, and coffee(Not Yet Implemented)
-    {
 
-        if (givenPlate.gameObject.GetComponent<plateIdentifier>().plateMain == ActualOrder.Mains
-            && givenPlate.gameObject.GetComponent<plateIdentifier>().plateSide == ActualOrder.sides
-            && givenPlate.gameObject.GetComponent<plateIdentifier>().plateSide1 == ActualOrder.sides1
-            && givenPlate.gameObject.GetComponent<plateIdentifier>().hasRice == ActualOrder.hasRice)
+    void ConfirmOrder(plateIdentifier givenPlate) //Grades the plate by comparing enums Main and Side, Side nums, Rice bool, and coffee(Not Yet Implemented)
+    {
+        if (givenPlate.plateMain == ActualOrder.Mains
+            && givenPlate.plateSide == ActualOrder.sides
+            && givenPlate.plateSide1 == ActualOrder.sides1
+            && givenPlate.hasRice == ActualOrder.hasRice)
         {
+            ActualOrder = null;
+            resetIcons();
             StopCoroutine(CustomerTimerCoroutine);
+            /* Causes Customer to freeze
             if (Movetowindow.sameId == 2)
             {
                 customer.CompleteCustomerCorrect();
             }
+            */
+            customer.CompleteCustomerCorrect();
+
             //moneyEarned += ActualOrder.foodsCost;
             //MoneyText.text = "Money Earned\n$" + moneyEarned.ToString();
             //CustomerTimer = 30;
             FoodNameHeader.text = "Correct";
-            Destroy(givenPlate.gameObject);
-            //Reward Player
+
         }
         else
         {
             incorrectOrderSound.Play();
             StartCoroutine("youFailed");
         }
+        Destroy(givenPlate.gameObject);
+        givenPlate = null;
     }
 
     IEnumerator youFailed()
@@ -219,9 +209,5 @@ public class GradeOrderInput : MonoBehaviour
         Side1Text.text = ActualOrder.side1;
         Side2Text.text = ActualOrder.side2;
 
-    }
-    private void OnDestroy()
-    {
-        difficultyDirector.saveMoney(moneyEarned);
     }
 }
