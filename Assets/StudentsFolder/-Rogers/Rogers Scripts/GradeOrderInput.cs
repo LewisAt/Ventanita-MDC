@@ -70,7 +70,7 @@ public class GradeOrderInput : MonoBehaviour
 
             if (CustomerTimer <= 0)
             {
-                if (Movetowindow.sameId == 2)
+                if (Movetowindow.sameId == 1)
                 {
                     customer.CompleteCustomerTimeRanOut();
                     resetIcons();
