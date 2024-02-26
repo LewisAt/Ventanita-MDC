@@ -118,8 +118,8 @@ public class PlateServing : MonoBehaviour
                 }
                 clone.transform.rotation = transform.GetChild(parent).rotation;
                 clone.transform.SetParent(transform.GetChild(parent));
-                clone.transform.localPosition = new Vector3(xoffset, 0.05f, zoffset);
-                clone.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
+                clone.transform.localPosition = new Vector3(xoffset, 0.01f, zoffset);
+                clone.transform.localScale = new Vector3(500,500, 500);
                 xSides++;
             }
             laldleFull.isLaldleFull = false;

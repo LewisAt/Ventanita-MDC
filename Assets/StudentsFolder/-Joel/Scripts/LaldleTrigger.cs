@@ -49,7 +49,7 @@ public class LaldleTrigger : MonoBehaviour
                 return;
             }
             GameObject clone = Instantiate(prefabedFoods[(int)currentFood], this.transform.position, this.transform.rotation, this.transform);
-            clone.transform.localScale = Vector3.one;
+            clone.transform.localScale = new Vector3 (500,500,500);
             isLaldleFull = true;
         }
         else if (!isLaldleFull && laldleType == LaldleIdentifier.TypeOfLaldle.general)
@@ -61,7 +61,8 @@ public class LaldleTrigger : MonoBehaviour
                 return;
             }
             GameObject clone = Instantiate(prefabedFoods[(int)currentFood], this.transform.position, this.transform.rotation, this.transform);
-            clone.transform.localScale = Vector3.one;
+            clone.transform.localScale = clone.transform.localScale * 10;
+            clone.transform.localRotation = Quaternion.Euler (-90,0,0);
             isLaldleFull = true;
         }
     }
