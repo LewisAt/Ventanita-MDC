@@ -13,5 +13,11 @@ public class BreakFloorCol : MonoBehaviour
             breaksound.Play();
             StartCoroutine(other.gameObject.GetComponent<PlateBreak>().startBreak());
         }
+        //Joel is adding the ladle to this script so the ladle breaks when it hits the floor
+        else if (other.gameObject.tag == "spoon")
+        {
+            breaksound.Play();
+            StartCoroutine(other.gameObject.GetComponent<LaldleIdentifier>().Respawn());
+        }
     }
 }
