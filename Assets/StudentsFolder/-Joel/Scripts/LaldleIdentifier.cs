@@ -9,14 +9,14 @@ public class LaldleIdentifier : MonoBehaviour
     Vector3 spawnPoint;
     Quaternion spawnRotation;
     Rigidbody parentRB;
-    MeshRenderer siblingMesh;
+    MeshRenderer parentMesh;
 
     public void Start()
     {
         spawnPoint = LegalParent.transform.position;
         spawnRotation = LegalParent.transform.rotation;
         parentRB = LegalParent.GetComponent<Rigidbody>();
-        siblingMesh = LegalSibling.GetComponent<MeshRenderer>();
+        parentMesh = LegalParent.GetComponent<MeshRenderer>();
         parentRB.isKinematic = false;
         parentRB.constraints = RigidbodyConstraints.FreezeAll;
     }
@@ -38,12 +38,12 @@ public class LaldleIdentifier : MonoBehaviour
 
     public IEnumerator Respawn()
     {
-        siblingMesh.enabled = false;
+        parentMesh.enabled = false;
         yield return new WaitForSeconds(2f);
         LegalParent.transform.SetPositionAndRotation(spawnPoint, spawnRotation);
         parentRB.isKinematic = false;
         parentRB.constraints = RigidbodyConstraints.FreezeAll;
-        siblingMesh.enabled = true;
+        parentMesh.enabled = true;
     }
 
     public void FreeWilly()

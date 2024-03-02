@@ -40,7 +40,7 @@ public class LaldleTrigger : MonoBehaviour
         on the object*/
         foodType = other.gameObject.GetComponent<foodIdentifier>();
         currentFood = foodType.food;
-        if (!isLaldleFull && laldleType.ToString() == currentFood.ToString())
+        /*if (!isLaldleFull && laldleType.ToString() == currentFood.ToString())
         {
             //Debug.Log("its triggering");
             if (foodType == null)
@@ -49,10 +49,10 @@ public class LaldleTrigger : MonoBehaviour
                 return;
             }
             GameObject clone = Instantiate(prefabedFoods[(int)currentFood], this.transform.position, this.transform.rotation, this.transform);
-            clone.transform.localScale = new Vector3 (500,500,500);
+            clone.transform.localScale = new Vector3 (1,1,1);
             isLaldleFull = true;
-        }
-        else if (!isLaldleFull && laldleType == LaldleIdentifier.TypeOfLaldle.general)
+        }*/
+        if (!isLaldleFull && laldleType == LaldleIdentifier.TypeOfLaldle.general)
         {
             //Debug.Log("its triggering");
             if (foodType == null)
@@ -60,8 +60,7 @@ public class LaldleTrigger : MonoBehaviour
                 Debug.Log("its coming back null");
                 return;
             }
-            GameObject clone = Instantiate(prefabedFoods[(int)currentFood], this.transform.position, this.transform.rotation, this.transform);
-            clone.transform.localScale = clone.transform.localScale * 10;
+            GameObject clone = Instantiate(prefabedFoods[(int)currentFood], this.transform.position, this.transform.rotation, this.transform);    
             clone.transform.localRotation = Quaternion.Euler (-90,0,0);
             isLaldleFull = true;
         }
