@@ -207,13 +207,14 @@ public class Movetowindow : MonoBehaviour
             StartCoroutine(SpawnStart());
             spawnCheck = false;
         }
-
+        /*
         else if (linePoint3.GetComponent<CustomerLine>().spot3 == false && linePoint2.GetComponent<CustomerLine>().spot2 == true &&
             linePoint1.GetComponent<CustomerLine>().spot1 == true && spawnCheck == true && CustId == 1)
         {
             StartCoroutine(SpawnStart());
             spawnCheck = false;
         }
+        */
         else if (linePoint3.GetComponent<CustomerLine>().spot3 == false && linePoint2.GetComponent<CustomerLine>().spot2 == false &&
             linePoint1.GetComponent<CustomerLine>().spot1 == false && linePoint4.GetComponent<CustomerLine>().spot4 == false)
         {
@@ -236,11 +237,11 @@ public class Movetowindow : MonoBehaviour
         }
         else if (CustId == 2)
         {
-            sameId = 2;
+            sameId = 1;
         }
         else if (CustId == 0)
         {
-            sameId = 2;
+            sameId = 1;
         }
         showid = sameId;
     }
@@ -259,7 +260,7 @@ public class Movetowindow : MonoBehaviour
 
     IEnumerator SpawnWhenEmpty()
     {
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(1f);
         if (linePoint3.GetComponent<CustomerLine>().spot3 == false && linePoint2.GetComponent<CustomerLine>().spot2 == false &&
             linePoint1.GetComponent<CustomerLine>().spot1 == false && linePoint4.GetComponent<CustomerLine>().spot4 == false)
         {
@@ -272,7 +273,6 @@ public class Movetowindow : MonoBehaviour
         yield return new WaitForSeconds(7f);
         SpawnCustomer();
     }
-    
 
     //when customer order complete gives player a sound notification, money, and tip.
     public void CompleteCustomerCorrect()
@@ -326,4 +326,5 @@ public class Movetowindow : MonoBehaviour
             this.transform.position = new Vector3(this.transform.position.x, 0.99f, this.transform.position.z);
         }
     }
+
 }
