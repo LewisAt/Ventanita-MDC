@@ -30,10 +30,6 @@ public class LaldleTrigger : MonoBehaviour
             CheckWhatFoodItIs(other);
         }
     }
-    private void Update()
-    {
-        //print(isLaldleFull);
-    }
     public void CheckWhatFoodItIs(Collision other)
     {
         /*This method checks the collision and spawns the object according to the foodidentifier enum accessed
