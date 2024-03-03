@@ -8,7 +8,6 @@ public class NewPoolingMethod : MonoBehaviour
     public foodIdentifier[] foodLadle;
     public List<foodIdentifier> foodLadleList;
     private List<foodIdentifier> foodIdentifierList;
-    public List<string> foodLadleNames;
     public bool isLadleFull;
 
 
