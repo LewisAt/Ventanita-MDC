@@ -5,16 +5,19 @@ using UnityEngine;
 
 public class NewPoolingMethod : MonoBehaviour
 {
-    public Transform[] foodLadle;
-    private List<Transform> foodLadleList;
+    public foodIdentifier[] foodLadle;
+    public List<foodIdentifier> foodLadleList;
+    private List<foodIdentifier> foodIdentifierList;
     public List<string> foodLadleNames;
+    public bool isLadleFull;
+
+
     private foodIdentifier foodType;
     private foodIdentifier.typesOfFood foodValue;
 
     private void Start()
     {
-        foodLadle = GetComponentsInChildren<Transform>();
-        foodType = null;
+        foodLadle = GetComponentsInChildren<foodIdentifier>();
 
         foodLadleList = foodLadle.ToList();
         CorrectList();
@@ -22,64 +25,49 @@ public class NewPoolingMethod : MonoBehaviour
 
     private void CorrectList()
     {
-        foodLadleList.RemoveAt(0);
-        print(foodLadleList.Count);
-        for ( int i = 0; i <= foodLadleList.Count; i++ )
+        for ( int i = 0; i < foodLadleList.Count; i++ )
         {
-            bool good = false;
-            Transform t = foodLadleList[i];
-            for (int o = 1; o < foodLadleNames.Count; o++)
+            foodIdentifier t = foodLadleList[i];
+            t.GetComponent<MeshRenderer>().enabled = false;
+            if (t.GetComponentInChildren<MeshRenderer>() != null)
             {
-                string s = foodLadleNames[o];
-                //print("comparing " + t + " with " + s);
-                if (t.name == s)
-                {
-                    good = true;
-                }
+                MeshRenderer[] temp;
+                temp = t.GetComponentsInChildren<MeshRenderer>();
+                foreach ( MeshRenderer r in temp ) { r.enabled = false; }
             }
-            if ( !good ) foodLadleList.Remove(t);
-            t.gameObject.SetActive(false);
         }
         foodLadle = foodLadleList.ToArray();
     }
 
-    private void OnCollisionEnter(Collision other)
+    private void OnCollisionEnter(Collision contact)
     {
-        if (other.gameObject.tag == "food")
+        if (contact.gameObject.tag == "food" && contact.gameObject.GetComponent<foodIdentifier>() != null)
         {
-            CheckWhatFoodItIs(other);
+            foodIdentifier.typesOfFood foodType = contact.gameObject.GetComponent<foodIdentifier>().food;
+            CheckWhatFoodItIs(foodType);
         }
     }
 
-    public void CheckWhatFoodItIs(Collision other)
+    public void CheckWhatFoodItIs(foodIdentifier.typesOfFood foodType)
     {
         /*This method checks the collision and spawns the object according to the foodidentifier enum accessed
         on the object*/
-        foodType = other.gameObject.GetComponent<foodIdentifier>();
-        foodValue = foodType.food;
-        /*if (!isLaldleFull && laldleType.ToString() == currentFood.ToString())
+        if (!isLadleFull)
         {
-            //Debug.Log("its triggering");
-            if (foodType == null)
+            foreach (foodIdentifier f in foodLadle)
             {
-                Debug.Log("its coming back null");
-                return;
+                if (foodType == f.food)
+                {
+                    f.GetComponent<MeshRenderer>().enabled = true;
+                    if (f.GetComponentInChildren<MeshRenderer>() != null)
+                    {
+                        MeshRenderer[] temp;
+                        temp = f.GetComponentsInChildren<MeshRenderer>();
+                        foreach (MeshRenderer r in temp) { r.enabled = true; }
+                    }
+                }
             }
-            GameObject clone = Instantiate(prefabedFoods[(int)currentFood], this.transform.position, this.transform.rotation, this.transform);
-            clone.transform.localScale = new Vector3 (1,1,1);
-            isLaldleFull = true;
-        }*/
-       /* if (!isLaldleFull && laldleType == LaldleIdentifier.TypeOfLaldle.general)
-        {
-            //Debug.Log("its triggering");
-            if (foodType == null)
-            {
-                Debug.Log("its coming back null");
-                return;
-            }
-            GameObject clone = Instantiate(prefabedFoods[(int)currentFood], this.transform.position, this.transform.rotation, this.transform);
-            clone.transform.localRotation = Quaternion.Euler(-90, 0, 0);
-            isLaldleFull = true;
-        }*/
+            isLadleFull = true;
+        }
     }
 }

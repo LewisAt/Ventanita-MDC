@@ -22,6 +22,5 @@ public class PlateBreak : MonoBehaviour
         stopplate.mass = 0f;
         yield return new WaitForSeconds(3f);
         Destroy(gameObject);
-        
     }
 }
