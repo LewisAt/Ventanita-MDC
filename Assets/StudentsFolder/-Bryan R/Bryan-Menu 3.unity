@@ -912,7 +912,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.9725491, g: 0.5882353, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -3647,7 +3647,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 853982911}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1167032714}
+        m_TargetAssemblyTypeName: TurnSwitcher, Assembly-CSharp
+        m_MethodName: SnapTurnAllowed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &853982911
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4326,7 +4338,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7531352094939236271, guid: 08c48ecc4ea0ea345bb41b759c9c14ea, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7531352094939236271, guid: 08c48ecc4ea0ea345bb41b759c9c14ea, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4383,6 +4395,11 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1048719798}
   m_SourcePrefab: {fileID: 100100000, guid: 08c48ecc4ea0ea345bb41b759c9c14ea, type: 3}
+--- !u!1 &1048719796 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6509299777160089245, guid: 08c48ecc4ea0ea345bb41b759c9c14ea, type: 3}
+  m_PrefabInstance: {fileID: 1048719795}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1048719797 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3548250322712769090, guid: 08c48ecc4ea0ea345bb41b759c9c14ea, type: 3}
@@ -4779,7 +4796,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1122392423}
   m_CullTransparentMesh: 1
---- !u!1 &1148542027
+--- !u!1 &1167032713
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4787,28 +4804,42 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1148542028}
+  - component: {fileID: 1167032715}
+  - component: {fileID: 1167032714}
   m_Layer: 0
-  m_Name: ====GamePlay====
+  m_Name: TurnManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1148542028
+--- !u!114 &1167032714
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1167032713}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd63ec692306b93418ef69d1923c2132, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerHand: {fileID: 1048719796}
+--- !u!4 &1167032715
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1148542027}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 11.855999, y: 1.7249829, z: 5.378138}
+  m_GameObject: {fileID: 1167032713}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1201829337
 GameObject:
@@ -6789,7 +6820,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.9725491, g: 0.5882353, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -6917,7 +6948,7 @@ Transform:
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1490627789
 GameObject:
@@ -7431,7 +7462,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4388655837367690973, guid: 352c307e5f9d936479587a8f4dbdb51e, type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4388655837367690973, guid: 352c307e5f9d936479587a8f4dbdb51e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -7725,7 +7756,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1712086211}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1167032714}
+        m_TargetAssemblyTypeName: TurnSwitcher, Assembly-CSharp
+        m_MethodName: SmoothTurnAllowed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1712086211
 MonoBehaviour:
   m_ObjectHideFlags: 0
