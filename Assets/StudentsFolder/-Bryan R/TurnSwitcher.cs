@@ -70,9 +70,9 @@ public class TurnSwitcher : MonoBehaviour
         }
     }
 
-    /*void SceneInitialSetup()
+    void SceneInitialSetup()
     {
         findTurnController();
         SetTurningOption(turnSwitch);
-    }*/
+    }
 }
