@@ -19,4 +19,11 @@ public class MenuController : MonoBehaviour
         //Loads the scene that has the same name as the scene referenced in script
         SceneManager.LoadScene("StartingMenuScene");
     }
+
+    //Used to skip to the Main Scene
+    public void Skiptutorial()
+    {
+        // Skips the tutorial once the button is pressed
+        SceneManager.LoadScene("MainBuil 11-25-23");
+    }
 }
