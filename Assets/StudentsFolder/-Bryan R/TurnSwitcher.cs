@@ -3,8 +3,9 @@ using UnityEngine.XR.Interaction.Toolkit.Samples.StarterAssets;
 
 public class TurnSwitcher : MonoBehaviour
 {
-    public GameObject playerHand;   // Left or Right Hand
-    
+    public GameObject playerLeftHand;   // Left Hand
+    public GameObject playerRightHand;   // Right Hand
+
     // If bool is True then Smooth turn || false then Snap turn
     private bool turnSwitch = false;
 
@@ -34,22 +35,7 @@ public class TurnSwitcher : MonoBehaviour
         turnSwitch = false;
     }
 
-    /*void OnEnable()
-    {
-        Debug.Log("OnEnable called");
-        SceneManager.sceneLoaded += OnSceneLoaded;
-    }
-
-    // called second
-    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-    {
-        Debug.Log("OnSceneLoaded: " + scene.name);
-        SceneInitialSetup();
-        Debug.Log("general manager has been started and the scene has been setup");
-
-    }*/
-
-    private GameObject Turncontroller;
+    //private GameObject Turncontroller;
     void findTurnController()
     {
         TurnController = GameObject.Find("XR Player Rig/XR Origin (XR Rig)/Locomotion System/Turn");
@@ -74,17 +60,19 @@ public class TurnSwitcher : MonoBehaviour
 
         if (turnSwitch == true)
         {
-            playerHand.GetComponent<ActionBasedControllerManager>().smoothTurnEnabled = true;
+            playerLeftHand.GetComponent<ActionBasedControllerManager>().smoothTurnEnabled = true;
+            playerRightHand.GetComponent<ActionBasedControllerManager>().smoothTurnEnabled = true;
         }
         else if (turnSwitch == false)
         {
-            playerHand.GetComponent<ActionBasedControllerManager>().smoothTurnEnabled = false;
+            playerLeftHand.GetComponent<ActionBasedControllerManager>().smoothTurnEnabled = true;
+            playerRightHand.GetComponent<ActionBasedControllerManager>().smoothTurnEnabled = true;
         }
     }
 
-    void SceneInitialSetup()
+    /*void SceneInitialSetup()
     {
         findTurnController();
         SetTurningOption(turnSwitch);
-    }
+    }*/
 }
