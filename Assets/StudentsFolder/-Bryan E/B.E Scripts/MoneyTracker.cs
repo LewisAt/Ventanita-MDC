@@ -49,7 +49,7 @@ public class MoneyTracker : MonoBehaviour
     //tells player how they can win or lose
     private void Awake()
     {
-        WarningSplash.text = "Earn " + moneyNeeded.ToString() + "$\n or lose";
+        //WarningSplash.text = "Earn " + moneyNeeded.ToString() + "$\n or lose";
         //StartCoroutine(playWarning());
     }
     /*IEnumerator playWarning()

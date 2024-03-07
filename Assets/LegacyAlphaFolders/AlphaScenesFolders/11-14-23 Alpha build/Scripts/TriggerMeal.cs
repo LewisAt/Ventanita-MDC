@@ -15,6 +15,7 @@ public class TriggerMeal : MonoBehaviour
     {
         if (other.tag == "Customer")
         {
+            Debug.Log("Customer Arrived");
             m_Input.enabled = true;
             m_Input.MakeAnOrder();
             Arrival.Play();
