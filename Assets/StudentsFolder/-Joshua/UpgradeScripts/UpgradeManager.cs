@@ -28,28 +28,17 @@ public class UpgradeManager : MonoBehaviour
 
 void Start()
     {
-        UpgradeMenu.SetActive(false);
-        OnAwake();
     }
 
-    void OnAwake()
-    {
-        FinalCashAmount.text = moneyTracker.GetComponent<MoneyTracker>().totalCashText.text;
-    }
 
-    void Update()
-    {
-        //FinalCashAmount.text = "Money: $" + customerOrder.GetComponent<CustomerOrder>().foodsCost;
-        //FinalCashAmount.text = moneyTracker.GetComponent<MoneyTracker>();
-        FinalCashAmount.text = moneyTracker.GetComponent<MoneyTracker>().totalCashText.text;
-    }
+
 
     public void Upgrade()
     {
         //UpgradeMenu.SetActive(true);
         Time.timeScale = 0f;
         enableRay();
-        moneyTracker.GetComponent<MoneyTracker>().LoseCondition();
+        //moneyTracker.GetComponent<MoneyTracker>().LoseCondition();
     }
 
     public void Continue()

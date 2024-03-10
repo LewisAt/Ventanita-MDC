@@ -7,6 +7,7 @@ using UnityEngine.UI;
 
 //this Script uses enum from possible orders created from the meal object script to create the name of the order
 //it also randomizes the amount side 1 and side 2 will have
+//! right now the script returns a very large value
 public class CustomerOrder : MonoBehaviour
 {
     public SideFoods sides;
@@ -25,7 +26,7 @@ public class CustomerOrder : MonoBehaviour
     string MealName;
     //Get this one for the ui
     [HideInInspector]
-    public static float foodsCostForCustomer;
+    public float foodsCostForCustomer;
     public string ConfirmedMealName;
     public string rice;
     public string main;

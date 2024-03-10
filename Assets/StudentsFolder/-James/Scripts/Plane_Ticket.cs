@@ -16,15 +16,15 @@ public class Plane_Ticket : MonoBehaviour
 
     void Update()
     {
-        remainder.text = "" + pMoney.totalMoney;
+        //remainder.text = "" + pMoney.totalMoney;
     }
 
     public void Purchase()
     {
-        if (pMoney.totalMoney >= TicketCost)
+        /* if (pMoney.totalMoney >= TicketCost)
         {
             StartCoroutine("Wait");
-        }
+        } */
     }
 
     IEnumerator Wait()

@@ -18,26 +18,66 @@ public class GradeOrderInput : MonoBehaviour
     public float moneyEarned;
     //public TMP_Text MoneyText;
     DifficultyDirector difficultyDirector;
-    bool Correct = false;
+
+    private MoneyTracker moneyTracker;
     private int CustomerTimer = 30;
     public TMP_Text LevelTimerText;
     public int mealAccuracyCount = 0;
-    bool isBeingChecked = false;
     private IEnumerator CustomerTimerCoroutine;
     public Slider CustomerSliderUI;
     public AudioSource incorrectOrderSound;
+    public AudioSource completeSound;
+    public AudioSource failSound;
+    private TriggerMeal triggerMeal;//actual variable hold the the current customer
+    public TriggerMeal MealTrigger
+    {
+        get { return triggerMeal; }
+        set { triggerMeal = value; }
+    }
     private void OnEnable()
     {
-        CustomerTimerCoroutine = SubtrackSeconds();
-        difficultyDirector = GameObject.FindGameObjectWithTag("DifficultyDirector").GetComponent<DifficultyDirector>();
-        difficultyDirector.getDifficulty();
+        PopulateDependencies();
     }
-    private Movetowindow customer;
-    public void addCustomer(Movetowindow NewCustomer)
+    private void PopulateDependencies()
     {
-        if (Movetowindow.sameId == 0)
+        // populates the dependencies for the script
+        difficultyDirector = GameObject.FindGameObjectWithTag("DifficultyDirector").GetComponent<DifficultyDirector>();
+        
+        moneyTracker = this.GetComponent<MoneyTracker>();
+        triggerMeal = GameObject.Find("====GameSystems====/CustomerWindowTrigger").GetComponent<TriggerMeal>();
+        //starts the timer for the customer and sets the difficulty
+        CustomerTimerCoroutine = SubtrackSeconds();
+        difficultyDirector.getDifficulty();
+
+
+        Debug.Log("Populated Dependencies");
+        debugCheckDependencies();
+    }
+    private void debugCheckDependencies()
+    {
+        if (difficultyDirector == null)
         {
-            customer = NewCustomer;
+            Debug.Log("Difficulty Director is null");
+        }
+        else
+        {
+            Debug.Log("Difficulty Director is not null");
+        }
+        if (moneyTracker == null)
+        {
+            Debug.Log("Money Tracker is null");
+        }
+        else
+        {
+            Debug.Log("Money Tracker is not null");
+        }
+        if (triggerMeal == null)
+        {
+            Debug.Log("Trigger Meal is null");
+        }
+        else
+        {
+            Debug.Log("Trigger Meal is not null");
         }
     }
 
@@ -58,6 +98,16 @@ public class GradeOrderInput : MonoBehaviour
         {
             StopCoroutine(CustomerTimerCoroutine);
         }
+
+        //! this input is for debugg remove later
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            CompleteCustomerCorrect();
+            ActualOrder = null;
+            resetIcons();
+            StopCoroutine(CustomerTimerCoroutine);
+            FoodNameHeader.text = "Correct";
+        }
     }
 
     IEnumerator SubtrackSeconds()
@@ -67,16 +117,18 @@ public class GradeOrderInput : MonoBehaviour
             yield return new WaitForSeconds(1);
             CustomerTimer -= 1;
             CustomerSliderUI.value = CustomerTimer;
-
-            if (CustomerTimer <= 0)
+            if(CustomerTimer <= 0)
             {
-                if (Movetowindow.sameId == 1)
-                {
-                    customer.CompleteCustomerTimeRanOut();
-                    resetIcons();
-                }
+                CustomerFailed();
+                resetIcons();
             }
         }
+    }
+    void CustomerFailed()
+    {
+        CompleteCustomerTimeRanOut();
+        triggerMeal.UnpauseCustomer();
+        resetIcons();
     }
 
     void ConfirmOrder(plateIdentifier givenPlate) //Grades the plate by comparing enums Main and Side, Side nums, Rice bool, and coffee(Not Yet Implemented)
@@ -89,27 +141,36 @@ public class GradeOrderInput : MonoBehaviour
             ActualOrder = null;
             resetIcons();
             StopCoroutine(CustomerTimerCoroutine);
-            /* Causes Customer to freeze
-            if (Movetowindow.sameId == 2)
-            {
-                customer.CompleteCustomerCorrect();
-            }
-            */
-            customer.CompleteCustomerCorrect();
 
-            //moneyEarned += ActualOrder.foodsCost;
-            //MoneyText.text = "Money Earned\n$" + moneyEarned.ToString();
-            //CustomerTimer = 30;
+            CompleteCustomerCorrect();
+
             FoodNameHeader.text = "Correct";
 
         }
-        else
+        else//plays inncorect sound when wrong.
         {
             incorrectOrderSound.Play();
             StartCoroutine("youFailed");
         }
         Destroy(givenPlate.gameObject);
         givenPlate = null;
+    }
+
+
+     public void CompleteCustomerCorrect()
+    {
+        completeSound.Play();
+        //this is a great...
+        Debug.Log(ActualOrder);
+        moneyTracker.UserCash += ActualOrder.foodsCostForCustomer ;
+        CustomerSliderUI.value = 30;
+        triggerMeal.UnpauseCustomer();
+        resetIcons();
+    }
+    public void CompleteCustomerTimeRanOut()
+    {
+        failSound.Play();
+
     }
 
     IEnumerator youFailed()
@@ -120,10 +181,19 @@ public class GradeOrderInput : MonoBehaviour
 
     public void MakeAnOrder() //Creates new order when called by TriggerMeal after being triggered by customer
     {
+        Debug.Log("Making an order");
         resetIcons();
         int rand = Random.Range(0, possibleOrders.Length);
         ActualOrder = possibleOrders[rand];
         ActualOrder.randomizeFactors();
+        if(ActualOrder == null)
+        {
+            Debug.Log("Actual Order is null");
+        }
+        else
+        {
+            Debug.Log("Actual Order is not null");
+        }   
         ActualOrder.StartFood();
 
         CustomerTimer = 30;
@@ -137,7 +207,7 @@ public class GradeOrderInput : MonoBehaviour
 
 
     /// <summary>
-    /// //////////////////////////////////////////
+    // this bit is for the UI to display the order on the customer window
     /// </summary>
     public Image RiceIcon;
     public Sprite RiceSprite;

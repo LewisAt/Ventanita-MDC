@@ -11,7 +11,7 @@ public class DifficultyDirector : MonoBehaviour
     public CustomerOrder[] MediumOptions;
     public CustomerOrder[] HardOptions;
     float[] DifficultyGoal = { 500, 1000, 1500 };
-    int currentDiff = 0;
+    int currentDiff = 4;
     bool difficultySet = false;
     static bool DirectorExists = false;
     //Prevents duplicate instances of itself
@@ -26,18 +26,34 @@ public class DifficultyDirector : MonoBehaviour
             DontDestroyOnLoad(this);
             DirectorExists = true;
         }
+        findDifficulty();
     }
     //Gets called by GradeOrderInput on Start
     public void getDifficulty()
     {
         thisScene = SceneManager.GetActiveScene();
-        if (difficultySet == false && thisScene.name == "MainBuil 11-25-23")
+        if (difficultySet == false && thisScene.name == "Main Game")
         {
             GameObject CustomerWindow;
             CustomerWindow = GameObject.FindGameObjectWithTag("CustomerWindow");
             orders = CustomerWindow.GetComponent<GradeOrderInput>();
             setDifficulty();
             difficultySet = true;
+        }
+    }
+    void findDifficulty()
+    {
+        if(currentDiff == 4)
+        {
+            currentDiff = 0;
+        }
+        else if(currentDiff == 0)
+        {
+            currentDiff = 1;
+        }
+        else if(currentDiff == 1)
+        {
+            currentDiff = 2;
         }
     }
     //Gives Grade Order its difficulty depending on its difficult increment

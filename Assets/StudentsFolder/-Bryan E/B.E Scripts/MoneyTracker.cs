@@ -7,44 +7,34 @@ using UnityEngine.SceneManagement;
 
 public class MoneyTracker : MonoBehaviour
 {
-    public static float UserCash = 0.00f;
+    public float UserCash = 0.00f;
     public TMP_Text currentCash;
-    public TMP_Text totalCashText;
-    public float totalMoney = 0.00f;
-    public float moneyNeeded = 100.00f;
-    public float coffeeUpgradeCost = 30.00f;
-    public GameObject UpgradeMenu;
+    private float totalMoney = 0.00f;
+    private float moneyNeeded = 100.00f;
+    // public GameObject UpgradeMenu;
     //public float newAmount;
-    public UpgradeManager upgradeManager;
-    public CustomerOrder customerOrder;
+    // public UpgradeManager upgradeManager;
     public TMP_Text WarningSplash;
-
-    [SerializeField]
-    Plane_Ticket calc;
 
     //shows user current cash and sets the total amount of cash.
     void Update()
     {
-        currentCash.text = "Current Money $" + UserCash.ToString();
-        totalCashText.text = "Money: $" + UserCash.ToString();
+        currentCash.text = "Current Money\n$" + UserCash.ToString();
         totalMoney = UserCash;
-        totalCashText.text = (totalMoney - moneyNeeded).ToString();
     }
 
     //decides wether player loses or goes to upgrade screen depending on total money
-    public void LoseCondition()
-    {
-       if(totalMoney < moneyNeeded)
-        {
-            SceneManager.LoadScene(2);
-        }
-       else if (totalMoney >= moneyNeeded)
-        {
-            UpgradeMenu.SetActive(true);
-            upgradeManager.GetComponent<UpgradeManager>().enableRay();
-            calc.Purchase();
-        }
-    }
+    // public void LoseCondition()
+    // {
+    //    if(totalMoney < moneyNeeded)
+    //     {
+    //         SceneManager.LoadScene(2);
+    //     }
+    //    else if (totalMoney >= moneyNeeded)
+    //     {
+    //         UpgradeMenu.SetActive(true);
+    //     }
+    // }
 
     //tells player how they can win or lose
     private void Awake()
