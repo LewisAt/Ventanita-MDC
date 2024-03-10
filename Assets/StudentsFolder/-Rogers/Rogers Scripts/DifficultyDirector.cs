@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
+//this script is attached to the main game scene and is used to determine the difficulty of the game
 public class DifficultyDirector : MonoBehaviour
 {
     Scene thisScene;
