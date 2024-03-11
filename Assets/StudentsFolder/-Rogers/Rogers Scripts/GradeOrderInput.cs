@@ -119,7 +119,6 @@ public class GradeOrderInput : MonoBehaviour
             CustomerSliderUI.value = CustomerTimer;
             if(CustomerTimer <= 0)
             {
-
                 CustomerFailed();
                 resetIcons();
             }
@@ -129,8 +128,6 @@ public class GradeOrderInput : MonoBehaviour
     {
         CompleteCustomerTimeRanOut();
         triggerMeal.UnpauseCustomer();
-        CustomerSliderUI.value = 30; //! we need a universal value to be used on the customer slider value so we can change it later
-
         resetIcons();
     }
 
@@ -166,8 +163,7 @@ public class GradeOrderInput : MonoBehaviour
         //this is a great...
         Debug.Log(ActualOrder);
         moneyTracker.UserCash += ActualOrder.foodsCostForCustomer ;
-        CustomerSliderUI.value = 30;//! we need a universal value to be used on the customer slider value so we can change it later
-        
+        CustomerSliderUI.value = 30;
         triggerMeal.UnpauseCustomer();
         resetIcons();
     }

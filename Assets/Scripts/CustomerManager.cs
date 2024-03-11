@@ -18,6 +18,10 @@ public class CustomerManager : MonoBehaviour
         Customers[randomCustomer].SetActive(true);
     }
 
+    public void resetCustomers(GameObject customer)
+    {
+        customer.SetActive(false);
+    }
 
 
 }
