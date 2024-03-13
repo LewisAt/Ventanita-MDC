@@ -30,13 +30,17 @@ public class LaldleTrigger : MonoBehaviour
             CheckWhatFoodItIs(other);
         }
     }
+    private void Update()
+    {
+        //print(isLaldleFull);
+    }
     public void CheckWhatFoodItIs(Collision other)
     {
         /*This method checks the collision and spawns the object according to the foodidentifier enum accessed
         on the object*/
         foodType = other.gameObject.GetComponent<foodIdentifier>();
         currentFood = foodType.food;
-        /*if (!isLaldleFull && laldleType.ToString() == currentFood.ToString())
+        if (!isLaldleFull && laldleType.ToString() == currentFood.ToString())
         {
             //Debug.Log("its triggering");
             if (foodType == null)
@@ -45,10 +49,10 @@ public class LaldleTrigger : MonoBehaviour
                 return;
             }
             GameObject clone = Instantiate(prefabedFoods[(int)currentFood], this.transform.position, this.transform.rotation, this.transform);
-            clone.transform.localScale = new Vector3 (1,1,1);
+            clone.transform.localScale = Vector3.one;
             isLaldleFull = true;
-        }*/
-        if (!isLaldleFull && laldleType == LaldleIdentifier.TypeOfLaldle.general)
+        }
+        else if (!isLaldleFull && laldleType == LaldleIdentifier.TypeOfLaldle.general)
         {
             //Debug.Log("its triggering");
             if (foodType == null)
@@ -56,8 +60,8 @@ public class LaldleTrigger : MonoBehaviour
                 Debug.Log("its coming back null");
                 return;
             }
-            GameObject clone = Instantiate(prefabedFoods[(int)currentFood], this.transform.position, this.transform.rotation, this.transform);    
-            clone.transform.localRotation = Quaternion.Euler (-90,0,0);
+            GameObject clone = Instantiate(prefabedFoods[(int)currentFood], this.transform.position, this.transform.rotation, this.transform);
+            clone.transform.localScale = Vector3.one;
             isLaldleFull = true;
         }
     }

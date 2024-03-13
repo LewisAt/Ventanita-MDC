@@ -80,7 +80,7 @@ public class PlateServing : MonoBehaviour
             clone.transform.rotation = transform.GetChild(parent).rotation;
             clone.transform.SetParent(transform.GetChild(parent));
             clone.transform.localPosition = new Vector3 (0,0.05f,0);
-            clone.transform.localScale = new Vector3(1f, 1f, 1f);
+            clone.transform.localScale = new Vector3(0.15f, 0.1f, 0.15f);
             mainFull = true;
             laldleFull.isLaldleFull = false;
             Destroy(other);
@@ -118,8 +118,8 @@ public class PlateServing : MonoBehaviour
                 }
                 clone.transform.rotation = transform.GetChild(parent).rotation;
                 clone.transform.SetParent(transform.GetChild(parent));
-                clone.transform.localPosition = new Vector3(xoffset, 0.01f, zoffset);
-                clone.transform.localScale = new Vector3(1,1, 1);
+                clone.transform.localPosition = new Vector3(xoffset, 0.05f, zoffset);
+                clone.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
                 xSides++;
             }
             laldleFull.isLaldleFull = false;
@@ -130,7 +130,7 @@ public class PlateServing : MonoBehaviour
             clone.transform.rotation = transform.GetChild(parent + 1).rotation;
             clone.transform.SetParent(transform.GetChild(parent + 1));
             clone.transform.localPosition = new Vector3 (0,0.05f,0);
-            clone.transform.localScale = new Vector3 (1, 1f, 1f);
+            clone.transform.localScale = new Vector3 (0.15f, 0.1f, 0.15f);
             laldleFull.isLaldleFull = false;
             isRice = true;
             Destroy(other);

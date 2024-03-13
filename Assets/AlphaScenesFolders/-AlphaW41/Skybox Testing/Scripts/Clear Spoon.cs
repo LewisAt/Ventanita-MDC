@@ -8,23 +8,11 @@ public class ClearSpoon : MonoBehaviour
     {
         if(other.tag == "spoon")
         {
-            NewPoolingMethod tempScript = other.GetComponent<NewPoolingMethod>();
+            GameObject spoon = other.gameObject;
 
-            foreach (foodIdentifier f in tempScript.foodLadle)
-            {
-                if (f.GetComponent<MeshRenderer>().enabled == true)
-                {
-                    f.GetComponent<MeshRenderer>().enabled = false;
-                    if (f.GetComponentInChildren<MeshRenderer>() != null)
-                    {
-                        MeshRenderer[] temp;
-                        temp = f.GetComponentsInChildren<MeshRenderer>();
-                        foreach (MeshRenderer r in temp) { r.enabled = false; }
-                    }
-                }
-            }
+            Destroy(spoon.transform.GetChild(0).gameObject);
 
-            tempScript.isLadleFull = false;
+            other.gameObject.GetComponent<LaldleTrigger>().isLaldleFull = false;
         }
     }
 }
