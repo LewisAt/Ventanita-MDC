@@ -207,19 +207,19 @@ public class Movetowindow : MonoBehaviour
             StartCoroutine(SpawnStart());
             spawnCheck = false;
         }
-        /*
+        
         else if (linePoint3.GetComponent<CustomerLine>().spot3 == false && linePoint2.GetComponent<CustomerLine>().spot2 == true &&
             linePoint1.GetComponent<CustomerLine>().spot1 == true && spawnCheck == true && CustId == 1)
         {
             StartCoroutine(SpawnStart());
             spawnCheck = false;
         }
-        */
-        else if (linePoint3.GetComponent<CustomerLine>().spot3 == false && linePoint2.GetComponent<CustomerLine>().spot2 == false &&
+        
+        /*else if (linePoint3.GetComponent<CustomerLine>().spot3 == false && linePoint2.GetComponent<CustomerLine>().spot2 == false &&
             linePoint1.GetComponent<CustomerLine>().spot1 == false && linePoint4.GetComponent<CustomerLine>().spot4 == false)
         {
             StartCoroutine(SpawnWhenEmpty());
-        }
+        }*/
 
     }
     private void Update()
@@ -258,7 +258,7 @@ public class Movetowindow : MonoBehaviour
         spawnCheck = true;
     }
 
-    IEnumerator SpawnWhenEmpty()
+    /*IEnumerator SpawnWhenEmpty()
     {
         yield return new WaitForSeconds(1f);
         if (linePoint3.GetComponent<CustomerLine>().spot3 == false && linePoint2.GetComponent<CustomerLine>().spot2 == false &&
@@ -267,7 +267,7 @@ public class Movetowindow : MonoBehaviour
             Instantiate(realCustomer, spawnPoint.transform.position, spawnPoint.transform.rotation);
             yield return new WaitForSeconds(3f);
         }
-    }
+    }*/
     IEnumerator SpawnStart()
     {
         yield return new WaitForSeconds(7f);
