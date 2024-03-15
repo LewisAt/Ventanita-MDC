@@ -10,6 +10,7 @@ public class PlateSpawn : MonoBehaviour
 {
     //public GameObject spawner;
     public GameObject plate;
+    public AudioSource plateSound;
     private GameObject spawnPlate;
     public float spawnTime = 5;
     public bool objIn = false;
@@ -30,6 +31,7 @@ public class PlateSpawn : MonoBehaviour
 
     public void SpawnObject()
     {
+        plateSound.Play();
         spawnPlate = Instantiate(plate, transform.position, transform.rotation);
         XRGrabInteractable xRGrabInteractable = spawnPlate.GetComponent<XRGrabInteractable>();
         if (xRGrabInteractable != null)
