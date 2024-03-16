@@ -45,7 +45,7 @@ public class Movetowindow : MonoBehaviour
     {
         this.gameObject.SetActive(false);
         customer = GetComponent<Rigidbody>();
-        customerManager = GameObject.Find("====GameSystems====/CustomerManager").GetComponent<CustomerManager>();
+        customerManager = GameObject.Find("====GameSystems====/GameFunctions(POSITIONSMATTER)/CustomerManager").GetComponent<CustomerManager>();
     }
     void FixedUpdate()
     {

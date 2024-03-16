@@ -10,75 +10,47 @@ using UnityEngine.InputSystem;
 public class Level_Timer : MonoBehaviour
 {
     //Variables
-    public int minute_1 = 0;
-    public int minute_2 = 0;
-    public int hour = 6;
-    public TMP_Text minuteClock_1;
-    public TMP_Text minuteClock_2;
-    public TMP_Text hourClock;
-    public AudioSource endTimerSound;
-    bool DayEnd = false;
-    public UpgradeManager upgradeManager;
+    [SerializeField] private float DayLengthinMinutes = 4;
+    private int seconds = 60;
+    [SerializeField] private TMP_Text TimerText;
 
     //Starts Coroutine
     void Start()
     {
+    }
+    void triggerStartDay()
+    {
         StartCoroutine("Countdown");
     }
 
-    void Update()
-    {
-        //Manages Clock (Where 1 is placed: 0:01)
-        if (minute_1 < 0)
-        {
-            minute_1 = 9;
-            minute_2--;
-        }
-
-        //Manages Clock (Where 1 is placed: 0:10)
-        if (minute_2 < 0)
-        {
-            minute_2 = 5;
-            hour--;
-        }
-
-        //Updates Text
-        minuteClock_1.text = "" + minute_1;
-        minuteClock_2.text = "" + minute_2;
-        hourClock.text = "" + hour;
-
-        //sound
-        if (hour == 0 && minute_2 == 1 && minute_1 == 2)
-        {
-            endTimerSound.Play();
-        }
-
-        //Begins End Day
-        if (hour == 0 && minute_2 == 0 && minute_1 == 0 && DayEnd == false)
-        {
-            DayEnd = true;
-            StopCoroutine("Countdown");
-            EndDay();
-            upgradeManager.GetComponent<UpgradeManager>().Upgrade();
-        }
-    }
-
     //Countdown
+
     IEnumerator Countdown()
     {
-        DayEnd = false;
-        while (hour >= 0)
+        yield return new WaitForSeconds(1);
+        seconds--;
+        if (seconds == 0)
         {
-            yield return new WaitForSeconds(1);
-            minute_1--;
+            DayLengthinMinutes--;
+            seconds = 60;
         }
+        if (DayLengthinMinutes == 0 && seconds == 0)
+        {
+            EndDay();
+        }
+
     }
 
     //End Day
     public void EndDay()
     {
+
         Debug.Log("Day Ends");
+        GameManager.instance.endDay();
         //Ends Day coding here
+        //stop all customersc
+        //enable after actionScreen
+        //disable all other screens
 
     }
 }

@@ -25,9 +25,6 @@ public class FoodRemoval : MonoBehaviour
         }
     }
 
-    private void Update()
-    {
-        print(gameObject.name + " has " + transform.childCount + " children");
-    }
+  
 }
        

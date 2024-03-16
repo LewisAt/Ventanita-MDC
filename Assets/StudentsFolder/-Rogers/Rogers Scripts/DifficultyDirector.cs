@@ -7,10 +7,9 @@ public class DifficultyDirector : MonoBehaviour
 {
     Scene thisScene;
     GradeOrderInput orders;
-    public CustomerOrder[] EasyOptions;
-    public CustomerOrder[] MediumOptions;
-    public CustomerOrder[] HardOptions;
-    float[] DifficultyGoal = { 500, 1000, 1500 };
+    [SerializeField] private CustomerOrder[] EasyOptions;
+    [SerializeField] private CustomerOrder[] MediumOptions;
+    [SerializeField] private CustomerOrder[] HardOptions;
     int currentDiff = 4;
     bool difficultySet = false;
     static bool DirectorExists = false;
@@ -21,12 +20,10 @@ public class DifficultyDirector : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
-        else
         {
             DontDestroyOnLoad(this);
             DirectorExists = true;
         }
-        findDifficulty();
     }
     //Gets called by GradeOrderInput on Start
     public void getDifficulty()
@@ -41,21 +38,7 @@ public class DifficultyDirector : MonoBehaviour
             difficultySet = true;
         }
     }
-    void findDifficulty()
-    {
-        if(currentDiff == 4)
-        {
-            currentDiff = 0;
-        }
-        else if(currentDiff == 0)
-        {
-            currentDiff = 1;
-        }
-        else if(currentDiff == 1)
-        {
-            currentDiff = 2;
-        }
-    }
+
     //Gives Grade Order its difficulty depending on its difficult increment
     void setDifficulty()
     {
@@ -99,15 +82,5 @@ public class DifficultyDirector : MonoBehaviour
         }
     }
     //Subtracts the money you earned after level and when difficults goal reaches zero higher the difficulty
-    public void saveMoney(float moneyEarned)
-    {
-        DifficultyGoal[currentDiff] = DifficultyGoal[currentDiff] - moneyEarned;
-        if (DifficultyGoal[currentDiff] <= 0 && currentDiff != 2) 
-        {
-            currentDiff++;
-        }
-        else print("Money Left: " + DifficultyGoal[currentDiff]);
-        difficultySet = false;
-        
-    }
+
 }

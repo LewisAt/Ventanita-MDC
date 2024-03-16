@@ -4,26 +4,54 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using Unity.VisualScripting;
 
 public class MoneyTracker : MonoBehaviour
 {
-    public TMP_Text currentCash;
-    private float totalMoney = 0.00f;
-    // public GameObject UpgradeMenu;
-    //public float newAmount;
-    // public UpgradeManager upgradeManager;
-    public TMP_Text WarningSplash;
-
-    //shows user current cash and sets the total amount of cash.
-    void Update()
+    [SerializeField] private TMP_Text RegisterCashAmount;
+    [SerializeField] private TMP_Text JarCahsAmount;
+    private float DaysMoney = 0.00f;
+    public float daySMoney
     {
-        currentCash.text = "Current Money\n$" + UserCash.ToString();
-        totalMoney = UserCash;
+        get { return DaysMoney; }
+        set { 
+            //^ We still need to save this value and get it from the save file
+            //^ or the general manager.
+            UpdateJarDisplay();
+            DaysMoney = value; 
+            }
     }
-    v
-    void Start()
+    private float savedTotal = 0.00f;
+    public float totalMoney
     {
-        currentCash.text = "Current Money\n$" + UserCash.ToString();
-        totalMoney = UserCash;
+        get { return savedTotal; }
+        set { 
+            UpdateRegisterDisplay();
+            savedTotal = value; 
+            }
+    }
+    public void CalculateAndDisplayMoney(float foodCost)
+    {
+        //^ We need to calculate the money earned from the day and display it.
+        //^ We also need to save the money to the save file or the game manager.
+        //^ We also need to end the day and go to the next day.
+        
+    }
+
+    void UpdateRegisterDisplay()
+    {
+        RegisterCashAmount.text = "Register\n$" + RegisterCashAmount.ToString();
+    }
+    void UpdateJarDisplay()
+    {
+        JarCahsAmount.text = "Jar\n$" + JarCahsAmount.ToString();
+    }
+    void EndDayAndSaveMoney()
+    {
+        //^ We need to save the money to the save file or the general manager.
+        //^ We also need to end the day and go to the next day.
+        //! calcaute how much money to save at the end of day based on how
+        //! much money more was exceed. so if it cost 400$ to pass - from saved
+        //! if less subtract from saved
     }
 }

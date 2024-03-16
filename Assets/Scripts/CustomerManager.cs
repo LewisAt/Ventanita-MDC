@@ -5,15 +5,30 @@ using UnityEngine;
 public class CustomerManager : MonoBehaviour
 {
     public GameObject[] Customers;
+    bool RunGame = true;
+    public bool setRunGame
+    {
+        get { return RunGame;}
+        set { RunGame = value; }
+
+    }
+    
     int randomCustomer;
     void Start()
     {
         activateRandomCustomer();
     }
-
+    /// <summary>
+    /// Triggers the end game state if the current money saved exceeds the last money state.
+    /// </summary>    
     public void activateRandomCustomer()
     {
-
+        // the customers start all events for our game if we stop them we stop
+        // steps 1-5
+        if(!RunGame)
+        {
+            return;
+        }
         randomCustomer = Random.Range(0, Customers.Length);
         Customers[randomCustomer].SetActive(true);
     }

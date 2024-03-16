@@ -21,13 +21,13 @@ public class GradeOrderInput : MonoBehaviour
 
     private MoneyTracker moneyTracker;
     private int CustomerTimer = 30;
-    public TMP_Text LevelTimerText;
+    [SerializeField] private TMP_Text LevelTimerText;
     public int mealAccuracyCount = 0;
     private IEnumerator CustomerTimerCoroutine;
-    public Slider CustomerSliderUI;
-    public AudioSource incorrectOrderSound;
-    public AudioSource completeSound;
-    public AudioSource failSound;
+    [SerializeField] private Slider CustomerSliderUI;
+    [SerializeField] private AudioSource incorrectOrderSound;
+    [SerializeField] private AudioSource completeSound;
+    [SerializeField] private AudioSource failSound;
     private TriggerMeal triggerMeal;//actual variable hold the the current customer
     public TriggerMeal MealTrigger
     {
@@ -43,10 +43,10 @@ public class GradeOrderInput : MonoBehaviour
         // populates the dependencies for the script
         difficultyDirector = GameObject.FindGameObjectWithTag("DifficultyDirector").GetComponent<DifficultyDirector>();
         
-        moneyTracker = this.GetComponent<MoneyTracker>();
-        triggerMeal = GameObject.Find("====GameSystems====/CustomerWindowTrigger").GetComponent<TriggerMeal>();
+        moneyTracker = GameObject.Find("====GameSystems====/GameFunctions(POSITIONSMATTER)/MoneyTracker5").GetComponent<MoneyTracker>();
+        triggerMeal = GameObject.Find("====GameSystems====/GameFunctions(POSITIONSMATTER)/CustomerWindowTrigger3").GetComponent<TriggerMeal>();
         //starts the timer for the customer and sets the difficulty
-        CustomerTimerCoroutine = SubtrackSeconds();
+        CustomerTimerCoroutine = CustomerTimerCorotine();
         difficultyDirector.getDifficulty();
 
 
@@ -80,7 +80,7 @@ public class GradeOrderInput : MonoBehaviour
             Debug.Log("Trigger Meal is not null");
         }
     }
-
+    //! this currently is used but deletes the plate a needs to changed.
     private void OnTriggerEnter(Collider other)
     {
         //this starts grading when colliding with a plate
@@ -91,6 +91,7 @@ public class GradeOrderInput : MonoBehaviour
             ConfirmOrder(givenPlateID);
         }
     }
+    //! remove later
     private void Update()
     {
 
@@ -109,8 +110,8 @@ public class GradeOrderInput : MonoBehaviour
             FoodNameHeader.text = "Correct";
         }
     }
-
-    IEnumerator SubtrackSeconds()
+//this is the timer for the customer
+    IEnumerator CustomerTimerCorotine()
     {
         while (true)
         {
@@ -162,7 +163,7 @@ public class GradeOrderInput : MonoBehaviour
         completeSound.Play();
         //this is a great...
         Debug.Log(ActualOrder);
-        moneyTracker.UserCash += ActualOrder.foodsCostForCustomer ;
+        moneyTracker.CalculateAndDisplayMoney(ActualOrder.foodsCostForCustomer);
         CustomerSliderUI.value = 30;
         triggerMeal.UnpauseCustomer();
         resetIcons();
