@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GeneralManager : MonoBehaviour
 {
-    private int MoneySaved;
+    private float MoneySaved = 0.00f;
     private int CurrentDifficulty;
 
     public static GeneralManager instance;
@@ -21,6 +21,10 @@ public class GeneralManager : MonoBehaviour
             Destroy(gameObject);
         }
     
+    }
+    public void SetMoneySaved(float newAmount)
+    {
+        MoneySaved += newAmount;
     }
 
 }
