@@ -28,6 +28,8 @@ public class GradeOrderInput : MonoBehaviour
     [SerializeField] private AudioSource incorrectOrderSound;
     [SerializeField] private AudioSource completeSound;
     [SerializeField] private AudioSource failSound;
+
+    //!look at this later its causing and issue but IDK what it is
     private TriggerMeal triggerMeal;//actual variable hold the the current customer
     public TriggerMeal MealTrigger
     {

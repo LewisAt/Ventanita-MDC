@@ -45,7 +45,7 @@ public class Movetowindow : MonoBehaviour
     {
         this.gameObject.SetActive(false);
         customer = GetComponent<Rigidbody>();
-        customerManager = GameObject.Find("====GameSystems====/GameFunctions(POSITIONSMATTER)/CustomerManager").GetComponent<CustomerManager>();
+        customerManager = GameObject.Find("====GameSystems====/GameFunctions(POSITIONSMATTER)/CustomerManager1").GetComponent<CustomerManager>();
     }
     void FixedUpdate()
     {
@@ -85,9 +85,9 @@ public class Movetowindow : MonoBehaviour
         }
         else
         {
-            Debug.Log("Current point is " + i );
+            /* Debug.Log("Current point is " + i );
             Debug.Log(transform.position.x + " " + points[i].transform.position.x);
-            Debug.Log("Customer isnt treaching the next point yet");
+            Debug.Log("Customer isnt treaching the next point yet"); */
         }
         
 

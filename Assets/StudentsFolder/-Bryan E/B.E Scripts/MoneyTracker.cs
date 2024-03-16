@@ -9,32 +9,25 @@ using Unity.VisualScripting;
 public class MoneyTracker : MonoBehaviour
 {
     [SerializeField] private TMP_Text RegisterCashAmount;
-    [SerializeField] private TMP_Text JarCahsAmount;
-    private float DaysMoney = 0.00f;
+    [SerializeField] AfterActionReport afterActionReport;
+
+    private float DaysTotal = 0.00f;
     public float daySMoney
     {
-        get { return DaysMoney; }
+        get { return DaysTotal; }
         set { 
-            //^ We still need to save this value and get it from the save file
-            //^ or the general manager.
-            UpdateJarDisplay();
-            DaysMoney = value; 
-            }
-    }
-    private float savedTotal = 0.00f;
-    public float totalMoney
-    {
-        get { return savedTotal; }
-        set { 
-            UpdateRegisterDisplay();
-            savedTotal = value; 
+            DaysTotal = value; 
             }
     }
     public void CalculateAndDisplayMoney(float foodCost)
     {
-        //^ We need to calculate the money earned from the day and display it.
-        //^ We also need to save the money to the save file or the game manager.
-        //^ We also need to end the day and go to the next day.
+        daySMoney += foodCost;
+        UpdateRegisterDisplay();
+        if(GameManager.instance.CurrentMinimumEarnings < DaysTotal)
+        {
+            GameManager.instance.SaveMoney += foodCost;
+        }
+
         
     }
 
@@ -42,11 +35,7 @@ public class MoneyTracker : MonoBehaviour
     {
         RegisterCashAmount.text = "Register\n$" + RegisterCashAmount.ToString();
     }
-    void UpdateJarDisplay()
-    {
-        JarCahsAmount.text = "Jar\n$" + JarCahsAmount.ToString();
-    }
-    void EndDayAndSaveMoney()
+    void EndDay()
     {
         //^ We need to save the money to the save file or the general manager.
         //^ We also need to end the day and go to the next day.

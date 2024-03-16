@@ -30,6 +30,7 @@ public class JarDisplay : MonoBehaviour
 
     void Awake()
     {
+        GameManager.OnMoneySaved += upddateDisplayAmount;
     }
 
     public GameObject DisplayState1;
@@ -42,9 +43,9 @@ public class JarDisplay : MonoBehaviour
     /// </summary>
     void upddateDisplayAmount()
     {
+        currentMoneySaved = GameManager.instance.SaveMoney;
         if (CurrentMoneySaved == moneyState0)
         {
-            playMoneySFX();
             DisplayState1.SetActive(false);
             DisplayState2.SetActive(false);
             DisplayState3.SetActive(false);

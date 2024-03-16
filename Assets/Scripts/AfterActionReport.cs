@@ -8,19 +8,21 @@ public class AfterActionReport : MonoBehaviour
     [SerializeField] private TMP_Text  TodayEarnings;
     [SerializeField] private GameObject afterActionScreen;
     [SerializeField] private MoneyTracker  moneyTracker;
-    void Awake()
+    void  Start()
     {
         afterActionScreen.SetActive(false);
-    
+        GameManager.OnEndDay += ShowAfterAction;
     }
 
     public void ShowAfterAction()
     {
+        afterActionScreen.SetActive(true);
 
-        TodayEarnings.text = "Today's Earnings: " + moneyTracker.daySMoney;
+        TodayEarnings.text = "We Saved: " + GameManager.instance.SaveMoney;
+
     }
-    void triggerEndDay()
+    public void startNewDay()
     {
-        
+        GameManager.instance.loadNextDay();
     }
 }

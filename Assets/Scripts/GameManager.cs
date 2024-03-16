@@ -11,22 +11,38 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
-    private CustomerManager customerManager;
-    private float[] MinimumEarnings = { 100.00f, 200.00f, 300.00f, 400.00f, 500.00f };
-    private AfterActionReport afterActionReport;
+    private float[] earningValues = { 100.00f, 200.00f, 300.00f, 400.00f, 500.00f };
+    public delegate void moneySaved();
+    public static event moneySaved OnMoneySaved;
+    public delegate void endDay();
+    public static event endDay OnEndDay;
+
+    private float minumumEarnings = 123f;
+    public float CurrentMinimumEarnings
+    {
+        get{return minumumEarnings;}
+        set{minumumEarnings = value;}
+    }
     private bool runGame = true;
-    public bool setRunGame
+    public bool isGameRunning
     {
         get { return runGame;}
         set {
-            customerManager.setRunGame = value; 
-            afterActionReport
             runGame = value; 
             }
 
     }
-    private int CurrentDifficultyAndDay = 1;
+    private int CurrentDifficultyAndDay = 0;
     private float MoneySaved = 0.00f;
+
+    //!if for some reason the code doesn't update the jar this could be the issue 
+    public float SaveMoney
+    {
+        get { return MoneySaved; }
+        set {
+            OnMoneySaved(); 
+            MoneySaved = value; }
+    }
 
     void Awake()
     {
@@ -50,26 +66,24 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
             return;
         }
-        customerManager = GameObject.Find("GameFunctions(POSITIONSMATTER)/====GameSystems====/CustomerManager1").GetComponent<CustomerManager>();
+        startNewDay();
+        //! if you have issues finding this attach it to the timer instead
         //
-        if(customerManager == null)
-        {
-            Debug.Log("CustomerManager not found");
-        }
-        else
-        {
-            Debug.Log("CustomerManager found");
-        }
     }
-    public void endDay()
+    void startNewDay()
     {
-        setRunGame = false;
+        CurrentMinimumEarnings = earningValues[CurrentDifficultyAndDay];
+    }
+    public void EndDay()
+    {
+        isGameRunning = false;
+        Debug.Log("Day Ended");
+        OnEndDay();
         //enable after actionScreen
         //show earnings
-        //
     }
     //this trigger by the after actionreport being ended.
-    void loadNextDay()
+    public void loadNextDay()
     {
         CurrentDifficultyAndDay++;
         SceneManager.LoadScene("Main Game");

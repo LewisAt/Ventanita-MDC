@@ -5,17 +5,11 @@ using UnityEngine;
 public class CustomerManager : MonoBehaviour
 {
     public GameObject[] Customers;
-    bool RunGame = true;
-    public bool setRunGame
-    {
-        get { return RunGame;}
-        set { RunGame = value; }
 
-    }
-    
     int randomCustomer;
     void Start()
     {
+        GameManager.OnEndDay += disableAllCustomers;
         activateRandomCustomer();
     }
     /// <summary>
@@ -25,7 +19,7 @@ public class CustomerManager : MonoBehaviour
     {
         // the customers start all events for our game if we stop them we stop
         // steps 1-5
-        if(!RunGame)
+        if(!GameManager.instance.isGameRunning)
         {
             return;
         }
@@ -36,6 +30,13 @@ public class CustomerManager : MonoBehaviour
     public void resetCustomers(GameObject customer)
     {
         customer.SetActive(false);
+    }
+    void disableAllCustomers()
+    {
+        for (int i = 0; i < Customers.Length; i++)
+        {
+            Customers[i].SetActive(false);
+        }
     }
 
 

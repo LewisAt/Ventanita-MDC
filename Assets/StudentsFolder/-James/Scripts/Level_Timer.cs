@@ -10,47 +10,50 @@ using UnityEngine.InputSystem;
 public class Level_Timer : MonoBehaviour
 {
     //Variables
-    [SerializeField] private float DayLengthinMinutes = 4;
-    private int seconds = 60;
+    [SerializeField] private float DayLengthinMinutes = 0;
+    [SerializeField] private int seconds = 60;
     [SerializeField] private TMP_Text TimerText;
 
     //Starts Coroutine
     void Start()
     {
+        //!change it so they drink coffee to start the day.
+        StartCoroutine("Countdown");
+
     }
     void triggerStartDay()
     {
-        StartCoroutine("Countdown");
     }
 
     //Countdown
-
+    private bool RunCountdown = true;
     IEnumerator Countdown()
     {
-        yield return new WaitForSeconds(1);
-        seconds--;
-        if (seconds == 0)
+        while (RunCountdown)
         {
-            DayLengthinMinutes--;
-            seconds = 60;
-        }
-        if (DayLengthinMinutes == 0 && seconds == 0)
-        {
-            EndDay();
-        }
+            Debug.Log(DayLengthinMinutes + ":" + seconds);
+             yield return new WaitForSeconds(1);
+            seconds--;
+            TimerText.text = DayLengthinMinutes + ":" + seconds;
+            if (DayLengthinMinutes == 0 && seconds == 0)
+            {
+                Debug.Log("time is up!");
+                GameManager.instance.EndDay();
+                RunCountdown = GameManager.instance.isGameRunning;
+                yield break;
+            }
+            if (seconds == 0)
+            {
+                Debug.Log("Minute is up!");
+                DayLengthinMinutes--;
+                seconds = 60;
+            }
+            
 
+
+        }
+       
     }
 
     //End Day
-    public void EndDay()
-    {
-
-        Debug.Log("Day Ends");
-        GameManager.instance.endDay();
-        //Ends Day coding here
-        //stop all customersc
-        //enable after actionScreen
-        //disable all other screens
-
-    }
 }
