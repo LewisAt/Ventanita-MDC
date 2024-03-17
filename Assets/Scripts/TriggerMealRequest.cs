@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TriggerMeal : MonoBehaviour
+public class TriggerMealRequest : MonoBehaviour
 {
     private GradeOrderInput m_Input;
     public AudioSource Arrival;
@@ -32,10 +32,12 @@ public class TriggerMeal : MonoBehaviour
     public void PauseCustomer()
     {
             m_Customer.PauseCustomer = true;
+            m_Input.MealTrigger = this;
     }
     public void UnpauseCustomer()
     {
             m_Customer.PauseCustomer = false;
+            Debug.Log("Unpausing Customer");
     }
     private void OnTriggerExit(Collider other)
     {

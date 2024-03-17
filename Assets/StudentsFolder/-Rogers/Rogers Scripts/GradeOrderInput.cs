@@ -12,7 +12,6 @@ using UnityEngine.UI;
 //whether they match
 public class GradeOrderInput : MonoBehaviour
 {
-    [HideInInspector]
     public CustomerOrder[] possibleOrders;
     public CustomerOrder ActualOrder;
     public float moneyEarned;
@@ -30,13 +29,14 @@ public class GradeOrderInput : MonoBehaviour
     [SerializeField] private AudioSource failSound;
 
     //!look at this later its causing and issue but IDK what it is
-    private TriggerMeal triggerMeal;//actual variable hold the the current customer
-    public TriggerMeal MealTrigger
+    private TriggerMealRequest triggerMeal;//actual variable hold the the current customer
+    public TriggerMealRequest MealTrigger
     {
         get { return triggerMeal; }
         set { triggerMeal = value; }
     }
-    private void OnEnable()
+    private void  Start()
+
     {
         PopulateDependencies();
     }
@@ -46,7 +46,7 @@ public class GradeOrderInput : MonoBehaviour
         difficultyDirector = GameObject.FindGameObjectWithTag("DifficultyDirector").GetComponent<DifficultyDirector>();
         
         moneyTracker = GameObject.Find("====GameSystems====/GameFunctions(POSITIONSMATTER)/MoneyTracker5").GetComponent<MoneyTracker>();
-        triggerMeal = GameObject.Find("====GameSystems====/GameFunctions(POSITIONSMATTER)/CustomerWindowTrigger3").GetComponent<TriggerMeal>();
+        triggerMeal = GameObject.Find("====GameSystems====/GameFunctions(POSITIONSMATTER)/CustomerWindowTrigger3").GetComponent<TriggerMealRequest>();
         //starts the timer for the customer and sets the difficulty
         CustomerTimerCoroutine = CustomerTimerCorotine();
         difficultyDirector.getDifficulty();
@@ -136,19 +136,19 @@ public class GradeOrderInput : MonoBehaviour
 
     void ConfirmOrder(plateIdentifier givenPlate) //Grades the plate by comparing enums Main and Side, Side nums, Rice bool, and coffee(Not Yet Implemented)
     {
+        Debug.Log("Confirming Order " + givenPlate + " " + ActualOrder );
         if (givenPlate.plateMain == ActualOrder.Mains
             && givenPlate.plateSide == ActualOrder.sides
             && givenPlate.plateSide1 == ActualOrder.sides1
             && givenPlate.hasRice == ActualOrder.hasRice)
         {
-            ActualOrder = null;
             resetIcons();
             StopCoroutine(CustomerTimerCoroutine);
 
             CompleteCustomerCorrect();
 
             FoodNameHeader.text = "Correct";
-
+            ActualOrder = null;
         }
         else//plays inncorect sound when wrong.
         {
@@ -165,6 +165,7 @@ public class GradeOrderInput : MonoBehaviour
         completeSound.Play();
         //this is a great...
         Debug.Log(ActualOrder);
+        Debug.Log(ActualOrder.foodsCostForCustomer);
         moneyTracker.CalculateAndDisplayMoney(ActualOrder.foodsCostForCustomer);
         CustomerSliderUI.value = 30;
         triggerMeal.UnpauseCustomer();

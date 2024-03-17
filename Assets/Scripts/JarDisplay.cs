@@ -2,6 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Current bugs with this script:
+/// - The money saved is not being updated correctly. its delayed
+/// 
+/// </summary> <summary>
+/// 
+/// </summary>
 public class JarDisplay : MonoBehaviour
 {
     /// <summary>
@@ -10,27 +17,27 @@ public class JarDisplay : MonoBehaviour
     private float currentMoneySaved;
 
     private float moneyState0 = 0;
-    private float moneyState1 = 200;
-    private float moneyState2 = 400;
-    private float moneyState3 = 600;
-    private float moneyStateLast = 800;
+    private float moneyState1 = 25;
+    private float moneyState2 = 50;
+    private float moneyState3 = 75;
+    private float moneyStateLast = 100;
 
     /// <summary>
     /// Gets or sets the current amount of money saved.
     /// </summary>
-    public float CurrentMoneySaved
+    public float m_CurrentMoneySaved
     {
         get { return currentMoneySaved; }
         set
         {
             currentMoneySaved = value;
-            upddateDisplayAmount();
         }
     }
 
-    void Awake()
+    void  Start()
     {
         GameManager.OnMoneySaved += upddateDisplayAmount;
+        upddateDisplayAmount();
     }
 
     public GameObject DisplayState1;
@@ -43,15 +50,16 @@ public class JarDisplay : MonoBehaviour
     /// </summary>
     void upddateDisplayAmount()
     {
-        currentMoneySaved = GameManager.instance.SaveMoney;
-        if (CurrentMoneySaved == moneyState0)
+        m_CurrentMoneySaved = GameManager.instance.SaveMoney;
+        Debug.Log("Current Money Saved: " + m_CurrentMoneySaved);
+        if (m_CurrentMoneySaved == moneyState0)
         {
             DisplayState1.SetActive(false);
             DisplayState2.SetActive(false);
             DisplayState3.SetActive(false);
             DisplayStatelast.SetActive(false);
         }
-        else if (CurrentMoneySaved > moneyState1)
+        else if (m_CurrentMoneySaved > moneyState1 && m_CurrentMoneySaved < moneyState2)
         {
             playMoneySFX();
             DisplayState1.SetActive(true);
@@ -59,7 +67,7 @@ public class JarDisplay : MonoBehaviour
             DisplayState3.SetActive(false);
             DisplayStatelast.SetActive(false);
         }
-        else if (CurrentMoneySaved > moneyState2)
+        else if (m_CurrentMoneySaved > moneyState2 && m_CurrentMoneySaved < moneyState3)
         {
             playMoneySFX();
             DisplayState1.SetActive(false);
@@ -67,7 +75,7 @@ public class JarDisplay : MonoBehaviour
             DisplayState3.SetActive(false);
             DisplayStatelast.SetActive(false);
         }
-        else if (CurrentMoneySaved > moneyState3)
+        else if (m_CurrentMoneySaved > moneyState3 && m_CurrentMoneySaved <  moneyStateLast )
         {
             playMoneySFX();
             DisplayState1.SetActive(false);
@@ -75,7 +83,7 @@ public class JarDisplay : MonoBehaviour
             DisplayState3.SetActive(true);
             DisplayStatelast.SetActive(false);
         }
-        else if (CurrentMoneySaved > moneyStateLast)
+        else if (m_CurrentMoneySaved > moneyStateLast)
         {
             playMoneySFX();
             DisplayState1.SetActive(false);
@@ -90,19 +98,19 @@ public class JarDisplay : MonoBehaviour
     /// </summary>
     void playMoneySFX()
     {
-        if (CurrentMoneySaved > moneyState1)
+        if (m_CurrentMoneySaved > moneyState1)
         {
             //play sound effect & Particle effect
         }
-        else if (CurrentMoneySaved > moneyState2)
+        else if (m_CurrentMoneySaved > moneyState2)
         {
             //play sound effect & Particle effect
         }
-        else if (CurrentMoneySaved > moneyState3)
+        else if (m_CurrentMoneySaved > moneyState3)
         {
             //play sound effect & Particle effect
         }
-        else if (CurrentMoneySaved > moneyStateLast)
+        else if (m_CurrentMoneySaved > moneyStateLast)
         {
             //play sound effect & Particle effect
         }

@@ -37,7 +37,7 @@ public class GeneralManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.A))
         {
             // Code to execute when the 'A' button is pressed
-            SceneManager.LoadScene("Main Game");
+            GameManager.instance.loadNextDay();
         }
         
         if (Input.GetKeyDown(KeyCode.B))

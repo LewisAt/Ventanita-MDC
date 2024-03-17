@@ -11,11 +11,11 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
-    private float[] earningValues = { 100.00f, 200.00f, 300.00f, 400.00f, 500.00f };
+    private float[] earningValues = { 20.00f, 40.00f, 60.00f, 80.00f, 100.00f };
     public delegate void moneySaved();
     public static event moneySaved OnMoneySaved;
     public delegate void endDay();
-    public static event endDay OnEndDay;
+    public  static event endDay OnEndDay;
 
     private float minumumEarnings = 123f;
     public float CurrentMinimumEarnings
@@ -33,6 +33,12 @@ public class GameManager : MonoBehaviour
 
     }
     private int CurrentDifficultyAndDay = 0;
+    public int CurrentDay
+    {
+        get { return CurrentDifficultyAndDay; }
+        set { CurrentDifficultyAndDay = value; }
+    }
+
     private float MoneySaved = 0.00f;
 
     //!if for some reason the code doesn't update the jar this could be the issue 
@@ -44,7 +50,7 @@ public class GameManager : MonoBehaviour
             MoneySaved = value; }
     }
 
-    void Awake()
+    void  Start()
     {
         if (instance == null)
         {
@@ -55,6 +61,7 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        CurrentMinimumEarnings = earningValues[0];
         SceneManager.activeSceneChanged += checkIfSceneIsMainGame;
         
     }
@@ -66,13 +73,8 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
             return;
         }
-        startNewDay();
         //! if you have issues finding this attach it to the timer instead
         //
-    }
-    void startNewDay()
-    {
-        CurrentMinimumEarnings = earningValues[CurrentDifficultyAndDay];
     }
     public void EndDay()
     {
@@ -86,7 +88,21 @@ public class GameManager : MonoBehaviour
     public void loadNextDay()
     {
         CurrentDifficultyAndDay++;
+        resetSubscriptions();
+        int clampDay = Mathf.Clamp(CurrentDifficultyAndDay, 0, 4);
+        CurrentMinimumEarnings = earningValues[clampDay];
         SceneManager.LoadScene("Main Game");
+        isGameRunning = true;//! we should make this trigger via the player wanting to
+
+    }
+    //! since the event is static is lingers for the old world and will call upon that which no long exists
+    //& basically when you call the event it tries to call all the previous
+    //&Subscriptions that were made to it.
+    //&since that scenes was deloaded it will cause a null reference exception
+    public void resetSubscriptions()
+    {
+        OnEndDay = null;
+        OnMoneySaved = null;
     }
     
 }

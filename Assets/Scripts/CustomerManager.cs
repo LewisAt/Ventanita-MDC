@@ -7,7 +7,7 @@ public class CustomerManager : MonoBehaviour
     public GameObject[] Customers;
 
     int randomCustomer;
-    void Start()
+    void  Start()
     {
         GameManager.OnEndDay += disableAllCustomers;
         activateRandomCustomer();
@@ -17,6 +17,8 @@ public class CustomerManager : MonoBehaviour
     /// </summary>    
     public void activateRandomCustomer()
     {
+        Debug.Log("Activating Random Customer");
+
         // the customers start all events for our game if we stop them we stop
         // steps 1-5
         if(!GameManager.instance.isGameRunning)
@@ -25,6 +27,7 @@ public class CustomerManager : MonoBehaviour
         }
         randomCustomer = Random.Range(0, Customers.Length);
         Customers[randomCustomer].SetActive(true);
+        Debug.Log(Customers[randomCustomer].name + " is now active of Group " + Customers[randomCustomer].transform.parent.transform.parent.name);
     }
 
     public void resetCustomers(GameObject customer)

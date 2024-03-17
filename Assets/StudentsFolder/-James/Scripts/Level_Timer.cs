@@ -31,10 +31,14 @@ public class Level_Timer : MonoBehaviour
     {
         while (RunCountdown)
         {
-            Debug.Log(DayLengthinMinutes + ":" + seconds);
+            //Debug.Log(DayLengthinMinutes + ":" + seconds);
              yield return new WaitForSeconds(1);
             seconds--;
             TimerText.text = DayLengthinMinutes + ":" + seconds;
+            if(seconds < 10)
+            {
+                TimerText.text = DayLengthinMinutes + ":0" + seconds;
+            }
             if (DayLengthinMinutes == 0 && seconds == 0)
             {
                 Debug.Log("time is up!");
