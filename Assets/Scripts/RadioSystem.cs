@@ -16,12 +16,7 @@ public class RadioSystem : MonoBehaviour
             return RadioOutro;
         }
     }
-    void Start()
-    {
-        GameManager.OnEndDay += stopRadio;
-        /* playIntro(); */
-    
-    }
+
     /* void Update()
     {
         if(GameManager.instance.isGameRunning == false)
@@ -51,9 +46,5 @@ public class RadioSystem : MonoBehaviour
         Radio.clip = RadioOutro;
         Radio.Play();
     } */
-    void stopRadio()
-    {
-        Radio.Stop();
-    }   
 
 }

@@ -11,7 +11,7 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
-    private float[] earningValues = { 5.00f, 10.00f, 15.00f, 20.00f, 25.00f };
+    private float[] earningValues = { 2.00f, 4.00f, 6.00f, 8.00f, 10.00f };
     public delegate void moneySaved();
     public static event moneySaved OnMoneySaved;
     public delegate void endDay();
