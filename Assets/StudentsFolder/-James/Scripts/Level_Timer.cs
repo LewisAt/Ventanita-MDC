@@ -13,6 +13,7 @@ public class Level_Timer : MonoBehaviour
     [SerializeField] private float DayLengthinMinutes = 0;
     [SerializeField] private int seconds = 60;
     [SerializeField] private TMP_Text TimerText;
+    [SerializeField] private AudioSource timerSound;
 
     //Starts Coroutine
     void Start()
@@ -31,6 +32,7 @@ public class Level_Timer : MonoBehaviour
     {
         while (RunCountdown)
         {
+            
             //Debug.Log(DayLengthinMinutes + ":" + seconds);
              yield return new WaitForSeconds(1);
             seconds--;
@@ -51,6 +53,15 @@ public class Level_Timer : MonoBehaviour
                 Debug.Log("Minute is up!");
                 DayLengthinMinutes--;
                 seconds = 60;
+            }
+            if(DayLengthinMinutes == 0 && seconds == 10)
+            {
+                TimerText.color = Color.red;
+                if(!timerSound.isPlaying)
+                {
+                    timerSound.Play();
+                }
+            
             }
             
 

@@ -11,7 +11,6 @@ public class TriggerMealRequest : MonoBehaviour
     private void Start()
     {
         m_Input = GameObject.FindGameObjectWithTag("CustomerWindow").GetComponent<GradeOrderInput>();
-        m_Input.enabled = false;
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -24,7 +23,6 @@ public class TriggerMealRequest : MonoBehaviour
 
 
             Debug.Log("Customer Arrived");
-            m_Input.enabled = true;
             m_Input.MakeAnOrder();
             Arrival.Play();
         }
@@ -43,7 +41,6 @@ public class TriggerMealRequest : MonoBehaviour
     {
         if (other.tag == "Customer")
         {
-            m_Input.enabled = false;
         }
     }
 }

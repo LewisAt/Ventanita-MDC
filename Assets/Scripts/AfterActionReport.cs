@@ -9,23 +9,36 @@ public class AfterActionReport : MonoBehaviour
     [SerializeField] private TMP_Text  TodaysEarnings;
     [SerializeField] private TMP_Text  TodaysGoal;
     [SerializeField] private TMP_Text  Day;
+    [SerializeField] private AudioSource LookAtTheAfterActionReport;
     private GameObject afterActionScreen;
+    private GameObject CoffeeCup;
     [SerializeField] private MoneyTracker  moneyTracker;
     void  Start()
     {
         afterActionScreen = transform.GetChild(0).gameObject;
+        CoffeeCup = transform.GetChild(1).gameObject;
         GameManager.OnEndDay += ShowAfterAction;
+        CoffeeTriggersEvent.OnCoffeeTrigger += startNewDay;
         afterActionScreen.SetActive(false);
+        CoffeeCup.SetActive(false);
+
     }
 
     public void ShowAfterAction()
     {
         afterActionScreen.SetActive(true);
+        CoffeeCup.SetActive(true);
+        StartCoroutine(DelaySound());
         TodaysGoal.text = "We Needed: " + GameManager.instance.CurrentMinimumEarnings;
         Day.text = "Day: " + (GameManager.instance.CurrentDay + 1);
         TodaysEarnings.text = "We Earned: " + moneyTracker.daySMoney;
         TodaysSavings.text = "We Saved: " + GameManager.instance.SaveMoney;
 
+    }
+    IEnumerator DelaySound()
+    {
+        yield return new WaitForSeconds(3.0f);
+        LookAtTheAfterActionReport.Play();
     }
     public void startNewDay()
     {

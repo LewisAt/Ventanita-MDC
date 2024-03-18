@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.XR.Management;
+
 
 public class GeneralManager : MonoBehaviour
 {
@@ -50,6 +52,13 @@ public class GeneralManager : MonoBehaviour
         {
             SceneManager.LoadScene("Menu");
             // Code to execute when the 'C' button is pressed
+        }
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            UnityEditor.EditorApplication.isPlaying = false;
+            XRGeneralSettings.Instance.Manager.DeinitializeLoader();
+
+            // Code to execute when the 'D' button is pressed
         }
         // Add more if statements for other buttons as needed
     }
