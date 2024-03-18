@@ -8,6 +8,7 @@ public class AfterActionReport : MonoBehaviour
     [SerializeField] private TMP_Text  TodaysSavings;
     [SerializeField] private TMP_Text  TodaysEarnings;
     [SerializeField] private TMP_Text  TodaysGoal;
+    private bool drankCoffee = false;
     [SerializeField] private TMP_Text  Day;
     [SerializeField] private AudioSource LookAtTheAfterActionReport;
     private GameObject afterActionScreen;
@@ -18,7 +19,6 @@ public class AfterActionReport : MonoBehaviour
         afterActionScreen = transform.GetChild(0).gameObject;
         CoffeeCup = transform.GetChild(1).gameObject;
         GameManager.OnEndDay += ShowAfterAction;
-        CoffeeTriggersEvent.OnCoffeeTrigger += startNewDay;
         afterActionScreen.SetActive(false);
         CoffeeCup.SetActive(false);
 
@@ -30,7 +30,8 @@ public class AfterActionReport : MonoBehaviour
         CoffeeCup.SetActive(true);
         StartCoroutine(DelaySound());
         TodaysGoal.text = "We Needed: " + GameManager.instance.CurrentMinimumEarnings;
-        Day.text = "Day: " + (GameManager.instance.CurrentDay + 1);
+        int day = GameManager.instance.CurrentDay + 1;
+        Day.text = "Day: " + (day);
         TodaysEarnings.text = "We Earned: " + moneyTracker.daySMoney;
         TodaysSavings.text = "We Saved: " + GameManager.instance.SaveMoney;
 
@@ -40,10 +41,7 @@ public class AfterActionReport : MonoBehaviour
         yield return new WaitForSeconds(3.0f);
         LookAtTheAfterActionReport.Play();
     }
-    public void startNewDay()
-    {
-        GameManager.instance.loadNextDay();
-    }
+
     //what day it is
     // how much you needed to earn
     //How much you did earn

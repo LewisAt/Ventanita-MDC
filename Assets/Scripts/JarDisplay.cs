@@ -17,10 +17,10 @@ public class JarDisplay : MonoBehaviour
     private float currentMoneySaved;
 
     private float moneyState0 = 0;
-    private float moneyState1 = 25;
-    private float moneyState2 = 50;
-    private float moneyState3 = 75;
-    private float moneyStateLast = 100;
+    private float moneyState1 = 10;
+    private float moneyState2 = 25;
+    private float moneyState3 = 50;
+    private float moneyStateLast = 75;
 
     /// <summary>
     /// Gets or sets the current amount of money saved.

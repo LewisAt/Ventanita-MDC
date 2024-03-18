@@ -11,12 +11,11 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
-    private float[] earningValues = { 20.00f, 40.00f, 60.00f, 80.00f, 100.00f };
+    private float[] earningValues = { 5.00f, 10.00f, 15.00f, 20.00f, 25.00f };
     public delegate void moneySaved();
     public static event moneySaved OnMoneySaved;
     public delegate void endDay();
     public  static event endDay OnEndDay;
-
     private float minumumEarnings = 123f;
     public float CurrentMinimumEarnings
     {
@@ -38,6 +37,9 @@ public class GameManager : MonoBehaviour
         get { return CurrentDifficultyAndDay; }
         set { CurrentDifficultyAndDay = value; }
     }
+    //& this to defend agains the fact that the coffee cup sometimes triggers twice
+    private bool drankCoffee = false;
+
 
     private float MoneySaved = 0.00f;
 
@@ -67,6 +69,7 @@ public class GameManager : MonoBehaviour
     }
     void checkIfSceneIsMainGame(Scene current, Scene next)
     {
+        drankCoffee = false;
         if (next.name != "Main Game")
         {
             Debug.Log("not main game");
@@ -87,12 +90,18 @@ public class GameManager : MonoBehaviour
     //this trigger by the after actionreport being ended.
     public void loadNextDay()
     {
+        if(drankCoffee)
+        {
+            return;
+        }
         CurrentDifficultyAndDay++;
+        Debug.Log("Loading Next Day");
         resetSubscriptions();
         int clampDay = Mathf.Clamp(CurrentDifficultyAndDay, 0, 4);
         CurrentMinimumEarnings = earningValues[clampDay];
         SceneManager.LoadScene("Main Game");
         isGameRunning = true;//! we should make this trigger via the player wanting to
+        drankCoffee = true;
 
     }
     //! since the event is static is lingers for the old world and will call upon that which no long exists

@@ -81,14 +81,6 @@ public class GradeOrderInput : MonoBehaviour
         {
             Debug.Log("Trigger Meal is not null");
         }
-        if (CustomerTimerCoroutine == null)
-        {
-            Debug.Log("Customer Timer Coroutine is null");
-        }
-        else
-        {
-            Debug.Log("Customer Timer Coroutine is not null");
-        }
     }
     //! this currently is used but deletes the plate a needs to changed.
     private void OnTriggerEnter(Collider other)
@@ -144,39 +136,26 @@ public class GradeOrderInput : MonoBehaviour
 
     void ConfirmOrder(plateIdentifier givenPlate) //Grades the plate by comparing enums Main and Side, Side nums, Rice bool, and coffee(Not Yet Implemented)
     {
-        Debug.Log("Confirming Order " + givenPlate + " the actual order is" + ActualOrder );
+        Debug.Log("Confirming Order " + givenPlate + " " + ActualOrder );
         if (givenPlate.plateMain == ActualOrder.Mains
             && givenPlate.plateSide == ActualOrder.sides
             && givenPlate.plateSide1 == ActualOrder.sides1
             && givenPlate.hasRice == ActualOrder.hasRice)
         {
-            
-        }
-
-        if(ActualOrder.Mains != null)
-        resetIcons();
+            resetIcons();
             StopCoroutine(CustomerTimerCoroutine);
 
             CompleteCustomerCorrect();
 
             FoodNameHeader.text = "Correct";
             ActualOrder = null;
-
-
-
-
-
-
-
-
-
-
+        }
+        else//plays inncorect sound when wrong.
+        {
+            incorrectOrderSound.Play();
+            StartCoroutine("youFailed");
+        }
         Destroy(givenPlate.gameObject);
-    }
-    void InncorectOrder()
-    {
-        incorrectOrderSound.Play();
-        StartCoroutine("youFailed");
     }
 
 

@@ -11,6 +11,7 @@ public class Level_Timer : MonoBehaviour
 {
     //Variables
     [SerializeField] private float DayLengthinMinutes = 0;
+    [SerializeField] RadioSystem radio;
     [SerializeField] private int seconds = 60;
     [SerializeField] private TMP_Text TimerText;
     [SerializeField] private AudioSource timerSound;
@@ -32,7 +33,10 @@ public class Level_Timer : MonoBehaviour
     {
         while (RunCountdown)
         {
-            
+          /*   if(radio.radioOutroCheck.length <= seconds && radio.radioOutroCheck.length > 0)
+            {
+                radio.PlayEnding();
+            } */
             //Debug.Log(DayLengthinMinutes + ":" + seconds);
              yield return new WaitForSeconds(1);
             seconds--;

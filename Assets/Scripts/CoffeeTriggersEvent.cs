@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class CoffeeTriggersEvent : MonoBehaviour
 {
-    public delegate void CoffeeTrigger();
-    public static event CoffeeTrigger OnCoffeeTrigger;
+
     void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "MainCamera")
+        if (other.tag == "Coffee")
         {
-            OnCoffeeTrigger();
+            Debug.Log("Coffee Triggered");
+            GameManager.instance.loadNextDay();
         }
     }
 }
