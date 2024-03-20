@@ -222,7 +222,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-47520
+  m_Name: pb_Mesh-157840
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -679,7 +679,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-47576
+  m_Name: pb_Mesh-157896
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -844,7 +844,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-53076
+  m_Name: pb_Mesh-162078
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -1019,7 +1019,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-47376
+  m_Name: pb_Mesh-157696
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -1630,7 +1630,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-47362
+  m_Name: pb_Mesh-157682
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -1882,7 +1882,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-47436
+  m_Name: pb_Mesh-157756
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -2072,7 +2072,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1565887663814566041, guid: 3e07eccb5e6f459d886de95044adb1d9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -2.2
       objectReference: {fileID: 0}
     - target: {fileID: 1565887663814566041, guid: 3e07eccb5e6f459d886de95044adb1d9, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2475,7 +2475,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-47464
+  m_Name: pb_Mesh-157784
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -3182,7 +3182,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-53518
+  m_Name: pb_Mesh-162520
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -4053,7 +4053,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-53148
+  m_Name: pb_Mesh-162150
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -4289,6 +4289,7 @@ GameObject:
   - component: {fileID: 478376507}
   - component: {fileID: 478376509}
   - component: {fileID: 478376508}
+  - component: {fileID: 478376510}
   m_Layer: 5
   m_Name: Text (Legacy)
   m_TagString: Untagged
@@ -4358,13 +4359,53 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 478376506}
   m_CullTransparentMesh: 1
+--- !u!114 &478376510
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 478376506}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56eb0353ae6e5124bb35b17aff880f16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_StringReference:
+    m_TableReference:
+      m_TableCollectionName: GUID:916ad127a9215df45a9463ce10f537de
+    m_TableEntryReference:
+      m_KeyId: 15545454592
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  m_FormatArguments: []
+  m_UpdateString:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 478376508}
+        m_TargetAssemblyTypeName: UnityEngine.UI.Text, UnityEngine.UI
+        m_MethodName: set_text
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  references:
+    version: 2
+    RefIds: []
 --- !u!43 &495311208
 Mesh:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-47492
+  m_Name: pb_Mesh-157812
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -4619,11 +4660,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1484633683299879851, guid: 166de91cb9e0638418bc93abdb5959cf, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1484633683299879851, guid: 166de91cb9e0638418bc93abdb5959cf, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4170708800607414829, guid: 166de91cb9e0638418bc93abdb5959cf, type: 3}
       propertyPath: m_Name
@@ -4631,7 +4672,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4170708800607414829, guid: 166de91cb9e0638418bc93abdb5959cf, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5307846312035300389, guid: 166de91cb9e0638418bc93abdb5959cf, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8998730638708061091, guid: 166de91cb9e0638418bc93abdb5959cf, type: 3}
       propertyPath: m_RootOrder
@@ -4680,8 +4725,67 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2752380961469106223, guid: 166de91cb9e0638418bc93abdb5959cf, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 522614420}
   m_SourcePrefab: {fileID: 100100000, guid: 166de91cb9e0638418bc93abdb5959cf, type: 3}
+--- !u!1 &522614418 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2752380961469106223, guid: 166de91cb9e0638418bc93abdb5959cf, type: 3}
+  m_PrefabInstance: {fileID: 522614417}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &522614419 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9067391817559799306, guid: 166de91cb9e0638418bc93abdb5959cf, type: 3}
+  m_PrefabInstance: {fileID: 522614417}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 522614418}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &522614420
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 522614418}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56eb0353ae6e5124bb35b17aff880f16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_StringReference:
+    m_TableReference:
+      m_TableCollectionName: GUID:820631558fd14714eb1a92f626dfda2b
+    m_TableEntryReference:
+      m_KeyId: 6515756158976
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  m_FormatArguments: []
+  m_UpdateString:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 522614419}
+        m_TargetAssemblyTypeName: UnityEngine.UI.Text, UnityEngine.UI
+        m_MethodName: set_text
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  references:
+    version: 2
+    RefIds: []
 --- !u!1 &543841529
 GameObject:
   m_ObjectHideFlags: 0
@@ -4754,9 +4858,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: "Your Job Is To Complete As Many Orders\nAs You Can Before You Close Up
-    Shop \nFor The Day\n\nYour Goal Is To Make Enough To Bring Your Grandpa\nOver
-    To The States"
+  m_Text: "Tu trabajo es completar tantos\npedidos como sea posible antes de\ncerrar
+    la tienda\r por el dia\r\n\r\nTu objetivo final es ganar suficiente\ndinero para
+    traer a tu abuelo\nA los Estados Unidos."
 --- !u!222 &543841532
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5960,7 +6064,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &674393668
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6038,6 +6142,7 @@ GameObject:
   - component: {fileID: 685977227}
   - component: {fileID: 685977229}
   - component: {fileID: 685977228}
+  - component: {fileID: 685977230}
   m_Layer: 5
   m_Name: Text (Legacy)
   m_TagString: Untagged
@@ -6107,6 +6212,46 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 685977226}
   m_CullTransparentMesh: 1
+--- !u!114 &685977230
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 685977226}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56eb0353ae6e5124bb35b17aff880f16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_StringReference:
+    m_TableReference:
+      m_TableCollectionName: GUID:a44c535f77c8efb4688ce0d0541d5a79
+    m_TableEntryReference:
+      m_KeyId: 9480485798727680
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  m_FormatArguments: []
+  m_UpdateString:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 685977228}
+        m_TargetAssemblyTypeName: UnityEngine.UI.Text, UnityEngine.UI
+        m_MethodName: set_text
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  references:
+    version: 2
+    RefIds: []
 --- !u!1 &713396415
 GameObject:
   m_ObjectHideFlags: 0
@@ -7526,7 +7671,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-47394
+  m_Name: pb_Mesh-157714
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -7934,7 +8079,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-53532
+  m_Name: pb_Mesh-162534
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -8099,7 +8244,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-47320
+  m_Name: pb_Mesh-157640
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -8489,7 +8634,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4422659090696076826, guid: fd28f23af44f73f4a95e33435872ad15, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 262.1
       objectReference: {fileID: 0}
     - target: {fileID: 4422659090696076826, guid: fd28f23af44f73f4a95e33435872ad15, type: 3}
       propertyPath: m_SizeDelta.y
@@ -8497,7 +8642,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4422659090696076826, guid: fd28f23af44f73f4a95e33435872ad15, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 147.05
       objectReference: {fileID: 0}
     - target: {fileID: 4422659090696076826, guid: fd28f23af44f73f4a95e33435872ad15, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -9779,7 +9924,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-47506
+  m_Name: pb_Mesh-157826
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -10009,7 +10154,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-47422
+  m_Name: pb_Mesh-157742
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -11700,7 +11845,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-47306
+  m_Name: pb_Mesh-157626
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -11901,8 +12046,9 @@ GameObject:
   - component: {fileID: 1181521757}
   - component: {fileID: 1181521759}
   - component: {fileID: 1181521758}
+  - component: {fileID: 1181521760}
   m_Layer: 5
-  m_Name: Text (Legacy)
+  m_Name: StoryTitle (Legacy)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11961,7 +12107,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Complete
+  m_Text: Story
 --- !u!222 &1181521759
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -11970,6 +12116,46 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1181521756}
   m_CullTransparentMesh: 1
+--- !u!114 &1181521760
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1181521756}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56eb0353ae6e5124bb35b17aff880f16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_StringReference:
+    m_TableReference:
+      m_TableCollectionName: GUID:a44c535f77c8efb4688ce0d0541d5a79
+    m_TableEntryReference:
+      m_KeyId: 9480485798727680
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  m_FormatArguments: []
+  m_UpdateString:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1181521758}
+        m_TargetAssemblyTypeName: UnityEngine.UI.Text, UnityEngine.UI
+        m_MethodName: set_text
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  references:
+    version: 2
+    RefIds: []
 --- !u!1 &1194692274
 GameObject:
   m_ObjectHideFlags: 0
@@ -12163,13 +12349,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: 'Now That You Have Given The Customer Their Food,
-
-    The Tutorial Is
-    Complete.
-
-
-    It Is Time To Move On To The Real Game'
+  m_Text: 
 --- !u!222 &1195943948
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -12518,7 +12698,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-47478
+  m_Name: pb_Mesh-157798
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -12973,7 +13153,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-47534
+  m_Name: pb_Mesh-157854
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -13244,7 +13424,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-51480
+  m_Name: pb_Mesh-160482
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -14091,7 +14271,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: "Now That You Are Ready, Good Luck \nAnd\nHave Fun"
+  m_Text: 
 --- !u!222 &1430570245
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -14552,7 +14732,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-47348
+  m_Name: pb_Mesh-157668
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -15925,7 +16105,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5182345275811263663, guid: 095852de75219d5488ecb11ad5120e97, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5705762981693428411, guid: 095852de75219d5488ecb11ad5120e97, type: 3}
       propertyPath: m_IsActive
@@ -15994,6 +16174,10 @@ PrefabInstance:
     - target: {fileID: 8116091040829770127, guid: 095852de75219d5488ecb11ad5120e97, type: 3}
       propertyPath: m_Name
       value: TutorialGuide
+      objectReference: {fileID: 0}
+    - target: {fileID: 8116091040829770127, guid: 095852de75219d5488ecb11ad5120e97, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8325743779983160599, guid: 095852de75219d5488ecb11ad5120e97, type: 3}
       propertyPath: m_Text
@@ -17046,7 +17230,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-47548
+  m_Name: pb_Mesh-157868
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -17216,6 +17400,7 @@ GameObject:
   - component: {fileID: 1750686574}
   - component: {fileID: 1750686576}
   - component: {fileID: 1750686575}
+  - component: {fileID: 1750686577}
   m_Layer: 5
   m_Name: Text (Legacy)
   m_TagString: Untagged
@@ -17276,7 +17461,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Button
+  m_Text: Play
 --- !u!222 &1750686576
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -17285,6 +17470,46 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1750686573}
   m_CullTransparentMesh: 1
+--- !u!114 &1750686577
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1750686573}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56eb0353ae6e5124bb35b17aff880f16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_StringReference:
+    m_TableReference:
+      m_TableCollectionName: GUID:d9bc11b656c35d74a91ee721c09f8eb0
+    m_TableEntryReference:
+      m_KeyId: 7543217638920192
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  m_FormatArguments: []
+  m_UpdateString:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1750686575}
+        m_TargetAssemblyTypeName: UnityEngine.UI.Text, UnityEngine.UI
+        m_MethodName: set_text
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  references:
+    version: 2
+    RefIds: []
 --- !u!1 &1750799819
 GameObject:
   m_ObjectHideFlags: 0
@@ -22674,6 +22899,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 8270169930021871657, guid: e6ccb8e65adcb604295e682bb9c562eb, type: 3}
+    - {fileID: 2201010001516425382, guid: e6ccb8e65adcb604295e682bb9c562eb, type: 3}
+    - {fileID: 563176394332070024, guid: e6ccb8e65adcb604295e682bb9c562eb, type: 3}
+    - {fileID: 3703232838431688711, guid: e6ccb8e65adcb604295e682bb9c562eb, type: 3}
+    - {fileID: 8848513720622126523, guid: e6ccb8e65adcb604295e682bb9c562eb, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e6ccb8e65adcb604295e682bb9c562eb, type: 3}
@@ -23067,6 +23296,7 @@ GameObject:
   - component: {fileID: 1904302711}
   - component: {fileID: 1904302713}
   - component: {fileID: 1904302712}
+  - component: {fileID: 1904302714}
   m_Layer: 5
   m_Name: Text (Legacy)
   m_TagString: Untagged
@@ -23136,6 +23366,46 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1904302710}
   m_CullTransparentMesh: 1
+--- !u!114 &1904302714
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1904302710}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56eb0353ae6e5124bb35b17aff880f16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_StringReference:
+    m_TableReference:
+      m_TableCollectionName: GUID:a44c535f77c8efb4688ce0d0541d5a79
+    m_TableEntryReference:
+      m_KeyId: 7278165593739264
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  m_FormatArguments: []
+  m_UpdateString:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1904302712}
+        m_TargetAssemblyTypeName: UnityEngine.UI.Text, UnityEngine.UI
+        m_MethodName: set_text
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  references:
+    version: 2
+    RefIds: []
 --- !u!1 &1919777755
 GameObject:
   m_ObjectHideFlags: 0
@@ -24661,7 +24931,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-47562
+  m_Name: pb_Mesh-157882
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -25385,6 +25655,7 @@ GameObject:
   - component: {fileID: 2092144342}
   - component: {fileID: 2092144344}
   - component: {fileID: 2092144343}
+  - component: {fileID: 2092144345}
   m_Layer: 5
   m_Name: Text (Legacy)
   m_TagString: Untagged
@@ -25454,6 +25725,46 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2092144341}
   m_CullTransparentMesh: 1
+--- !u!114 &2092144345
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2092144341}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56eb0353ae6e5124bb35b17aff880f16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_StringReference:
+    m_TableReference:
+      m_TableCollectionName: GUID:a44c535f77c8efb4688ce0d0541d5a79
+    m_TableEntryReference:
+      m_KeyId: 9511601674964992
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  m_FormatArguments: []
+  m_UpdateString:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2092144343}
+        m_TargetAssemblyTypeName: UnityEngine.UI.Text, UnityEngine.UI
+        m_MethodName: set_text
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  references:
+    version: 2
+    RefIds: []
 --- !u!1 &2111476430 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2004432344265964241, guid: 095852de75219d5488ecb11ad5120e97, type: 3}
@@ -25537,6 +25848,10 @@ PrefabInstance:
     - target: {fileID: 3960868284476806768, guid: dc067c577ec1b854684d789b6e727cc0, type: 3}
       propertyPath: m_AnchorMin.x
       value: 0.295
+      objectReference: {fileID: 0}
+    - target: {fileID: 4415745982179208543, guid: dc067c577ec1b854684d789b6e727cc0, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4941219564456579801, guid: dc067c577ec1b854684d789b6e727cc0, type: 3}
       propertyPath: m_Pivot.x
