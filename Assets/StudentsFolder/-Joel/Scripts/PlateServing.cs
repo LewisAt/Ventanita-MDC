@@ -6,9 +6,87 @@ using UnityEditor;
 using UnityEditor.XR;
 using UnityEngine;
 
+
+
 public class PlateServing : MonoBehaviour
 {
-    LaldleTrigger laldletrigger;
+    public GameObject Frijoles;
+    public GameObject[] croquetaGroup;
+
+    public GameObject Fricase;
+    public GameObject[] maduroGroup;
+
+    public GameObject Rabo;
+    public GameObject[] TostoneGroup;
+    public GameObject Arroz;
+
+    public void setFrijoles()
+    {
+        Frijoles.SetActive(true);
+    }
+    public void setCroquetaGroup(int num)
+    {
+        for (int i = 0; i < num; i++)
+        {
+            croquetaGroup[i].SetActive(true);
+        }
+    }
+    public void setFricase()
+    {
+        Fricase.SetActive(true);
+    }
+    public void setMaduroGroup(int num)
+    {
+        for (int i = 0; i < num; i++)
+        {
+            maduroGroup[i].SetActive(true);
+        }
+    }
+    public void setRabo()
+    {
+        Rabo.SetActive(true);
+    }
+    public void setTostoneGroup(int num)
+    {
+        for (int i = 0; i < num; i++)
+        {
+            TostoneGroup[i].SetActive(true);
+        }
+    }
+    public void setArroz()
+    {
+        Arroz.SetActive(true);
+    }
+
+    public void ResetAll()
+    {
+        Frijoles.SetActive(false);
+        Fricase.SetActive(false);
+        Rabo.SetActive(false);
+        Arroz.SetActive(false);
+        for (int i = 0; i < croquetaGroup.Length; i++)
+        {
+            croquetaGroup[i].SetActive(false);
+        }
+        for (int i = 0; i < maduroGroup.Length; i++)
+        {
+            maduroGroup[i].SetActive(false);
+        }
+        for (int i = 0; i < TostoneGroup.Length; i++)
+        {
+            TostoneGroup[i].SetActive(false);
+        }
+    }
+
+
+
+
+
+
+
+
+
+   /*  LaldleTrigger laldletrigger;
     foodIdentifier Food;
     foodIdentifier.foodPosition foodPos;
     foodIdentifier.typesOfFood foodtype;
@@ -26,14 +104,37 @@ public class PlateServing : MonoBehaviour
    /*This is the main functionality of how the plate receives the food and knows where to put it
     * It seperates it into main, rice, and side; side allowing up to 4 objects being added. 
     * Once the plate is full, a bool (platefull) will return true and will not allow anymore objects
-    * to be added.*/
+    * to be added.
 
-    private void OnCollisionEnter(Collision other)
+    private void OnCollisionEnter(Collision spoon)
     {
         //Debug.Log("collision is triggering");
-        if (other.gameObject.tag == "spoon" && other.transform.childCount > 0)
+        if (spoon.gameObject.tag == "spoon")
         {
-            GameObject clone = other.transform.GetChild(0).gameObject;
+             //& if there is lag this might be the reason
+            NewPoolingMethod spoonScript = spoon.gameObject.GetComponent<NewPoolingMethod>();
+            if(spoonScript == null)
+            {
+                Debug.Log("Spoon script is null");
+                return;
+            }
+            else if(spoonScript != null)
+            {
+                Debug.Log("Spoon script is not null");
+            }
+            if(spoonScript.CurrentlyActiveFood == null)
+            {
+                Debug.Log("Currently active food is null");
+                return;
+            }
+            else if(spoonScript.CurrentlyActiveFood != null)
+            {
+                Debug.Log("Currently active food is not null");
+            }
+            else
+            {
+            }
+            GameObject clone = spoon.transform.GetChild(0).gameObject;
             clone.transform.localScale = Vector3.one * .1f;
             //Debug.Log("specifically colliding with the spoon");
             Food = clone.GetComponent<foodIdentifier>();
@@ -42,7 +143,7 @@ public class PlateServing : MonoBehaviour
                 Debug.Log("food is null");
                 return;
             }
-            laldleFull = other.gameObject.GetComponent<LaldleTrigger>();
+            laldleFull = spoon.gameObject.GetComponent<LaldleTrigger>();
             if (laldleFull)
             {
                 checkPlatePosition(clone);
@@ -163,5 +264,5 @@ public class PlateServing : MonoBehaviour
         mainFull = false;
         sideFull = false;
         isRice = false;
-    }
+    } */
 }

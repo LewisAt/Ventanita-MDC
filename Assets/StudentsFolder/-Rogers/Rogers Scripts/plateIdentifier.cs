@@ -6,26 +6,99 @@ public class plateIdentifier : MonoBehaviour
 {
     //declare a foodIdentifier for both main and side 
     [HideInInspector]
-    public MainFoods plateMain;
-    [HideInInspector]
-    public SideFoods plateSide;
-    [HideInInspector]
-    public int SideCount = 0;
-    [HideInInspector]
-    public SideFoods plateSide1;
-    [HideInInspector]
-    public int SideCount1 = 0;
-    [HideInInspector]
-    public bool hasCoffee = false;
-    [HideInInspector]
-    public bool hasRice = false;
-    void OnCollisionEnter(Collision spoon)
+    public MainFoods plateMain
     {
-        if (spoon.gameObject.tag == "spoon" && spoon.transform.childCount > 0)
+        get { return plateMain; }
+        set { plateMain = value; }
+    }
+    [HideInInspector]
+    public SideFoods plateSide 
+    {
+        get { return plateSide; }
+        set { plateSide = value; }
+    }
+    [HideInInspector]
+    public int SideCount
+    {
+        get { return SideCount; }
+        set { SideCount = value; }
+    }
+    [HideInInspector]
+    public SideFoods plateSide1
+    {
+        get { return plateSide1; }
+        set { plateSide1 = value; }
+    }
+    [HideInInspector]
+    public int SideCount1
+    {
+        get { return SideCount1; }
+        set { SideCount1 = value; }
+    }
+    [HideInInspector]
+    public bool hasCoffee 
+    {
+        get { return hasCoffee; }
+        set { hasCoffee = value; }
+    }  
+  
+    [HideInInspector]
+    public bool hasRice 
+    {
+        get { return hasRice; }
+        set { hasRice = value; }
+    }
+    private PlateServing plateServe;
+    void Start()
+    {
+        plateServe = GetComponent<PlateServing>();
+        ResetPlate();
+    }
+    //! this needs to be called instead of destroy and instantiate
+    public void ResetPlate()
+    {
+        plateMain = MainFoods.None;
+        plateSide = SideFoods.None;
+        SideCount = 0;
+        plateSide1 = SideFoods.None;
+        SideCount1 = 0;
+        hasCoffee = false;
+        hasRice = false;
+        plateServe.ResetAll();
+        
+
+    }
+    private void OnTriggerEnter(Collider spoon)
+    {
+        if (spoon.gameObject.tag == "spoon")
         {
-            GameObject food = spoon.transform.GetChild(0).gameObject;
+            //& if there is lag this might be the reason
+            NewPoolingMethod spoonScript = spoon.gameObject.GetComponent<NewPoolingMethod>();
+            if(spoonScript == null)
+            {
+                Debug.Log("Spoon script is null");
+                return;
+            }
+            else if(spoonScript != null)
+            {
+                Debug.Log("Spoon script is not null");
+            }
+            if(spoonScript.CurrentlyActiveFood == null)
+            {
+                Debug.Log("Currently active food is null");
+                return;
+            }
+            else if(spoonScript.CurrentlyActiveFood != null)
+            {
+                Debug.Log("Currently active food is not null");
+            }
+
+            GameObject food = spoonScript.CurrentlyActiveFood.gameObject;
             print("Updating Food");
+
             updateContents(food);
+            spoonScript.ClearCurrentFood();
+            
             //print("For Jojo: it is coming back NULL");
         }
         //placeholder for coffee

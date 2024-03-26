@@ -23,7 +23,7 @@ public class BreakFloorCol : MonoBehaviour
             breaksound.Play();
             StartCoroutine(other.gameObject.GetComponent<LaldleIdentifier>().Respawn());
 
-            foreach (foodIdentifier f in tempScript.foodLadle)
+            /* foreach (foodIdentifier f in tempScript.foodLadle)
             {
                 if (f.GetComponent<MeshRenderer>().enabled == true)
                 {
@@ -38,6 +38,7 @@ public class BreakFloorCol : MonoBehaviour
             }
 
             tempScript.isLadleFull = false;
+        } */
         }
     }
 }

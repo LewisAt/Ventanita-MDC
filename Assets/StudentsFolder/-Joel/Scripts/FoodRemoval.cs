@@ -12,7 +12,7 @@ public class FoodRemoval : MonoBehaviour
         plateServe = GetComponentInParent<PlateServing>();
     }
     // Start is called before the first frame update
-    private void OnTriggerEnter(Collider other)
+/*     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "sink")
         {
@@ -23,7 +23,7 @@ public class FoodRemoval : MonoBehaviour
                 plateServe.Swipe();
             }
         }
-    }
+    } */
 
   
 }

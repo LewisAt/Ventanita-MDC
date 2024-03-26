@@ -13,9 +13,9 @@ public class LaldleTrigger : MonoBehaviour
     Transform spoon;
     foodIdentifier foodType;
     foodIdentifier.typesOfFood currentFood;
-    LaldleIdentifier.TypeOfLaldle laldleType;
+    //LaldleIdentifier.TypeOfLaldle laldleType;
 
-    private void Start()
+    /* private void Start()
     {
         // Causes a null reference exception.
         laldleType = GetComponent<LaldleIdentifier>().typeOfLaldle;
@@ -24,8 +24,8 @@ public class LaldleTrigger : MonoBehaviour
     { 
         if (other.gameObject.tag == "food")
         {
-            /*The below comment was commented out due to this line of code no longer being used. Was originally
-            used in the early stages as the spoon was made of multiple objects.*/
+            The below comment was commented out due to this line of code no longer being used. Was originally
+            used in the early stages as the spoon was made of multiple objects.
             //spoon = transform.GetChild(0).gameObject.transform;
             CheckWhatFoodItIs(other);
         }
@@ -37,7 +37,7 @@ public class LaldleTrigger : MonoBehaviour
     public void CheckWhatFoodItIs(Collision other)
     {
         /*This method checks the collision and spawns the object according to the foodidentifier enum accessed
-        on the object*/
+        on the object
         foodType = other.gameObject.GetComponent<foodIdentifier>();
         currentFood = foodType.food;
         if (!isLaldleFull && laldleType.ToString() == currentFood.ToString())
@@ -64,5 +64,5 @@ public class LaldleTrigger : MonoBehaviour
             clone.transform.localScale = Vector3.one;
             isLaldleFull = true;
         }
-    }
+    } */
 }
