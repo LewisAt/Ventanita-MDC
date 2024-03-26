@@ -6,53 +6,24 @@ public class plateIdentifier : MonoBehaviour
 {
     //declare a foodIdentifier for both main and side 
     [HideInInspector]
-    public MainFoods plateMain
-    {
-        get { return plateMain; }
-        set { plateMain = value; }
-    }
+    public MainFoods plateMain = MainFoods.None;
     [HideInInspector]
-    public SideFoods plateSide 
-    {
-        get { return plateSide; }
-        set { plateSide = value; }
-    }
+    public SideFoods plateSide = SideFoods.None;
     [HideInInspector]
-    public int SideCount
-    {
-        get { return SideCount; }
-        set { SideCount = value; }
-    }
+    public int SideCount = 0;
     [HideInInspector]
-    public SideFoods plateSide1
-    {
-        get { return plateSide1; }
-        set { plateSide1 = value; }
-    }
+    public SideFoods plateSide1= SideFoods.None;
     [HideInInspector]
-    public int SideCount1
-    {
-        get { return SideCount1; }
-        set { SideCount1 = value; }
-    }
+    public int SideCount1 = 0;
     [HideInInspector]
-    public bool hasCoffee 
-    {
-        get { return hasCoffee; }
-        set { hasCoffee = value; }
-    }  
+    public bool hasCoffee = false;
   
     [HideInInspector]
-    public bool hasRice 
-    {
-        get { return hasRice; }
-        set { hasRice = value; }
-    }
+    public bool hasRice = false;
     private PlateServing plateServe;
     void Start()
     {
         plateServe = GetComponent<PlateServing>();
-        ResetPlate();
     }
     //! this needs to be called instead of destroy and instantiate
     public void ResetPlate()
