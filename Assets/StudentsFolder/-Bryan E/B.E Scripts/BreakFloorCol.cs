@@ -5,8 +5,10 @@ using UnityEngine;
 public class BreakFloorCol : MonoBehaviour
 {
     public AudioSource breaksound;
+    
     private void OnTriggerEnter(Collider other)
     {
+        Debug.Log("Somn hit the floor");
         if (other.gameObject.tag == "plate")
         {
             Debug.Log("Hello floor");
@@ -16,6 +18,7 @@ public class BreakFloorCol : MonoBehaviour
         //Joel is adding the ladle to this script so the ladle breaks when it hits the floor
         else if (other.gameObject.tag == "spoon")
         {
+            Debug.Log("Hello spoon");
             NewPoolingMethod tempScript = other.GetComponent<NewPoolingMethod>();
             breaksound.Play();
             StartCoroutine(other.gameObject.GetComponent<LaldleIdentifier>().Respawn());
