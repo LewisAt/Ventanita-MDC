@@ -29,6 +29,7 @@ public class NewPoolingMethod : MonoBehaviour
     void PopulateLadleFoods()
     {
         //! double check that this works IDK if it looks at all children
+        //* it does work
         foodInLadle = GetComponentsInChildren<foodIdentifier>();
         if(foodInLadle.Length == 0)
         {
