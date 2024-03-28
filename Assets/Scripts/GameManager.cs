@@ -43,7 +43,7 @@ public class GameManager : MonoBehaviour
 
     private float MoneySaved = 0.00f;
 
-    //!if for some reason the code doesn't update the jar this could be the issue 
+    //!if for some reason the code doesn't update the jar this c 
     public float SaveMoney
     {
         get { return MoneySaved; }
@@ -52,7 +52,7 @@ public class GameManager : MonoBehaviour
             MoneySaved = value; }
     }
 
-    void  Start()
+    void  Awake()
     {
         if (instance == null)
         {

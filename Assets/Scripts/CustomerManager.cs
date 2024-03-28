@@ -5,10 +5,20 @@ using UnityEngine;
 public class CustomerManager : MonoBehaviour
 {
     public GameObject[] Customers;
+    public bool isTutorial = false;
 
     int randomCustomer;
+
+    public void TriggerGameToRun()
+    {
+        GameManager.instance.isGameRunning = true;
+    }
     void  Start()
     {
+        if(isTutorial)
+        {
+            GameManager.instance.isGameRunning = false;
+        }
         GameManager.OnEndDay += disableAllCustomers;
         activateRandomCustomer();
     }

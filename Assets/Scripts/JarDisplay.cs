@@ -36,6 +36,11 @@ public class JarDisplay : MonoBehaviour
 
     void  Start()
     {
+        if(GameManager.instance == null)
+        {
+            Debug.LogError("there is no game manager in the scene.");
+            return;
+        }
         GameManager.OnMoneySaved += upddateDisplayAmount;
         upddateDisplayAmount();
     }
