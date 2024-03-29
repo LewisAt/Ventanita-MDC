@@ -10,15 +10,24 @@ using UnityEngine;
 
 public class PlateServing : MonoBehaviour
 {
+    public GameObject Arroz;
     public GameObject Frijoles;
+    public GameObject Fricase;
+    public GameObject Rabo;
+
+
     public GameObject[] croquetaGroup;
 
-    public GameObject Fricase;
     public GameObject[] maduroGroup;
 
-    public GameObject Rabo;
     public GameObject[] TostoneGroup;
-    public GameObject Arroz;
+
+
+
+    public void Start()
+    {
+        ResetAll();
+    }
 
     public void setFrijoles()
     {
@@ -56,6 +65,27 @@ public class PlateServing : MonoBehaviour
     public void setArroz()
     {
         Arroz.SetActive(true);
+    }
+    public void setCroqueta(int num)
+    {
+        for (int i = 0; i < num; i++)
+        {
+            croquetaGroup[i].SetActive(true);
+        }
+    }
+    public void setMaduro(int num)
+    {
+        for (int i = 0; i < num; i++)
+        {
+            maduroGroup[i].SetActive(true);
+        }
+    }
+    public void setTostone(int num)
+    {
+        for (int i = 0; i < num; i++)
+        {
+            TostoneGroup[i].SetActive(true);
+        }
     }
 
     public void ResetAll()

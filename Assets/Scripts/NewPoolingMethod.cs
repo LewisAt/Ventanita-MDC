@@ -62,6 +62,7 @@ public class NewPoolingMethod : MonoBehaviour
     }
     private void  OnTriggerEnter(Collider other)
      {
+        Debug.Log("collision is triggering");
         if(other.gameObject.tag == "food" && other.gameObject.GetComponent<foodIdentifier>() != null
         && CurrentlyActiveFood == null)
         {

@@ -21,6 +21,14 @@ public class plateIdentifier : MonoBehaviour
     [HideInInspector]
     public bool hasRice = false;
     private PlateServing plateServe;
+
+
+    //!this is poopy and no one should do it this way but it works for now
+    private int croquetaCount = 0;
+    private int maduroCount = 0;
+    private int tostoneCount = 0;
+
+
     void Start()
     {
         plateServe = GetComponent<PlateServing>();
@@ -101,7 +109,11 @@ public class plateIdentifier : MonoBehaviour
             if (foodString == ((MainFoods)numOfEnum).ToString() && plateMain == MainFoods.None) 
             {
                 plateMain = (MainFoods)numOfEnum;
-            Debug.Log((MainFoods)numOfEnum);
+                Debug.Log((MainFoods)numOfEnum);
+                if(plateMain == MainFoods.None)
+                {
+                    Debug.Log("Main is None");
+                }
 
             }
             if (foodString == ((SideFoods)numOfEnum).ToString())
@@ -121,9 +133,13 @@ public class plateIdentifier : MonoBehaviour
             
             numOfEnum++;
         }
+
+        Displayfood(foodString);
+
         
         if(foodString == "Arroz")
         {
+            plateServe.setArroz();
             hasRice = true;
         }
         print(plateMain);
@@ -132,5 +148,47 @@ public class plateIdentifier : MonoBehaviour
         print(SideCount);
         print(SideCount1);
         
+    }
+    void Displayfood(string foodString)
+    {
+        switch (foodString)
+        {
+            case "Arroz":
+                Debug.Log("Arroz");
+                plateServe.setArroz();
+                break;
+            case "Beans":
+                Debug.Log("Beans");
+                plateServe.setFrijoles();
+                break;
+            case "Fricase":
+                Debug.Log("Fricase");
+                plateServe.setFricase();
+                break;
+            case "Rabo":
+                Debug.Log("Rabo");
+                plateServe.setRabo();
+                break;
+            case "croqueta":
+
+                Debug.Log("croqueta");
+                croquetaCount++;
+                plateServe.setCroqueta(croquetaCount);
+
+                break;
+            case "maduro":
+                Debug.Log("maduro");
+                maduroCount++;
+                plateServe.setMaduro(maduroCount);
+                break;
+            case "tostone":
+                Debug.Log("tostone");
+                tostoneCount++;
+                plateServe.setTostone(tostoneCount);
+                break;
+            default:
+                Debug.Log("No food");
+                break;
+        }
     }
 }
