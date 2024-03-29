@@ -14,6 +14,7 @@ Material:
   m_ValidKeywords:
   - _METALLICSPECGLOSSMAP
   - _NORMALMAP
+  - _OCCLUSIONMAP
   - _SURFACE_TYPE_TRANSPARENT
   m_InvalidKeywords: []
   m_LightmapFlags: 6
@@ -34,11 +35,11 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BaseMap:
-        m_Texture: {fileID: 2800000, guid: dcf4f25059575d649bb6499322b4f672, type: 3}
+        m_Texture: {fileID: 2800000, guid: 63372b0679e7dbb44b3488f9654c3d8c, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0.61, y: 0.56}
     - _BumpMap:
-        m_Texture: {fileID: 2800000, guid: ded7dcdc4ab35da4c9bb58a93bb1f502, type: 3}
+        m_Texture: {fileID: 2800000, guid: 07c2d2c28949e1c4c910bf3ca14398af, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _EMISSION_COLOR_MAP:
@@ -54,11 +55,11 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: dcf4f25059575d649bb6499322b4f672, type: 3}
+        m_Texture: {fileID: 2800000, guid: 63372b0679e7dbb44b3488f9654c3d8c, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0.61, y: 0.56}
     - _MetallicGlossMap:
-        m_Texture: {fileID: 2800000, guid: d655e847a9931c74d9e1565c8fd0ff4b, type: 3}
+        m_Texture: {fileID: 2800000, guid: 6fcb016ebe38d384786ae0013ee1ad6a, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _NORMAL_MAP:
@@ -66,7 +67,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: ab3de5a27f71aaf42990bcd4b9000303, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _SPECULAR_COLOR_MAP:
@@ -114,7 +115,7 @@ Material:
     - _DstBlendAlpha: 0
     - _EnvironmentReflections: 1
     - _GlossMapScale: 1
-    - _Glossiness: 0.406
+    - _Glossiness: 0.185
     - _GlossyReflections: 1
     - _METALNESS: 1
     - _Metallic: 0
@@ -126,7 +127,7 @@ Material:
     - _ReceiveShadows: 1
     - _SPECULAR_IOR: 1.5
     - _SPECULAR_ROUGHNESS: 0.68
-    - _Smoothness: 0.406
+    - _Smoothness: 0.185
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
