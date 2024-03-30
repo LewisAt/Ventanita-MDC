@@ -18,6 +18,7 @@ public class GeneralManager : MonoBehaviour
 
     void Awake()
     {
+        Debug.Log(GameObject.FindGameObjectWithTag("Player"));
         if (instance == null)
         {
             instance = this;

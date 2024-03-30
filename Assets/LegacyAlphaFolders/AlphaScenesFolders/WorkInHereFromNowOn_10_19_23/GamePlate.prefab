@@ -2219,6 +2219,7 @@ GameObject:
   - component: {fileID: 4857919990761870275}
   - component: {fileID: 8762270429489388688}
   - component: {fileID: 7098789161673596921}
+  - component: {fileID: 2998427908749145264}
   m_Layer: 8
   m_Name: GamePlate
   m_TagString: plate
@@ -2315,22 +2316,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfa80fef2396dc046b5f225ce27d6909, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Arroz: {fileID: 43766954382049907}
   Frijoles: {fileID: 4353447496248726730}
+  Fricase: {fileID: 4976115869630465398}
+  Rabo: {fileID: 4829642207541604813}
   croquetaGroup:
   - {fileID: 6839544963855992631}
   - {fileID: 7178943497613587604}
   - {fileID: 1938165509246243311}
-  Fricase: {fileID: 4976115869630465398}
   maduroGroup:
   - {fileID: 7610644356707847234}
   - {fileID: 3018242338011907513}
   - {fileID: 5740282931046099332}
-  Rabo: {fileID: 4829642207541604813}
   TostoneGroup:
   - {fileID: 1124478264804022019}
   - {fileID: 8403473103813945061}
   - {fileID: 8657900999358160466}
-  Arroz: {fileID: 43766954382049907}
 --- !u!114 &4809184152290932986
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7295,6 +7296,19 @@ MonoBehaviour:
   platebreak: {fileID: 0}
   myAppearance: {fileID: 0}
   stopplate: {fileID: 0}
+--- !u!114 &2998427908749145264
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3769059507972331995}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 182241a5f70224a44bb86e22baf6617a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PlatehitSound: {fileID: 0}
 --- !u!1 &4095191469158690814
 GameObject:
   m_ObjectHideFlags: 0

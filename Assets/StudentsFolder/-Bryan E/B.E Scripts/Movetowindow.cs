@@ -1,8 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
-using UnityEngine.UI;
+using UnityEngine.InputSystem.EnhancedTouch;
 //this script is attached to the customer sprite and will move the customer to the window and despawn them
 
 public class Movetowindow : MonoBehaviour
@@ -20,8 +19,10 @@ public class Movetowindow : MonoBehaviour
             }
              paused = value; }
     }
-    private Sprite frontFace;
-    private Sprite sideFace;
+    [SerializeField] private Sprite frontFace;
+    [SerializeField] private Sprite sideFace;
+    private GameObject player = null;
+    private SpriteRenderer spriterenderer;
     private float Speed = 4;
     private int i = 0;
     void OnEnable()
@@ -45,36 +46,51 @@ public class Movetowindow : MonoBehaviour
     */
     void  Awake()
     {
+        spriterenderer = GetComponent<SpriteRenderer>();
+        player = GameObject.FindGameObjectWithTag("Player");
         this.gameObject.SetActive(false);
         customerManager = GameObject.Find("====GameSystems====/GameFunctions(POSITIONSMATTER)/CustomerManager1").GetComponent<CustomerManager>();
 
     }
     void FixedUpdate()
     {
+        Debug.DrawRay(this.transform.position, globalDestination ,Color.yellow);
+        Debug.DrawRay(this.transform.position,this.transform.forward * 2,Color.green);
+        FaceCustomerTowardsStore();
         if(paused)
         {
+            
+
+            handleCustomerFace();
             // Debug.LogWarning(gameObject.name +  " of Group" + transform.parent.transform.parent.name + " is Paused " );
             return;
         }
         else
         {
+            spriterenderer.sprite = sideFace;
+
             moveTowardspoint();
         }
     }
     void FaceCustomerTowardsStore()
     {
-        
+        Quaternion rotationTowardsPlayer = Quaternion.LookRotation(player.transform.position - transform.position);
+        rotationTowardsPlayer = Quaternion.Euler(0, rotationTowardsPlayer.eulerAngles.y , 0);
+        transform.rotation = rotationTowardsPlayer;
     }
     void handleCustomerFace()
     {
-
+        spriterenderer.sprite = frontFace;
     }
+    Vector3 globalDestination;
     void moveTowardspoint()
     {
         // Debug.LogError(gameObject.name + " of Group" + transform.parent.transform.parent.name + " is Moving ");
 
         Vector3 destination = Vector3.MoveTowards(transform.position, points[i].transform.position, Speed * Time.deltaTime);
+        globalDestination = destination;
         transform.position = new Vector3(destination.x, this.transform.position.y, destination.z);
+
         float distance = DistanceToPoint();
         //the if statement only looks at X value since we only need to match one value to work.
         if( distance < 0.1f && i == points.Length - 1)
