@@ -14,6 +14,7 @@ public class GradeOrderInput : MonoBehaviour
 {
     public CustomerOrder[] possibleOrders;
     public CustomerOrder ActualOrder;
+    public bool WindowResetDelay = false;
     public float moneyEarned;
     //public TMP_Text MoneyText;
     DifficultyDirector difficultyDirector;
@@ -49,7 +50,6 @@ public class GradeOrderInput : MonoBehaviour
         triggerMeal = GameObject.Find("====GameSystems====/GameFunctions(POSITIONSMATTER)/CustomerWindowTrigger3").GetComponent<TriggerMealRequest>();
         //starts the timer for the customer and sets the difficulty
         CustomerTimerCoroutine = CustomerTimerCorotine();
-        difficultyDirector.getDifficulty();
 
 
         Debug.Log("Populated Dependencies");
@@ -131,6 +131,7 @@ public class GradeOrderInput : MonoBehaviour
     {
         CompleteCustomerTimeRanOut();
         triggerMeal.UnpauseCustomer();
+        StartCoroutine("delayWindowReset");
         resetIcons();
     }
 
@@ -153,26 +154,34 @@ public class GradeOrderInput : MonoBehaviour
         else//plays inncorect sound when wrong.
         {
             incorrectOrderSound.Play();
+            GameManager.instance.WrongOrderTrigger();
             StartCoroutine("youFailed");
         }
         Destroy(givenPlate.gameObject);
     }
-
+    IEnumerator delayWindowReset()
+    {
+        WindowResetDelay = true;
+        yield return new WaitForSeconds(1.0f);
+        WindowResetDelay = false;
+    }
 
      public void CompleteCustomerCorrect()
     {
         completeSound.Play();
+        GameManager.instance.CorrectOrderTrigger();
         //this is a great...
         Debug.Log(ActualOrder);
-        Debug.Log(ActualOrder.foodsCostForCustomer);
         moneyTracker.CalculateAndDisplayMoney(ActualOrder.foodsCostForCustomer);
         CustomerSliderUI.value = 30;
         triggerMeal.UnpauseCustomer();
+        StartCoroutine("delayWindowReset");
         resetIcons();
     }
     public void CompleteCustomerTimeRanOut()
     {
         failSound.Play();
+        GameManager.instance.OrderTookTooLongTrigger();
 
     }
 
@@ -184,6 +193,10 @@ public class GradeOrderInput : MonoBehaviour
 
     public void MakeAnOrder() //Creates new order when called by TriggerMeal after being triggered by customer
     {
+        if(WindowResetDelay == true)
+        {
+            return;
+        }
         Debug.Log("Making an order");
         resetIcons();
         int rand = Random.Range(0, possibleOrders.Length);
@@ -242,6 +255,8 @@ public class GradeOrderInput : MonoBehaviour
         Side1Text.text = null;
         Side2Text.text = null;
     }
+
+
     public void assignIcon(CustomerOrder CurrentlySelectedOrder)
     {
         // this bit displays if there is rice else we display nothing

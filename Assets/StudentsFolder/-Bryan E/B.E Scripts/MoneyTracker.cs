@@ -40,12 +40,4 @@ public class MoneyTracker : MonoBehaviour
     {
         RegisterCashAmount.text = "Register\n$" + DaysTotal;
     }
-    void EndDay()
-    {
-        //^ We need to save the money to the save file or the general manager.
-        //^ We also need to end the day and go to the next day.
-        //! calcaute how much money to save at the end of day based on how
-        //! much money more was exceed. so if it cost 400$ to pass - from saved
-        //! if less subtract from saved
-    }
 }

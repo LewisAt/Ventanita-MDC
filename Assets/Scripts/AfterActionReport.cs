@@ -30,7 +30,7 @@ public class AfterActionReport : MonoBehaviour
         CoffeeCup.SetActive(true);
         StartCoroutine(DelaySound());
         TodaysGoal.text = "We Needed: " + GameManager.instance.CurrentMinimumEarnings;
-        int day = GameManager.instance.CurrentDay + 1;
+        int day = GameManager.instance.m_CurrentDay + 1;
         Day.text = "Day: " + (day);
         TodaysEarnings.text = "We Earned: " + moneyTracker.daySMoney;
         TodaysSavings.text = "We Saved: " + GameManager.instance.SaveMoney;

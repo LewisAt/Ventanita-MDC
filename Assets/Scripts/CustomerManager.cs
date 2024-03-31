@@ -35,7 +35,13 @@ public class CustomerManager : MonoBehaviour
         {
             return;
         }
+
         randomCustomer = Random.Range(0, Customers.Length);
+        if(Customers[randomCustomer].activeSelf)
+        {
+            activateRandomCustomer();
+            return;
+        }
         Customers[randomCustomer].SetActive(true);
         Debug.Log(Customers[randomCustomer].name + " is now active of Group " + Customers[randomCustomer].transform.parent.transform.parent.name);
     }

@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.InputSystem.EnhancedTouch;
 //this script is attached to the customer sprite and will move the customer to the window and despawn them
@@ -13,10 +15,6 @@ public class Movetowindow : MonoBehaviour
     {
         get { return paused; }
         set {
-            if(value == false)
-            {
-                customerManager.activateRandomCustomer();
-            }
              paused = value; }
     }
     [SerializeField] private Sprite frontFace;
@@ -52,15 +50,19 @@ public class Movetowindow : MonoBehaviour
         customerManager = GameObject.Find("====GameSystems====/GameFunctions(POSITIONSMATTER)/CustomerManager1").GetComponent<CustomerManager>();
 
     }
+    public void FixForCustomerNotSpawning()
+    {
+        customerManager.activateRandomCustomer();
+
+    }
     void FixedUpdate()
     {
-        Debug.DrawRay(this.transform.position, globalDestination ,Color.yellow);
+        
         Debug.DrawRay(this.transform.position,this.transform.forward * 2,Color.green);
         FaceCustomerTowardsStore();
         if(paused)
         {
             
-
             handleCustomerFace();
             // Debug.LogWarning(gameObject.name +  " of Group" + transform.parent.transform.parent.name + " is Paused " );
             return;
@@ -80,7 +82,16 @@ public class Movetowindow : MonoBehaviour
     }
     void handleCustomerFace()
     {
+        Vector3 direction = points[i].transform.position - transform.position ;
         spriterenderer.sprite = frontFace;
+        if(direction.normalized.x > 0)
+        {
+            spriterenderer.flipX = true;
+        }
+        else
+        {
+            spriterenderer.flipX = false;
+        }
     }
     Vector3 globalDestination;
     void moveTowardspoint()
@@ -88,7 +99,6 @@ public class Movetowindow : MonoBehaviour
         // Debug.LogError(gameObject.name + " of Group" + transform.parent.transform.parent.name + " is Moving ");
 
         Vector3 destination = Vector3.MoveTowards(transform.position, points[i].transform.position, Speed * Time.deltaTime);
-        globalDestination = destination;
         transform.position = new Vector3(destination.x, this.transform.position.y, destination.z);
 
         float distance = DistanceToPoint();

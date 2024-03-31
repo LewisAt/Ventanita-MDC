@@ -5,6 +5,7 @@ using UnityEngine;
 public class TriggerMealRequest : MonoBehaviour
 {
     private GradeOrderInput m_Input;
+    private bool m_CustomerArrived = false;
     public AudioSource Arrival;
     private Movetowindow m_Customer;
 
@@ -14,15 +15,17 @@ public class TriggerMealRequest : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Customer")
+            Debug.Log("Customer Arrived");
+            Debug.Log("the delay on the window is " + m_Input.WindowResetDelay);
+        if (other.tag == "Customer" && !m_CustomerArrived && m_Input.WindowResetDelay == false)
         {
+            m_CustomerArrived = true;
             m_Customer = other.GetComponent<Movetowindow>();
             PauseCustomer();
             //pause the customer
             
 
 
-            Debug.Log("Customer Arrived");
             m_Input.MakeAnOrder();
             Arrival.Play();
         }
@@ -34,13 +37,9 @@ public class TriggerMealRequest : MonoBehaviour
     }
     public void UnpauseCustomer()
     {
+            m_CustomerArrived = false;
             m_Customer.PauseCustomer = false;
+            m_Customer.FixForCustomerNotSpawning();
             Debug.Log("Unpausing Customer");
-    }
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.tag == "Customer")
-        {
-        }
     }
 }

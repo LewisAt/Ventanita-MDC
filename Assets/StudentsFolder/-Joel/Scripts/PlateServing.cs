@@ -7,7 +7,8 @@ using UnityEditor.XR;
 using UnityEngine;
 
 
-
+//!there is currently do defence for when a position is full.
+//!this means you can just add everything onto the plate and it will just stack on top of each other
 public class PlateServing : MonoBehaviour
 {
     public GameObject Arroz;

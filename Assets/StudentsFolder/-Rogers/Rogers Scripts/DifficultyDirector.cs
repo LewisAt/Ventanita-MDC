@@ -5,82 +5,48 @@ using UnityEngine.SceneManagement;
 
 public class DifficultyDirector : MonoBehaviour
 {
-    Scene thisScene;
-    GradeOrderInput orders;
-    [SerializeField] private CustomerOrder[] EasyOptions;
-    [SerializeField] private CustomerOrder[] MediumOptions;
-    [SerializeField] private CustomerOrder[] HardOptions;
-    int currentDiff = 4;
-    bool difficultySet = false;
-    static bool DirectorExists = false;
-    //Prevents duplicate instances of itself
-    protected void Awake()
-    {
-        if (DirectorExists == true)
-        {
-            Destroy(this.gameObject);
-        }
-        {
-            DontDestroyOnLoad(this);
-            DirectorExists = true;
-        }
-    }
-    //Gets called by GradeOrderInput on Start
-    public void getDifficulty()
-    {
-        thisScene = SceneManager.GetActiveScene();
-        if (difficultySet == false && thisScene.name == "Main Game")
-        {
-            GameObject CustomerWindow;
-            CustomerWindow = GameObject.FindGameObjectWithTag("CustomerWindow");
-            orders = CustomerWindow.GetComponent<GradeOrderInput>();
-            setDifficulty();
-            difficultySet = true;
-        }
-    }
 
-    //Gives Grade Order its difficulty depending on its difficult increment
-    void setDifficulty()
+    GradeOrderInput PossibleOrderScript;
+    [SerializeField] private CustomerOrder[] EasyOptions;
+    [SerializeField] private CustomerOrder[] SemiMediumOptions;
+
+    [SerializeField] private CustomerOrder[] MediumOptions;
+    [SerializeField] private CustomerOrder[] SemiHardOptions;
+
+    [SerializeField] private CustomerOrder[] HardOptions;
+    //Prevents duplicate instances of itself
+    //Gets called by GradeOrderInput on Start
+
+    private void Start() 
     {
-        //Easy
-        switch (currentDiff)
+        PossibleOrderScript = GameObject.FindGameObjectWithTag("CustomerWindow").GetComponent<GradeOrderInput>();
+        setFoodsForDifficulty();
+    }
+    private void setFoodsForDifficulty()
+    {
+        //Sets the difficulty of the game
+        int currentDifficutly = GameManager.instance.CurrentDifficulty;
+        switch (currentDifficutly)
         {
-            case 0: //Easy
-                orders.possibleOrders = new CustomerOrder[EasyOptions.Length];
-                orders.possibleOrders = EasyOptions;
+            case 0:
+                PossibleOrderScript.possibleOrders = EasyOptions;
                 break;
-            case 1: //Medium
-                orders.possibleOrders = new CustomerOrder[MediumOptions.Length];
-                orders.possibleOrders = MediumOptions;
+            case 1:
+                PossibleOrderScript.possibleOrders = SemiMediumOptions;
                 break;
-            case 2: //Hard
-                orders.possibleOrders = new CustomerOrder[HardOptions.Length];
-                orders.possibleOrders = HardOptions;
+            case 2:
+                PossibleOrderScript.possibleOrders = MediumOptions;
                 break;
-                /*
-                if (currentDiff)
-                {
-                    orders.possibleOrders = new CustomerOrder[EasyOptions.Length]; 
-                    orders.possibleOrders = EasyOptions;
-                    difficulty = "Easy";
-                }
-                //Medium
-                else if(moneySaved < 1000 && moneySaved >= 500)
-                {
-                    orders.possibleOrders = new CustomerOrder[MediumOptions.Length];
-                    orders.possibleOrders = MediumOptions;
-                    difficulty = "Medium";
-                }
-                //Hard
-                else if(moneySaved >= 1000)
-                {
-                    orders.possibleOrders = new CustomerOrder[HardOptions.Length];
-                    orders.possibleOrders = HardOptions;
-                    difficulty = "Hard";
-                }
-                */
+            case 3:
+                PossibleOrderScript.possibleOrders = SemiHardOptions;
+                break;
+            case 4:
+                PossibleOrderScript.possibleOrders = HardOptions;
+                break;
+            default:
+                PossibleOrderScript.possibleOrders = EasyOptions;
+                break;
         }
     }
-    //Subtracts the money you earned after level and when difficults goal reaches zero higher the difficulty
 
 }
