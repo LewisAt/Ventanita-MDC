@@ -19,7 +19,7 @@ public class GradeOrderInput : MonoBehaviour
     //public TMP_Text MoneyText;
     DifficultyDirector difficultyDirector;
 
-    private MoneyTracker moneyTracker;
+    public MoneyTracker moneyTracker;
     private int CustomerTimer;
     private int CustomerTimerMax = 30;
     [SerializeField] private TMP_Text LevelTimerText;
@@ -37,12 +37,7 @@ public class GradeOrderInput : MonoBehaviour
     }
 
     //!look at this later its causing and issue but IDK what it is
-    private TriggerMealRequest triggerMeal;//actual variable hold the the current customer
-    public TriggerMealRequest MealTrigger
-    {
-        get { return triggerMeal; }
-        set { triggerMeal = value; }
-    }
+    public TriggerMealRequest triggerMeal;//actual variable hold the the current customer
     private void  Start()
 
     {
@@ -53,8 +48,6 @@ public class GradeOrderInput : MonoBehaviour
         // populates the dependencies for the script
         difficultyDirector = GameObject.FindGameObjectWithTag("DifficultyDirector").GetComponent<DifficultyDirector>();
         
-        moneyTracker = GameObject.Find("====GameSystems====/GameFunctions(POSITIONSMATTER)/MoneyTracker5").GetComponent<MoneyTracker>();
-        triggerMeal = GameObject.Find("====GameSystems====/GameFunctions(POSITIONSMATTER)/CustomerWindowTrigger3").GetComponent<TriggerMealRequest>();
         //starts the timer for the customer and sets the difficulty
         CustomerTimerCoroutine = CustomerTimerCorotine();
 

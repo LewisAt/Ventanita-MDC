@@ -31,7 +31,7 @@ public class GameManager : MonoBehaviour
     
 
 
-    private float minumumEarnings = 123f;
+    private float minumumEarnings = 0;
     public float CurrentMinimumEarnings
     {
         get{return minumumEarnings;}
@@ -56,6 +56,9 @@ public class GameManager : MonoBehaviour
     private bool drankCoffee = false;
 
 
+    
+
+
     private float MoneySaved = 0.00f;
 
     //!if for some reason the code doesn't update the jar this c 
@@ -72,50 +75,62 @@ public class GameManager : MonoBehaviour
         if (instance == null)
         {
             instance = this;
+
             DontDestroyOnLoad(gameObject);
         }
         else
         {
-            if(instance.IsTutorialOn && SceneManager.GetActiveScene().name == "Main Game")
-            {
-                resetImportantValues();
-            }
-
+            instance.CalculateDifficultyBasedOnEarnings();
             Destroy(gameObject);
         }
-        CurrentMinimumEarnings = earningValues[Mathf.Clamp(CurrentDifficulty,0,5) ];
         SceneManager.activeSceneChanged += checkIfSceneIsMainGame;
         
     }
-    void Start()
+    bool tempDebug = false;
+    //!!!!!!!!!!!!!!!!!!!! this Update is temporary remove me!!!!!!!!!!!!!!!!!!!!!!!!!
+    void Update()
     {
-        CalculateDifficultyBasedOnEarnings();
+        Debug.Log ("Current Difficulty: " + CurrentDifficulty);
+        Debug.Log ("Current Minimum Earnings: " + CurrentMinimumEarnings);
+        Debug.Log ("Current Day: " + CurrentDay);
+        Debug.Log ("Current Money Saved: " + SaveMoney);
+        if(tempDebug)
+        {
+            Debug.Log("Temp Debug is on");
+        }
+
     }
-    void CalculateDifficultyBasedOnEarnings()
+    public  void CalculateDifficultyBasedOnEarnings()
     {
-        if (MoneySaved >= earningValues[0])
+        if (SaveMoney <= 0)
+        {
+            CurrentDifficulty = 0;
+            CurrentMinimumEarnings = earningValues[0];
+        } 
+        if (SaveMoney >= earningValues[0])
         {
             CurrentDifficulty = 1;
+            CurrentMinimumEarnings = earningValues[1];
         }
-        if (MoneySaved >= earningValues[1])
+        if (SaveMoney >= earningValues[1])
         {
             CurrentDifficulty = 2;
+            CurrentMinimumEarnings = earningValues[3];
         }
-        if (MoneySaved >= earningValues[2])
+        if (SaveMoney >= earningValues[2])
         {
-            CurrentDifficulty = 3;
+            CurrentDifficulty = 3;  
+            CurrentMinimumEarnings = earningValues[3];
         }
-        if (MoneySaved >= earningValues[3])
+        if (SaveMoney >= earningValues[3])
         {
             CurrentDifficulty = 4;
+            CurrentMinimumEarnings = earningValues[4];
         }
-        if (MoneySaved >= earningValues[4])
+        if (SaveMoney >= earningValues[4])
         {
             CurrentDifficulty = 5;
-        }
-        if (MoneySaved >= earningValues[5])
-        {
-            //End Game
+            CurrentMinimumEarnings = earningValues[5];
         }
     }
 
@@ -125,12 +140,16 @@ public class GameManager : MonoBehaviour
     //!! The value that checks to see if the scene is the main game is not being triggered
     //!! is in the customer manager Script 
     //!! fucking hilarious I KNOW...
+
+    //* This is virtually our awake method and gets called everytime. lets see if it works though
     void checkIfSceneIsMainGame(Scene current, Scene next)
     {
+        tempDebug  = true;
         drankCoffee = false;
-
+        CalculateDifficultyBasedOnEarnings();
         if (next.name != "Main Game" && !IsTutorialOn)
         {
+            
             Debug.Log("not main game");
             Destroy(gameObject);
             return;
@@ -140,6 +159,7 @@ public class GameManager : MonoBehaviour
     }
     public void EndDay()
     {
+
         isGameRunning = false;
         Debug.Log("Day Ended");
         OnEndDay();
@@ -165,8 +185,8 @@ public class GameManager : MonoBehaviour
         resetSubscriptions();
         int clampDay = Mathf.Clamp(m_CurrentDay, 0, 4);
         CurrentMinimumEarnings = earningValues[CurrentDifficulty];
-        SceneManager.LoadScene("Main Game");
         CalculateDifficultyBasedOnEarnings();
+        SceneManager.LoadScene("Main Game");
         isGameRunning = true;//! we should make this trigger via the player wanting to
         drankCoffee = true;
 
@@ -183,18 +203,6 @@ public class GameManager : MonoBehaviour
         CorrectOrderEvent = null;
         WrongOrderEvent = null;
     }
-
-
-
-
-
-
-
-
-
-
-
-
 //& ahead is the ugliest pieces of code you will ever see. Beware all ye who enter here
 
     public void OrderTookTooLongTrigger()

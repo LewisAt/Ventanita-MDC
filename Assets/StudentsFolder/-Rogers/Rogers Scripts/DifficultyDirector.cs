@@ -47,6 +47,8 @@ public class DifficultyDirector : MonoBehaviour
                 PossibleOrderScript.possibleOrders = HardOptions;
                 break;
             case 5:
+                PossibleOrderScript.possibleOrders = HardOptions;
+
                 PossibleOrderScript.DecreaseTimer(20);
                 break;
             default:

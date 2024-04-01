@@ -33,7 +33,7 @@ public class AfterActionReport : MonoBehaviour
         int day = GameManager.instance.m_CurrentDay + 1;
         Day.text = "Day: " + (day);
         TodaysEarnings.text = "We Earned: " + moneyTracker.daySMoney;
-        TodaysSavings.text = "We Saved: " + GameManager.instance.SaveMoney;
+        TodaysSavings.text = "We have " + GameManager.instance.SaveMoney + "$ in savings";
 
     }
     IEnumerator DelaySound()

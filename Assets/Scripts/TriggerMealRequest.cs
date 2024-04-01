@@ -33,7 +33,7 @@ public class TriggerMealRequest : MonoBehaviour
     public void PauseCustomer()
     {
             m_Customer.PauseCustomer = true;
-            m_Input.MealTrigger = this;
+            m_Input.triggerMeal = this;
     }
     public void UnpauseCustomer()
     {
