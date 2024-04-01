@@ -20,7 +20,8 @@ public class GradeOrderInput : MonoBehaviour
     DifficultyDirector difficultyDirector;
 
     private MoneyTracker moneyTracker;
-    private int CustomerTimer = 30;
+    private int CustomerTimer;
+    private int CustomerTimerMax = 30;
     [SerializeField] private TMP_Text LevelTimerText;
     public int mealAccuracyCount = 0;
     private IEnumerator CustomerTimerCoroutine;
@@ -28,6 +29,12 @@ public class GradeOrderInput : MonoBehaviour
     [SerializeField] private AudioSource incorrectOrderSound;
     [SerializeField] private AudioSource completeSound;
     [SerializeField] private AudioSource failSound;
+    public void DecreaseTimer(int secondsToSubtract)
+    {
+        CustomerTimerMax -= secondsToSubtract;
+        CustomerTimer = CustomerTimerMax;
+        CustomerSliderUI.maxValue = CustomerTimer;
+    }
 
     //!look at this later its causing and issue but IDK what it is
     private TriggerMealRequest triggerMeal;//actual variable hold the the current customer
@@ -55,6 +62,7 @@ public class GradeOrderInput : MonoBehaviour
         Debug.Log("Populated Dependencies");
         debugCheckDependencies();
     }
+
     private void debugCheckDependencies()
     {
         if (difficultyDirector == null)
@@ -173,7 +181,6 @@ public class GradeOrderInput : MonoBehaviour
         //this is a great...
         Debug.Log(ActualOrder);
         moneyTracker.CalculateAndDisplayMoney(ActualOrder.foodsCostForCustomer);
-        CustomerSliderUI.value = 30;
         triggerMeal.UnpauseCustomer();
         StartCoroutine("delayWindowReset");
         resetIcons();
@@ -212,7 +219,7 @@ public class GradeOrderInput : MonoBehaviour
         }   
         ActualOrder.StartFood();
 
-        CustomerTimer = 30;
+        CustomerTimer = CustomerTimerMax;
         assignIcon(ActualOrder);
         StartCoroutine(CustomerTimerCoroutine);
 

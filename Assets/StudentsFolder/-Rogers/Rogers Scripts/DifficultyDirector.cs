@@ -33,15 +33,21 @@ public class DifficultyDirector : MonoBehaviour
                 break;
             case 1:
                 PossibleOrderScript.possibleOrders = SemiMediumOptions;
+                PossibleOrderScript.DecreaseTimer(5);
                 break;
             case 2:
                 PossibleOrderScript.possibleOrders = MediumOptions;
+                PossibleOrderScript.DecreaseTimer(10);
                 break;
             case 3:
                 PossibleOrderScript.possibleOrders = SemiHardOptions;
+                PossibleOrderScript.DecreaseTimer(15);
                 break;
             case 4:
                 PossibleOrderScript.possibleOrders = HardOptions;
+                break;
+            case 5:
+                PossibleOrderScript.DecreaseTimer(20);
                 break;
             default:
                 PossibleOrderScript.possibleOrders = EasyOptions;

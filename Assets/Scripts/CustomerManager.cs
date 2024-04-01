@@ -15,11 +15,14 @@ public class CustomerManager : MonoBehaviour
     }
     void  Start()
     {
+        
+        GameManager.OnEndDay += disableAllCustomers;
         if(isTutorial)
         {
             GameManager.instance.isGameRunning = false;
+            GameManager.instance.IsTutorialOn = true;
+            return;
         }
-        GameManager.OnEndDay += disableAllCustomers;
         activateRandomCustomer();
     }
     /// <summary>
@@ -27,14 +30,16 @@ public class CustomerManager : MonoBehaviour
     /// </summary>    
     public void activateRandomCustomer()
     {
-        Debug.Log("Activating Random Customer");
-
-        // the customers start all events for our game if we stop them we stop
-        // steps 1-5
         if(!GameManager.instance.isGameRunning)
         {
             return;
         }
+        Debug.Log("Activating Random Customer");
+        
+
+        // the customers start all events for our game if we stop them we stop
+        // steps 1-5
+
 
         randomCustomer = Random.Range(0, Customers.Length);
         if(Customers[randomCustomer].activeSelf)

@@ -25,6 +25,7 @@ public class MoneyTracker : MonoBehaviour
         // we need a statement that checks if the money is greater than the minimum
         // but just barely because it will add the total food amount if it is 
  
+
         UpdateRegisterDisplay();
         if(GameManager.instance.CurrentMinimumEarnings < DaysTotal)
         {
@@ -32,6 +33,7 @@ public class MoneyTracker : MonoBehaviour
             float Inputted = moneyToSave - GameManager.instance.SaveMoney;
             GameManager.instance.SaveMoney += Inputted;
         }
+
 
         
     }

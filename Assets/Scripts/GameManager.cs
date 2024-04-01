@@ -11,7 +11,9 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
-    private float[] earningValues = { 2.00f, 4.00f, 6.00f, 8.00f, 10.00f };
+    public bool IsTutorialOn = false;
+    //^ Jar display has its own values to set to if they miss match go there.
+    private float[] earningValues = { 2.00f, 4.00f, 6.00f, 8.00f, 10.00f, 60};
     public int CurrentDifficulty = 0;
     public delegate void moneySaved();
     public static event moneySaved OnMoneySaved;
@@ -74,9 +76,14 @@ public class GameManager : MonoBehaviour
         }
         else
         {
+            if(instance.IsTutorialOn && SceneManager.GetActiveScene().name == "Main Game")
+            {
+                resetImportantValues();
+            }
+
             Destroy(gameObject);
         }
-        CurrentMinimumEarnings = earningValues[0];
+        CurrentMinimumEarnings = earningValues[Mathf.Clamp(CurrentDifficulty,0,5) ];
         SceneManager.activeSceneChanged += checkIfSceneIsMainGame;
         
     }
@@ -102,12 +109,27 @@ public class GameManager : MonoBehaviour
         {
             CurrentDifficulty = 4;
         }
-
+        if (MoneySaved >= earningValues[4])
+        {
+            CurrentDifficulty = 5;
+        }
+        if (MoneySaved >= earningValues[5])
+        {
+            //End Game
+        }
     }
+
+    //!!
+    //!!
+    //!! THE FOLLOWING CODE IS A MESS BUT
+    //!! The value that checks to see if the scene is the main game is not being triggered
+    //!! is in the customer manager Script 
+    //!! fucking hilarious I KNOW...
     void checkIfSceneIsMainGame(Scene current, Scene next)
     {
         drankCoffee = false;
-        if (next.name != "Main Game")
+
+        if (next.name != "Main Game" && !IsTutorialOn)
         {
             Debug.Log("not main game");
             Destroy(gameObject);
@@ -123,6 +145,13 @@ public class GameManager : MonoBehaviour
         OnEndDay();
         //enable after actionScreen
         //show earnings
+    }
+    private void resetImportantValues()
+    {
+        SaveMoney = 0.00f;
+        CurrentDay = 0;
+        CurrentDifficulty = 0;
+        CurrentMinimumEarnings = earningValues[0];
     }
     //this trigger by the after actionreport being ended.
     public void loadNextDay()
