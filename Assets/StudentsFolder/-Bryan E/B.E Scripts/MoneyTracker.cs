@@ -10,36 +10,51 @@ public class MoneyTracker : MonoBehaviour
 {
     [SerializeField] private TMP_Text RegisterCashAmount;
     [SerializeField] AfterActionReport afterActionReport;
+    private float temp = 2;
+    [HideInInspector]
+    public float currentDayTotal = 0.00f;
+    public bool Welostmoney = false;
 
-    private float DaysTotal = 0.00f;
-    public float daySMoney
+    void Start()
     {
-        get { return DaysTotal; }
-        set { 
-            DaysTotal = value; 
-            }
+        RegisterCashAmount.text = "Register\n$" + currentDayTotal + 
+        "\n you need $" + GameManager.instance.CurrentMinimumEarnings + " to end the day" +
+        "\n you have $" + GameManager.instance.SaveMoney + " in savings";
+        temp = GameManager.instance.CurrentMinimumEarnings;
     }
+    public void setDayOver()
+    {
+        if(currentDayTotal < GameManager.instance.CurrentMinimumEarnings)
+        {
+            Welostmoney = true;
+            GameManager.instance.SaveMoney += currentDayTotal - GameManager.instance.CurrentMinimumEarnings; 
+        }
+    }   
+
     public void CalculateAndDisplayMoney(float foodCost)
     {
-        daySMoney += foodCost;
+        currentDayTotal += foodCost;
+        GameManager.instance.RegisterCashAmount = currentDayTotal;
         // we need a statement that checks if the money is greater than the minimum
         // but just barely because it will add the total food amount if it is 
  
 
         UpdateRegisterDisplay();
-        if(GameManager.instance.CurrentMinimumEarnings < DaysTotal)
+        if(currentDayTotal >= GameManager.instance.CurrentMinimumEarnings)
         {
-            float moneyToSave = DaysTotal - GameManager.instance.CurrentMinimumEarnings;
-            float Inputted = moneyToSave - GameManager.instance.SaveMoney;
-            GameManager.instance.SaveMoney += Inputted;
+            float valueToadd = currentDayTotal - temp;
+            temp = currentDayTotal;
+            GameManager.instance.SaveMoney += valueToadd;
         }
-
-
+            
         
     }
 
     void UpdateRegisterDisplay()
     {
-        RegisterCashAmount.text = "Register\n$" + DaysTotal;
+        RegisterCashAmount.text = "Register$" + currentDayTotal + 
+        "\n you need $" + GameManager.instance.CurrentMinimumEarnings + " to end the day";
+
+
     }
 }

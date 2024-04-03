@@ -79,7 +79,7 @@ public class CustomerOrder : MonoBehaviour
         TotalCost = 0;
         if (hasRice)
         {
-            TotalCost += 1.5f;
+            TotalCost += 10f;
             MealName += "Arroz ";
             rice = "Arroz ";
             Debug.Log("Added 1.5 to TotalCost. TotalCost: " + TotalCost);
@@ -101,7 +101,7 @@ public class CustomerOrder : MonoBehaviour
                 main = "";
                 break;
             case MainFoods.Rabo:
-                TotalCost += 2.50f;
+                TotalCost += 35.0f;
                 MealName += "Rabo Encendido";
                 MainDescription = "something about Rabo";
                 main = "Rabo Encendido";
@@ -109,7 +109,7 @@ public class CustomerOrder : MonoBehaviour
                 Debug.Log("Selected main: Rabo Encendido");
                 break;
             case MainFoods.Fricase:
-                TotalCost += 2.50f;
+                TotalCost += 20.00f;
                 MealName += "Fricase de Pollo";
                 MainDescription = "something about Fricase";
                 main = "Fricase de Pollo";
@@ -117,7 +117,7 @@ public class CustomerOrder : MonoBehaviour
                 Debug.Log("Selected main: Fricase de Pollo");
                 break;
             case MainFoods.Beans:
-                TotalCost += 1.00f;
+                TotalCost += 5.00f;
                 MealName += "Frijoles";
                 MainDescription = "something about Frijoles";
                 main = "Frijoles";
@@ -140,24 +140,24 @@ public class CustomerOrder : MonoBehaviour
                 side1 = "";
                 break;
             case SideFoods.croqueta:
-                TotalCost += 0.5f * NumOfSides;
+                TotalCost += 1.5f * NumOfSides;
                 MealName += NumOfSides + " Croquetas ";
                 side1 = NumOfSides + " Croquetas ";
-                Debug.Log("Added " + (0.5f * NumOfSides) + " to TotalCost. TotalCost: " + TotalCost);
+                Debug.Log("Added " + (1.5f * NumOfSides) + " to TotalCost. TotalCost: " + TotalCost);
                 Debug.Log("Selected side 1: Croquetas");
                 break;
             case SideFoods.tostone:
-                TotalCost += 0.75f * NumOfSides;
+                TotalCost += 2.50f * NumOfSides;
                 MealName += NumOfSides + " Tostones ";
                 side1 = NumOfSides + " Tostones ";
-                Debug.Log("Added " + (0.75f * NumOfSides) + " to TotalCost. TotalCost: " + TotalCost);
+                Debug.Log("Added " + (2.50f * NumOfSides) + " to TotalCost. TotalCost: " + TotalCost);
                 Debug.Log("Selected side 1: Tostones");
                 break;
             case SideFoods.maduro:
-                TotalCost += 0.75f * NumOfSides;
+                TotalCost += 1.5f * NumOfSides;
                 MealName += NumOfSides + " Platano Maduro";
                 side1 = NumOfSides + " Platano Maduro";
-                Debug.Log("Added " + (0.75f * NumOfSides) + " to TotalCost. TotalCost: " + TotalCost);
+                Debug.Log("Added " + (1.5f * NumOfSides) + " to TotalCost. TotalCost: " + TotalCost);
                 Debug.Log("Selected side 1: Platano Maduro");
                 break;
         }
@@ -173,24 +173,24 @@ public class CustomerOrder : MonoBehaviour
                 side2 = "";
                 break;
             case SideFoods.croqueta:
-                TotalCost += 0.5f * NumOfSides;
+                TotalCost += 1.5f * NumOfSides;
                 MealName += NumOfSides + " Croquetas ";
                 side1 = NumOfSides + " Croquetas ";
-                Debug.Log("Added " + (0.5f * NumOfSides) + " to TotalCost. TotalCost: " + TotalCost);
+                Debug.Log("Added " + (1.5f * NumOfSides) + " to TotalCost. TotalCost: " + TotalCost);
                 Debug.Log("Selected side 2: Croquetas");
                 break;
             case SideFoods.tostone:
-                TotalCost += 0.75f * NumOfSides;
+                TotalCost += 2.50f * NumOfSides;
                 MealName += NumOfSides + " Tostones ";
                 side1 = NumOfSides + " Tostones ";
-                Debug.Log("Added " + (0.75f * NumOfSides) + " to TotalCost. TotalCost: " + TotalCost);
+                Debug.Log("Added " + (2.50f * NumOfSides) + " to TotalCost. TotalCost: " + TotalCost);
                 Debug.Log("Selected side 2: Tostones");
                 break;
             case SideFoods.maduro:
-                TotalCost += 0.75f * NumOfSides;
+                TotalCost += 1.5f * NumOfSides;
                 MealName += NumOfSides + " Platano Maduro";
                 side1 = NumOfSides + " Platano Maduro";
-                Debug.Log("Added " + (0.75f * NumOfSides) + " to TotalCost. TotalCost: " + TotalCost);
+                Debug.Log("Added " + (1.5f * NumOfSides) + " to TotalCost. TotalCost: " + TotalCost);
                 Debug.Log("Selected side 2: Platano Maduro");
                 break;
         }

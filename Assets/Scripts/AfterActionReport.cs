@@ -32,7 +32,13 @@ public class AfterActionReport : MonoBehaviour
         TodaysGoal.text = "We Needed: " + GameManager.instance.CurrentMinimumEarnings;
         int day = GameManager.instance.m_CurrentDay + 1;
         Day.text = "Day: " + (day);
-        TodaysEarnings.text = "We Earned: " + moneyTracker.daySMoney;
+        TodaysEarnings.text = "We Earned: " + moneyTracker.currentDayTotal + "$";
+        if(moneyTracker.Welostmoney)
+        {
+            TodaysSavings.text = "We lost " + (moneyTracker.currentDayTotal - GameManager.instance.CurrentMinimumEarnings) + "$ We now have " + GameManager.instance.SaveMoney + "$ in savings";
+            
+            return;
+        }
         TodaysSavings.text = "We have " + GameManager.instance.SaveMoney + "$ in savings";
 
     }

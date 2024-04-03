@@ -13,12 +13,13 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
     public bool IsTutorialOn = false;
     //^ Jar display has its own values to set to if they miss match go there.
-    private float[] earningValues = { 2.00f, 4.00f, 6.00f, 8.00f, 10.00f, 60};
+    private float[] earningValues = { 5.0f, 20f, 40, 60f, 100f};
     public int CurrentDifficulty = 0;
     public delegate void moneySaved();
     public static event moneySaved OnMoneySaved;
     public delegate void endDay();
     public  static event endDay OnEndDay;
+    public float RegisterCashAmount = 0.00f;
 
 
     public delegate void OrderTookTooLong();
@@ -88,18 +89,7 @@ public class GameManager : MonoBehaviour
     }
     bool tempDebug = false;
     //!!!!!!!!!!!!!!!!!!!! this Update is temporary remove me!!!!!!!!!!!!!!!!!!!!!!!!!
-    void Update()
-    {
-        Debug.Log ("Current Difficulty: " + CurrentDifficulty);
-        Debug.Log ("Current Minimum Earnings: " + CurrentMinimumEarnings);
-        Debug.Log ("Current Day: " + CurrentDay);
-        Debug.Log ("Current Money Saved: " + SaveMoney);
-        if(tempDebug)
-        {
-            Debug.Log("Temp Debug is on");
-        }
-
-    }
+    // i killed it were safe you can breathe now....
     public  void CalculateDifficultyBasedOnEarnings()
     {
         if (SaveMoney <= 0)
@@ -107,27 +97,27 @@ public class GameManager : MonoBehaviour
             CurrentDifficulty = 0;
             CurrentMinimumEarnings = earningValues[0];
         } 
-        if (SaveMoney >= earningValues[0])
+        if (RegisterCashAmount >= earningValues[0])
         {
             CurrentDifficulty = 1;
             CurrentMinimumEarnings = earningValues[1];
         }
-        if (SaveMoney >= earningValues[1])
+        if (RegisterCashAmount >= earningValues[1])
         {
             CurrentDifficulty = 2;
-            CurrentMinimumEarnings = earningValues[3];
+            CurrentMinimumEarnings = earningValues[2];
         }
-        if (SaveMoney >= earningValues[2])
+        if (RegisterCashAmount >= earningValues[2])
         {
             CurrentDifficulty = 3;  
             CurrentMinimumEarnings = earningValues[3];
         }
-        if (SaveMoney >= earningValues[3])
+        if (RegisterCashAmount >= earningValues[3])
         {
             CurrentDifficulty = 4;
             CurrentMinimumEarnings = earningValues[4];
         }
-        if (SaveMoney >= earningValues[4])
+        if (RegisterCashAmount >= earningValues[4])
         {
             CurrentDifficulty = 5;
             CurrentMinimumEarnings = earningValues[5];
@@ -183,15 +173,17 @@ public class GameManager : MonoBehaviour
         m_CurrentDay++;
         Debug.Log("Loading Next Day");
         resetSubscriptions();
-        int clampDay = Mathf.Clamp(m_CurrentDay, 0, 4);
-        CurrentMinimumEarnings = earningValues[CurrentDifficulty];
+        int ClampDiff = Mathf.Clamp(CurrentDifficulty, 0, 4);
+        CurrentMinimumEarnings = earningValues[ClampDiff];
         CalculateDifficultyBasedOnEarnings();
+
+        RegisterCashAmount = 0.00f;
         SceneManager.LoadScene("Main Game");
         isGameRunning = true;//! we should make this trigger via the player wanting to
         drankCoffee = true;
 
     }
-    //! since the event is static is lingers for the old world and will call upon that which no long exists
+    //! since the event is static is lingers for the old world and will call upon that which no longer exists
     //& basically when you call the event it tries to call all the previous
     //&Subscriptions that were made to it.
     //&since that scenes was deloaded it will cause a null reference exception

@@ -17,10 +17,10 @@ public class JarDisplay : MonoBehaviour
     private float currentMoneySaved;
 
     private float moneyState0 = 0;
-    private float moneyState1 = 2;
-    private float moneyState2 = 4;
-    private float moneyState3 = 6;
-    private float moneyStateLast = 15;
+    private float moneyState1 = 75;
+    private float moneyState2 = 150;
+    private float moneyState3 = 225;
+    private float moneyStateLast = 300;
 
     /// <summary>
     /// Gets or sets the current amount of money saved.
@@ -46,7 +46,6 @@ public class JarDisplay : MonoBehaviour
     }
     void FixedUpdate()
     {
-        Debug.Log("Fixed Update" + m_CurrentMoneySaved);
         upddateDisplayAmount();
     }
 
@@ -61,8 +60,7 @@ public class JarDisplay : MonoBehaviour
     void upddateDisplayAmount()
     {
         m_CurrentMoneySaved = GameManager.instance.SaveMoney;
-        Debug.Log("Current Money Saved: " + m_CurrentMoneySaved);
-        if (m_CurrentMoneySaved == moneyState0)
+        if (m_CurrentMoneySaved <= moneyState0)
         {
             DisplayState1.SetActive(false);
             DisplayState2.SetActive(false);

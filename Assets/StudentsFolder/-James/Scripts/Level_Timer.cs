@@ -15,6 +15,7 @@ public class Level_Timer : MonoBehaviour
     [SerializeField] private int seconds = 60;
     [SerializeField] private TMP_Text TimerText;
     [SerializeField] private AudioSource timerSound;
+    [SerializeField] private MoneyTracker theMONSTER;
 
     //Starts Coroutine
     void Start()
@@ -48,6 +49,7 @@ public class Level_Timer : MonoBehaviour
             if (DayLengthinMinutes == 0 && seconds == 0)
             {
                 Debug.Log("time is up!");
+                theMONSTER.setDayOver();
                 GameManager.instance.EndDay();
                 RunCountdown = GameManager.instance.isGameRunning;
                 yield break;
