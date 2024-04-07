@@ -24,13 +24,7 @@ public class InteractableActivation : MonoBehaviour
         ActivatePlate();
     }
 
-    public void ActivateLadle()
-    {
-        if (Ladle.name == "Ladle Variant 1")
-        {
-            XRGrabInteractable.GetComponent<XRGrabInteractable>().enabled = true;
-        }
-    }
+
 
     public void ActivatePlate()
     {

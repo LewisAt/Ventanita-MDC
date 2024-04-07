@@ -37,13 +37,13 @@ public class GeneralManager : MonoBehaviour
     // debugInputs is a method that checks for debug inputs or debuging purposes
     void debugInputs()
     {
-        if (Input.GetKeyDown(KeyCode.A))
+        /* if (Input.GetKeyDown(KeyCode.A))
         {
             // Code to execute when the 'A' button is pressed
             GameManager.instance.loadNextDay();
-        }
+        } */
         
-        if (Input.GetKeyDown(KeyCode.B))
+       /*  if (Input.GetKeyDown(KeyCode.B))
         {
             SceneManager.LoadScene("Tutorial");
             // Code to execute when the 'B' button is pressed
@@ -53,7 +53,7 @@ public class GeneralManager : MonoBehaviour
         {
             SceneManager.LoadScene("Menu");
             // Code to execute when the 'C' button is pressed
-        }
+        } */
         if(Input.GetKeyDown(KeyCode.Space))
         {
             UnityEditor.EditorApplication.isPlaying = false;

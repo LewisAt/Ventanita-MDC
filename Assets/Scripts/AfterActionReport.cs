@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Localization.Settings;
 
 public class AfterActionReport : MonoBehaviour
 {
@@ -30,16 +31,36 @@ public class AfterActionReport : MonoBehaviour
         CoffeeCup.SetActive(true);
         StartCoroutine(DelaySound());
         TodaysGoal.text = "We Needed: " + GameManager.instance.CurrentMinimumEarnings;
+        if(LocalizationSettings.SelectedLocale.name == "Spanish (es)")
+        {
+            TodaysGoal.text = "Necesitábamos: " + GameManager.instance.CurrentMinimumEarnings;
+        }
         int day = GameManager.instance.m_CurrentDay + 1;
         Day.text = "Day: " + (day);
+        if(LocalizationSettings.SelectedLocale.name == "Spanish (es)")
+        {
+            Day.text = "Día: " + (day);
+        }
         TodaysEarnings.text = "We Earned: " + moneyTracker.currentDayTotal + "$";
+        if(LocalizationSettings.SelectedLocale.name == "Spanish (es)")
+        {
+            TodaysEarnings.text = "Ganamos: " + moneyTracker.currentDayTotal + "$";
+        }
         if(moneyTracker.Welostmoney)
         {
             TodaysSavings.text = "We lost " + (moneyTracker.currentDayTotal - GameManager.instance.CurrentMinimumEarnings) + "$ We now have " + GameManager.instance.SaveMoney + "$ in savings";
+            if(LocalizationSettings.SelectedLocale.name == "Spanish (es)")
+            {
+                TodaysSavings.text = "Perdimos " + (moneyTracker.currentDayTotal - GameManager.instance.CurrentMinimumEarnings) + "$ Ahora tenemos " + GameManager.instance.SaveMoney + "$ en ahorros";
+            }
             
             return;
         }
         TodaysSavings.text = "We have " + GameManager.instance.SaveMoney + "$ in savings";
+        if(LocalizationSettings.SelectedLocale.name == "Spanish (es)")
+        {
+            TodaysSavings.text = "Tenemos " + GameManager.instance.SaveMoney + "$ en ahorros";
+        }
 
     }
     IEnumerator DelaySound()
