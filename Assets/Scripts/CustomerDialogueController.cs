@@ -7,6 +7,7 @@ public class CustomerDialogueController : MonoBehaviour
     private AudioSource CustomerImpatient;
     private AudioSource CustomerGreatFul;
     private AudioSource CustomerWTFISTHIS;
+    private bool AudioEventTriggered = false;
 
     void Start()
     {
@@ -18,31 +19,51 @@ public class CustomerDialogueController : MonoBehaviour
         GameManager.WrongOrderEvent += triggerCustomerWTFISTHIS;
 
     }
+    private void audioEventTriggered()
+    {
+        AudioEventTriggered = true;
+    }
     bool Delayed = true;
     void OnEnable()
     {
+        AudioEventTriggered = false;
         StartCoroutine(DelayImpatientandGreatful());
     }
     public void triggerCustomerImpatient()
     {
+        if(AudioEventTriggered == true)
+        {
+            return;
+        }
         if(Delayed == true)
         {
             return;
         }
+        audioEventTriggered();
         CustomerImpatient.Play();
         Debug.Log("Customer Impatient triggered");
     }
     public void triggerCustomerGreatFul()
     {
+        if(AudioEventTriggered == true)
+        {
+            return;
+        }
         if(Delayed == true)
         {
             return;
         }
+        audioEventTriggered();
+
         CustomerGreatFul.Play();
         Debug.Log("Customer Greatful triggered");
     }
     public void triggerCustomerWTFISTHIS()
     {
+        if(AudioEventTriggered == true)
+        {
+            return;
+        }
         CustomerWTFISTHIS.Play();
         Debug.Log("Customer WTFISTHIS triggered");
     }

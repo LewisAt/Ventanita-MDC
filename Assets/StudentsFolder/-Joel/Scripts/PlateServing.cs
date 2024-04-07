@@ -32,10 +32,28 @@ public class PlateServing : MonoBehaviour
 
     public void setFrijoles()
     {
+        if(Rabo.activeSelf == true)
+        {
+            return;
+        }
+        else if(Fricase.activeSelf == true)
+        {
+            return;
+        }
+        
         Frijoles.SetActive(true);
     }
     public void setCroquetaGroup(int num)
     {
+        if(maduroGroup[0].activeSelf == true)
+        {
+            return;
+        }
+        else if(TostoneGroup[0].activeSelf == true)
+        {
+            return;
+        }
+        
         for (int i = 0; i < num; i++)
         {
             croquetaGroup[i].SetActive(true);
@@ -43,10 +61,26 @@ public class PlateServing : MonoBehaviour
     }
     public void setFricase()
     {
+        if(Rabo.activeSelf == true)
+        {
+            return;
+        }
+        else if(Frijoles.activeSelf == true)
+        {
+            return;
+        }
         Fricase.SetActive(true);
     }
     public void setMaduroGroup(int num)
     {
+        if(croquetaGroup[0].activeSelf == true)
+        {
+            return;
+        }
+        else if(TostoneGroup[0].activeSelf == true)
+        {
+            return;
+        }
         for (int i = 0; i < num; i++)
         {
             maduroGroup[i].SetActive(true);
@@ -54,10 +88,26 @@ public class PlateServing : MonoBehaviour
     }
     public void setRabo()
     {
+        if(Fricase.activeSelf == true)
+        {
+            return;
+        }
+        else if(Frijoles.activeSelf == true)
+        {
+            return;
+        }
         Rabo.SetActive(true);
     }
     public void setTostoneGroup(int num)
     {
+        if(maduroGroup[0].activeSelf == true)
+        {
+            return;
+        }
+        else if(croquetaGroup[0].activeSelf == true)
+        {
+            return;
+        }
         for (int i = 0; i < num; i++)
         {
             TostoneGroup[i].SetActive(true);
@@ -69,6 +119,14 @@ public class PlateServing : MonoBehaviour
     }
     public void setCroqueta(int num)
     {
+        if(maduroGroup[0].activeSelf == true)
+        {
+            return;
+        }
+        else if(TostoneGroup[0].activeSelf == true)
+        {
+            return;
+        }
         for (int i = 0; i < num; i++)
         {
             croquetaGroup[i].SetActive(true);
@@ -76,6 +134,14 @@ public class PlateServing : MonoBehaviour
     }
     public void setMaduro(int num)
     {
+        if(croquetaGroup[0].activeSelf == true)
+        {
+            return;
+        }
+        else if(TostoneGroup[0].activeSelf == true)
+        {
+            return;
+        }
         for (int i = 0; i < num; i++)
         {
             maduroGroup[i].SetActive(true);
@@ -83,6 +149,14 @@ public class PlateServing : MonoBehaviour
     }
     public void setTostone(int num)
     {
+        if(maduroGroup[0].activeSelf == true)
+        {
+            return;
+        }
+        else if(croquetaGroup[0].activeSelf == true)
+        {
+            return;
+        }
         for (int i = 0; i < num; i++)
         {
             TostoneGroup[i].SetActive(true);

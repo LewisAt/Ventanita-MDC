@@ -21,7 +21,7 @@ public class TriggerMealRequest : MonoBehaviour
         {
             m_CustomerArrived = true;
             m_Customer = other.GetComponent<Movetowindow>();
-            PauseCustomer();
+            Invoke("PauseCustomer", 0.1f);
             //pause the customer
             
 

@@ -21,6 +21,8 @@ public class GameManager : MonoBehaviour
     public  static event endDay OnEndDay;
     public float RegisterCashAmount = 0.00f;
 
+    private bool isInTheRed = false;
+
 
     public delegate void OrderTookTooLong();
     public static event OrderTookTooLong OrderTookTooLongEvent;
@@ -170,6 +172,30 @@ public class GameManager : MonoBehaviour
         {
             return;
         }
+        if(SaveMoney > 300)
+        {
+            Debug.Log("You have saved enough money to buy the ticket");
+            SceneManager.LoadScene(4);
+        }
+        if(isInTheRed && SaveMoney > 0)
+        {
+            
+            isInTheRed = false;
+        }
+        if(isInTheRed)
+        {
+            Debug.Log("You have gone into the red and could not recover");
+            SceneManager.LoadScene(5);
+            return;
+        }
+        if(SaveMoney < 0)
+        {
+            Debug.Log("You have gone into the red");
+            isInTheRed = true;
+        }
+        
+        //!give the player some kind of warning or something in the next day
+        
         m_CurrentDay++;
         Debug.Log("Loading Next Day");
         resetSubscriptions();

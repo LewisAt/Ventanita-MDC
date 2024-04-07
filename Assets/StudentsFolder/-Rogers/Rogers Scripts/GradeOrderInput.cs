@@ -35,6 +35,13 @@ public class GradeOrderInput : MonoBehaviour
         CustomerTimer = CustomerTimerMax;
         CustomerSliderUI.maxValue = CustomerTimer;
     }
+    void DisableOrderUI()
+    {
+        resetIcons();
+        CustomerSliderUI.gameObject.SetActive(false);
+        this.GetComponent<BoxCollider>().enabled = false;
+        StopAllCoroutines();
+    }
 
     //!look at this later its causing and issue but IDK what it is
     public TriggerMealRequest triggerMeal;//actual variable hold the the current customer
@@ -42,6 +49,7 @@ public class GradeOrderInput : MonoBehaviour
 
     {
         PopulateDependencies();
+        GameManager.OnEndDay += DisableOrderUI;
     }
     private void PopulateDependencies()
     {
@@ -113,6 +121,8 @@ public class GradeOrderInput : MonoBehaviour
             FoodNameHeader.text = "Correct";
         }
     }
+
+
 //this is the timer for the customer
     IEnumerator CustomerTimerCorotine()
     {
@@ -142,7 +152,8 @@ public class GradeOrderInput : MonoBehaviour
         if (givenPlate.plateMain == ActualOrder.Mains
             && givenPlate.plateSide == ActualOrder.sides
             && givenPlate.plateSide1 == ActualOrder.sides1
-            && givenPlate.hasRice == ActualOrder.hasRice)
+            && givenPlate.hasRice == ActualOrder.hasRice
+            && givenPlate.SideCount == ActualOrder.getNumOfSides())
         {
             resetIcons();
             StopCoroutine(CustomerTimerCoroutine);
