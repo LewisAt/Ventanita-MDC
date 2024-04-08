@@ -39,6 +39,11 @@ public class LaldleIdentifier : MonoBehaviour
         isRespawning = true;
 
     }
+    public void RespawnNow()
+    {
+        parentRB.constraints = RigidbodyConstraints.FreezeAll;
+        isRespawning = true;
+    }
     //^ gross i know but i want it animated
     void Update()
     {

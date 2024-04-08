@@ -94,6 +94,13 @@ public class GameManager : MonoBehaviour
     // i killed it were safe you can breathe now....
     public  void CalculateDifficultyBasedOnEarnings()
     {
+        if(isInTheRed)
+        {
+            CurrentDifficulty = CurrentDifficulty - 1;
+            CurrentMinimumEarnings = earningValues[CurrentDifficulty];
+            return;
+        }
+        
         if (SaveMoney <= 0)
         {
             CurrentDifficulty = 0;
