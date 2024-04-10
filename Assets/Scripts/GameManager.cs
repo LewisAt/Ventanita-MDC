@@ -126,11 +126,6 @@ public class GameManager : MonoBehaviour
             CurrentDifficulty = 4;
             CurrentMinimumEarnings = earningValues[4];
         }
-        if (RegisterCashAmount >= earningValues[4])
-        {
-            CurrentDifficulty = 5;
-            CurrentMinimumEarnings = earningValues[5];
-        }
     }
 
     //!!
@@ -189,7 +184,7 @@ public class GameManager : MonoBehaviour
             
             isInTheRed = false;
         }
-        if(isInTheRed)
+        else if(isInTheRed && SaveMoney < 0)
         {
             Debug.Log("You have gone into the red and could not recover");
             SceneManager.LoadScene(5);

@@ -56,6 +56,7 @@ public class GeneralManager : MonoBehaviour
         } */
         if(Input.GetKeyDown(KeyCode.Space))
         {
+            
 
             // Code to execute when the 'D' button is pressed
         }
