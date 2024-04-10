@@ -56,8 +56,6 @@ public class GeneralManager : MonoBehaviour
         } */
         if(Input.GetKeyDown(KeyCode.Space))
         {
-            UnityEditor.EditorApplication.isPlaying = false;
-            XRGeneralSettings.Instance.Manager.DeinitializeLoader();
 
             // Code to execute when the 'D' button is pressed
         }
