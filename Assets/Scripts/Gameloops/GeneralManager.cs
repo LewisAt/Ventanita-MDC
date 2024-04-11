@@ -43,21 +43,20 @@ public class GeneralManager : MonoBehaviour
             GameManager.instance.loadNextDay();
         } */
         
-       /*  if (Input.GetKeyDown(KeyCode.B))
+         if (Input.GetKeyDown(KeyCode.B))
         {
-            SceneManager.LoadScene("Tutorial");
+            GameManager.instance.Debugwin();
             // Code to execute when the 'B' button is pressed
         }
         
         if (Input.GetKeyDown(KeyCode.C))
         {
-            SceneManager.LoadScene("Menu");
             // Code to execute when the 'C' button is pressed
-        } */
+        } 
         if(Input.GetKeyDown(KeyCode.Space))
         {
-            
-
+            UnityEditor.EditorApplication.isPlaying = false;
+            XRGeneralSettings.Instance.Manager.DeinitializeLoader();
             // Code to execute when the 'D' button is pressed
         }
         // Add more if statements for other buttons as needed

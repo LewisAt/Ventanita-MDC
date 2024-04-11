@@ -89,6 +89,10 @@ public class GameManager : MonoBehaviour
         SceneManager.activeSceneChanged += checkIfSceneIsMainGame;
         
     }
+    public void Debugwin()
+    {
+        SaveMoney = 300;
+    }
     bool tempDebug = false;
     //!!!!!!!!!!!!!!!!!!!! this Update is temporary remove me!!!!!!!!!!!!!!!!!!!!!!!!!
     // i killed it were safe you can breathe now....
@@ -96,8 +100,13 @@ public class GameManager : MonoBehaviour
     {
         if(isInTheRed)
         {
-            CurrentDifficulty = CurrentDifficulty - 1;
-            CurrentMinimumEarnings = earningValues[CurrentDifficulty];
+            int temp = TempDifficulty - 1;
+            if(temp < 0)
+            {
+                temp = 0;
+            }
+            CurrentDifficulty = temp;
+            CurrentMinimumEarnings = earningValues[temp];
             return;
         }
         
@@ -134,6 +143,15 @@ public class GameManager : MonoBehaviour
     //!! The value that checks to see if the scene is the main game is not being triggered
     //!! is in the customer manager Script 
     //!! fucking hilarious I KNOW...
+
+
+
+
+
+
+    //! THis is the worse solution but is one
+
+    int TempDifficulty;
 
     //* This is virtually our awake method and gets called everytime. lets see if it works though
     void checkIfSceneIsMainGame(Scene current, Scene next)
@@ -174,11 +192,7 @@ public class GameManager : MonoBehaviour
         {
             return;
         }
-        if(SaveMoney > 300)
-        {
-            Debug.Log("You have saved enough money to buy the ticket");
-            SceneManager.LoadScene(4);
-        }
+        
         if(isInTheRed && SaveMoney > 0)
         {
             
@@ -193,6 +207,7 @@ public class GameManager : MonoBehaviour
         if(SaveMoney < 0)
         {
             Debug.Log("You have gone into the red");
+            TempDifficulty = CurrentDifficulty;
             isInTheRed = true;
         }
         
@@ -206,6 +221,13 @@ public class GameManager : MonoBehaviour
         CalculateDifficultyBasedOnEarnings();
 
         RegisterCashAmount = 0.00f;
+        if(SaveMoney > 300)
+        {
+            Debug.Log("You have saved enough money to buy the ticket");
+            SceneManager.LoadScene(4);
+            EndGame();
+            return;
+        }
         SceneManager.LoadScene("Main Game");
         isGameRunning = true;//! we should make this trigger via the player wanting to
         drankCoffee = true;
@@ -236,6 +258,12 @@ public class GameManager : MonoBehaviour
     public void WrongOrderTrigger()
     {
         WrongOrderEvent();
+    }
+    void EndGame()
+    {
+        resetImportantValues();
+        resetSubscriptions();
+        Destroy(gameObject);
     }
 
     
