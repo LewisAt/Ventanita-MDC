@@ -2880,7 +2880,7 @@ MonoBehaviour:
     there.\r\nI won\u2019t sugar coat it, things are really rough over here right
     now.\r\nAnd I don\u2019t believe my health will last out much longer.\r\nI just
     wanted to say thank you one last time.\r\n\r\nI know you\u2019ve been trying
-    super hard to bring me home, but that&#39;s okay, worry about yourself.\r\nIt\u2019s
+    super hard to bring me home, but thats okay, worry about yourself.\r\nIt\u2019s
     my time so thank you for all the wonderful times we had at our restaurant.\r\n\r\nthank
     you."
   m_isRightToLeft: 0
@@ -3165,7 +3165,19 @@ MonoBehaviour:
     m_WaitForCompletion: 0
   m_UpdateAsset:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 962749069}
+        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
+        m_MethodName: set_clip
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1001399356
 GameObject:
   m_ObjectHideFlags: 0
