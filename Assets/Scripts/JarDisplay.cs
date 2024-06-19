@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 /// <summary>
@@ -15,13 +16,15 @@ public class JarDisplay : MonoBehaviour
     /// The amount of money currently saved.
     /// </summary>
     private float currentMoneySaved;
+    public ParticleSystem JarParticle;
+    public TMP_Text JarSavedText;
 
     private float moneyState0 = 0;
-    private float moneyState1 = 75;
-    private float moneyState2 = 150;
-    private float moneyState3 = 225;
+    private float moneyState1 = 10;
+    private float moneyState2 = 50;
+    private float moneyState3 = 150;
     private float moneyStateLast = 300;
-
+    private bool lazyPlayed = false;
     /// <summary>
     /// Gets or sets the current amount of money saved.
     /// </summary>
@@ -60,7 +63,9 @@ public class JarDisplay : MonoBehaviour
     void upddateDisplayAmount()
     {
         m_CurrentMoneySaved = GameManager.instance.SaveMoney;
-        if (m_CurrentMoneySaved <= moneyState0)
+        JarSavedText.text = m_CurrentMoneySaved.ToString();
+
+        if (m_CurrentMoneySaved < moneyState1)
         {
             DisplayState1.SetActive(false);
             DisplayState2.SetActive(false);
@@ -106,22 +111,9 @@ public class JarDisplay : MonoBehaviour
     /// </summary>
     void playMoneySFX()
     {
-        if (m_CurrentMoneySaved > moneyState1)
-        {
-            //play sound effect & Particle effect
-        }
-        else if (m_CurrentMoneySaved > moneyState2)
-        {
-            //play sound effect & Particle effect
-        }
-        else if (m_CurrentMoneySaved > moneyState3)
-        {
-            //play sound effect & Particle effect
-        }
-        else if (m_CurrentMoneySaved > moneyStateLast)
-        {
-            //play sound effect & Particle effect
-        }
+        if(lazyPlayed) return;
+        JarParticle.Play();
+        lazyPlayed = true;
     }
 
 

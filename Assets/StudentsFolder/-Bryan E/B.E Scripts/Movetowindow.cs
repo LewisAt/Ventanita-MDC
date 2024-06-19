@@ -98,7 +98,7 @@ public class Movetowindow : MonoBehaviour
         // Debug.LogError(gameObject.name + " of Group" + transform.parent.transform.parent.name + " is Moving ");
 
         Vector3 destination = Vector3.MoveTowards(transform.position, points[i].transform.position, Speed * Time.deltaTime);
-        transform.position = new Vector3(destination.x, this.transform.position.y, destination.z);
+        transform.position = new Vector3(destination.x, destination.y, destination.z);
 
         float distance = DistanceToPoint();
         //the if statement only looks at X value since we only need to match one value to work.

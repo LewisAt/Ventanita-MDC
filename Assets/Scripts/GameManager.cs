@@ -100,7 +100,7 @@ public class GameManager : MonoBehaviour
     {
         if(isInTheRed)
         {
-            int temp = TempDifficulty - 1;
+            int temp = TempDifficulty;
             if(temp < 0)
             {
                 temp = 0;
